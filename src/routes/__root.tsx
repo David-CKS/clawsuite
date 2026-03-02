@@ -15,6 +15,7 @@ import { OnboardingTour } from '@/components/onboarding/onboarding-tour'
 import { KeyboardShortcutsModal } from '@/components/keyboard-shortcuts-modal'
 import { GatewaySetupWizard } from '@/components/gateway-setup-wizard'
 import { GatewayReconnectBanner } from '@/components/gateway-reconnect-banner'
+import { CompactionNotifier } from '@/components/compaction-notifier'
 import { GatewayRestartProvider } from '@/components/gateway-restart-overlay'
 import { ExecApprovalToast } from '@/components/exec-approval-toast'
 import { initializeSettingsAppearance } from '@/hooks/use-settings'
@@ -269,6 +270,7 @@ function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <GatewayRestartProvider>
       <GatewayReconnectBanner />
+      <CompactionNotifier />
       <GlobalShortcutListener />
       <TerminalShortcutListener />
       <TaskReminderRunner />

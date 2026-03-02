@@ -2,13 +2,14 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 const POLL_MS = 15_000
 const STORAGE_KEY = 'clawsuite-ctx-alert'
-const THRESHOLDS = [90, 75, 50] as const
+// 35% threshold fires BEFORE the gateway compacts (~40% / 80k on 200k window)
+const THRESHOLDS = [90, 75, 35] as const
 
 type Threshold = (typeof THRESHOLDS)[number]
 
 type StoredState = {
   date: string
-  sent: Record<'50' | '75' | '90', boolean>
+  sent: Record<'35' | '75' | '90', boolean>
 }
 
 function getTodayKeyLocal(): string {
@@ -20,7 +21,7 @@ function getTodayKeyLocal(): string {
 }
 
 function emptySent(): StoredState['sent'] {
-  return { '50': false, '75': false, '90': false }
+  return { '35': false, '75': false, '90': false }
 }
 
 function loadStoredState(): StoredState {
@@ -34,7 +35,7 @@ function loadStoredState(): StoredState {
     return {
       date: today,
       sent: {
-        '50': Boolean(parsed.sent?.['50']),
+        '35': Boolean(parsed.sent?.['35']),
         '75': Boolean(parsed.sent?.['75']),
         '90': Boolean(parsed.sent?.['90']),
       },
