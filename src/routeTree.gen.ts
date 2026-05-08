@@ -87,6 +87,7 @@ import { Route as ApiAgentDispatchRouteImport } from './routes/api/agent-dispatc
 import { Route as ApiAgentActivityRouteImport } from './routes/api/agent-activity'
 import { Route as ApiTasksIndexRouteImport } from './routes/api/tasks/index'
 import { Route as ApiTasksTaskIdRouteImport } from './routes/api/tasks/$taskId'
+import { Route as ApiSourcesProbeRouteImport } from './routes/api/sources/probe'
 import { Route as ApiSessionsSendRouteImport } from './routes/api/sessions/send'
 import { Route as ApiMemoryWriteRouteImport } from './routes/api/memory/write'
 import { Route as ApiMemorySearchRouteImport } from './routes/api/memory/search'
@@ -506,6 +507,11 @@ const ApiTasksTaskIdRoute = ApiTasksTaskIdRouteImport.update({
   path: '/api/tasks/$taskId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSourcesProbeRoute = ApiSourcesProbeRouteImport.update({
+  id: '/api/sources/probe',
+  path: '/api/sources/probe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiSessionsSendRoute = ApiSessionsSendRouteImport.update({
   id: '/send',
   path: '/send',
@@ -750,6 +756,7 @@ export interface FileRoutesByFullPath {
   '/api/memory/search': typeof ApiMemorySearchRoute
   '/api/memory/write': typeof ApiMemoryWriteRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/tasks/': typeof ApiTasksIndexRoute
   '/api/cli-agents/$pid/kill': typeof ApiCliAgentsPidKillRoute
@@ -857,6 +864,7 @@ export interface FileRoutesByTo {
   '/api/memory/search': typeof ApiMemorySearchRoute
   '/api/memory/write': typeof ApiMemoryWriteRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/tasks': typeof ApiTasksIndexRoute
   '/api/cli-agents/$pid/kill': typeof ApiCliAgentsPidKillRoute
@@ -966,6 +974,7 @@ export interface FileRoutesById {
   '/api/memory/search': typeof ApiMemorySearchRoute
   '/api/memory/write': typeof ApiMemoryWriteRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/tasks/': typeof ApiTasksIndexRoute
   '/api/cli-agents/$pid/kill': typeof ApiCliAgentsPidKillRoute
@@ -1076,6 +1085,7 @@ export interface FileRouteTypes {
     | '/api/memory/search'
     | '/api/memory/write'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/tasks/'
     | '/api/cli-agents/$pid/kill'
@@ -1183,6 +1193,7 @@ export interface FileRouteTypes {
     | '/api/memory/search'
     | '/api/memory/write'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/tasks'
     | '/api/cli-agents/$pid/kill'
@@ -1291,6 +1302,7 @@ export interface FileRouteTypes {
     | '/api/memory/search'
     | '/api/memory/write'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/tasks/'
     | '/api/cli-agents/$pid/kill'
@@ -1387,6 +1399,7 @@ export interface RootRouteChildren {
   ApiMemoryReadRoute: typeof ApiMemoryReadRoute
   ApiMemorySearchRoute: typeof ApiMemorySearchRoute
   ApiMemoryWriteRoute: typeof ApiMemoryWriteRoute
+  ApiSourcesProbeRoute: typeof ApiSourcesProbeRoute
   ApiTasksTaskIdRoute: typeof ApiTasksTaskIdRoute
   ApiTasksIndexRoute: typeof ApiTasksIndexRoute
   ApiGatewayApprovalsIndexRoute: typeof ApiGatewayApprovalsIndexRoute
@@ -1941,6 +1954,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiTasksTaskIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/sources/probe': {
+      id: '/api/sources/probe'
+      path: '/api/sources/probe'
+      fullPath: '/api/sources/probe'
+      preLoaderRoute: typeof ApiSourcesProbeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/sessions/send': {
       id: '/api/sessions/send'
       path: '/send'
@@ -2318,6 +2338,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiMemoryReadRoute: ApiMemoryReadRoute,
   ApiMemorySearchRoute: ApiMemorySearchRoute,
   ApiMemoryWriteRoute: ApiMemoryWriteRoute,
+  ApiSourcesProbeRoute: ApiSourcesProbeRoute,
   ApiTasksTaskIdRoute: ApiTasksTaskIdRoute,
   ApiTasksIndexRoute: ApiTasksIndexRoute,
   ApiGatewayApprovalsIndexRoute: ApiGatewayApprovalsIndexRoute,

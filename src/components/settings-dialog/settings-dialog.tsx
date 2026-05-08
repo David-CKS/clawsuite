@@ -41,6 +41,7 @@ import {
   DialogRoot,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { SourcesSection } from './sources-section'
 
 // ── Types ───────────────────────────────────────────────────────────────
 
@@ -759,6 +760,9 @@ function AdvancedContent() {
             Probar
           </Button>
         </Row>
+      </div>
+      <div className={SETTINGS_CARD_CLASS}>
+        <SourcesSection />
       </div>
     </div>
   )
