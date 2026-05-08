@@ -43,6 +43,12 @@ COPY --from=skills /openclaw-skills ./openclaw-skills
 COPY --from=builder /app/cks-skills ./openclaw-skills-cks
 RUN cp -r ./openclaw-skills-cks/cks-* ./openclaw-skills/ && rm -rf ./openclaw-skills-cks
 
+# Pre-create runtime data dir for orchestrator-store (GET /api/orchestrator/goals
+# fallaba con HTTP 500 al primer arranque porque clawsuite UID 100 no podía
+# mkdir /app/data — /app es root:root). Bind mount de /app/data en compose
+# preserva goals tras container recreate.
+RUN mkdir -p /app/data && chown -R clawsuite:clawsuite /app/data
+
 # Expose default port
 EXPOSE 3000
 

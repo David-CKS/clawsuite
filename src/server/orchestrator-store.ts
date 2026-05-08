@@ -51,11 +51,22 @@ export type Goal = {
 }
 
 async function ensureFile(): Promise<void> {
-  await fs.mkdir(path.dirname(GOALS_FILE), { recursive: true })
+  try {
+    await fs.mkdir(path.dirname(GOALS_FILE), { recursive: true })
+  } catch (err: any) {
+    // EACCES/EPERM: dir no se puede crear (permisos de container). No bloqueamos
+    // las lecturas — readGoals devolverá [] y los writes fallarán explícitamente.
+    if (err.code !== 'EACCES' && err.code !== 'EPERM') throw err
+    return
+  }
   try {
     await fs.access(GOALS_FILE)
   } catch {
-    await fs.writeFile(GOALS_FILE, '[]', 'utf-8')
+    try {
+      await fs.writeFile(GOALS_FILE, '[]', 'utf-8')
+    } catch (err: any) {
+      if (err.code !== 'EACCES' && err.code !== 'EPERM') throw err
+    }
   }
 }
 
@@ -65,8 +76,19 @@ export async function readGoals(): Promise<Goal[]> {
     const raw = await fs.readFile(GOALS_FILE, 'utf-8')
     const parsed = JSON.parse(raw) as unknown
     return Array.isArray(parsed) ? (parsed as Goal[]) : []
-  } catch {
-    return []
+  } catch (err: any) {
+    // ENOENT: fichero no existe aún (primer arranque, ensureFile falló silently)
+    // EACCES/EPERM: permisos rotos en runtime. En todos los casos, [] es la
+    // respuesta correcta — el endpoint GET nunca devuelve 500 por estado vacío.
+    if (
+      err.code === 'ENOENT' ||
+      err.code === 'EACCES' ||
+      err.code === 'EPERM' ||
+      err instanceof SyntaxError
+    ) {
+      return []
+    }
+    throw err
   }
 }
 
