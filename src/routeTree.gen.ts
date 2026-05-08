@@ -15,6 +15,7 @@ import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SessionsRouteImport } from './routes/sessions'
+import { Route as SergioBridgeRouteImport } from './routes/sergio-bridge'
 import { Route as NodesRouteImport } from './routes/nodes'
 import { Route as NewRouteImport } from './routes/new'
 import { Route as MemoryRouteImport } from './routes/memory'
@@ -106,6 +107,9 @@ import { Route as ApiCronToggleRouteImport } from './routes/api/cron/toggle'
 import { Route as ApiCronRunRouteImport } from './routes/api/cron/run'
 import { Route as ApiCronListRouteImport } from './routes/api/cron/list'
 import { Route as ApiCronDeleteRouteImport } from './routes/api/cron/delete'
+import { Route as ApiCksBridgeStatusRouteImport } from './routes/api/cks/bridge-status'
+import { Route as ApiCksBridgeStatsRouteImport } from './routes/api/cks/bridge-stats'
+import { Route as ApiCksBridgeRecentQueriesRouteImport } from './routes/api/cks/bridge-recent-queries'
 import { Route as ApiBrowserTabsRouteImport } from './routes/api/browser/tabs'
 import { Route as ApiBrowserStatusRouteImport } from './routes/api/browser/status'
 import { Route as ApiBrowserScreenshotRouteImport } from './routes/api/browser/screenshot'
@@ -144,6 +148,11 @@ const SettingsRoute = SettingsRouteImport.update({
 const SessionsRoute = SessionsRouteImport.update({
   id: '/sessions',
   path: '/sessions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SergioBridgeRoute = SergioBridgeRouteImport.update({
+  id: '/sergio-bridge',
+  path: '/sergio-bridge',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NodesRoute = NodesRouteImport.update({
@@ -601,6 +610,22 @@ const ApiCronDeleteRoute = ApiCronDeleteRouteImport.update({
   path: '/delete',
   getParentRoute: () => ApiCronRoute,
 } as any)
+const ApiCksBridgeStatusRoute = ApiCksBridgeStatusRouteImport.update({
+  id: '/api/cks/bridge-status',
+  path: '/api/cks/bridge-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksBridgeStatsRoute = ApiCksBridgeStatsRouteImport.update({
+  id: '/api/cks/bridge-stats',
+  path: '/api/cks/bridge-stats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksBridgeRecentQueriesRoute =
+  ApiCksBridgeRecentQueriesRouteImport.update({
+    id: '/api/cks/bridge-recent-queries',
+    path: '/api/cks/bridge-recent-queries',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiBrowserTabsRoute = ApiBrowserTabsRouteImport.update({
   id: '/tabs',
   path: '/tabs',
@@ -669,6 +694,7 @@ export interface FileRoutesByFullPath {
   '/memory': typeof MemoryRoute
   '/new': typeof NewRoute
   '/nodes': typeof NodesRoute
+  '/sergio-bridge': typeof SergioBridgeRoute
   '/sessions': typeof SessionsRoute
   '/settings': typeof SettingsRouteWithChildren
   '/skills': typeof SkillsRoute
@@ -731,6 +757,9 @@ export interface FileRoutesByFullPath {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
+  '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -777,6 +806,7 @@ export interface FileRoutesByTo {
   '/memory': typeof MemoryRoute
   '/new': typeof NewRoute
   '/nodes': typeof NodesRoute
+  '/sergio-bridge': typeof SergioBridgeRoute
   '/sessions': typeof SessionsRoute
   '/skills': typeof SkillsRoute
   '/tasks': typeof TasksRoute
@@ -838,6 +868,9 @@ export interface FileRoutesByTo {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
+  '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -885,6 +918,7 @@ export interface FileRoutesById {
   '/memory': typeof MemoryRoute
   '/new': typeof NewRoute
   '/nodes': typeof NodesRoute
+  '/sergio-bridge': typeof SergioBridgeRoute
   '/sessions': typeof SessionsRoute
   '/settings': typeof SettingsRouteWithChildren
   '/skills': typeof SkillsRoute
@@ -947,6 +981,9 @@ export interface FileRoutesById {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
+  '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -995,6 +1032,7 @@ export interface FileRouteTypes {
     | '/memory'
     | '/new'
     | '/nodes'
+    | '/sergio-bridge'
     | '/sessions'
     | '/settings'
     | '/skills'
@@ -1057,6 +1095,9 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-recent-queries'
+    | '/api/cks/bridge-stats'
+    | '/api/cks/bridge-status'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1103,6 +1144,7 @@ export interface FileRouteTypes {
     | '/memory'
     | '/new'
     | '/nodes'
+    | '/sergio-bridge'
     | '/sessions'
     | '/skills'
     | '/tasks'
@@ -1164,6 +1206,9 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-recent-queries'
+    | '/api/cks/bridge-stats'
+    | '/api/cks/bridge-status'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1210,6 +1255,7 @@ export interface FileRouteTypes {
     | '/memory'
     | '/new'
     | '/nodes'
+    | '/sergio-bridge'
     | '/sessions'
     | '/settings'
     | '/skills'
@@ -1272,6 +1318,9 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-recent-queries'
+    | '/api/cks/bridge-stats'
+    | '/api/cks/bridge-status'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1319,6 +1368,7 @@ export interface RootRouteChildren {
   MemoryRoute: typeof MemoryRoute
   NewRoute: typeof NewRoute
   NodesRoute: typeof NodesRoute
+  SergioBridgeRoute: typeof SergioBridgeRoute
   SessionsRoute: typeof SessionsRoute
   SettingsRoute: typeof SettingsRouteWithChildren
   SkillsRoute: typeof SkillsRoute
@@ -1375,6 +1425,9 @@ export interface RootRouteChildren {
   ApiWorkspaceRoute: typeof ApiWorkspaceRoute
   ChatSessionKeyRoute: typeof ChatSessionKeyRoute
   ChatIndexRoute: typeof ChatIndexRoute
+  ApiCksBridgeRecentQueriesRoute: typeof ApiCksBridgeRecentQueriesRoute
+  ApiCksBridgeStatsRoute: typeof ApiCksBridgeStatsRoute
+  ApiCksBridgeStatusRoute: typeof ApiCksBridgeStatusRoute
   ApiDebugReconnectRoute: typeof ApiDebugReconnectRoute
   ApiDebugStatusRoute: typeof ApiDebugStatusRoute
   ApiGatewayAgentsRoute: typeof ApiGatewayAgentsRoute
@@ -1435,6 +1488,13 @@ declare module '@tanstack/react-router' {
       path: '/sessions'
       fullPath: '/sessions'
       preLoaderRoute: typeof SessionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sergio-bridge': {
+      id: '/sergio-bridge'
+      path: '/sergio-bridge'
+      fullPath: '/sergio-bridge'
+      preLoaderRoute: typeof SergioBridgeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nodes': {
@@ -2074,6 +2134,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCronDeleteRouteImport
       parentRoute: typeof ApiCronRoute
     }
+    '/api/cks/bridge-status': {
+      id: '/api/cks/bridge-status'
+      path: '/api/cks/bridge-status'
+      fullPath: '/api/cks/bridge-status'
+      preLoaderRoute: typeof ApiCksBridgeStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/bridge-stats': {
+      id: '/api/cks/bridge-stats'
+      path: '/api/cks/bridge-stats'
+      fullPath: '/api/cks/bridge-stats'
+      preLoaderRoute: typeof ApiCksBridgeStatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/bridge-recent-queries': {
+      id: '/api/cks/bridge-recent-queries'
+      path: '/api/cks/bridge-recent-queries'
+      fullPath: '/api/cks/bridge-recent-queries'
+      preLoaderRoute: typeof ApiCksBridgeRecentQueriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/browser/tabs': {
       id: '/api/browser/tabs'
       path: '/tabs'
@@ -2250,6 +2331,7 @@ const rootRouteChildren: RootRouteChildren = {
   MemoryRoute: MemoryRoute,
   NewRoute: NewRoute,
   NodesRoute: NodesRoute,
+  SergioBridgeRoute: SergioBridgeRoute,
   SessionsRoute: SessionsRoute,
   SettingsRoute: SettingsRouteWithChildren,
   SkillsRoute: SkillsRoute,
@@ -2306,6 +2388,9 @@ const rootRouteChildren: RootRouteChildren = {
   ApiWorkspaceRoute: ApiWorkspaceRoute,
   ChatSessionKeyRoute: ChatSessionKeyRoute,
   ChatIndexRoute: ChatIndexRoute,
+  ApiCksBridgeRecentQueriesRoute: ApiCksBridgeRecentQueriesRoute,
+  ApiCksBridgeStatsRoute: ApiCksBridgeStatsRoute,
+  ApiCksBridgeStatusRoute: ApiCksBridgeStatusRoute,
   ApiDebugReconnectRoute: ApiDebugReconnectRoute,
   ApiDebugStatusRoute: ApiDebugStatusRoute,
   ApiGatewayAgentsRoute: ApiGatewayAgentsRoute,

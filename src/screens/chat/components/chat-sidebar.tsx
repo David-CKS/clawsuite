@@ -10,6 +10,7 @@ import {
   Chat01Icon,
   Clock01Icon,
   ComputerTerminal01Icon,
+  DatabaseIcon,
   File01Icon,
   GlobeIcon,
   Home01Icon,
@@ -553,6 +554,8 @@ function ChatSidebarComponent({
   const isMemoryActive = pathname === '/memory'
   const isDebugActive = pathname === '/debug'
   const isLogsActive = pathname === '/activity' || pathname === '/logs'
+  // CKS Bridge
+  const isSergioBridgeActive = pathname === '/sergio-bridge'
 
   // Track last-visited route per section
   const suiteRoutes = [
@@ -579,15 +582,18 @@ function ChatSidebarComponent({
     '/agents',
     '/nodes',
   ]
+  const bridgeRoutes = ['/sergio-bridge']
 
   useEffect(() => {
     if (suiteRoutes.includes(pathname)) setLastRoute('suite', pathname)
     else if (gatewayRoutes.includes(pathname)) setLastRoute('gateway', pathname)
+    else if (bridgeRoutes.includes(pathname)) setLastRoute('bridge', pathname)
   }, [pathname])
 
   // Resolve navigation targets (last visited or default)
   const suiteNav = getLastRoute('suite') || '/dashboard'
   const gatewayNav = getLastRoute('gateway') || '/channels'
+  const bridgeNav = getLastRoute('bridge') || '/sergio-bridge'
 
   const transition = {
     duration: 0.15,
@@ -613,6 +619,10 @@ function ChatSidebarComponent({
   )
   const [gatewayExpanded, toggleGateway] = usePersistedBool(
     'openclaw-sidebar-gateway-expanded',
+    false,
+  )
+  const [bridgeExpanded, toggleBridge] = usePersistedBool(
+    'openclaw-sidebar-bridge-expanded',
     false,
   )
 
@@ -852,6 +862,16 @@ function ChatSidebarComponent({
       icon: BrainIcon,
       label: 'Memory',
       active: isMemoryActive,
+    },
+  ]
+
+  const bridgeItems: NavItemDef[] = [
+    {
+      kind: 'link',
+      to: '/sergio-bridge',
+      icon: DatabaseIcon,
+      label: 'Sergio Bridge',
+      active: isSergioBridgeActive,
     },
   ]
 
@@ -1096,6 +1116,24 @@ function ChatSidebarComponent({
               />
             </>
           )}
+
+          {/* CKS BRIDGE */}
+          <SectionLabel
+            label="CKS Bridge"
+            isCollapsed={isVisuallyCollapsed}
+            transition={transition}
+            collapsible
+            expanded={bridgeExpanded || isSergioBridgeActive}
+            onToggle={toggleBridge}
+            navigateTo={bridgeNav}
+          />
+          <CollapsibleSection
+            expanded={bridgeExpanded || isSergioBridgeActive || isCollapsed}
+            items={bridgeItems}
+            isCollapsed={isVisuallyCollapsed}
+            transition={transition}
+            onSelectSession={onSelectSession}
+          />
 
           {/* GATEWAY */}
           <SectionLabel
