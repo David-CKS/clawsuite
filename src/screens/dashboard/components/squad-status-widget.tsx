@@ -135,12 +135,12 @@ export function SquadStatusWidget({ editMode }: SquadStatusWidgetProps) {
       {sessionsQuery.isLoading && agents.length === 0 ? (
         <div className="flex h-[150px] items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-neutral-100/50 dark:border-neutral-800 dark:bg-neutral-900/40">
           <span className="size-4 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-600" />
-          <span className="text-sm text-neutral-600 dark:text-neutral-300">Loading squad…</span>
+          <span className="text-sm text-neutral-600 dark:text-neutral-300">Cargando equipo…</span>
         </div>
       ) : visibleAgents.length === 0 ? (
         <div className="flex h-[150px] flex-col items-center justify-center gap-1 rounded-xl border border-neutral-200 bg-neutral-100/50 text-center dark:border-neutral-800 dark:bg-neutral-900/40">
-          <p className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">No agents yet</p>
-          <p className="text-xs text-neutral-500 dark:text-neutral-400">Agent sessions will appear here</p>
+          <p className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">Aún no hay agentes</p>
+          <p className="text-xs text-neutral-500 dark:text-neutral-400">Las sesiones de agentes aparecerán aquí</p>
         </div>
       ) : (
         <div className="space-y-1.5">

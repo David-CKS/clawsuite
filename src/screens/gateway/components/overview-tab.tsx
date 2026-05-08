@@ -64,7 +64,7 @@ export function OverviewTab({
           {missionActive ? (
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="min-w-0 flex-1">
-                <p className="text-xs font-semibold text-neutral-900">Mission Status</p>
+                <p className="text-xs font-semibold text-neutral-900">Estado de la misión</p>
                 <p className="mt-1 truncate text-sm text-neutral-700">
                   {truncateMissionGoal(activeMissionGoal || missionGoal || 'Active mission')}
                 </p>
@@ -94,7 +94,7 @@ export function OverviewTab({
           ) : (
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-semibold text-neutral-900">No active mission</p>
+                <p className="text-xs font-semibold text-neutral-900">Sin misión activa</p>
                 <p className="mt-1 text-[11px] text-neutral-500">
                   Configure your team and launch a mission when ready.
                 </p>
@@ -131,7 +131,7 @@ export function OverviewTab({
         <section className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
             <div className="flex min-w-0 flex-wrap items-center gap-3">
-              <h2 className="text-sm font-semibold text-neutral-900">Agents</h2>
+              <h2 className="text-sm font-semibold text-neutral-900">Agentes</h2>
               {agentWorkingRows.length > 0 ? (
                 <div className="flex -space-x-2">
                   {agentWorkingRows.slice(0, 5).map((agent, index) => {
@@ -184,8 +184,8 @@ export function OverviewTab({
           {agentWorkingRows.length === 0 ? (
             <div className="rounded-xl border border-dashed border-neutral-200 bg-neutral-50 px-4 py-6 text-center">
               <p className="text-2xl" aria-hidden>🤖</p>
-              <p className="mt-1 text-sm font-medium text-neutral-700">No agents configured yet</p>
-              <p className="mt-1 text-xs text-neutral-500">Open Configure to add your first agent.</p>
+              <p className="mt-1 text-sm font-medium text-neutral-700">Aún no hay agentes configurados</p>
+              <p className="mt-1 text-xs text-neutral-500">Abre Configurar para añadir tu primer agente.</p>
             </div>
           ) : overviewAgentsView === 'live' ? (
             <OfficeView
@@ -295,7 +295,7 @@ export function OverviewTab({
         </section>
 
         <section className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
-          <h2 className="text-sm font-semibold text-neutral-900">Recent Activity</h2>
+          <h2 className="text-sm font-semibold text-neutral-900">Actividad reciente</h2>
           {recentActivityItems.length === 0 ? (
             <p className="mt-2 text-xs text-neutral-500">📝 No recent activity yet.</p>
           ) : (

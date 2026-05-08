@@ -122,7 +122,7 @@ export function MessageActionsBar({
               strokeWidth={1.6}
             />
           </TooltipTrigger>
-          <TooltipContent side="top">Copy</TooltipContent>
+          <TooltipContent side="top">Copiar</TooltipContent>
         </TooltipRoot>
       </TooltipProvider>
       <MessageTimestamp timestamp={timestamp} />

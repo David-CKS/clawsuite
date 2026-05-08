@@ -192,7 +192,7 @@ export function AgentStreamPanel({ sessionKey, agentName, agentColor, onClose }:
 
   return (
     <>
-      <button type="button" aria-label="Close live stream panel" className="fixed inset-0 z-40 bg-black/30" onClick={onClose} />
+      <button type="button" aria-label="Cerrar panel de stream en vivo" className="fixed inset-0 z-40 bg-black/30" onClick={onClose} />
       <aside className="fixed inset-x-0 bottom-0 z-50 h-[70vh] rounded-t-2xl border-t border-neutral-200 bg-white shadow-2xl dark:border-neutral-800 dark:bg-neutral-900 md:inset-y-0 md:right-0 md:left-auto md:h-auto md:w-[400px] md:rounded-none md:border-t-0 md:border-l">
         <div className="flex h-full min-h-0 flex-col">
           <div className="sticky top-0 z-10 border-b border-neutral-200 bg-white/95 backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/95">
@@ -206,7 +206,7 @@ export function AgentStreamPanel({ sessionKey, agentName, agentColor, onClose }:
                 </div>
                 <p className="mt-1 truncate text-xs text-neutral-500 dark:text-neutral-400">{model} · {sessionKey}</p>
               </div>
-              <button type="button" onClick={onClose} className="rounded-lg px-2 py-1 text-sm text-neutral-500 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800" aria-label="Close panel">×</button>
+              <button type="button" onClick={onClose} className="rounded-lg px-2 py-1 text-sm text-neutral-500 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800" aria-label="Cerrar panel">×</button>
             </div>
             <div className="flex flex-wrap gap-2 px-4 pb-3">
               <span className="inline-flex items-center gap-1 rounded-lg bg-neutral-100 px-2 py-1 text-xs dark:bg-neutral-800"><span className="text-neutral-500 dark:text-neutral-400">Tokens</span><span className="font-medium text-neutral-800 dark:text-neutral-200">{inputTokens.toLocaleString()} / {outputTokens.toLocaleString()}</span></span>
@@ -227,9 +227,9 @@ export function AgentStreamPanel({ sessionKey, agentName, agentColor, onClose }:
               <button type="button" onClick={() => setSteerOpen(true)} className="rounded-lg border border-neutral-200 px-2 py-2 text-xs font-medium text-neutral-800 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-800">Steer</button>
               <div className="relative">
                 {menuOpen ? <div className="absolute bottom-full left-0 mb-2 w-full rounded-lg border border-neutral-200 bg-white p-1 shadow-lg dark:border-neutral-700 dark:bg-neutral-900"><button type="button" onClick={() => void onPauseToggle()} disabled={pausePending} className="flex w-full rounded-md px-2 py-1.5 text-left text-xs text-neutral-700 hover:bg-neutral-100 disabled:opacity-60 dark:text-neutral-200 dark:hover:bg-neutral-800">{pausePending ? 'Updating...' : isPaused ? 'Resume' : 'Pause'}</button><button type="button" onClick={() => void onKill()} disabled={killPending} className="flex w-full rounded-md px-2 py-1.5 text-left text-xs text-red-600 hover:bg-red-50 disabled:opacity-60 dark:text-red-300 dark:hover:bg-red-950/40">{killPending ? 'Terminating...' : 'Kill'}</button></div> : null}
-                <button type="button" onClick={() => setMenuOpen((open) => !open)} className="w-full rounded-lg border border-neutral-200 px-2 py-2 text-xs font-medium text-neutral-800 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-800">Pause/Kill</button>
+                <button type="button" onClick={() => setMenuOpen((open) => !open)} className="w-full rounded-lg border border-neutral-200 px-2 py-2 text-xs font-medium text-neutral-800 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-800">Pausar/Detener</button>
               </div>
-              <button type="button" onClick={() => { onClose(); void navigate({ to: '/chat/$sessionKey', params: { sessionKey } }) }} className="rounded-lg bg-accent-500 px-2 py-2 text-xs font-medium text-white hover:bg-accent-600">Open Chat</button>
+              <button type="button" onClick={() => { onClose(); void navigate({ to: '/chat/$sessionKey', params: { sessionKey } }) }} className="rounded-lg bg-accent-500 px-2 py-2 text-xs font-medium text-white hover:bg-accent-600">Abrir chat</button>
             </div>
           </div>
         </div>

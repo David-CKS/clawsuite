@@ -323,7 +323,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
               if (t === 'dark') { bg = '#0c0c12'; txt = '#f8fafc'; muted = '#94a3b8'; }
             } catch(e){}
 
-            var quips = ["Warming up the claws...","Brewing agent espresso...","Deploying crustacean intelligence...","Loading forbidden knowledge...","Calibrating sarcasm module...","Spinning up the hive mind...","Polishing the shell...","Teaching agents to behave...","Summoning the swarm...","Initializing world domination...","Crunching the numbers (with claws)...","Consulting the oracle lobster...","Booting the lobster mainframe...","Decrypting the claw protocol..."];
+            var quips = ["Calentando motores...","Preparando café para los agentes...","Desplegando inteligencia colectiva...","Cargando conocimiento prohibido...","Calibrando módulo de sarcasmo...","Activando la mente colmena...","Puliendo la interfaz...","Enseñando modales a los agentes...","Convocando al enjambre...","Iniciando dominación mundial...","Calculando números (con garra)...","Consultando al oráculo...","Arrancando el mainframe CKS...","Descifrando el protocolo CKS..."];
             var quip = quips[Math.floor(Math.random() * quips.length)];
 
             var d = document.createElement('div');

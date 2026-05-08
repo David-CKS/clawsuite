@@ -425,7 +425,7 @@ export function OfficeView({
         <div className="text-center">
           <p className="mb-3 text-4xl">🏢</p>
           <p className="text-sm font-semibold text-neutral-600 dark:text-neutral-300">Empty office</p>
-          <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">Add agents in Configure to fill the office.</p>
+          <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">Añade agentes en Configurar para llenar la oficina.</p>
         </div>
       </div>
     )

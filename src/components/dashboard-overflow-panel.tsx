@@ -134,7 +134,7 @@ export function DashboardOverflowPanel({ open, onClose }: Props) {
       <button
         type="button"
         className="absolute inset-0 bg-black/40 animate-in fade-in duration-200"
-        aria-label="Close overflow panel"
+        aria-label="Cerrar panel adicional"
         onClick={onClose}
       />
 

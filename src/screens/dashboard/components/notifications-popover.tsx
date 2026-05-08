@@ -119,8 +119,8 @@ export function NotificationsPopover() {
         type="button"
         onClick={() => setOpen(!open)}
         className="relative inline-flex size-7 items-center justify-center rounded-md text-primary-400 transition-colors hover:text-primary-700 dark:hover:text-primary-300"
-        aria-label="Notifications"
-        title="Notifications"
+        aria-label="Notificaciones"
+        title="Notificaciones"
       >
         <HugeiconsIcon icon={Notification03Icon} size={15} strokeWidth={1.5} />
         {hasErrors ? (

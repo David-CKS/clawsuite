@@ -254,7 +254,7 @@ export function ProviderWizard({ open, onOpenChange }: ProviderWizardProps) {
                 onClick={function onClose() {
                   handleDialogOpenChange(false)
                 }}
-                aria-label="Close provider setup wizard"
+                aria-label="Cerrar asistente de configuración del proveedor"
               >
                 <HugeiconsIcon
                   icon={Cancel01Icon}

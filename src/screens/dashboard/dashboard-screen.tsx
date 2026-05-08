@@ -228,7 +228,7 @@ export function DashboardScreen() {
   const uptimeDisplay = useMemo(() => {
     if (dashboardData.uptime.formatted !== '—') return dashboardData.uptime.formatted
     if (dashboardData.connection.connected && dashboardData.updatedAt > 0) {
-      return `Active · ${formatRelativeTime(dashboardData.updatedAt)}`
+      return `Activo · ${formatRelativeTime(dashboardData.updatedAt)}`
     }
     return dashboardData.connection.connected ? 'Active' : '—'
   }, [dashboardData.uptime.formatted, dashboardData.connection.connected, dashboardData.updatedAt])
@@ -850,7 +850,7 @@ export function DashboardScreen() {
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3.5 9.5A6 6 0 0 1 10 4a6 6 0 0 1 6.5 5.5C16.5 13 14 16 10 17c-4-1-6.5-4-6.5-7.5Z"/><circle cx="10" cy="10" r="2"/></svg>
                   </span>
                   <div>
-                    <p className="text-xs font-semibold text-ink truncate">Skills</p>
+                    <p className="text-xs font-semibold text-ink truncate">Habilidades</p>
                     <p className="text-[10px] text-primary-500 dark:text-neutral-400">
                       {dashboardData.skills.enabled > 0
                         ? `${dashboardData.skills.enabled} activadas`

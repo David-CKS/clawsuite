@@ -244,7 +244,7 @@ function AgentRow({
                           e.stopPropagation()
                           setMenuOpen(false)
                           const directive = window.prompt(
-                            `Send directive to ${agent.name}`,
+                            `Enviar directiva a ${agent.name}`,
                             '',
                           )
                           if (!directive || !directive.trim()) return

@@ -110,13 +110,13 @@ export function SkillsWidget({
           <span
             className="size-4 animate-spin rounded-full border-2 border-primary-300 dark:border-neutral-700 border-t-neutral-300"
             role="status"
-            aria-label="Loading"
+            aria-label="Cargando"
           />
-          <span className="text-sm text-primary-500 dark:text-neutral-400">Loading skills…</span>
+          <span className="text-sm text-primary-500 dark:text-neutral-400">Cargando habilidades…</span>
         </div>
       ) : skills.length === 0 ? (
         <div className="flex h-28 flex-col items-center justify-center gap-1 rounded-lg border border-primary-200 dark:border-neutral-800 bg-primary-50 dark:bg-neutral-950">
-          <p className="text-sm font-semibold text-primary-900 dark:text-neutral-100">No skills installed</p>
+          <p className="text-sm font-semibold text-primary-900 dark:text-neutral-100">No hay habilidades instaladas</p>
           <p className="text-xs text-primary-500 dark:text-neutral-400 text-pretty">
             Install skills to extend Claude's capabilities
           </p>
@@ -164,7 +164,7 @@ export function SkillsWidget({
           void navigate({ to: '/skills' })
         }}
       >
-        <span className="text-sm font-medium text-balance">Open Skills</span>
+        <span className="text-sm font-medium text-balance">Abrir Habilidades</span>
         <HugeiconsIcon icon={ArrowRight01Icon} size={20} strokeWidth={1.5} />
       </Button>
     </DashboardGlassCard>

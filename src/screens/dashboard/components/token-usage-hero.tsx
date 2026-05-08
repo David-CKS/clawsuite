@@ -101,14 +101,14 @@ export function TokenUsageHero({ data, className }: TokenUsageHeroProps) {
       />
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-[11px] font-semibold tracking-[0.18em] text-primary-500 dark:text-neutral-400">TOKEN USAGE</p>
+          <p className="text-[11px] font-semibold tracking-[0.18em] text-primary-500 dark:text-neutral-400">USO DE TOKENS</p>
           <p className="mt-2 font-mono text-3xl font-semibold leading-none tabular-nums text-primary-900 dark:text-neutral-50 md:text-4xl">
             {formatTokens(data.usage.tokens)}
           </p>
           <p className="mt-1 text-xs text-primary-500 dark:text-neutral-400">tokens used today</p>
         </div>
         <div className="text-right">
-          <p className="text-[10px] uppercase tracking-[0.14em] text-primary-400 dark:text-neutral-500">Today</p>
+          <p className="text-[10px] uppercase tracking-[0.14em] text-primary-400 dark:text-neutral-500">Hoy</p>
           <p className="mt-1 font-mono text-lg font-semibold tabular-nums text-primary-900 dark:text-neutral-50">
             {formatMoney(totalCostToday)}
           </p>
@@ -119,7 +119,7 @@ export function TokenUsageHero({ data, className }: TokenUsageHeroProps) {
       <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
         <div className="rounded-xl border bg-white p-3 shadow-sm dark:bg-neutral-900">
           <div className="flex items-center justify-between gap-2">
-            <p className="text-[10px] font-semibold tracking-[0.14em] text-primary-500 dark:text-neutral-400">COST</p>
+            <p className="text-[10px] font-semibold tracking-[0.14em] text-primary-500 dark:text-neutral-400">COSTE</p>
             <p className="font-mono text-sm tabular-nums text-primary-900 dark:text-neutral-100">{formatMoney(totalCostToday)}</p>
           </div>
           <div className="mt-2">
@@ -129,7 +129,7 @@ export function TokenUsageHero({ data, className }: TokenUsageHeroProps) {
 
         <div className="rounded-xl border bg-white p-3 shadow-sm dark:bg-neutral-900">
           <div className="flex items-center justify-between gap-2">
-            <p className="text-[10px] font-semibold tracking-[0.14em] text-primary-500 dark:text-neutral-400">ACTIVE SESSIONS</p>
+            <p className="text-[10px] font-semibold tracking-[0.14em] text-primary-500 dark:text-neutral-400">SESIONES ACTIVAS</p>
             <p className="font-mono text-sm tabular-nums text-primary-900 dark:text-neutral-100">{formatCompactInt(activeSessions)}</p>
           </div>
           <div className="mt-2">
@@ -140,12 +140,12 @@ export function TokenUsageHero({ data, className }: TokenUsageHeroProps) {
 
       <div className="mt-4 rounded-xl border bg-white p-3 shadow-sm dark:bg-neutral-900">
         <div className="flex items-center justify-between gap-2">
-          <p className="text-[10px] font-semibold tracking-[0.14em] text-primary-500 dark:text-neutral-400">TOP MODELS</p>
+          <p className="text-[10px] font-semibold tracking-[0.14em] text-primary-500 dark:text-neutral-400">MODELOS TOP</p>
           <p className="text-[11px] text-primary-400 dark:text-neutral-500">sorted by cost</p>
         </div>
 
         {topModels.length === 0 ? (
-          <p className="mt-3 text-xs text-primary-400 dark:text-neutral-500">No model usage yet today.</p>
+          <p className="mt-3 text-xs text-primary-400 dark:text-neutral-500">Aún sin uso de modelo hoy.</p>
         ) : (
           <div className="mt-3 space-y-2.5">
             {topModels.map((model) => (

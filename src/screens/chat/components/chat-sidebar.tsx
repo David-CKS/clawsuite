@@ -1066,7 +1066,7 @@ function ChatSidebarComponent({
               strokeWidth={1.5}
               className="size-5 shrink-0"
             />
-            <span>New Session</span>
+            <span>Nueva sesión</span>
           </Link>
         </div>
       )}
@@ -1272,7 +1272,7 @@ function ChatSidebarComponent({
                 type="button"
                 onClick={() => setSettingsOpen(true)}
                 className="shrink-0 rounded-lg p-1.5 text-primary-400 hover:bg-primary-200 dark:hover:bg-neutral-800 hover:text-primary-600 dark:hover:text-neutral-300 transition-colors"
-                aria-label="Settings"
+                aria-label="Ajustes"
               >
                 <HugeiconsIcon icon={Settings01Icon} size={16} strokeWidth={1.5} />
               </button>

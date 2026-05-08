@@ -64,9 +64,9 @@ export function NowCard({
 
       <span className="ml-auto flex items-center gap-1.5 text-xs font-medium">
         {gatewayConnected ? (
-          <span className="text-emerald-600 dark:text-emerald-400">Connected</span>
+          <span className="text-emerald-600 dark:text-emerald-400">Conectado</span>
         ) : (
-          <span className="text-red-600 dark:text-red-400">Offline</span>
+          <span className="text-red-600 dark:text-red-400">Desconectado</span>
         )}
         {updatedAgo ? (
           <span className="text-neutral-400">· {updatedAgo}</span>

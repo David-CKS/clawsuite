@@ -64,7 +64,7 @@ export class ErrorBoundary extends Component<
             </pre>
           ) : null}
           <div className="mt-5 flex justify-center">
-            <Button onClick={() => this.reloadPage()}>Reload</Button>
+            <Button onClick={() => this.reloadPage()}>Recargar</Button>
           </div>
         </div>
       </div>

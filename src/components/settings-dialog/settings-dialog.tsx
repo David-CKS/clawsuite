@@ -499,7 +499,7 @@ function EnterpriseThemePicker() {
               <span className="text-xs">{t.icon}</span>
               <span className="text-xs font-semibold text-primary-900 dark:text-neutral-100">{t.label}</span>
               {isActive && (
-                <span className="ml-auto text-[9px] font-bold text-accent-600 uppercase tracking-wide">Active</span>
+                <span className="ml-auto text-[9px] font-bold text-accent-600 uppercase tracking-wide">Activo</span>
               )}
             </div>
             <p className="text-[10px] text-primary-500 dark:text-neutral-400 leading-tight">{t.desc}</p>
@@ -589,13 +589,13 @@ function ChatContent() {
       />
       <div className={SETTINGS_CARD_CLASS}>
         <Row
-          label="Show tool messages"
+          label="Mostrar mensajes de herramienta"
           description="Display tool call details in assistant responses."
         >
           <Switch
             checked={cs.showToolMessages}
             onCheckedChange={(c) => updateCS({ showToolMessages: c })}
-            aria-label="Show tool messages"
+            aria-label="Mostrar mensajes de herramienta"
           />
         </Row>
         <Row
@@ -852,7 +852,7 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
                   size="icon-sm"
                   variant="ghost"
                   className="rounded-full text-primary-500 hover:bg-primary-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
-                  aria-label="Close"
+                  aria-label="Cerrar"
                 >
                   <HugeiconsIcon
                     icon={Cancel01Icon}

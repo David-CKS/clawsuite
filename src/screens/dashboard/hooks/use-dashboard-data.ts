@@ -140,7 +140,7 @@ type SessionStatusPayload = {
 async function fetchSessionStatus(): Promise<SessionStatusPayload> {
   const res = await fetch('/api/session-status')
   if (!res.ok) {
-    throw new Error(`Failed to fetch session status (HTTP ${res.status})`)
+    throw new Error(`No se ha podido obtener el estado de la sesión (HTTP ${res.status})`)
   }
   return res.json() as Promise<SessionStatusPayload>
 }

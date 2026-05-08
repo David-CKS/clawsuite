@@ -3004,7 +3004,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     queryFn: async (): Promise<GatewayModelsResponse> => {
       const response = await fetch('/api/models')
       if (!response.ok) {
-        throw new Error(`Failed to load models (${response.status})`)
+        throw new Error(`No se han podido cargar los modelos (${response.status})`)
       }
       return (await response.json()) as GatewayModelsResponse
     },

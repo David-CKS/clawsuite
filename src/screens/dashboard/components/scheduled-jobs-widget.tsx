@@ -60,8 +60,8 @@ export function ScheduledJobsWidget({ onRemove }: Props) {
                     </span>
                   </div>
                     <div className="mt-0.5 flex items-center gap-3 font-mono text-[10px] tabular-nums text-neutral-500 dark:text-neutral-400">
-                      <span>Next {job.nextRelative}</span>
-                      <span>Last {job.lastRelative}</span>
+                      <span>Próximo {job.nextRelative}</span>
+                      <span>Última {job.lastRelative}</span>
                     </div>
                 </div>
               </button>

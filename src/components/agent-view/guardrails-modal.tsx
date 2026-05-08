@@ -176,8 +176,8 @@ export function GuardrailsModal({ open, agentName, agentId, sessionKey, onOpenCh
           </section>
 
           <div className="flex items-center justify-end gap-2">
-            <Button variant="outline" size="sm" onClick={() => onOpenChange(false)}>Cancel</Button>
-            <Button size="sm" onClick={handleSave} className="bg-accent-500 text-white hover:bg-accent-600">Save</Button>
+            <Button variant="outline" size="sm" onClick={() => onOpenChange(false)}>Cancelar</Button>
+            <Button size="sm" onClick={handleSave} className="bg-accent-500 text-white hover:bg-accent-600">Guardar</Button>
           </div>
         </div>
       </DialogContent>

@@ -124,7 +124,7 @@ export const useTaskStore = create<TaskStore>()(
         try {
           const response = await fetch('/api/tasks', { method: 'GET' })
           if (!response.ok)
-            throw new Error(`Failed to sync tasks (${response.status})`)
+            throw new Error(`No se han podido sincronizar las tareas (${response.status})`)
           const payload = await response.json().catch(() => ({}))
           set({
             tasks: normalizeTaskList(payload),

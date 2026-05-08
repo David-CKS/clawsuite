@@ -112,7 +112,7 @@ export const SidebarSessions = memo(function SidebarSessions({
                 </div>
               ) : error ? (
                 <div className="px-2 py-2 text-xs text-primary-500">
-                  <div className="mb-2">Failed to load sessions.</div>
+                  <div className="mb-2">No se han podido cargar las sesiones.</div>
                   <div className="text-[11px] opacity-80">{error}</div>
                   <Button
                     type="button"

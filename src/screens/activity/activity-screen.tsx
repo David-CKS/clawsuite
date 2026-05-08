@@ -250,7 +250,7 @@ export function ActivityScreen() {
         ) : events.length === 0 ? (
           <EmptyState
             icon={Activity01Icon}
-            title="No events recorded"
+            title="No se han registrado eventos"
             description="Activity will appear here as you use the app"
           />
         ) : (
@@ -292,16 +292,16 @@ export function ActivityScreen() {
                     onChange={function onSearchTextChange(event) {
                       setSearchText(event.target.value)
                     }}
-                    placeholder="Search by title or detail"
+                    placeholder="Buscar por título o detalle"
                     className="w-full min-w-52 flex-1 tabular-nums"
-                    aria-label="Search activity events"
+                    aria-label="Buscar eventos de actividad"
                   />
 
                   <label
                     htmlFor="activity-source-filter"
                     className="text-xs text-primary-700 tabular-nums"
                   >
-                    <span className="sr-only">Source filter</span>
+                    <span className="sr-only">Filtro de fuente</span>
                     <select
                       id="activity-source-filter"
                       value={selectedSource}
@@ -309,7 +309,7 @@ export function ActivityScreen() {
                         setSelectedSource(event.target.value)
                       }}
                       className="h-7 rounded-lg border border-primary-200 bg-primary-50 px-2 text-xs text-primary-900 tabular-nums outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
-                      aria-label="Filter by source"
+                      aria-label="Filtrar por fuente"
                     >
                       <option value={ALL_SOURCE_FILTER_VALUE}>
                         All sources

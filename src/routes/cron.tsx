@@ -32,7 +32,7 @@ export const Route = createFileRoute('/cron')({
       <div className="flex items-center justify-center h-full">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-accent-500 border-r-transparent mb-3" />
-          <p className="text-sm text-primary-500">Loading cron jobs...</p>
+          <p className="text-sm text-primary-500">Cargando trabajos programados...</p>
         </div>
       </div>
     )

@@ -211,7 +211,7 @@ export function MemoryBrowserScreen() {
       })
       const payload = (await response.json().catch(() => ({}))) as WriteResponse
       if (!response.ok || !payload.success) {
-        throw new Error(payload.error || `Save failed (${response.status})`)
+        throw new Error(payload.error || `No se ha podido guardar (${response.status})`)
       }
 
       await queryClient.invalidateQueries({ queryKey: ['memory'] })
@@ -244,7 +244,7 @@ export function MemoryBrowserScreen() {
               <input
                 value={searchInput}
                 onChange={(event) => setSearchInput(event.target.value)}
-                placeholder="Search memory files"
+                placeholder="Buscar archivos de memoria"
                 className="w-full rounded-xl border border-primary-200 bg-white py-2 pl-9 pr-3 text-sm text-primary-900 outline-none transition-colors placeholder:text-primary-400 focus:border-accent-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:placeholder:text-neutral-500"
               />
             </div>
@@ -408,13 +408,13 @@ export function MemoryBrowserScreen() {
 
           <div className={cn('h-full p-2 md:p-3', isEditing ? 'overflow-hidden' : 'overflow-auto')}>
             {filesQuery.isLoading ? (
-              <StateBox label="Loading memory files..." />
+              <StateBox label="Cargando archivos de memoria..." />
             ) : filesQuery.error instanceof Error ? (
               <StateBox label={filesQuery.error.message} error />
             ) : !selectedPath ? (
-              <StateBox label="No memory files found" />
+              <StateBox label="No se encontraron archivos de memoria" />
             ) : contentQuery.isLoading ? (
-              <StateBox label="Loading file..." />
+              <StateBox label="Cargando archivo..." />
             ) : contentQuery.error instanceof Error ? (
               <StateBox label={contentQuery.error.message} error />
             ) : isEditing ? (

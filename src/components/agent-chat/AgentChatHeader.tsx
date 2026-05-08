@@ -57,7 +57,7 @@ export function AgentChatHeader({
         variant="ghost"
         className="rounded-full"
         onClick={onClose}
-        aria-label="Close agent chat"
+        aria-label="Cerrar chat del agente"
       >
         <HugeiconsIcon icon={Cancel01Icon} size={20} strokeWidth={1.5} />
       </Button>

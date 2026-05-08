@@ -148,7 +148,7 @@ function severityTimestampClass(severity: EventSeverity): string {
 
 function placeholderLabel(activeFilter: FilterTab): string {
   if (activeFilter === 'Activity') return 'No events yet'
-  return `No events yet in ${activeFilter}`
+  return `Aún no hay eventos en ${activeFilter}`
 }
 
 export function LiveFeedPanel() {

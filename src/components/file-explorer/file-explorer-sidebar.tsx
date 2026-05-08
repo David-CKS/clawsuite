@@ -387,7 +387,7 @@ export function FileExplorerSidebar({
             size="icon-sm"
             variant="ghost"
             onClick={refresh}
-            title="Refresh"
+            title="Actualizar"
           >
             <HugeiconsIcon icon={RefreshIcon} size={18} />
           </Button>
@@ -403,7 +403,7 @@ export function FileExplorerSidebar({
             size="icon-sm"
             variant="ghost"
             onClick={() => openPrompt({ mode: 'new-file', targetPath: '' })}
-            title="New file"
+            title="Nuevo archivo"
           >
             <HugeiconsIcon icon={PlusSignIcon} size={18} />
           </Button>
@@ -414,7 +414,7 @@ export function FileExplorerSidebar({
         <input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
-          placeholder="Search files"
+          placeholder="Buscar archivos"
           className="w-full rounded-md border border-primary-200 bg-primary-50 px-2 py-1 text-sm text-primary-900 placeholder:text-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-300"
         />
       </div>
@@ -422,7 +422,7 @@ export function FileExplorerSidebar({
       <ScrollAreaRoot className="flex-1 min-h-0">
         <ScrollAreaViewport className="px-1">
           {loading ? (
-            <div className="px-3 py-2 text-xs text-primary-500">Loading…</div>
+            <div className="px-3 py-2 text-xs text-primary-500">Cargando…</div>
           ) : error ? (
             <div className="flex flex-col items-center justify-center gap-3 px-4 py-8 text-center">
               <div className="flex size-10 items-center justify-center rounded-xl border border-primary-200 bg-primary-100/60">
@@ -607,8 +607,8 @@ export function FileExplorerSidebar({
               autoFocus
             />
             <div className="flex justify-end gap-2 pt-2">
-              <DialogClose render={<Button variant="outline">Cancel</Button>} />
-              <Button onClick={handlePromptSubmit}>Save</Button>
+              <DialogClose render={<Button variant="outline">Cancelar</Button>} />
+              <Button onClick={handlePromptSubmit}>Guardar</Button>
             </div>
           </div>
         </DialogContent>

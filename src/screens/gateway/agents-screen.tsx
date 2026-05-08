@@ -822,7 +822,7 @@ export function AgentsScreen({ variant = 'mission-control' }: AgentsScreenProps)
       const message =
         error instanceof Error
           ? error.message
-          : `Failed to ${nextPaused ? 'pause' : 'resume'} agent`
+          : `No se ha podido ${nextPaused ? 'pausar' : 'reanudar'} el agente`
       toast(message, { type: 'error' })
     }
   }
@@ -926,7 +926,7 @@ export function AgentsScreen({ variant = 'mission-control' }: AgentsScreenProps)
             <div className="flex h-32 items-center justify-center">
               <div className="flex items-center gap-2 text-primary-500">
                 <div className="size-4 animate-spin rounded-full border-2 border-primary-300 border-t-primary-600" />
-                <span className="text-sm">Loading registry...</span>
+                <span className="text-sm">Cargando registro...</span>
               </div>
             </div>
           ) : registryDefinitions.length === 0 ? (
@@ -935,9 +935,9 @@ export function AgentsScreen({ variant = 'mission-control' }: AgentsScreenProps)
                 Add your first agent
               </h2>
               <ul className="mt-3 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
-                <li>Create an agent profile</li>
-                <li>Connect a gateway</li>
-                <li>Spawn your first session</li>
+                <li>Crea un perfil de agente</li>
+                <li>Conecta un gateway</li>
+                <li>Lanza tu primera sesión</li>
               </ul>
               <button
                 type="button"
@@ -987,7 +987,7 @@ export function AgentsScreen({ variant = 'mission-control' }: AgentsScreenProps)
         <div className="fixed inset-0 z-[90] md:hidden">
           <button
             type="button"
-            aria-label="Close history"
+            aria-label="Cerrar historial"
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setHistoryAgentId(null)}
           />

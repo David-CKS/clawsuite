@@ -499,7 +499,7 @@ export function AgentOutputPanel({
         // Fallback placeholder when no sessionKey
         <div className={cn('min-h-0 flex-1 overflow-y-auto rounded-lg bg-[var(--theme-card2)] p-3 font-mono text-sm leading-6 text-[var(--theme-text)]', compact ? 'min-h-0 flex-1 overflow-y-auto' : 'mt-1 min-h-[300px]')}>
           {tasks.length === 0 ? (
-            <p className="text-[var(--theme-muted)]">No dispatched tasks yet.</p>
+            <p className="text-[var(--theme-muted)]">Aún no hay tareas despachadas.</p>
           ) : (
             <>
               <p className="text-[var(--theme-muted)]">$ Dispatching to {agentName}…</p>
@@ -555,7 +555,7 @@ export function AgentOutputPanel({
           type="button"
           onClick={onClose}
           className="flex size-8 shrink-0 items-center justify-center rounded-md border border-[var(--theme-border)] text-sm text-[var(--theme-muted)] transition-colors hover:bg-[var(--theme-bg)] hover:text-[var(--theme-text)]"
-          aria-label="Close agent output"
+          aria-label="Cerrar salida del agente"
         >
           ✕
         </button>

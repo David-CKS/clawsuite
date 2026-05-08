@@ -35,7 +35,7 @@ export const Route = createFileRoute('/instances')({
       <div className="flex items-center justify-center h-full">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-accent-500 border-r-transparent mb-3" />
-          <p className="text-sm text-primary-500">Loading instances...</p>
+          <p className="text-sm text-primary-500">Cargando instancias...</p>
         </div>
       </div>
     )
@@ -206,7 +206,7 @@ function InstancesRoute() {
           <div className="flex h-40 items-center justify-center rounded-xl border border-primary-200 bg-primary-50/60">
             <div className="flex items-center gap-2 text-sm text-primary-600">
               <span className="size-4 animate-spin rounded-full border-2 border-primary-300 border-t-primary-700" />
-              Loading active instances...
+              Cargando instancias activas...
             </div>
           </div>
         ) : query.isError ? (
@@ -404,7 +404,7 @@ function InstancesRoute() {
                         </dd>
                       </div>
                       <div className="rounded-lg border border-primary-200 bg-primary-50 px-2 py-1.5">
-                        <dt className="text-primary-500">Last update</dt>
+                        <dt className="text-primary-500">Última actualización</dt>
                         <dd className="tabular-nums text-primary-700">
                           {formatAbsoluteTimestamp(updatedAt)}
                         </dd>

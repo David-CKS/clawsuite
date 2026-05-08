@@ -126,7 +126,7 @@ function mapJob(row: CronApiJob, index: number): ScheduledJobItem {
 async function fetchScheduledJobs(): Promise<Array<ScheduledJobItem>> {
   const response = await fetch('/api/cron')
   if (!response.ok) {
-    throw new Error(`Failed to load cron jobs (${response.status})`)
+    throw new Error(`No se han podido cargar los trabajos programados (${response.status})`)
   }
   const payload = (await response.json()) as CronApiResponse
   const rows = Array.isArray(payload.jobs) ? payload.jobs : []

@@ -326,7 +326,7 @@ export function MetricsWidget({
               type="button"
               className="fixed inset-0 z-50 bg-black/20 md:hidden"
               onClick={closeMobilePopover}
-              aria-label={`Close ${title} details`}
+              aria-label={`Cerrar detalles de ${title}`}
             />
             <div
               className="fixed left-4 right-4 top-24 z-50 rounded-xl border border-primary-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 shadow-lg md:hidden"

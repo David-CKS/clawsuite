@@ -212,7 +212,7 @@ export function ApprovalsPanel({
         <div className="min-h-0 flex-1 overflow-y-auto">
           {loading && pending.length === 0 ? (
             <div className="flex h-full items-center justify-center p-8">
-              <p className="text-sm text-neutral-500">Loading approvals...</p>
+              <p className="text-sm text-neutral-500">Cargando aprobaciones...</p>
             </div>
           ) : null}
 
