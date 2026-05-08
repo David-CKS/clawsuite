@@ -23,33 +23,33 @@ export type OnboardingStep = {
 export const ONBOARDING_STEPS: OnboardingStep[] = [
   {
     id: 'welcome',
-    title: 'Welcome to CKS Suite',
+    title: 'Te damos la bienvenida a CKS Suite',
     description:
-      "Your intelligent workspace for AI-powered automation. Let's take a quick tour of what you can do.",
+      'Tu workspace inteligente para automatización con IA. Vamos a echar un vistazo rápido a lo que puedes hacer.',
     icon: Home01Icon,
     iconBg: 'bg-orange-500',
   },
   {
     id: 'chat',
-    title: 'AI Chat Interface',
+    title: 'Interfaz de chat con IA',
     description:
-      'Have natural conversations with powerful AI models. Create multiple sessions, search with ⌘K, and let AI handle complex tasks.',
+      'Conversa de forma natural con modelos de IA potentes. Crea varias sesiones, busca con ⌘K y deja que la IA gestione tareas complejas.',
     icon: Message01Icon,
     iconBg: 'bg-blue-500',
   },
   {
     id: 'dashboard',
-    title: 'Dashboard & Widgets',
+    title: 'Panel y widgets',
     description:
-      'Track your usage, monitor active tasks, and customize your workspace with interactive widgets.',
+      'Sigue tu uso, monitoriza tareas activas y personaliza tu workspace con widgets interactivos.',
     icon: DashboardSquare01Icon,
     iconBg: 'bg-emerald-500',
   },
   {
     id: 'browser-terminal',
-    title: 'Browser & Terminal',
+    title: 'Navegador y terminal',
     description:
-      'Built-in browser automation and terminal access. Let AI browse the web and execute commands on your behalf.',
+      'Automatización de navegador y acceso a terminal integrados. Deja que la IA navegue por la web y ejecute comandos por ti.',
     icon: BrowserIcon,
     iconBg: 'bg-purple-500',
   },
@@ -57,23 +57,23 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     id: 'agent-swarm',
     title: 'Agent Swarm',
     description:
-      'Multi-agent orchestration for complex workflows. Spawn specialized agents that work together. Coming soon.',
+      'Orquestación multi-agente para flujos complejos. Lanza agentes especializados que trabajan juntos. Próximamente.',
     icon: Rocket01Icon,
     iconBg: 'bg-pink-500',
   },
   {
     id: 'files-memory',
-    title: 'Files & Memory',
+    title: 'Archivos y memoria',
     description:
-      'Browse workspace files and access agent memory. Your AI assistant remembers context across sessions.',
+      'Explora archivos del workspace y accede a la memoria del agente. Tu asistente IA recuerda el contexto entre sesiones.',
     icon: Folder01Icon,
     iconBg: 'bg-amber-500',
   },
   {
     id: 'providers',
-    title: 'Models & Providers',
+    title: 'Modelos y proveedores',
     description:
-      'Configure AI providers like OpenAI, Anthropic, and more. Choose the perfect model for each task.',
+      'Configura proveedores de IA como OpenAI, Anthropic y más. Elige el modelo perfecto para cada tarea.',
     icon: Settings01Icon,
     iconBg: 'bg-cyan-500',
   },

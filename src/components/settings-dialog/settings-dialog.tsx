@@ -52,11 +52,11 @@ type SectionId =
   | 'advanced'
 
 const SECTIONS: Array<{ id: SectionId; label: string; icon: any }> = [
-  { id: 'profile', label: 'Profile', icon: UserIcon },
-  { id: 'appearance', label: 'Appearance', icon: PaintBoardIcon },
+  { id: 'profile', label: 'Perfil', icon: UserIcon },
+  { id: 'appearance', label: 'Apariencia', icon: PaintBoardIcon },
   { id: 'chat', label: 'Chat', icon: MessageMultiple01Icon },
-  { id: 'notifications', label: 'Notifications', icon: Notification03Icon },
-  { id: 'advanced', label: 'Advanced', icon: CloudIcon },
+  { id: 'notifications', label: 'Notificaciones', icon: Notification03Icon },
+  { id: 'advanced', label: 'Avanzado', icon: CloudIcon },
 ]
 
 const DARK_ENTERPRISE_THEMES = new Set<ThemeId>([
@@ -82,7 +82,7 @@ function SectionHeader({
   return (
     <div className="mb-2">
       <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary-500">
-        Settings
+        Ajustes
       </p>
       <h3 className="text-base font-semibold text-primary-900 dark:text-neutral-100">
         {title}
@@ -192,8 +192,8 @@ function ProfileContent() {
   return (
     <div className="space-y-4">
       <SectionHeader
-        title="Profile"
-        description="Your display identity in chat."
+        title="Perfil"
+        description="Tu identidad visible en el chat."
       />
       <div className={SETTINGS_CARD_CLASS}>
         <div className="flex items-center gap-3">
@@ -203,21 +203,21 @@ function ProfileContent() {
               {displayName}
             </p>
             <p className="text-xs text-primary-500 dark:text-neutral-400">
-              No email connected
+              Sin email conectado
             </p>
           </div>
         </div>
       </div>
       <div className={SETTINGS_CARD_CLASS}>
-        <Row label="Display name" description="Shown in chat and sidebar">
+        <Row label="Nombre visible" description="Aparece en el chat y la barra lateral">
           <div className="w-full max-w-xs">
             <Input
               value={cs.displayName}
               onChange={(e) => handleNameChange(e.target.value)}
-              placeholder="User"
+              placeholder="Usuario"
               className="h-8 w-full rounded-lg border-primary-200 text-sm"
               maxLength={50}
-              aria-label="Display name"
+              aria-label="Nombre visible"
               aria-invalid={!!nameError}
               aria-describedby={nameError ? errorId : undefined}
             />
@@ -236,7 +236,7 @@ function ProfileContent() {
                 accept="image/*"
                 onChange={handleAvatarUpload}
                 disabled={processing}
-                aria-label="Upload profile picture"
+                aria-label="Subir foto de perfil"
                 className="block max-w-[13rem] cursor-pointer text-xs text-primary-700 dark:text-neutral-300 file:mr-2 file:cursor-pointer file:rounded-lg file:border file:border-primary-200 file:bg-primary-100 file:px-2.5 file:py-1.5 file:text-xs file:font-medium file:text-primary-900 file:transition-colors hover:file:bg-primary-200 disabled:cursor-not-allowed disabled:opacity-50"
               />
             </label>
@@ -247,7 +247,7 @@ function ProfileContent() {
               disabled={!cs.avatarDataUrl || processing}
               className="h-8 rounded-lg border-primary-200 px-3"
             >
-              Remove
+              Quitar
             </Button>
           </div>
           {profileError && (
@@ -308,18 +308,18 @@ function AppearanceContent() {
   return (
     <div className="space-y-4">
       <SectionHeader
-        title="Appearance"
-        description="Theme and color accents."
+        title="Apariencia"
+        description="Tema y colores de acento."
       />
       <div className={SETTINGS_CARD_CLASS}>
         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary-500">
-          Theme Mode
+          Modo de tema
         </p>
         <div className="inline-flex rounded-lg border border-primary-200 bg-white p-1">
           {[
-            { value: 'light', label: 'Light', icon: Sun01Icon },
-            { value: 'dark', label: 'Dark', icon: Moon01Icon },
-            { value: 'system', label: 'System', icon: ComputerIcon },
+            { value: 'light', label: 'Claro', icon: Sun01Icon },
+            { value: 'dark', label: 'Oscuro', icon: Moon01Icon },
+            { value: 'system', label: 'Sistema', icon: ComputerIcon },
           ].map((option) => (
             <button
               key={option.value}
@@ -340,7 +340,7 @@ function AppearanceContent() {
       </div>
       <div className={SETTINGS_CARD_CLASS}>
         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary-500">
-          Accent Color
+          Color de acento
         </p>
         <div className="flex items-center gap-2">
           {(['orange', 'purple', 'blue', 'green'] as const).map((color) => (
@@ -348,7 +348,7 @@ function AppearanceContent() {
               key={color}
               type="button"
               onClick={() => handleAccentColorChange(color)}
-              aria-label={`Set accent color to ${color}`}
+              aria-label={`Cambiar color de acento a ${color}`}
               className={cn(
                 'inline-flex size-8 items-center justify-center rounded-full border transition-colors',
                 settings.accentColor === color
@@ -363,25 +363,25 @@ function AppearanceContent() {
       </div>
       <div className={SETTINGS_CARD_CLASS}>
         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary-500">
-          Enterprise Theme
+          Tema enterprise
         </p>
         <EnterpriseThemePicker />
       </div>
       <div className={SETTINGS_CARD_CLASS}>
         <Row
-          label="System metrics footer"
-          description="Show a persistent footer with CPU, RAM, disk, and gateway status."
+          label="Footer de métricas del sistema"
+          description="Mostrar un footer persistente con CPU, RAM, disco y estado del gateway."
         >
           <Switch
             checked={settings.showSystemMetricsFooter}
             onCheckedChange={(c) => updateSettings({ showSystemMetricsFooter: c })}
-            aria-label="Show system metrics footer"
+            aria-label="Mostrar footer de métricas del sistema"
           />
         </Row>
 
         <Row
-          label="Mobile chat nav"
-          description="How the bottom nav behaves on chat screens."
+          label="Nav del chat en móvil"
+          description="Cómo se comporta la nav inferior en las pantallas del chat."
         >
           <select
             value={settings.mobileChatNavMode ?? 'dock'}
@@ -390,7 +390,7 @@ function AppearanceContent() {
           >
             <option value="dock">Dock (iMessage)</option>
             <option value="scroll-hide">Scroll-hide (B)</option>
-            <option value="integrated">Integrated (C)</option>
+            <option value="integrated">Integrada (C)</option>
           </select>
         </Row>
       </div>
@@ -598,13 +598,13 @@ function ChatContent() {
           />
         </Row>
         <Row
-          label="Show reasoning blocks"
-          description="Display model reasoning blocks when available."
+          label="Mostrar bloques de razonamiento"
+          description="Muestra los bloques de razonamiento del modelo cuando estén disponibles."
         >
           <Switch
             checked={cs.showReasoningBlocks}
             onCheckedChange={(c) => updateCS({ showReasoningBlocks: c })}
-            aria-label="Show reasoning blocks"
+            aria-label="Mostrar bloques de razonamiento"
           />
         </Row>
       </div>
@@ -620,18 +620,18 @@ function NotificationsContent() {
   return (
     <div className="space-y-4">
       <SectionHeader
-        title="Notifications"
-        description="Simple alerts and threshold controls."
+        title="Notificaciones"
+        description="Alertas sencillas y controles de umbral."
       />
       <div className={SETTINGS_CARD_CLASS}>
-        <Row label="Enable alerts">
+        <Row label="Activar alertas">
           <Switch
             checked={settings.notificationsEnabled}
             onCheckedChange={(c) => updateSettings({ notificationsEnabled: c })}
-            aria-label="Enable alerts"
+            aria-label="Activar alertas"
           />
         </Row>
-        <Row label="Usage threshold">
+        <Row label="Umbral de uso">
           <div className="flex w-full max-w-[14rem] items-center gap-2">
             <input
               type="range"
@@ -643,7 +643,7 @@ function NotificationsContent() {
               }
               className="w-full accent-primary-900 dark:accent-primary-400 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={!settings.notificationsEnabled}
-              aria-label={`Usage threshold: ${settings.usageThreshold} percent`}
+              aria-label={`Umbral de uso: ${settings.usageThreshold} por ciento`}
               aria-valuemin={50}
               aria-valuemax={100}
               aria-valuenow={settings.usageThreshold}
@@ -671,7 +671,7 @@ function AdvancedContent() {
         new URL(value)
         setUrlError(null)
       } catch {
-        setUrlError('Invalid URL format')
+        setUrlError('Formato de URL no válido')
       }
     } else {
       setUrlError(null)
@@ -695,11 +695,11 @@ function AdvancedContent() {
   return (
     <div className="space-y-4">
       <SectionHeader
-        title="Advanced"
-        description="Gateway endpoint and connectivity."
+        title="Avanzado"
+        description="Endpoint del gateway y conectividad."
       />
       <div className={SETTINGS_CARD_CLASS}>
-        <Row label="Gateway URL" description="Used for API requests from Studio">
+        <Row label="URL del gateway" description="Se usa para las peticiones API desde Studio">
           <div className="w-full max-w-sm">
             <Input
               type="url"
@@ -707,7 +707,7 @@ function AdvancedContent() {
               value={settings.gatewayUrl}
               onChange={(e) => validateAndUpdateUrl(e.target.value)}
               className="h-8 w-full rounded-lg border-primary-200 text-sm"
-              aria-label="Gateway URL"
+              aria-label="URL del gateway"
               aria-invalid={!!urlError}
               aria-describedby={urlError ? urlErrorId : undefined}
             />
@@ -722,7 +722,7 @@ function AdvancedContent() {
             )}
           </div>
         </Row>
-        <Row label="Connection status">
+        <Row label="Estado de conexión">
           <span
             className={cn(
               'inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-xs font-medium',
@@ -737,12 +737,12 @@ function AdvancedContent() {
             )}
           >
             {connectionStatus === 'idle'
-              ? 'Not tested'
+              ? 'Sin probar'
               : connectionStatus === 'testing'
-                ? 'Testing...'
+                ? 'Probando…'
                 : connectionStatus === 'connected'
-                  ? 'Connected'
-                  : 'Failed'}
+                  ? 'Conectado'
+                  : 'Falló'}
           </span>
           <Button
             variant="outline"
@@ -756,7 +756,7 @@ function AdvancedContent() {
               size={16}
               strokeWidth={1.5}
             />
-            Test
+            Probar
           </Button>
         </Row>
       </div>
@@ -782,13 +782,13 @@ class SettingsErrorBoundary extends Component<
         <div className="flex h-full items-center justify-center p-8 text-center">
           <div>
             <p className="mb-2 text-sm font-medium text-red-500">
-              Settings failed to load
+              No se han podido cargar los ajustes
             </p>
             <button
               onClick={() => this.setState({ error: null })}
               className="text-xs text-primary-600 underline hover:text-primary-900"
             >
-              Try again
+              Reintentar
             </button>
           </div>
         </div>

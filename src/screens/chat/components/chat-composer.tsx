@@ -285,7 +285,7 @@ function readDataUrlMimeType(dataUrl: string): string | null {
 
 async function compressImageToDataUrl(file: File): Promise<string> {
   if (!isCanvasSupported()) {
-    throw new Error('Image compression not available')
+    throw new Error('Compresión de imagen no disponible')
   }
 
   return await new Promise((resolve, reject) => {
@@ -314,7 +314,7 @@ async function compressImageToDataUrl(file: File): Promise<string> {
         const context = canvas.getContext('2d')
         if (!context) {
           cleanup()
-          reject(new Error('Failed to get canvas context'))
+          reject(new Error('No se ha podido obtener el contexto del canvas'))
           return
         }
 
@@ -334,13 +334,13 @@ async function compressImageToDataUrl(file: File): Promise<string> {
         resolve(dataUrl)
       } catch (error) {
         cleanup()
-        reject(error instanceof Error ? error : new Error('Compression failed'))
+        reject(error instanceof Error ? error : new Error('Falló la compresión'))
       }
     }
 
     image.onerror = () => {
       cleanup()
-      reject(new Error('Failed to load image'))
+      reject(new Error('No se ha podido cargar la imagen'))
     }
 
     image.src = objectUrl
@@ -504,7 +504,7 @@ async function fetchCurrentModelFromStatus(): Promise<string> {
       (error instanceof DOMException && error.name === 'AbortError') ||
       (error instanceof Error && error.name === 'AbortError')
     ) {
-      throw new Error('Request timed out')
+      throw new Error('Se agotó el tiempo de espera')
     }
     throw error
   } finally {
@@ -661,7 +661,7 @@ function ChatComposerComponent({
         provider && model ? `${provider}/${model}` : model || variables.model
       setModelNotice({
         tone: 'success',
-        message: `Model switched to ${resolvedModel}`,
+        message: `Modelo cambiado a ${resolvedModel}`,
       })
       setIsModelMenuOpen(false)
       void currentModelQuery.refetch()
@@ -671,7 +671,7 @@ function ChatComposerComponent({
       if (isTimeoutErrorMessage(message)) {
         setModelNotice({
           tone: 'error',
-          message: 'Request timed out',
+          message: 'Se agotó el tiempo de espera',
           retryModel: variables.model,
         })
         return
@@ -688,7 +688,7 @@ function ChatComposerComponent({
     onSuccess: (_payload, model) => {
       setModelNotice({
         tone: 'success',
-        message: `Default model set to ${model}`,
+        message: `Modelo por defecto: ${model}`,
       })
     },
     onError: (error) => {
@@ -1562,7 +1562,7 @@ function ChatComposerComponent({
 
         {isDraggingOver ? (
           <div className="pointer-events-none absolute inset-1 z-20 flex items-center justify-center rounded-[18px] border-2 border-dashed border-primary-400 bg-primary-50/90 text-sm font-medium text-primary-700">
-            Drop files to attach
+            Suelta archivos para adjuntar
           </div>
         ) : null}
 
@@ -1608,7 +1608,7 @@ function ChatComposerComponent({
                     )}
                     <button
                       type="button"
-                      aria-label="Remove attachment"
+                      aria-label="Quitar adjunto"
                       onClick={(event) => {
                         event.preventDefault()
                         event.stopPropagation()
@@ -1683,7 +1683,7 @@ function ChatComposerComponent({
                   <button
                     type="button"
                     onClick={handleAbort}
-                    aria-label="Stop generation"
+                    aria-label="Parar generación"
                     className="size-9 rounded-full bg-red-500 flex items-center justify-center text-white transition-all duration-150"
                   >
                     <HugeiconsIcon icon={StopIcon} size={18} strokeWidth={2} />
@@ -1693,7 +1693,7 @@ function ChatComposerComponent({
                     type="button"
                     onClick={handleSubmit}
                     disabled={submitDisabled}
-                    aria-label="Send message"
+                    aria-label="Enviar mensaje"
                     className="size-9 rounded-full bg-accent-500 flex items-center justify-center text-white transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
                   >
                     <HugeiconsIcon icon={ArrowUp02Icon} size={18} strokeWidth={2} />
@@ -1743,7 +1743,7 @@ function ChatComposerComponent({
                     type="button"
                     onClick={handleSubmit}
                     disabled={submitDisabled}
-                    aria-label="Send message"
+                    aria-label="Enviar mensaje"
                     className="size-9 rounded-full bg-accent-500 flex items-center justify-center text-white transition-all duration-150 disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     <HugeiconsIcon icon={ArrowUp02Icon} size={18} strokeWidth={2} />
@@ -1757,7 +1757,7 @@ function ChatComposerComponent({
                   <>
                     <button
                       type="button"
-                      aria-label="Close actions"
+                      aria-label="Cerrar acciones"
                       className="fixed inset-0 z-[199] bg-black/30"
                       onClick={() => {
                         setIsMobileActionsMenuOpen(false)
@@ -1789,7 +1789,7 @@ function ChatComposerComponent({
                             <HugeiconsIcon icon={Add01Icon} size={24} strokeWidth={1.5} />
                           </span>
                           <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100">
-                            Attach File
+                            Adjuntar archivo
                           </span>
                         </button>
 
@@ -1827,7 +1827,7 @@ function ChatComposerComponent({
                               <HugeiconsIcon icon={Delete01Icon} size={24} strokeWidth={1.5} />
                             </span>
                             <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100">
-                              Clear Draft
+                              Borrar borrador
                             </span>
                           </button>
                         ) : null}
@@ -1845,7 +1845,7 @@ function ChatComposerComponent({
                               <HugeiconsIcon icon={Add01Icon} size={24} strokeWidth={1.5} />
                             </span>
                             <span className="text-sm font-medium text-neutral-800 dark:text-neutral-100">
-                              New Session
+                              Nueva sesión
                             </span>
                           </button>
                         ) : null}
@@ -1862,14 +1862,14 @@ function ChatComposerComponent({
                   <>
                     <button
                       type="button"
-                      aria-label="Close model picker"
+                      aria-label="Cerrar selector de modelo"
                       className="fixed inset-0 z-[209] bg-black/30"
                       onClick={() => setIsModelMenuOpen(false)}
                     />
                     <div
                       className="fixed bottom-0 left-0 right-0 z-[210] rounded-t-2xl bg-white shadow-2xl pb-safe dark:bg-neutral-900 animate-in slide-in-from-bottom-10 duration-200"
                       role="dialog"
-                      aria-label="Select model"
+                      aria-label="Seleccionar modelo"
                       onClick={(event) => event.stopPropagation()}
                     >
                       <div className="mx-auto mt-3 mb-4 h-1 w-10 rounded-full bg-neutral-300" />
@@ -1878,14 +1878,14 @@ function ChatComposerComponent({
                       </div>
                       {groupedModels.length === 0 && modelsUnavailable ? (
                         <div className="p-4 text-center text-sm text-primary-500">
-                          <p className="font-medium text-primary-700 mb-1">Gateway not connected</p>
-                          <p className="text-xs">Make sure OpenClaw is running and the gateway URL is configured.</p>
+                          <p className="font-medium text-primary-700 mb-1">Gateway no conectado</p>
+                          <p className="text-xs">Asegúrate de que OpenClaw está en marcha y la URL del gateway está configurada.</p>
                         </div>
                       ) : groupedModels.length === 0 ? (
                         <div className="p-4 text-center text-sm text-primary-500">
-                          <p className="font-medium text-primary-700 mb-1">No models configured</p>
-                          <p className="text-xs mb-3">Add API keys for providers in your OpenClaw config to unlock more models.</p>
-                          <a href="https://docs.openclaw.ai/configuration" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-lg bg-accent-500/10 px-3 py-1.5 text-xs font-medium text-accent-600">Setup Guide →</a>
+                          <p className="font-medium text-primary-700 mb-1">Sin modelos configurados</p>
+                          <p className="text-xs mb-3">Añade API keys de proveedores en tu config de OpenClaw para desbloquear más modelos.</p>
+                          <a href="https://docs.openclaw.ai/configuration" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-lg bg-accent-500/10 px-3 py-1.5 text-xs font-medium text-accent-600">Guía de configuración →</a>
                         </div>
                       ) : (
                         <div className="max-h-[60dvh] overflow-y-auto pb-4">
@@ -1973,12 +1973,12 @@ function ChatComposerComponent({
             />
             <PromptInputActions className="justify-between px-1.5 md:px-3 gap-0.5 md:gap-2">
               <div className="flex min-w-0 flex-1 items-center gap-0 md:gap-1">
-                <PromptInputAction tooltip="Add attachment">
+                <PromptInputAction tooltip="Añadir adjunto">
                   <Button
                     size="icon-sm"
                     variant="ghost"
                     className="rounded-lg text-primary-500 hover:bg-primary-100 dark:hover:bg-primary-800 hover:text-primary-500"
-                    aria-label="Add attachment"
+                    aria-label="Añadir adjunto"
                     disabled={disabled}
                     onClick={handleOpenAttachmentPicker}
                   >
@@ -1986,12 +1986,12 @@ function ChatComposerComponent({
                   </Button>
                 </PromptInputAction>
                 {hasDraft && !isLoading && (
-                  <PromptInputAction tooltip="Clear draft">
+                  <PromptInputAction tooltip="Borrar borrador">
                     <Button
                       size="icon-sm"
                       variant="ghost"
                       className="rounded-lg text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-800 hover:text-red-600"
-                      aria-label="Clear draft"
+                      aria-label="Borrar borrador"
                       onClick={handleClearDraft}
                     >
                       <HugeiconsIcon
@@ -2024,7 +2024,7 @@ function ChatComposerComponent({
                     }
                     aria-disabled={isModelSwitcherDisabled}
                     disabled={isModelSwitcherDisabled}
-                    title={currentModel || modelAvailabilityLabel || 'Select model'}
+                    title={currentModel || modelAvailabilityLabel || 'Seleccionar modelo'}
                   >
                     <span className="max-w-[5.5rem] truncate sm:max-w-[8.5rem] md:max-w-[12rem]">
                       {modelButtonLabel}
@@ -2049,7 +2049,7 @@ function ChatComposerComponent({
                     disabled={isDefaultModelDisabled}
                     title={currentModel ? `Set ${currentModel} as default` : 'No active model'}
                   >
-                    Set as default
+                    Marcar por defecto
                   </button>
                   {modelAvailabilityLabel ? (
                     <span className="hidden text-xs text-primary-500 text-pretty md:inline">
@@ -2090,21 +2090,21 @@ function ChatComposerComponent({
                       {groupedModels.length === 0 && modelsUnavailable ? (
                         <div className="p-4 text-center text-sm text-primary-500">
                           <p className="font-medium text-primary-700 mb-1">
-                            Gateway not connected
+                            Gateway no conectado
                           </p>
                           <p className="text-xs">
-                            Make sure OpenClaw is running and the gateway URL is
-                            configured.
+                            Asegúrate de que OpenClaw está en marcha y la URL del
+                            gateway está configurada.
                           </p>
                         </div>
                       ) : groupedModels.length === 0 ? (
                         <div className="p-4 text-center text-sm text-primary-500">
                           <p className="font-medium text-primary-700 mb-1">
-                            No models configured
+                            Sin modelos configurados
                           </p>
                           <p className="text-xs mb-2">
-                            Add API keys for providers in your OpenClaw config to
-                            unlock more models.
+                            Añade API keys de proveedores en tu config de OpenClaw
+                            para desbloquear más modelos.
                           </p>
                           <a
                             href="https://docs.openclaw.ai/configuration"
@@ -2112,7 +2112,7 @@ function ChatComposerComponent({
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1 rounded-lg bg-accent-500/10 px-3 py-1.5 text-xs font-medium text-accent-600 hover:bg-accent-50 dark:hover:bg-accent-900/300/20 transition-colors"
                           >
-                            Setup Guide →
+                            Guía de configuración →
                           </a>
                         </div>
                       ) : (
@@ -2162,7 +2162,7 @@ function ChatComposerComponent({
                                       {optionActive && (
                                         <span
                                           className="h-1.5 w-1.5 rounded-full bg-accent-500"
-                                          aria-label="Currently active"
+                                          aria-label="Activo ahora"
                                         />
                                       )}
                                     </button>
@@ -2206,10 +2206,10 @@ function ChatComposerComponent({
                                       togglePin(modelId)
                                     }}
                                     className="absolute right-3 rounded px-2 py-0.5 text-[10px] text-red-500 opacity-80 transition-opacity hover:bg-red-50 dark:hover:bg-red-900/30 hover:opacity-100 focus:outline-none focus:ring-1 focus:ring-red-300"
-                                    aria-label={`Remove unavailable pinned model ${modelId}`}
-                                    title="Remove"
+                                    aria-label={`Quitar modelo fijado no disponible ${modelId}`}
+                                    title="Quitar"
                                   >
-                                    Remove
+                                    Quitar
                                   </button>
                                 </div>
                               ))}
@@ -2254,7 +2254,7 @@ function ChatComposerComponent({
                                       {optionActive && (
                                         <span
                                           className="h-1.5 w-1.5 rounded-full bg-accent-500"
-                                          aria-label="Currently active"
+                                          aria-label="Activo ahora"
                                         />
                                       )}
                                     </button>
@@ -2349,26 +2349,26 @@ function ChatComposerComponent({
                   </PromptInputAction>
                 ) : null}
                 {isLoading ? (
-                  <PromptInputAction tooltip="Stop generation">
+                  <PromptInputAction tooltip="Parar generación">
                     <Button
                       onClick={handleAbort}
                       size="icon-sm"
                       variant="destructive"
                       className="rounded-md"
-                      aria-label="Stop generation"
+                      aria-label="Parar generación"
                     >
                       <HugeiconsIcon icon={StopIcon} size={20} strokeWidth={1.5} />
                     </Button>
                   </PromptInputAction>
                 ) : (
-                  <PromptInputAction tooltip="Send message">
+                  <PromptInputAction tooltip="Enviar mensaje">
                     <Button
                       type="button"
                       onClick={handleSubmit}
                       disabled={submitDisabled}
                       size="icon-sm"
                       className="rounded-full"
-                      aria-label="Send message"
+                      aria-label="Enviar mensaje"
                     >
                       <HugeiconsIcon
                         icon={ArrowUp02Icon}
@@ -2390,13 +2390,13 @@ function ChatComposerComponent({
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 backdrop-blur-sm animate-in fade-in duration-200"
           onClick={() => setPreviewImage(null)}
           role="dialog"
-          aria-label="Image preview"
+          aria-label="Previsualizar imagen"
         >
           <button
             type="button"
             className="absolute right-4 top-4 z-10 inline-flex size-10 items-center justify-center rounded-full bg-white/20 text-white hover:bg-white dark:hover:bg-white/10/30 active:bg-white/40 transition-colors"
             onClick={(e) => { e.stopPropagation(); setPreviewImage(null) }}
-            aria-label="Close preview"
+            aria-label="Cerrar previsualización"
           >
             <HugeiconsIcon icon={Cancel01Icon} size={24} strokeWidth={2} />
           </button>

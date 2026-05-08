@@ -198,16 +198,16 @@ type MissionBoardDraft = {
 // Example mission chips: label → textarea fill text
 const EXAMPLE_MISSIONS: Array<{ label: string; text: string }> = [
   {
-    label: 'Build a REST API',
-    text: 'Design and implement a REST API: define endpoints, write route handlers, add authentication middleware, write tests, and document all endpoints with OpenAPI spec.',
+    label: 'Crear una API REST',
+    text: 'Diseña e implementa una API REST: define endpoints, escribe los route handlers, añade middleware de autenticación, escribe tests y documenta todos los endpoints con OpenAPI spec.',
   },
   {
-    label: 'Research competitors',
-    text: 'Research top 5 competitors: analyze their product features, pricing models, target markets, and customer reviews. Summarize findings and identify gaps we can exploit.',
+    label: 'Investigar competidores',
+    text: 'Investiga los 5 principales competidores: analiza sus características de producto, modelos de precios, mercados objetivo y reseñas de clientes. Resume los hallazgos e identifica huecos que podamos aprovechar.',
   },
   {
-    label: 'Write blog posts',
-    text: 'Create a 3-part blog series: outline topics, research each subject, write drafts, add SEO keywords, and prepare a publishing schedule with social media copy.',
+    label: 'Escribir entradas de blog',
+    text: 'Crea una serie de blog en 3 partes: esboza los temas, investiga cada uno, redacta los borradores, añade keywords SEO y prepara un calendario de publicación con copys para redes sociales.',
   },
 ]
 
@@ -218,14 +218,14 @@ type ActiveTab = 'overview' | 'configure' | 'missions'
 type ConfigSection = 'agents' | 'teams' | 'keys'
 
 const TAB_DEFS: Array<{ id: ActiveTab; icon: string; label: string }> = [
-  { id: 'overview', icon: '🏠', label: 'Overview' },
-  { id: 'missions', icon: '🚀', label: 'Missions' },
-  { id: 'configure', icon: '⚙️', label: 'Configure' },
+  { id: 'overview', icon: '🏠', label: 'Resumen' },
+  { id: 'missions', icon: '🚀', label: 'Misiones' },
+  { id: 'configure', icon: '⚙️', label: 'Configurar' },
 ]
 
 const CONFIG_SECTIONS: Array<{ id: ConfigSection; icon: string; label: string }> = [
-  { id: 'agents', icon: '🤖', label: 'Agents' },
-  { id: 'teams', icon: '👥', label: 'Teams' },
+  { id: 'agents', icon: '🤖', label: 'Agentes' },
+  { id: 'teams', icon: '👥', label: 'Equipos' },
   { id: 'keys', icon: '🔑', label: 'API Keys' },
 ]
 
@@ -250,12 +250,12 @@ const TEAM_QUICK_TEMPLATES: Array<{
   tier: 'budget' | 'balanced' | 'max'
   agents: string[]
 }> = [
-  { id: 'research-budget', label: 'Research Lite', icon: '🔬', description: 'Fast research with minimal cost', templateId: 'research', tier: 'budget', agents: ['Atlas', 'Lens'] },
-  { id: 'research-max', label: 'Research Pro', icon: '🧪', description: 'Deep analysis with full team', templateId: 'research', tier: 'max', agents: ['Atlas', 'Lens', 'Cipher'] },
-  { id: 'coding-budget', label: 'Dev Lite', icon: '⚡', description: 'Quick coding tasks, single agent', templateId: 'coding', tier: 'budget', agents: ['Forge'] },
-  { id: 'coding-balanced', label: 'Dev Team', icon: '💻', description: 'Balanced dev team with review', templateId: 'coding', tier: 'balanced', agents: ['Forge', 'Sentinel', 'Spark'] },
-  { id: 'content-balanced', label: 'Content Studio', icon: '✍️', description: 'Writing, editing, and polish', templateId: 'content', tier: 'balanced', agents: ['Scout', 'Quill', 'Polish'] },
-  { id: 'full-max', label: 'Full Stack', icon: '🚀', description: 'Maximum output — all roles covered', templateId: 'coding', tier: 'max', agents: ['Forge', 'Sentinel', 'Spark', 'Atlas', 'Lens'] },
+  { id: 'research-budget', label: 'Research Lite', icon: '🔬', description: 'Investigación rápida con coste mínimo', templateId: 'research', tier: 'budget', agents: ['Atlas', 'Lens'] },
+  { id: 'research-max', label: 'Research Pro', icon: '🧪', description: 'Análisis profundo con equipo completo', templateId: 'research', tier: 'max', agents: ['Atlas', 'Lens', 'Cipher'] },
+  { id: 'coding-budget', label: 'Dev Lite', icon: '⚡', description: 'Tareas de código rápidas, un solo agente', templateId: 'coding', tier: 'budget', agents: ['Forge'] },
+  { id: 'coding-balanced', label: 'Dev Team', icon: '💻', description: 'Equipo de desarrollo equilibrado con revisión', templateId: 'coding', tier: 'balanced', agents: ['Forge', 'Sentinel', 'Spark'] },
+  { id: 'content-balanced', label: 'Content Studio', icon: '✍️', description: 'Redacción, edición y pulido', templateId: 'content', tier: 'balanced', agents: ['Scout', 'Quill', 'Polish'] },
+  { id: 'full-max', label: 'Full Stack', icon: '🚀', description: 'Máximo rendimiento — todos los roles cubiertos', templateId: 'coding', tier: 'max', agents: ['Forge', 'Sentinel', 'Spark', 'Atlas', 'Lens'] },
 ]
 
 // ── System Prompt Templates (inspired by real model system prompts) ──
@@ -270,7 +270,7 @@ const SYSTEM_PROMPT_TEMPLATES: Array<{
   // ── Engineering ──────────────────────────────────────────────────────────────
   {
     id: 'senior-dev',
-    label: 'Senior Dev',
+    label: 'Desarrollador Senior',
     icon: '💻',
     roleHint: 'cod',
     category: 'engineering',
@@ -292,7 +292,7 @@ Output format:
   },
   {
     id: 'code-reviewer',
-    label: 'Code Reviewer',
+    label: 'Revisor de código',
     icon: '🔎',
     roleHint: 'review',
     category: 'engineering',
@@ -330,7 +330,7 @@ Never over-engineer. The best architecture is the simplest one that meets curren
   },
   {
     id: 'devops',
-    label: 'DevOps/SRE',
+    label: 'DevOps / SRE',
     icon: '⚙️',
     roleHint: 'ops',
     category: 'engineering',
@@ -412,7 +412,7 @@ Avoid: correlation-as-causation, survivorship bias, p-hacking, cherry-picked win
   },
   {
     id: 'competitive-intel',
-    label: 'Competitive Intel',
+    label: 'Inteligencia Competitiva',
     icon: '🕵️',
     roleHint: 'compet',
     category: 'research',
@@ -454,7 +454,7 @@ Calibrate tone to: audience sophistication, channel (email/landing page/ad/socia
   },
   {
     id: 'content-strategist',
-    label: 'Content Strategy',
+    label: 'Estrategia de Contenidos',
     icon: '📣',
     roleHint: 'content',
     category: 'content',
@@ -2023,7 +2023,7 @@ function getAgentStatusMeta(status: AgentWorkingStatus): {
   switch (status) {
     case 'active':
       return {
-        label: 'Active',
+        label: 'Activo',
         className: 'text-blue-600',
         dotClassName: 'bg-blue-500',
         pulse: true,
@@ -2031,7 +2031,7 @@ function getAgentStatusMeta(status: AgentWorkingStatus): {
     case 'ready':
     case 'idle':
       return {
-        label: 'Ready',
+        label: 'Listo',
         className: 'text-emerald-600',
         dotClassName: 'bg-emerald-500',
       }
@@ -2043,26 +2043,26 @@ function getAgentStatusMeta(status: AgentWorkingStatus): {
       }
     case 'none':
       return {
-        label: 'No session',
+        label: 'Sin sesión',
         className: 'text-neutral-400',
         dotClassName: 'bg-neutral-400',
       }
     case 'spawning':
       return {
-        label: 'Spawning',
+        label: 'Lanzando',
         className: 'text-amber-600',
         dotClassName: 'bg-amber-400',
         pulse: true,
       }
     case 'paused':
       return {
-        label: 'Paused',
+        label: 'Pausado',
         className: 'text-blue-600',
         dotClassName: 'bg-blue-400',
       }
     case 'waiting_for_input':
       return {
-        label: 'Awaiting Input',
+        label: 'Esperando entrada',
         className: 'text-amber-600',
         dotClassName: 'bg-amber-400',
         pulse: true,
@@ -2099,8 +2099,8 @@ function OfficeView({
       <div className="flex h-full min-h-[360px] items-center justify-center p-8">
         <div className="text-center">
           <p className="mb-3 text-4xl">🏢</p>
-          <p className="text-sm font-medium text-neutral-600 dark:text-slate-400">No agents in your team</p>
-          <p className="mt-1 text-xs text-neutral-500 dark:text-slate-400">Switch to the Team tab to add agents.</p>
+          <p className="text-sm font-medium text-neutral-600 dark:text-slate-400">No tienes agentes en tu equipo</p>
+          <p className="mt-1 text-xs text-neutral-500 dark:text-slate-400">Cambia a la pestaña Equipo para añadir agentes.</p>
         </div>
       </div>
     )
@@ -2142,7 +2142,7 @@ function OfficeView({
         {/* Labels */}
         <div className="flex min-w-0 flex-1 items-center gap-2">
           <span className="text-sm font-semibold text-neutral-800 dark:text-neutral-200">
-            {agentRows.length} agent{agentRows.length !== 1 ? 's' : ''}
+            {agentRows.length} agente{agentRows.length !== 1 ? 's' : ''}
           </span>
           {activeTemplateName ? (
             <>
@@ -2160,7 +2160,7 @@ function OfficeView({
                 <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500/60" />
                 <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
               </span>
-              MISSION ACTIVE
+              MISIÓN ACTIVA
             </span>
           )}
           <span
@@ -2279,7 +2279,7 @@ function OfficeView({
                   </p>
                 ) : (
                   <p className="mt-1 min-h-[2.1em] font-mono text-xs leading-relaxed text-neutral-400">
-                    {agent.status === 'none' ? 'Waiting for session' : 'No recent output'}
+                    {agent.status === 'none' ? 'Esperando sesión' : 'Sin salida reciente'}
                   </p>
                 )}
 
@@ -2287,7 +2287,7 @@ function OfficeView({
                 {agent.taskCount > 0 ? (
                   <div className="mt-2">
                     <span className="rounded-full border border-neutral-200 bg-neutral-50 dark:bg-slate-800/50 px-2 py-0.5 text-[10px] font-semibold text-neutral-600 dark:text-slate-400">
-                      {agent.taskCount} task{agent.taskCount !== 1 ? 's' : ''}
+                      {agent.taskCount} tarea{agent.taskCount !== 1 ? 's' : ''}
                     </span>
                   </div>
                 ) : null}
@@ -2295,7 +2295,7 @@ function OfficeView({
                 {/* Edit agent button — full-width */}
                 <button
                   type="button"
-                  title="Click to view agent output"
+                  title="Pulsa para ver la salida del agente"
                   onClick={() => onViewOutput(agent.id)}
                   className={cn(
                     'mt-auto w-full cursor-pointer rounded-lg border px-2 py-2 text-xs font-medium transition-colors',
@@ -2304,7 +2304,7 @@ function OfficeView({
                       : 'border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-700',
                   )}
                 >
-                  Edit agent
+                  Editar agente
                 </button>
               </div>
             </div>
@@ -2315,13 +2315,13 @@ function OfficeView({
       {/* Fix 2: Status dot legend */}
       <div className="mt-4 flex flex-wrap items-center justify-end gap-x-3 gap-y-1 rounded-xl border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-4 py-2 shadow-sm">
         <span className="flex items-center gap-1 text-[10px] text-neutral-500 dark:text-slate-400">
-          <span className="size-2 rounded-full bg-emerald-500" /> Active
+          <span className="size-2 rounded-full bg-emerald-500" /> Activo
         </span>
         <span className="flex items-center gap-1 text-[10px] text-neutral-500 dark:text-slate-400">
-          <span className="size-2 rounded-full bg-yellow-500" /> Idle
+          <span className="size-2 rounded-full bg-yellow-500" /> Inactivo
         </span>
         <span className="flex items-center gap-1 text-[10px] text-neutral-500 dark:text-slate-400">
-          <span className="size-2 rounded-full bg-neutral-400" /> No session
+          <span className="size-2 rounded-full bg-neutral-400" /> Sin sesión
         </span>
         <span className="flex items-center gap-1 text-[10px] text-neutral-500 dark:text-slate-400">
           <span className="size-2 rounded-full bg-red-500" /> Error
@@ -2335,13 +2335,13 @@ function OfficeView({
 function timeAgoFromMs(ms: number): string {
   const delta = Math.max(0, Date.now() - ms)
   const seconds = Math.floor(delta / 1000)
-  if (seconds < 60) return `${seconds}s ago`
+  if (seconds < 60) return `Hace ${seconds}s`
   const minutes = Math.floor(seconds / 60)
-  if (minutes < 60) return `${minutes}m ago`
+  if (minutes < 60) return `Hace ${minutes}m`
   const hours = Math.floor(minutes / 60)
-  if (hours < 24) return `${hours}h ago`
+  if (hours < 24) return `Hace ${hours}h`
   const days = Math.floor(hours / 24)
-  return `${days}d ago`
+  return `Hace ${days}d`
 }
 
 function HistoryView() {
@@ -2391,7 +2391,7 @@ function HistoryView() {
       <div className="flex h-full items-center justify-center">
         <div className="text-center">
           <div className="mx-auto mb-2 size-5 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-600" />
-          <p className="font-mono text-[10px] text-neutral-500 dark:text-slate-400">// loading mission history…</p>
+          <p className="font-mono text-[10px] text-neutral-500 dark:text-slate-400">// cargando historial de misiones…</p>
         </div>
       </div>
     )
@@ -2402,8 +2402,8 @@ function HistoryView() {
       <div className="flex h-full items-center justify-center p-8">
         <div className="text-center">
           <p className="mb-3 text-4xl opacity-30">📋</p>
-          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">No mission history yet</p>
-          <p className="mt-1 font-mono text-[10px] text-neutral-500 dark:text-slate-400">// start a mission to see it recorded here</p>
+          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Aún no hay historial de misiones</p>
+          <p className="mt-1 font-mono text-[10px] text-neutral-500 dark:text-slate-400">// lanza una misión para verla aquí</p>
         </div>
       </div>
     )
@@ -2416,20 +2416,20 @@ function HistoryView() {
   }
 
   const CHECKPOINT_STATUS_BADGE: Record<string, { label: string; icon: string; className: string }> = {
-    running:   { label: 'Running',   icon: '▶', className: 'bg-emerald-50 text-emerald-700 border border-emerald-200' },
-    paused:    { label: 'Paused',    icon: '⏸', className: 'bg-amber-50 text-amber-700 border border-amber-200' },
-    completed: { label: 'Completed', icon: '●', className: 'bg-neutral-100 text-neutral-600 border border-neutral-200' },
-    aborted:   { label: 'Aborted',   icon: '✕', className: 'bg-red-50 text-red-700 border border-red-200' },
+    running:   { label: 'En curso',   icon: '▶', className: 'bg-emerald-50 text-emerald-700 border border-emerald-200' },
+    paused:    { label: 'Pausada',    icon: '⏸', className: 'bg-amber-50 text-amber-700 border border-amber-200' },
+    completed: { label: 'Completada', icon: '●', className: 'bg-neutral-100 text-neutral-600 border border-neutral-200' },
+    aborted:   { label: 'Abortada',   icon: '✕', className: 'bg-red-50 text-red-700 border border-red-200' },
   }
 
   return (
     <div className="min-h-full p-4 md:h-full md:overflow-y-auto">
-      <h2 className="mb-4 text-[10px] font-bold uppercase tracking-widest text-neutral-600 dark:text-slate-400">Mission Reports</h2>
+      <h2 className="mb-4 text-[10px] font-bold uppercase tracking-widest text-neutral-600 dark:text-slate-400">Reportes de misiones</h2>
 
       {/* Local checkpoint history */}
       {hasLocalHistory ? (
         <div className="space-y-3">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-700 dark:text-neutral-300">📦 Local Checkpoints</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-700 dark:text-neutral-300">📦 Checkpoints locales</p>
           {localHistory.map((cp) => {
             const completedTasks = cp.tasks.filter(t => t.status === 'done' || t.status === 'completed').length
             const totalTasks = cp.tasks.length
@@ -2514,10 +2514,10 @@ function HistoryView() {
 
             const statusBadge =
               status === 'active'
-                ? { label: 'Active', icon: '▶', className: 'bg-emerald-50 text-emerald-700 border border-emerald-200' }
+                ? { label: 'Activa', icon: '▶', className: 'bg-emerald-50 text-emerald-700 border border-emerald-200' }
                 : status === 'idle'
-                  ? { label: 'Idle', icon: '⏸', className: 'bg-amber-50 text-amber-700 border border-amber-200' }
-                  : { label: 'Ended', icon: '●', className: 'bg-neutral-100 text-neutral-600 border border-neutral-200' }
+                  ? { label: 'Inactiva', icon: '⏸', className: 'bg-amber-50 text-amber-700 border border-amber-200' }
+                  : { label: 'Finalizada', icon: '●', className: 'bg-neutral-100 text-neutral-600 border border-neutral-200' }
 
             return (
               <div
@@ -2557,14 +2557,14 @@ function HistoryView() {
                     onClick={() => setExpandedId(isExpanded ? null : sessionId)}
                     className="shrink-0 rounded-lg border border-neutral-200 bg-neutral-100 px-2.5 py-1 text-[10px] font-medium text-neutral-600 transition-colors hover:border-neutral-300 hover:text-neutral-900 dark:text-white"
                   >
-                    {isExpanded ? 'Hide' : 'View'}
+                    {isExpanded ? 'Ocultar' : 'Ver'}
                   </button>
                 </div>
 
                 {isExpanded ? (
                   <div className="mt-3 rounded-lg border border-neutral-200 bg-neutral-50 p-3">
                     <p className="mb-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500 dark:text-slate-400">
-                      Session Details
+                      Detalles de sesión
                     </p>
                     <dl className="space-y-1.5">
                       <div className="flex gap-2">
@@ -2573,7 +2573,7 @@ function HistoryView() {
                       </div>
                       {lastMessage ? (
                         <div className="flex flex-col gap-0.5">
-                          <dt className="font-mono text-[10px] text-neutral-700 dark:text-neutral-400">Last output</dt>
+                          <dt className="font-mono text-[10px] text-neutral-700 dark:text-neutral-400">Última salida</dt>
                           <dd className="line-clamp-4 font-mono text-[10px] text-neutral-500 dark:text-slate-400">{lastMessage}</dd>
                         </div>
                       ) : null}
@@ -3032,11 +3032,11 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     const defaultModel = selectedModel.trim()
 
     if (!provider) {
-      toast('Provider name is required', { type: 'error' })
+      toast('El nombre del proveedor es obligatorio', { type: 'error' })
       return
     }
     if (!apiKey) {
-      toast('API key is required', { type: 'error' })
+      toast('La API key es obligatoria', { type: 'error' })
       return
     }
 
@@ -3062,7 +3062,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         throw new Error(
           typeof payload.error === 'string' && payload.error
             ? payload.error
-            : `Failed to add provider (${response.status})`,
+            : `No se ha podido añadir el proveedor (${response.status})`,
         )
       }
 
@@ -3074,9 +3074,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
       setSelectedModel('')
       await refreshConfiguredProviders()
       void modelsQuery.refetch()
-      toast(`Provider "${provider}" added`, { type: 'success' })
+      toast(`Proveedor "${provider}" añadido`, { type: 'success' })
     } catch (error) {
-      toast(error instanceof Error ? error.message : 'Failed to add provider', {
+      toast(error instanceof Error ? error.message : 'No se ha podido añadir el proveedor', {
         type: 'error',
       })
     } finally {
@@ -3099,11 +3099,11 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         setProviderTestStatus('ok')
       } else {
         setProviderTestStatus('error')
-        setProviderTestError(data.error ?? 'Connection failed')
+        setProviderTestError(data.error ?? 'Falló la conexión')
       }
     } catch {
       setProviderTestStatus('error')
-      setProviderTestError('Network error — could not reach gateway')
+      setProviderTestError('Error de red — no se pudo contactar con el gateway')
     }
   }, [addProviderApiKey, addProviderName])
 
@@ -3873,13 +3873,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     if (!response.ok) {
       const payload = (await response.json().catch(() => ({}))) as Record<string, unknown>
       throw new Error(
-        readString(payload.error) || readString(payload.message) || `Spawn failed: HTTP ${response.status}`,
+        readString(payload.error) || readString(payload.message) || `Falló el lanzamiento: HTTP ${response.status}`,
       )
     }
 
     const data = (await response.json()) as Record<string, unknown>
     const sessionKey = readString(data.sessionKey)
-    if (!sessionKey) throw new Error('No sessionKey in spawn response')
+    if (!sessionKey) throw new Error('La respuesta de lanzamiento no incluye sessionKey')
 
     // Track whether the gateway actually applied the requested model
     const modelApplied = data.modelApplied !== false
@@ -3903,7 +3903,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     async (agentId: string, pause: boolean) => {
       const sessionKey = agentSessionMap[agentId]
       if (!sessionKey) {
-        toast('No active session to control', { type: 'error' })
+        toast('No hay sesión activa que controlar', { type: 'error' })
         return
       }
 
@@ -3917,10 +3917,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         await toggleAgentPause(sessionKey, pause)
         emitFeedEvent({
           type: pause ? 'agent_paused' : 'agent_active',
-          message: `${agentName} ${pause ? 'paused' : 'resumed'}`,
+          message: `${agentName} ${pause ? 'pausado' : 'reanudado'}`,
           agentName,
         })
-        toast(`${agentName} ${pause ? 'paused' : 'resumed'}`, {
+        toast(`${agentName} ${pause ? 'pausado' : 'reanudado'}`, {
           type: 'success',
         })
       } catch (error) {
@@ -3931,15 +3931,15 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           errMsg.includes('404') || errMsg.includes('not found') || errMsg.includes('Not Found') || errMsg.includes('not implemented')
         if (isNotImplemented) {
           // Server doesn't support pause — keep optimistic local state and inform user
-          toast(`${agentName} pause not available on this gateway`, { type: 'warning' })
+          toast(`Pausa no disponible para ${agentName} en este gateway`, { type: 'warning' })
           emitFeedEvent({
             type: 'system',
-            message: `Pause not available for ${agentName} — gateway endpoint missing`,
+            message: `Pausa no disponible para ${agentName} — falta endpoint en el gateway`,
             agentName,
           })
         } else {
           setPausedByAgentId((prev) => ({ ...prev, [agentId]: previousPaused }))
-          toast(errMsg || `Failed to ${pause ? 'pause' : 'resume'} ${agentName}`, { type: 'error' })
+          toast(errMsg || `No se ha podido ${pause ? 'pausar' : 'reanudar'} ${agentName}`, { type: 'error' })
         }
       }
     },
@@ -3982,10 +3982,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
       setAgentSessionMap((prev) => { const n = { ...prev }; delete n[agentId]; return n })
       setSpawnState((prev) => ({ ...prev, [agentId]: 'idle' }))
       setAgentSessionStatus((prev) => { const n = { ...prev }; delete n[agentId]; return n })
-      emitFeedEvent({ type: 'agent_killed', message: `${agentName} session killed`, agentName })
-      toast(`${agentName} killed`, { type: 'success' })
+      emitFeedEvent({ type: 'agent_killed', message: `Sesión de ${agentName} parada`, agentName })
+      toast(`${agentName} parado`, { type: 'success' })
     } catch (e) {
-      toast(e instanceof Error ? e.message : 'Kill failed', { type: 'error' })
+      toast(e instanceof Error ? e.message : 'No se ha podido parar', { type: 'error' })
     }
   }, [agentSessionMap, team])
 
@@ -3993,7 +3993,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     async (agentId: string, message: string) => {
       const sessionKey = agentSessionMap[agentId]
       if (!sessionKey) {
-        toast('No active session to steer', { type: 'error' })
+        toast('No hay sesión activa que redirigir', { type: 'error' })
         return
       }
       const directive = message.trim()
@@ -4011,15 +4011,15 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         agentSessionsDoneRef.current.delete(sessionKey)
         emitFeedEvent({
           type: 'system',
-          message: `Directive sent to ${agentName}: ${directive.slice(0, 80)}`,
+          message: `Directiva enviada a ${agentName}: ${directive.slice(0, 80)}`,
           agentName,
         })
-        toast(`Directive sent to ${agentName}`, { type: 'success' })
+        toast(`Directiva enviada a ${agentName}`, { type: 'success' })
         setSteerAgentId(null)
         setSteerInput('')
       } catch (error) {
         toast(
-          error instanceof Error ? error.message : `Failed to send directive to ${agentName}`,
+          error instanceof Error ? error.message : `No se ha podido enviar la directiva a ${agentName}`,
           { type: 'error' },
         )
       }
@@ -4042,15 +4042,15 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         const modelSuffix = member.modelId !== 'auto' ? ` (${modelLabel})` : ''
         emitFeedEvent({
           type: 'agent_spawned',
-          message: `${member.name} session re-created${modelSuffix}`,
+          message: `Sesión de ${member.name} recreada${modelSuffix}`,
           agentName: member.name,
         })
-        toast(`${member.name} spawned successfully`, { type: 'success' })
+        toast(`${member.name} lanzado correctamente`, { type: 'success' })
       } catch (err) {
         setSpawnState((prev) => ({ ...prev, [member.id]: 'error' }))
         emitFeedEvent({
           type: 'system',
-          message: `Failed to re-spawn ${member.name}: ${err instanceof Error ? err.message : String(err)}`,
+          message: `No se ha podido relanzar ${member.name}: ${err instanceof Error ? err.message : String(err)}`,
           agentName: member.name,
         })
       }
@@ -4078,7 +4078,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
             sessionKey,
-            message: `[APPROVED] You may proceed with: ${approval.action}`,
+            message: `[APROBADO] Puedes proceder con: ${approval.action}`,
           }),
         }).catch(() => { /* best-effort */ })
         // Clear waiting_for_input — approval is a form of human input
@@ -4115,7 +4115,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
             sessionKey,
-            message: `[DENIED] You may NOT proceed with: ${approval.action}. Please stop and await further instructions.`,
+            message: `[DENEGADO] NO puedes proceder con: ${approval.action}. Para inmediatamente y espera nuevas instrucciones.`,
           }),
         }).catch(() => { /* best-effort */ })
       }
@@ -4168,7 +4168,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             const modelSuffix = member.modelId !== 'auto' ? ` (${modelLabel})` : ''
             emitFeedEvent({
               type: 'agent_spawned',
-              message: `spawned ${member.name}${modelSuffix}`,
+              message: `${member.name} lanzado${modelSuffix}`,
               agentName: member.name,
             })
           })
@@ -4177,7 +4177,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             setSpawnState((prev) => ({ ...prev, [member.id]: 'error' }))
             emitFeedEvent({
               type: 'system',
-              message: `Failed to spawn ${member.name}: ${err instanceof Error ? err.message : String(err)}`,
+              message: `No se ha podido lanzar ${member.name}: ${err instanceof Error ? err.message : String(err)}`,
               agentName: member.name,
             })
           }),
@@ -4217,9 +4217,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     // Helper: build agent context prefix for dispatch messages
     function buildAgentContext(member: TeamMember): string {
       const parts = [
-        member.roleDescription && `Role: ${member.roleDescription}`,
-        member.goal && `Your goal: ${member.goal}`,
-        member.backstory && `Background: ${member.backstory}`,
+        member.roleDescription && `Rol: ${member.roleDescription}`,
+        member.goal && `Tu objetivo: ${member.goal}`,
+        member.backstory && `Contexto: ${member.backstory}`,
       ].filter(Boolean)
       return parts.join('\n')
     }
@@ -4234,7 +4234,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
       if (!sessionKey) {
         emitFeedEvent({
           type: 'system',
-          message: `No session for agent ${agentId} — skipping dispatch`,
+          message: `Sin sesión para el agente ${agentId} — se omite el dispatch`,
         })
         return
       }
@@ -4273,7 +4273,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         agentTasks.forEach((task) => {
           emitFeedEvent({
             type: 'agent_active',
-            message: `${member?.name || agentId} started working on: ${task.title}`,
+            message: `${member?.name || agentId} ha empezado a trabajar en: ${task.title}`,
             agentName: member?.name,
             taskTitle: task.title,
           })
@@ -4283,7 +4283,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         const errorMessage = error instanceof Error ? error.message : String(error)
         emitFeedEvent({
           type: 'system',
-          message: `Failed to dispatch to ${member?.name || agentId}: ${errorMessage}`,
+          message: `No se ha podido enviar el dispatch a ${member?.name || agentId}: ${errorMessage}`,
         })
         // Mark tasks as done so progress counts them (not stuck at 0%)
         const taskIds = agentTasks.map((task) => task.id)
@@ -4305,13 +4305,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
       if (leadSessionKey) {
         const leadContext = buildAgentContext(leadMember)
         const teamList = workerMembers.map((m) => `- ${m.name} (${m.roleDescription})`).join('\n')
-        const leadBriefing = `You are the Lead Agent coordinating this mission.\n\nYour team:\n${teamList}\n\nMission Goal: ${missionGoalValue}\n\nYour job: Break down the goal into clear subtasks, delegate them to your team members by name, and synthesize the final result. Start by outlining the plan.`
+        const leadBriefing = `Eres el agente líder que coordina esta misión.\n\nTu equipo:\n${teamList}\n\nObjetivo de la misión: ${missionGoalValue}\n\nTu trabajo: descompón el objetivo en subtareas claras, delégalas a tus compañeros de equipo por nombre y sintetiza el resultado final. Empieza esbozando el plan.`
         const leadMessage = [leadContext, leadBriefing].filter(Boolean).join('\n\n')
 
         const leadTasks = tasksByAgent.get(leadMember.id) ?? []
         const effectiveLeadTasks = leadTasks.length > 0 ? leadTasks : [{
           id: createTaskId(),
-          title: `Lead: ${missionGoalValue}`,
+          title: `Líder: ${missionGoalValue}`,
           description: '',
           priority: 'high' as const,
           status: 'assigned' as const,
@@ -4329,8 +4329,8 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           if (!workerTasks || workerTasks.length === 0) continue
           const workerContext = buildAgentContext(worker)
           const taskList = workerTasks.map((task, index) => `${index + 1}. ${task.title}`).join('\n')
-          const delegationPrefix = `Delegated by ${leadMember.name}:`
-          const workerBody = `${delegationPrefix}\n\nMission Task Assignment for ${worker.name}:\n\n${taskList}\n\nMission Goal: ${missionGoalValue}\n\nPlease work through these tasks sequentially. Report progress on each.`
+          const delegationPrefix = `Delegado por ${leadMember.name}:`
+          const workerBody = `${delegationPrefix}\n\nAsignación de tareas para ${worker.name}:\n\n${taskList}\n\nObjetivo de la misión: ${missionGoalValue}\n\nTrabaja estas tareas en orden y reporta el progreso de cada una.`
           const workerMessage = [workerContext, workerBody].filter(Boolean).join('\n\n')
           await dispatchToAgent(worker.id, workerTasks, workerMessage)
         }
@@ -4347,7 +4347,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         const member = teamMembers.find((entry) => entry.id === agentId)
         const agentContext = member ? buildAgentContext(member) : ''
         const taskList = agentTasks.map((task, index) => `${index + 1}. ${task.title}`).join('\n')
-        const body = `Mission Task Assignment for ${member?.name || agentId}:\n\n${taskList}\n\nMission Goal: ${missionGoalValue}\n\nPlease work through these tasks sequentially. Report progress on each.`
+        const body = `Asignación de tareas para ${member?.name || agentId}:\n\n${taskList}\n\nObjetivo de la misión: ${missionGoalValue}\n\nTrabaja estas tareas en orden y reporta el progreso de cada una.`
         const message = [agentContext, body].filter(Boolean).join('\n\n')
         await dispatchToAgent(agentId, agentTasks, message)
 
@@ -4366,7 +4366,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
       const member = teamMembers.find((entry) => entry.id === agentId)
       const agentContext = member ? buildAgentContext(member) : ''
       const taskList = agentTasks.map((task, index) => `${index + 1}. ${task.title}`).join('\n')
-      const body = `Mission Task Assignment for ${member?.name || agentId}:\n\n${taskList}\n\nMission Goal: ${missionGoalValue}\n\nPlease work through these tasks sequentially. Report progress on each.`
+      const body = `Asignación de tareas para ${member?.name || agentId}:\n\n${taskList}\n\nObjetivo de la misión: ${missionGoalValue}\n\nTrabaja estas tareas en orden y reporta el progreso de cada una.`
       const message = [agentContext, body].filter(Boolean).join('\n\n')
       await dispatchToAgent(agentId, agentTasks, message)
     }
@@ -4670,7 +4670,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     setSelectedTeamConfigId(config.id)
     setSelectedAgentId(undefined)
     setSelectedOutputAgentId(undefined)
-    toast(`Loaded team config: ${config.name}`, { type: 'success' })
+    toast(`Configuración de equipo cargada: ${config.name}`, { type: 'success' })
   }
 
   function deleteTeamConfig(configId: string) {
@@ -4683,13 +4683,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
   function handleCreateMission() {
     if (dispatchingRef.current) return
     if (missionActiveRef.current) {
-      toast('Mission already running. Stop the current mission before launching another.', {
+      toast('Ya hay una misión en curso. Para la misión actual antes de lanzar otra.', {
         type: 'warning',
       })
       return
     }
     if (gatewayStatus === 'disconnected') {
-      toast('Connect gateway before launching a mission', { type: 'error' })
+      toast('Conecta el gateway antes de lanzar una misión', { type: 'error' })
       setWizardOpen(true)
       goToWizardStep('gateway')
       return
@@ -4699,7 +4699,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     const newMissionId = `mission-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
     const createdTasks = parseMissionGoal(trimmedGoal, teamWithRuntimeStatus, newMissionId)
     if (createdTasks.length === 0) {
-      toast('Could not parse actionable tasks from mission goal', { type: 'error' })
+      toast('No se han podido extraer tareas accionables del objetivo de la misión', { type: 'error' })
       return
     }
 
@@ -4768,9 +4768,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     setWizardOpen(false)
     emitFeedEvent({
       type: 'mission_started',
-      message: `Mission started: ${trimmedGoal}`,
+      message: `Misión iniciada: ${trimmedGoal}`,
     })
-    toast(`Mission started with ${createdTasks.length} tasks`, { type: 'success' })
+    toast(`Misión iniciada con ${createdTasks.length} tareas`, { type: 'success' })
 
     window.setTimeout(() => {
       if (missionIdRef.current !== missionId) {
@@ -4814,13 +4814,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
 
   function handleSaveMissionDraft() {
     const goal = newMissionGoal.trim()
-    const name = newMissionName.trim() || 'Untitled mission'
+    const name = newMissionName.trim() || 'Misión sin título'
     if (!goal) return
     const selectedConfig = newMissionTeamConfigId === '__current__'
       ? null
       : teamConfigs.find((entry) => entry.id === newMissionTeamConfigId)
-    const currentTeamLabel = `${activeTemplateId ? TEMPLATE_DISPLAY_NAMES[activeTemplateId] : 'Custom Team'} · ${team.length} agents`
-    const teamName = selectedConfig ? `${selectedConfig.name} · ${selectedConfig.team.length} agents` : currentTeamLabel
+    const currentTeamLabel = `${activeTemplateId ? TEMPLATE_DISPLAY_NAMES[activeTemplateId] : 'Equipo personalizado'} · ${team.length} agentes`
+    const teamName = selectedConfig ? `${selectedConfig.name} · ${selectedConfig.team.length} agentes` : currentTeamLabel
     const id = `draft-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
     setMissionBoardDrafts((prev) => [
       {
@@ -4836,7 +4836,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
       ...prev,
     ])
     setMissionBoardModalOpen(false)
-    toast(`Saved draft: ${name}`, { type: 'success' })
+    toast(`Borrador guardado: ${name}`, { type: 'success' })
   }
 
   function getTeamBudgetSummary(members: TeamMember[]) {
@@ -5026,26 +5026,26 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             <article className={cardCls}>
               <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-orange-500 via-orange-400/40 to-transparent" />
               <div className="mb-3 flex items-center justify-between gap-2">
-                <h2 className={HUB_CARD_LABEL_CLASS}>Active Team</h2>
+                <h2 className={HUB_CARD_LABEL_CLASS}>Equipo activo</h2>
                 <button
                   type="button"
                   onClick={() => { setActiveTab('configure'); setConfigSection('teams') }}
                   className={HUB_SECONDARY_BUTTON_CLASS}
                 >
-                  Switch Team
+                  Cambiar equipo
                 </button>
               </div>
 
               {team.length === 0 ? (
                 <div className="flex flex-col items-center gap-2 py-5 text-center">
                   <span className="text-2xl">👥</span>
-                  <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">No team active</p>
+                  <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Sin equipo activo</p>
                   <button
                     type="button"
                     onClick={() => { setActiveTab('configure'); setConfigSection('teams') }}
                     className={cn('mt-1', HUB_PRIMARY_BUTTON_CLASS)}
                   >
-                    + Create Team
+                    + Crear equipo
                   </button>
                 </div>
               ) : (
@@ -5056,17 +5056,17 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       {activeTeamIcon ?? '👥'}
                     </div>
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-bold text-neutral-900 dark:text-white">{activeTeamName ?? `Custom Team`}</p>
+                      <p className="truncate text-sm font-bold text-neutral-900 dark:text-white">{activeTeamName ?? `Equipo personalizado`}</p>
                       <p className="text-[10px] text-neutral-400">
-                        {activeTeamDescription || `${team.length} agent${team.length !== 1 ? 's' : ''}`}
+                        {activeTeamDescription || `${team.length} agente${team.length !== 1 ? 's' : ''}`}
                       </p>
                     </div>
                   </div>
                   {/* Mobile: single-line compact header */}
                   <div className="flex md:hidden items-center gap-1.5 mb-2">
                     <span className="text-sm">{activeTeamIcon ?? '👥'}</span>
-                    <span className="text-xs font-semibold text-neutral-800 dark:text-white truncate flex-1">{activeTeamName ?? 'Custom Team'}</span>
-                    <span className="shrink-0 text-[10px] text-neutral-400">{team.length} agents · {agentWorkingRows.filter(r => r.status === 'active').length} working</span>
+                    <span className="text-xs font-semibold text-neutral-800 dark:text-white truncate flex-1">{activeTeamName ?? 'Equipo personalizado'}</span>
+                    <span className="shrink-0 text-[10px] text-neutral-400">{team.length} agentes · {agentWorkingRows.filter(r => r.status === 'active').length} activos</span>
                   </div>
 
                   {/* Agent list — compact */}
@@ -5097,7 +5097,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       )
                     })}
                     {team.length > 5 ? (
-                      <li className="text-center text-[10px] text-neutral-400">+{team.length - 5} more agents</li>
+                      <li className="text-center text-[10px] text-neutral-400">+{team.length - 5} agentes más</li>
                     ) : null}
                   </ul>
                 </>
@@ -5108,13 +5108,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             <article className={cardCls}>
               <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-orange-500 via-orange-400/40 to-transparent" />
               <div className="mb-3 flex items-center justify-between gap-2">
-                <h2 className={HUB_CARD_LABEL_CLASS}>Recent Missions</h2>
+                <h2 className={HUB_CARD_LABEL_CLASS}>Misiones recientes</h2>
                 <button
                   type="button"
                   onClick={() => setActiveTab('missions')}
                   className={HUB_SECONDARY_BUTTON_CLASS}
                 >
-                  View All →
+                  Ver todas →
                 </button>
               </div>
 
@@ -5127,15 +5127,15 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-semibold text-emerald-800 dark:text-emerald-300">
-                      {truncateMissionGoal(activeMissionGoal || missionGoal || 'Active mission', 48)}
+                      {truncateMissionGoal(activeMissionGoal || missionGoal || 'Misión activa', 48)}
                     </p>
                     {/* Agent/time detail hidden on mobile */}
                     <p className="hidden sm:block text-[10px] text-emerald-600 dark:text-emerald-400">
-                      Running · {missionElapsed} · {team.length} agents
+                      En curso · {missionElapsed} · {team.length} agentes
                     </p>
                   </div>
                   <span className="shrink-0 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 text-[10px] font-bold text-emerald-700 dark:text-emerald-400">
-                    ⟳ Live
+                    ⟳ En vivo
                   </span>
                 </div>
               ) : null}
@@ -5143,13 +5143,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               {recentMissions.length === 0 && !missionActive ? (
                 <div className="flex flex-col items-center gap-2 py-5 text-center">
                   <span className="text-2xl opacity-30">🚀</span>
-                  <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">No missions yet</p>
+                  <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Aún no hay misiones</p>
                   <button
                     type="button"
                     onClick={() => openNewMissionModal()}
                     className={cn('mt-1', HUB_PRIMARY_BUTTON_CLASS)}
                   >
-                    + New Mission
+                    + Nueva misión
                   </button>
                 </div>
               ) : (
@@ -5172,14 +5172,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                           </p>
                           {/* Agent count and time details hidden on mobile */}
                           <p className="hidden sm:block text-[10px] text-neutral-400">
-                            {mission.agentCount} agents · {durationStr} · {mission.successRate}%
+                            {mission.agentCount} agentes · {durationStr} · {mission.successRate}%
                           </p>
                         </div>
                         <span className={cn(
                           'shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-semibold',
                           mission.failed ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' : 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
                         )}>
-                          {mission.failed ? 'Failed' : 'Done'}
+                          {mission.failed ? 'Falló' : 'Hecho'}
                         </span>
                       </li>
                     )
@@ -5192,16 +5192,16 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             <article className={cn(cardCls, 'hidden sm:block')}>
               <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-orange-500 via-orange-400/40 to-transparent" />
               <div className="mb-3 flex items-center justify-between gap-2">
-                <h2 className={HUB_CARD_LABEL_CLASS}>Usage &amp; Cost</h2>
+                <h2 className={HUB_CARD_LABEL_CLASS}>Uso y coste</h2>
                 <span className="rounded-full border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-2 py-0.5 text-[10px] font-medium text-neutral-500 dark:text-neutral-400">
-                  Today
+                  Hoy
                 </span>
               </div>
 
               {/* Key metrics row */}
               <div className="mb-3 grid grid-cols-3 gap-2">
                 <div className={cn(insetCls, 'text-center')}>
-                  <p className="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5">Sessions</p>
+                  <p className="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5">Sesiones</p>
                   <p className="text-sm font-bold text-neutral-900 dark:text-white">{todaySessions > 0 ? todaySessions : '—'}</p>
                 </div>
                 <div className={cn(insetCls, 'text-center')}>
@@ -5211,7 +5211,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                   </p>
                 </div>
                 <div className={cn(insetCls, 'text-center')}>
-                  <p className="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5">Est. Cost</p>
+                  <p className="text-[10px] uppercase tracking-wide text-neutral-400 mb-0.5">Coste est.</p>
                   <p className="text-sm font-bold text-orange-600 dark:text-orange-400">
                     {todayEstCost > 0 ? `$${todayEstCost.toFixed(2)}` : '$0.00'}
                   </p>
@@ -5221,7 +5221,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               {/* Live mission cost (if running) */}
               {missionActive ? (
                 <div className={cn('mb-2 flex items-center justify-between gap-2', insetCls)}>
-                  <span className="text-[10px] text-neutral-500 dark:text-neutral-400">Live mission</span>
+                  <span className="text-[10px] text-neutral-500 dark:text-neutral-400">Misión en vivo</span>
                   <div className="flex items-center gap-1.5">
                     <span className="relative flex size-1.5 shrink-0">
                       <span className="absolute inset-0 animate-ping rounded-full bg-orange-400/60" />
@@ -5237,7 +5237,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               {/* Provider breakdown */}
               {providerBreakdown.length > 0 ? (
                 <div>
-                  <p className="mb-1.5 text-[10px] uppercase tracking-wide text-neutral-400">Providers in Use</p>
+                  <p className="mb-1.5 text-[10px] uppercase tracking-wide text-neutral-400">Proveedores en uso</p>
                   <div className="space-y-1.5">
                     {providerBreakdown.map(([provider, count]) => {
                       const pct = team.length > 0 ? Math.round((count / team.length) * 100) : 0
@@ -5258,7 +5258,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 </div>
               ) : (
                 <div className={cn('flex items-center justify-between gap-2', insetCls)}>
-                  <span className="text-[10px] text-neutral-400">No usage data yet</span>
+                  <span className="text-[10px] text-neutral-400">Aún no hay datos de uso</span>
                   <span className="text-[10px] font-mono text-neutral-400">$0.00</span>
                 </div>
               )}
@@ -5279,8 +5279,8 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
         {/* ── Header + contextual action ── */}
           <div className={HUB_PAGE_HEADER_CARD_CLASS}>
             <div>
-              <h2 className={HUB_PAGE_TITLE_CLASS}>Configure</h2>
-              <p className="text-xs text-neutral-500 dark:text-slate-400">Configure agents, teams, API keys, and approvals</p>
+              <h2 className={HUB_PAGE_TITLE_CLASS}>Configurar</h2>
+              <p className="text-xs text-neutral-500 dark:text-slate-400">Configura agentes, equipos, API keys y aprobaciones</p>
             </div>
             {configSection === 'agents' ? (
               <button
@@ -5288,7 +5288,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 onClick={handleAddAgent}
                 className={cn('flex shrink-0 items-center gap-1.5', HUB_PRIMARY_BUTTON_CLASS)}
               >
-                + Add Agent
+                + Añadir agente
               </button>
             ) : null}
             {configSection === 'teams' ? (
@@ -5297,7 +5297,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 onClick={() => setShowAddTeamModal(true)}
                 className={cn('flex shrink-0 items-center gap-1.5', HUB_PRIMARY_BUTTON_CLASS)}
               >
-                + Add Team
+                + Añadir equipo
               </button>
             ) : null}
             {configSection === 'keys' ? (
@@ -5306,7 +5306,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 onClick={() => { setProviderWizardStep('select'); setProviderWizardSelected(''); setAddProviderApiKey(''); setAddProviderBaseUrl(''); setAddProviderApiType('openai-completions'); setAddProviderName(''); setShowAddProviderModal(true) }}
                 className={cn('flex shrink-0 items-center gap-1.5', HUB_PRIMARY_BUTTON_CLASS)}
               >
-                + Add Provider
+                + Añadir proveedor
               </button>
             ) : null}
           </div>
@@ -5348,9 +5348,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             <div className="space-y-4">
               <div className="flex items-center justify-between gap-2 rounded-xl border border-primary-200 bg-primary-50/95 px-4 py-3 shadow-sm dark:border-neutral-800 dark:bg-[var(--theme-panel)]">
                 <div>
-                  <h2 className={HUB_SUBSECTION_TITLE_CLASS}>Configured Agents</h2>
+                  <h2 className={HUB_SUBSECTION_TITLE_CLASS}>Agentes configurados</h2>
                   <p className="hidden sm:block text-xs text-neutral-500 dark:text-slate-400">
-                    Edit agent identity, model, role description, and system prompt.
+                    Edita identidad, modelo, descripción del rol y prompt del sistema del agente.
                   </p>
                 </div>
               </div>
@@ -5373,7 +5373,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       <span className={cn('size-2.5 shrink-0 rounded-full', ac.bar)} />
                       {/* Name */}
                       <span className="flex-1 min-w-0 text-sm font-semibold text-neutral-900 dark:text-white truncate">
-                        {member.name || `Agent ${index + 1}`}
+                        {member.name || `Agente ${index + 1}`}
                       </span>
                       {/* Model badge */}
                       <span className="shrink-0 rounded-full bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 text-[10px] font-medium text-neutral-500 dark:text-neutral-400">
@@ -5389,7 +5389,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                           type="button"
                           onClick={() => setAgentWizardOpenId(member.id)}
                           className="shrink-0 flex size-11 items-center justify-center rounded-full bg-neutral-100 text-neutral-400 transition-colors hover:bg-neutral-200 hover:text-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:hover:text-neutral-200"
-                          aria-label="Edit agent"
+                          aria-label="Editar agente"
                         >
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                             <path d="M7 1.5l1.5 1.5L3 8.5H1.5V7L7 1.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -5400,7 +5400,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                           type="button"
                           onClick={() => setTeam((prev) => [...prev, { ...member, status: 'available' }])}
                           className="shrink-0 flex size-11 items-center justify-center rounded-full bg-orange-50 text-orange-500 transition-colors hover:bg-orange-100 dark:bg-orange-900/20 dark:hover:bg-orange-900/40"
-                          aria-label="Add to active team"
+                          aria-label="Añadir al equipo activo"
                         >
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>
                         </button>
@@ -5428,8 +5428,8 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         type="button"
                         onClick={() => setAgentWizardOpenId(member.id)}
                         className="absolute right-2.5 top-2.5 z-10 flex size-11 items-center justify-center rounded-full bg-neutral-100 text-neutral-400 transition-all hover:bg-neutral-200 hover:text-neutral-700 dark:bg-neutral-800 dark:text-neutral-500 dark:hover:bg-neutral-700 dark:hover:text-neutral-200"
-                        aria-label="Edit agent"
-                        title="Edit agent"
+                        aria-label="Editar agente"
+                        title="Editar agente"
                       >
                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                           <path d="M7 1.5l1.5 1.5L3 8.5H1.5V7L7 1.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -5440,8 +5440,8 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         type="button"
                         onClick={() => setTeam((prev) => [...prev, { ...member, status: 'available' }])}
                         className="absolute right-2.5 top-2.5 z-10 flex size-11 items-center justify-center rounded-full bg-orange-50 text-orange-500 transition-all hover:bg-orange-100 dark:bg-orange-900/20 dark:hover:bg-orange-900/40"
-                        aria-label="Add to active team"
-                        title="Add to active team"
+                        aria-label="Añadir al equipo activo"
+                        title="Añadir al equipo activo"
                       >
                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>
                       </button>
@@ -5451,7 +5451,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       <div className={cn('mb-3 flex size-16 items-center justify-center rounded-full shadow-md', ac.avatar)}>
                         <AgentAvatar index={resolveAgentAvatarIndex(member, index)} color={ac.hex} size={32} />
                       </div>
-                      <p className="text-sm font-bold text-neutral-900 dark:text-white leading-tight">{member.name || `Agent ${index + 1}`}</p>
+                      <p className="text-sm font-bold text-neutral-900 dark:text-white leading-tight">{member.name || `Agente ${index + 1}`}</p>
                       <span className="mt-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 text-[10px] font-medium text-neutral-500 dark:text-neutral-400">
                         {getModelDisplayLabelFromLookup(member.modelId, gatewayModelLabelById)}
                       </span>
@@ -5469,7 +5469,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                             onClick={() => setAgentWizardOpenId(member.id)}
                             className="flex w-full items-center justify-center gap-1 text-[10px] font-medium text-neutral-400 dark:text-neutral-500 hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
                           >
-                            <span>+</span> Set system prompt
+                            <span>+</span> Definir prompt del sistema
                           </button>
                         )}
                       </div>
@@ -5494,13 +5494,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       type="button"
                       onClick={() => setAvatarPickerOpenId((prev) => prev === member.id ? null : member.id)}
                       className="absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 shadow-sm text-neutral-500 hover:text-neutral-700 transition-colors"
-                      title="Change avatar"
+                      title="Cambiar avatar"
                     >
                       <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M7 1.5l1.5 1.5L3 8.5H1.5V7L7 1.5Z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </button>
                     {avatarPickerOpenId === member.id ? (
                       <div className="absolute left-0 top-full z-[60] mt-2 w-52 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 p-3 shadow-xl">
-                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Choose Avatar</p>
+                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Elegir avatar</p>
                         <div className="grid grid-cols-5 gap-1.5">
                           {Array.from({ length: AGENT_AVATAR_COUNT }, (_, i) => {
                             const aac = AGENT_ACCENT_COLORS[i % AGENT_ACCENT_COLORS.length]
@@ -5553,7 +5553,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                     </button>
                     {avatarPickerOpenId === newAgentDraft.id ? (
                       <div className="absolute left-0 top-full z-[60] mt-2 w-52 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 p-3 shadow-xl">
-                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Choose Avatar</p>
+                        <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Elegir avatar</p>
                         <div className="grid grid-cols-5 gap-1.5">
                           {Array.from({ length: AGENT_AVATAR_COUNT }, (_, i) => {
                             const aac = AGENT_ACCENT_COLORS[i % AGENT_ACCENT_COLORS.length]
@@ -5586,7 +5586,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                     onClose={() => {
                       // "Add Agent" clicked — add the configured draft to the team
                       if (newAgentDraft) {
-                        const finalName = newAgentDraft.name.trim() || `Agent ${team.length + 1}`
+                        const finalName = newAgentDraft.name.trim() || `Agente ${team.length + 1}`
                         setTeam((prev) => [...prev, { ...newAgentDraft, name: finalName }])
                       }
                       setNewAgentDraft(null)
@@ -5605,16 +5605,16 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               <div>
                 <div className="flex items-center justify-between gap-3 mb-3 rounded-xl border border-primary-200 bg-primary-50/95 px-3 py-2 shadow-sm dark:border-neutral-800 dark:bg-[var(--theme-panel)]">
                   <div>
-                    <h2 className="text-base font-bold text-neutral-900 dark:text-white">My Teams</h2>
-                    <p className="mt-0.5 text-xs text-neutral-500 dark:text-slate-400">{teamConfigs.length} saved · {team.length} agents active</p>
+                    <h2 className="text-base font-bold text-neutral-900 dark:text-white">Mis equipos</h2>
+                    <p className="mt-0.5 text-xs text-neutral-500 dark:text-slate-400">{teamConfigs.length} guardados · {team.length} agentes activos</p>
                   </div>
                 </div>
                 {teamConfigs.length === 0 ? (
                   <button type="button" onClick={() => setShowAddTeamModal(true)}
                     className="flex w-full flex-col items-center gap-2 rounded-xl border-2 border-dashed border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 py-8 text-center transition-all hover:border-orange-400 hover:bg-orange-50/20">
                     <span className="flex size-10 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-xl">👥</span>
-                    <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Create your first team</p>
-                    <p className="text-[10px] text-neutral-400 dark:text-neutral-500">Save a config or start from a template</p>
+                    <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Crea tu primer equipo</p>
+                    <p className="text-[10px] text-neutral-400 dark:text-neutral-500">Guarda una configuración o empieza desde una plantilla</p>
                   </button>
                 ) : (
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -5623,15 +5623,15 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       const teamColors = ['border-blue-300', 'border-emerald-300', 'border-violet-300', 'border-amber-300', 'border-pink-300', 'border-teal-300']
                       return (
                         <div key={config.id} className={cn('relative rounded-xl border-2 bg-white dark:bg-neutral-900 shadow-sm transition-all hover:shadow-md', isActive ? 'border-orange-400' : teamColors[tIdx % teamColors.length])}>
-                          {isActive ? <span className="absolute -top-2 left-1/2 -translate-x-1/2 rounded-full bg-accent-500 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">Active</span> : null}
+                          {isActive ? <span className="absolute -top-2 left-1/2 -translate-x-1/2 rounded-full bg-accent-500 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">Activo</span> : null}
                           <button type="button" onClick={() => setTeamWizardOpenId(config.id)}
-                            className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700 hover:text-neutral-700 transition-all" title="Edit team">
+                            className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700 hover:text-neutral-700 transition-all" title="Editar equipo">
                             <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M7 1.5l1.5 1.5L3 8.5H1.5V7L7 1.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
                           </button>
                           <div className="flex flex-col items-center px-3 pt-5 pb-3 text-center">
                             <div className="mb-2 flex size-12 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-xl shadow-sm">{config.icon ?? '👥'}</div>
                             <p className="text-xs font-bold text-neutral-900 dark:text-white leading-tight">{config.name}</p>
-                            <p className="mt-0.5 text-[10px] text-neutral-400">{config.team.length} agents</p>
+                            <p className="mt-0.5 text-[10px] text-neutral-400">{config.team.length} agentes</p>
                             <div className="mt-2 flex flex-wrap justify-center gap-1">
                               {config.team.slice(0, 3).map((m) => <span key={m.id} className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 text-[10px] text-neutral-500 dark:text-neutral-400">{m.name}</span>)}
                               {config.team.length > 3 ? <span className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 text-[10px] text-neutral-400">+{config.team.length - 3}</span> : null}
@@ -5639,10 +5639,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                           </div>
                           <div className="border-t border-neutral-100 dark:border-neutral-800 flex">
                             <button type="button" onClick={() => { setSelectedTeamConfigId(config.id); loadTeamConfig(config.id) }}
-                              className="flex-1 py-2 text-[10px] font-semibold text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/10 transition-colors rounded-bl-xl">Activate</button>
+                              className="flex-1 py-2 text-[10px] font-semibold text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/10 transition-colors rounded-bl-xl">Activar</button>
                             <div className="w-px bg-neutral-100 dark:bg-neutral-800" />
                             <button type="button" onClick={() => setTeamWizardOpenId(config.id)}
-                              className="flex-1 py-2 text-[10px] font-medium text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors rounded-br-xl">Edit</button>
+                              className="flex-1 py-2 text-[10px] font-medium text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors rounded-br-xl">Editar</button>
                           </div>
                         </div>
                       )
@@ -5650,7 +5650,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                     <button type="button" onClick={() => setShowAddTeamModal(true)}
                       className="flex min-h-[140px] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-center transition-all hover:border-orange-400 hover:bg-orange-50/20">
                       <span className="flex size-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-base text-neutral-400">+</span>
-                      <span className="text-[10px] font-medium text-neutral-400">New Team</span>
+                      <span className="text-[10px] font-medium text-neutral-400">Nuevo equipo</span>
                     </button>
                   </div>
                 )}
@@ -5721,7 +5721,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         ? crypto.randomUUID()
                         : `${timestamp}-${Math.random().toString(36).slice(2, 8)}`
                       const selectedMembers = team.filter((m) => selectedAgentIds.includes(m.id))
-                      const entryName = name || `Custom Team ${new Date().toLocaleDateString()}`
+                      const entryName = name || `Equipo personalizado ${new Date().toLocaleDateString()}`
                       const nextEntry: SavedTeamConfig = {
                         id: newId,
                         name: entryName,
@@ -5732,7 +5732,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       }
                       setTeamConfigs((prev) => [nextEntry, ...prev].slice(0, 30))
                       setSelectedTeamConfigId(newId)
-                      toast(`Saved team: ${entryName}`, { type: 'success' })
+                      toast(`Equipo guardado: ${entryName}`, { type: 'success' })
                     }}
                     onApplyTemplate={applyTemplate}
                     onClose={() => setShowAddTeamModal(false)} />
@@ -5749,9 +5749,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {/* Wizard header */}
                 <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100 dark:border-neutral-800 border-l-4 border-l-orange-400">
                   <div>
-                    <h2 className="text-base font-bold text-neutral-900 dark:text-white">Add Provider</h2>
+                    <h2 className="text-base font-bold text-neutral-900 dark:text-white">Añadir proveedor</h2>
                     <p className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400">
-                      {providerWizardStep === 'select' ? 'Step 1 — Choose a provider' : `Step 2 — Enter your ${providerWizardSelected || addProviderName} API key`}
+                      {providerWizardStep === 'select' ? 'Paso 1 — Elige un proveedor' : `Paso 2 — Introduce tu API key de ${providerWizardSelected || addProviderName}`}
                     </p>
                   </div>
                   {/* Step indicator + close */}
@@ -5828,17 +5828,17 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       className="flex items-center gap-1 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 transition-colors"
                     >
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7 2L3 6l4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                      Back
+                      Atrás
                     </button>
 
                     {/* Custom name input */}
                     {addProviderSelection === CUSTOM_PROVIDER_OPTION ? (
                       <div>
-                        <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Provider Name</label>
+                        <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Nombre del proveedor</label>
                         <input
                           value={addProviderName}
                           onChange={(event) => { setAddProviderName(event.target.value); setSelectedModel('') }}
-                          placeholder="e.g. together, fireworks..."
+                          placeholder="ej. together, fireworks…"
                           className="h-9 w-full rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 text-sm text-neutral-900 dark:text-white outline-none ring-orange-400 focus:ring-1"
                         />
                       </div>
@@ -5851,7 +5851,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         <input
                           value={addProviderBaseUrl}
                           onChange={(event) => setAddProviderBaseUrl(event.target.value)}
-                          placeholder="e.g. https://api.together.ai/v1"
+                          placeholder="ej. https://api.together.ai/v1"
                           className="h-9 w-full rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 text-sm text-neutral-900 dark:text-white outline-none ring-orange-400 focus:ring-1 font-mono"
                         />
                         <p className="mt-1 text-[10px] text-neutral-400">Ollama: http://host:11434/v1 · Together: https://api.together.ai/v1</p>
@@ -5861,18 +5861,18 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                     {/* Custom API Protocol select */}
                     {addProviderSelection === CUSTOM_PROVIDER_OPTION ? (
                       <div>
-                        <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-neutral-400">API Protocol</label>
+                        <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-neutral-400">Protocolo API</label>
                         <select
                           value={addProviderApiType}
                           onChange={(event) => setAddProviderApiType(event.target.value)}
                           className="h-9 w-full rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 text-sm text-neutral-900 dark:text-white outline-none ring-orange-400 focus:ring-1"
                         >
-                          <option value="openai-completions">OpenAI Compatible (most providers)</option>
+                          <option value="openai-completions">Compatible OpenAI (mayoría de proveedores)</option>
                           <option value="anthropic-messages">Anthropic Messages API</option>
                           <option value="google-generative-ai">Google Generative AI</option>
                           <option value="ollama">Ollama Native</option>
                         </select>
-                        <p className="mt-1 text-[10px] text-neutral-400">Ollama, Together, Fireworks, LMStudio → OpenAI Compatible</p>
+                        <p className="mt-1 text-[10px] text-neutral-400">Ollama, Together, Fireworks, LMStudio → Compatible OpenAI</p>
                       </div>
                     ) : null}
 
@@ -5883,7 +5883,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         type="password"
                         value={addProviderApiKey}
                         onChange={(event) => { setAddProviderApiKey(event.target.value); setProviderTestStatus('idle'); setProviderTestError('') }}
-                        placeholder={`${addProviderName || 'Provider'} API key…`}
+                        placeholder={`API key de ${addProviderName || 'proveedor'}…`}
                         autoFocus
                         className="h-9 w-full rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 text-sm text-neutral-900 dark:text-white outline-none ring-orange-400 focus:ring-1 font-mono"
                       />
@@ -5902,12 +5902,12 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         ) : (
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5.5L3.5 8L9 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         )}
-                        {providerTestStatus === 'testing' ? 'Testing…' : 'Test Connection'}
+                        {providerTestStatus === 'testing' ? 'Probando…' : 'Probar conexión'}
                       </button>
                       {providerTestStatus === 'ok' ? (
                         <span className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5L4.5 9.5L10.5 2.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                          Connected ✓
+                          Conectado ✓
                         </span>
                       ) : null}
                       {providerTestStatus === 'error' ? (
@@ -5926,9 +5926,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       return (
                         <div>
                           <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-neutral-400">
-                            Default Model{' '}
+                            Modelo por defecto{' '}
                             <span className="font-normal normal-case text-neutral-300">
-                              {addProviderAvailableModels.length === 0 ? '— common models' : '(optional)'}
+                              {addProviderAvailableModels.length === 0 ? '— modelos comunes' : '(opcional)'}
                             </span>
                           </label>
                           <select
@@ -5936,7 +5936,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                             onChange={(event) => setSelectedModel(event.target.value)}
                             className="h-9 w-full rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 text-sm text-neutral-900 dark:text-white outline-none ring-orange-400 focus:ring-1"
                           >
-                            <option value="">Use gateway default</option>
+                            <option value="">Usar el modelo por defecto del gateway</option>
                             {modelOptions.map((model) => (
                               <option key={model.value} value={model.value}>{model.label}</option>
                             ))}
@@ -5956,7 +5956,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       disabled={isAddingProvider || !addProviderApiKey.trim() || !addProviderName.trim()}
                       className="w-full rounded-lg bg-accent-500 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      {isAddingProvider ? 'Adding…' : `Connect ${addProviderName || 'Provider'}`}
+                      {isAddingProvider ? 'Añadiendo…' : `Conectar ${addProviderName || 'proveedor'}`}
                     </button>
                   </div>
                 ) : null}
@@ -5966,14 +5966,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               <div>
                 <div className="flex items-center justify-between mb-3 rounded-xl border border-primary-200 bg-primary-50/95 px-3 py-2 shadow-sm dark:border-neutral-800 dark:bg-[var(--theme-panel)]">
                   <div>
-                    <h2 className="text-base font-bold text-neutral-900 dark:text-white">Connected Providers</h2>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{configuredProviders.length} active · {gatewayModels.length} models available</p>
+                    <h2 className="text-base font-bold text-neutral-900 dark:text-white">Proveedores conectados</h2>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{configuredProviders.length} activos · {gatewayModels.length} modelos disponibles</p>
                   </div>
                 </div>
                 {configuredProviders.length === 0 ? (
                   <div className="flex flex-col items-center gap-2 py-6 text-center">
                     <span className="text-xl">🔑</span>
-                    <p className="text-xs text-neutral-400">No configured providers detected. Add one above.</p>
+                    <p className="text-xs text-neutral-400">No se han detectado proveedores configurados. Añade uno arriba.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
@@ -5986,7 +5986,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         >
                           {/* Edit pencil */}
                           <button type="button" onClick={() => setProviderEditModalProvider(provider)}
-                            className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700 hover:text-neutral-700 transition-all" title="Edit provider">
+                            className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700 hover:text-neutral-700 transition-all" title="Editar proveedor">
                             <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M7 1.5l1.5 1.5L3 8.5H1.5V7L7 1.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
                           </button>
                           <div className="flex flex-col items-center px-3 pt-4 pb-3 text-center">
@@ -5997,17 +5997,17 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                             <p className="text-[10px] text-neutral-400 mt-0.5">{pm.description}</p>
                             <div className="mt-1 flex items-center gap-1">
                               <span className="size-1.5 rounded-full bg-emerald-500" />
-                              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">Active</span>
+                              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">Activo</span>
                             </div>
                             <span className="mt-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 text-[10px] text-neutral-500 dark:text-neutral-400">
-                              {providerModels.length} model{providerModels.length !== 1 ? 's' : ''}
+                              {providerModels.length} modelo{providerModels.length !== 1 ? 's' : ''}
                             </span>
                             {providerModels.length > 0 ? (
                               <div className="mt-2 w-full space-y-0.5">
                                 {providerModels.slice(0, 3).map((m) => (
                                   <span key={m.value} className="block truncate rounded bg-neutral-50 dark:bg-neutral-800 px-1.5 py-0.5 text-[10px] text-neutral-500 dark:text-neutral-400">{m.label}</span>
                                 ))}
-                                {providerModels.length > 3 ? <span className="block text-[10px] text-neutral-400 text-center">+{providerModels.length - 3} more</span> : null}
+                                {providerModels.length > 3 ? <span className="block text-[10px] text-neutral-400 text-center">+{providerModels.length - 3} más</span> : null}
                               </div>
                             ) : null}
                           </div>
@@ -6023,7 +6023,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       <div className="flex size-12 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-400 group-hover:bg-orange-50 group-hover:text-orange-500 transition-colors">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
                       </div>
-                      <p className="text-xs font-semibold text-neutral-400 group-hover:text-orange-500 transition-colors">Add Provider</p>
+                      <p className="text-xs font-semibold text-neutral-400 group-hover:text-orange-500 transition-colors">Añadir proveedor</p>
                     </button>
                   </div>
                 )}
@@ -6043,19 +6043,19 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         body: JSON.stringify({ action: 'update-provider-key', provider: providerEditModalProvider, apiKey }),
                       })
                       if (!res.ok) throw new Error(`HTTP ${res.status}`)
-                      toast('Provider key updated', { type: 'success' })
+                      toast('API key del proveedor actualizada', { type: 'success' })
                       setProviderEditModalProvider(null)
                       void refreshGatewayStatus().then((connected) => {
                         if (connected) return refreshConfiguredProviders()
                         return Promise.resolve()
                       })
                     } catch (err) {
-                      toast(err instanceof Error ? err.message : 'Failed to update provider key', { type: 'error' })
+                      toast(err instanceof Error ? err.message : 'No se ha podido actualizar la API key del proveedor', { type: 'error' })
                     }
                   }}
                   onClose={() => setProviderEditModalProvider(null)}
                   onDelete={async () => {
-                    if (!window.confirm(`Remove provider "${providerEditModalProvider}"? This will delete the API key.`)) return
+                    if (!window.confirm(`¿Quitar el proveedor "${providerEditModalProvider}"? Se eliminará la API key.`)) return
                     try {
                       const res = await fetch('/api/gateway-config', {
                         method: 'POST',
@@ -6063,10 +6063,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         body: JSON.stringify({ action: 'remove-provider', provider: providerEditModalProvider }),
                       })
                       if (!res.ok) throw new Error(`HTTP ${res.status}`)
-                      toast(`Provider removed`, { type: 'success' })
+                      toast(`Proveedor eliminado`, { type: 'success' })
                       setProviderEditModalProvider(null)
                     } catch (err) {
-                      toast(err instanceof Error ? err.message : 'Remove failed', { type: 'error' })
+                      toast(err instanceof Error ? err.message : 'No se ha podido quitar', { type: 'error' })
                     }
                   }}
                 />
@@ -6082,7 +6082,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
   }
 
   function renderMissionsTabContent() {
-    const currentTeamLabel = `${activeTemplateId ? TEMPLATE_DISPLAY_NAMES[activeTemplateId] : 'Custom Team'} · ${team.length} agents`
+    const currentTeamLabel = `${activeTemplateId ? TEMPLATE_DISPLAY_NAMES[activeTemplateId] : 'Equipo personalizado'} · ${team.length} agentes`
     const missionTasksForBoard = missionTasks.length > 0 ? missionTasks : boardTasks
     const runningTaskStats = computeMissionTaskStats(missionTasksForBoard)
     const runningProgressPct = runningTaskStats.total > 0 ? Math.round((runningTaskStats.completed / runningTaskStats.total) * 100) : 0
@@ -6090,7 +6090,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
       { id: '__current__', label: currentTeamLabel, team },
       ...teamConfigs.map((config) => ({
         id: config.id,
-        label: `${config.name} · ${config.team.length} agents`,
+        label: `${config.name} · ${config.team.length} agentes`,
         team: config.team,
       })),
     ]
@@ -6185,18 +6185,18 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
       : dedupedEntries.filter((e) => e.status === missionSubTab)
 
     const filterTabs: Array<{ id: typeof missionSubTab; label: string; count: number }> = [
-      { id: 'all', label: 'All', count: dedupedEntries.length },
-      { id: 'running', label: 'Running', count: dedupedEntries.filter((e) => e.status === 'running').length },
-      { id: 'needs_input', label: 'Needs Input', count: dedupedEntries.filter((e) => e.status === 'needs_input').length },
-      { id: 'complete', label: 'Complete', count: dedupedEntries.filter((e) => e.status === 'complete').length },
-      { id: 'failed', label: 'Failed', count: dedupedEntries.filter((e) => e.status === 'failed').length },
+      { id: 'all', label: 'Todas', count: dedupedEntries.length },
+      { id: 'running', label: 'En curso', count: dedupedEntries.filter((e) => e.status === 'running').length },
+      { id: 'needs_input', label: 'Esperan entrada', count: dedupedEntries.filter((e) => e.status === 'needs_input').length },
+      { id: 'complete', label: 'Completas', count: dedupedEntries.filter((e) => e.status === 'complete').length },
+      { id: 'failed', label: 'Fallidas', count: dedupedEntries.filter((e) => e.status === 'failed').length },
     ]
 
     const STATUS_BADGE: Record<MissionListStatus, { bg: string; text: string; label: string; pulse?: boolean }> = {
-      running: { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-700 dark:text-blue-400', label: 'Running', pulse: true },
-      needs_input: { bg: 'bg-amber-100 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-400', label: 'Needs Input', pulse: true },
-      complete: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-400', label: 'Complete' },
-      failed: { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', label: 'Failed' },
+      running: { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-700 dark:text-blue-400', label: 'En curso', pulse: true },
+      needs_input: { bg: 'bg-amber-100 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-400', label: 'Espera entrada', pulse: true },
+      complete: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-400', label: 'Completa' },
+      failed: { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', label: 'Fallida' },
     }
 
 	    const missionCardCls = 'relative overflow-hidden rounded-xl border border-primary-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-800 px-4 py-3'
@@ -6209,10 +6209,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             <div>
               {/* Mobile: short label; Desktop: full title + description */}
               <h2 className={HUB_PAGE_TITLE_CLASS}>
-                <span className="md:hidden">Missions</span>
-                <span className="hidden md:inline">Mission Control</span>
+                <span className="md:hidden">Misiones</span>
+                <span className="hidden md:inline">Centro de misiones</span>
               </h2>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">Track and manage all agent runs</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">Sigue y gestiona todas las ejecuciones de agentes</p>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -6220,7 +6220,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 onClick={() => openNewMissionModal()}
                 className={HUB_PRIMARY_BUTTON_CLASS}
               >
-                + New Mission
+                + Nueva misión
               </button>
             </div>
           </div>
@@ -6278,14 +6278,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                   <span className="text-3xl">{missionSubTab === 'all' ? '🚀' : missionSubTab === 'running' ? '⏳' : missionSubTab === 'needs_input' ? '💬' : missionSubTab === 'complete' ? '✅' : '❌'}</span>
                   <p className="mt-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
                     {missionSubTab === 'all'
-                      ? 'No active missions — launch one with New Mission ↑'
+                      ? 'No hay misiones activas — lanza una con Nueva misión ↑'
                       : missionSubTab === 'running'
-                        ? 'No missions running right now'
+                        ? 'No hay misiones en curso ahora mismo'
                         : missionSubTab === 'needs_input'
-                          ? 'No missions waiting for input'
+                          ? 'No hay misiones esperando entrada'
                           : missionSubTab === 'complete'
-                            ? 'No completed missions yet — finish your first one!'
-                            : 'No failed missions — nice!'}
+                            ? 'Aún no hay misiones completadas — ¡termina la primera!'
+                            : 'No hay misiones fallidas — ¡bien!'}
                   </p>
                   {missionSubTab === 'all' && (
                     <button
@@ -6293,7 +6293,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       onClick={() => openNewMissionModal()}
                     className={cn('mt-3', HUB_PRIMARY_BUTTON_CLASS)}
                     >
-                      + New Mission
+                      + Nueva misión
                     </button>
                   )}
                 </div>
@@ -6370,7 +6370,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               </div>
                             )}
                           </div>
-                          <span className="text-[10px] text-neutral-400 dark:text-neutral-500 tabular-nums">{entry.agents.length} agent{entry.agents.length !== 1 ? 's' : ''}</span>
+                          <span className="text-[10px] text-neutral-400 dark:text-neutral-500 tabular-nums">{entry.agents.length} agente{entry.agents.length !== 1 ? 's' : ''}</span>
                         </div>
 
                         {/* Duration — always shown but smaller on mobile */}
@@ -6391,8 +6391,8 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               }}
                               className={HUB_SECONDARY_BUTTON_CLASS}
                             >
-                              <span className="hidden sm:inline">Live Output ↗</span>
-                              <span className="sm:hidden">Live ↗</span>
+                              <span className="hidden sm:inline">Salida en vivo ↗</span>
+                              <span className="sm:hidden">En vivo ↗</span>
                             </button>
                           ) : entry.report ? (
                             <button
@@ -6400,16 +6400,16 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               onClick={(e) => { e.stopPropagation(); setSelectedReport(entry.report!) }}
                               className={HUB_SECONDARY_BUTTON_CLASS}
                             >
-                              <span className="hidden sm:inline">View Report</span>
-                              <span className="sm:hidden">View</span>
+                              <span className="hidden sm:inline">Ver reporte</span>
+                              <span className="sm:hidden">Ver</span>
                             </button>
                           ) : (
                             <button
                               type="button"
-                              onClick={(e) => { e.stopPropagation(); openNewMissionModal({ name: `Rerun: ${entry.title}`, goal: entry.goal }) }}
+                              onClick={(e) => { e.stopPropagation(); openNewMissionModal({ name: `Repetir: ${entry.title}`, goal: entry.goal }) }}
                               className={HUB_SECONDARY_BUTTON_CLASS}
                             >
-                              Re-run
+                              Repetir
                             </button>
                           )}
                         </div>
@@ -6455,9 +6455,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                                         setSteerInput('')
                                       }}
                                       className="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold text-violet-600 dark:text-violet-400 border border-violet-200 dark:border-violet-800/50 bg-violet-50 dark:bg-violet-900/20 hover:bg-violet-100 dark:hover:bg-violet-900/40 transition-colors"
-                                      title={`Send directive to ${row.name}`}
+                                      title={`Enviar directiva a ${row.name}`}
                                     >
-                                      ✦ Steer
+                                      ✦ Redirigir
                                     </button>
                                   )}
                                 </div>
@@ -6473,7 +6473,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               disabled={missionState === 'running'}
                               className="min-h-11 rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-emerald-700 disabled:opacity-40"
                             >
-                              ▶ Resume
+                              ▶ Reanudar
                             </button>
                             <button
                               type="button"
@@ -6481,7 +6481,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               disabled={missionState === 'paused'}
                               className="min-h-11 rounded-md bg-amber-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-amber-600 disabled:opacity-40"
                             >
-                              ⏸ Pause
+                              ⏸ Pausar
                             </button>
                             {/* Steer button — opens inline input for sending a directive to the first active/waiting agent */}
                             {(missionState === 'running' || agentWorkingRows.some((r) => r.status === 'waiting_for_input')) && (
@@ -6495,12 +6495,12 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                                     setSteerAgentId(targetAgent.id)
                                     setSteerInput('')
                                   } else {
-                                    toast('No active agent to steer', { type: 'warning' })
+                                    toast('No hay agente activo que redirigir', { type: 'warning' })
                                   }
                                 }}
                                 className="min-h-11 rounded-md bg-violet-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-violet-600"
                               >
-                                ✦ Steer
+                                ✦ Redirigir
                               </button>
                             )}
                             <button
@@ -6508,7 +6508,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               onClick={(e) => { e.stopPropagation(); stopMissionAndCleanup('aborted') }}
                               className="min-h-11 rounded-md bg-red-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-700"
                             >
-                              ■ Stop
+                              ■ Parar
                             </button>
                             <div className="flex-1" />
                             <button
@@ -6520,7 +6520,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               }}
                               className={HUB_SECONDARY_BUTTON_CLASS}
                             >
-                              Live Output ↗
+                              Salida en vivo ↗
                             </button>
                           </div>
                         </div>
@@ -6540,7 +6540,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             <div className="w-full max-w-md rounded-t-2xl sm:rounded-2xl bg-white dark:bg-slate-900 shadow-xl p-5" onClick={(e) => e.stopPropagation()}>
               <div className="mb-4 flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-bold text-neutral-900 dark:text-white">Steer Agent</p>
+                  <p className="text-sm font-bold text-neutral-900 dark:text-white">Redirigir agente</p>
                   <p className="text-xs text-neutral-500 dark:text-neutral-400">{steerMember?.name ?? steerAgentId}</p>
                 </div>
                 <button type="button" onClick={() => setSteerAgentId(null)} className="flex size-11 items-center justify-center rounded-full text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-700 dark:hover:bg-neutral-800 dark:hover:text-neutral-200">✕</button>
@@ -6548,7 +6548,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               <textarea
                 value={steerInput}
                 onChange={(e) => setSteerInput(e.target.value)}
-                placeholder="Send a directive to this agent, e.g. 'Focus on X' or 'Stop doing Y and start Z'"
+                placeholder="Envía una directiva a este agente, ej. 'Céntrate en X' o 'Deja de hacer Y y empieza con Z'"
                 className="w-full resize-none rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-slate-800 px-3 py-2.5 text-sm text-neutral-900 dark:text-white outline-none focus:ring-1 focus:ring-accent-400"
                 rows={3}
                 autoFocus
@@ -6559,14 +6559,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 }}
               />
               <div className="mt-3 flex justify-end gap-2">
-                <button type="button" onClick={() => setSteerAgentId(null)} className={HUB_SECONDARY_BUTTON_CLASS}>Cancel</button>
+                <button type="button" onClick={() => setSteerAgentId(null)} className={HUB_SECONDARY_BUTTON_CLASS}>Cancelar</button>
                 <button
                   type="button"
                   disabled={!steerInput.trim()}
                   onClick={() => void handleSteerAgent(steerAgentId, steerInput)}
                   className={cn(HUB_PRIMARY_BUTTON_CLASS, 'disabled:opacity-50')}
                 >
-                  Send Directive ⌘↵
+                  Enviar directiva ⌘↵
                 </button>
               </div>
             </div>
@@ -6593,13 +6593,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 <div>
                   <div className="flex items-center gap-1">
                     <p className="text-base font-bold text-neutral-900 dark:text-white">
-                      {isRunning ? (activeMissionName || 'Active Mission') : (reportEntry?.name || 'Mission Details')}
+                      {isRunning ? (activeMissionName || 'Misión activa') : (reportEntry?.name || 'Detalles de la misión')}
                     </p>
                     <span className={cn(
                       'ml-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold',
                       isRunning ? 'bg-emerald-100 text-emerald-700' : 'bg-neutral-100 text-neutral-600',
                     )}>
-                      {isRunning ? '🟢 Running' : '✓ Complete'}
+                      {isRunning ? '🟢 En curso' : '✓ Completa'}
                     </span>
                   </div>
                   <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5 line-clamp-1">
@@ -6621,9 +6621,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {/* Stats row */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {[
-                    { label: 'Progress', value: isRunning ? `${runningTaskStats.completed} / ${runningTaskStats.total}` : `${reportEntry?.taskStats.completed ?? 0} / ${reportEntry?.taskStats.total ?? 0}` },
-                    { label: 'Est. Cost', value: isRunning ? `$${estimateMissionCost(missionTokenCount).toFixed(2)}` : `$${reportEntry?.costEstimate.toFixed(2) ?? '0.00'}` },
-                    { label: 'Elapsed', value: isRunning ? formatDuration(Date.now() - (missionStartedAtRef.current || Date.now())) : formatDuration(reportEntry?.duration ?? 0) },
+                    { label: 'Progreso', value: isRunning ? `${runningTaskStats.completed} / ${runningTaskStats.total}` : `${reportEntry?.taskStats.completed ?? 0} / ${reportEntry?.taskStats.total ?? 0}` },
+                    { label: 'Coste est.', value: isRunning ? `$${estimateMissionCost(missionTokenCount).toFixed(2)}` : `$${reportEntry?.costEstimate.toFixed(2) ?? '0.00'}` },
+                    { label: 'Transcurrido', value: isRunning ? formatDuration(Date.now() - (missionStartedAtRef.current || Date.now())) : formatDuration(reportEntry?.duration ?? 0) },
                     { label: 'Tokens', value: isRunning ? missionTokenCount.toLocaleString() : (reportEntry?.tokenCount.toLocaleString() ?? '0') },
                   ].map(({ label, value }) => (
                     <div key={label} className="rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-slate-800/50 p-3">
@@ -6636,7 +6636,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {/* Live Agent Status (running only) */}
                 {isRunning && agentWorkingRows.length > 0 && (
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Live Agent Status</p>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Estado de los agentes en vivo</p>
                     <div className="space-y-2">
                       {agentWorkingRows.map((row) => (
                         <div key={row.id} className="flex items-center justify-between rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-slate-800 px-4 py-3">
@@ -6666,14 +6666,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               onClick={() => { setSelectedOutputAgentId(row.id); setOutputPanelVisible(true); setMaximizedMissionId(null) }}
                               className="rounded-lg border border-neutral-200 dark:border-neutral-700 px-2.5 py-1 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-slate-800 transition-colors"
                             >
-                              View Output
+                              Ver salida
                             </button>
                             {/* Pause/resume */}
                             <button
                               type="button"
                               onClick={() => _handleSetAgentPaused(row.id, row.status !== 'paused')}
                               className="flex size-7 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-slate-800 transition-colors text-sm"
-                              title={row.status === 'paused' ? 'Resume' : 'Pause'}
+                              title={row.status === 'paused' ? 'Reanudar' : 'Pausar'}
                             >
                               {row.status === 'paused' ? '▶' : '⏸'}
                             </button>
@@ -6682,7 +6682,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               type="button"
                               onClick={() => { setSteerAgentId(row.id); setSteerInput(''); setMaximizedMissionId(null) }}
                               className="flex size-7 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-700 text-neutral-500 hover:text-accent-500 hover:border-accent-300 dark:hover:bg-slate-800 transition-colors text-sm"
-                              title="Steer agent"
+                              title="Redirigir agente"
                             >
                               ✦
                             </button>
@@ -6691,7 +6691,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                                 type="button"
                                 onClick={() => { void handleKillAgent(row.id); setMaximizedMissionId(null) }}
                                 className="flex size-7 items-center justify-center rounded-lg border border-red-200 text-red-500 hover:bg-red-50 transition-colors text-sm"
-                                title="Kill agent"
+                                title="Parar agente"
                               >
                                 ✕
                               </button>
@@ -6706,7 +6706,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {/* Latest agent output lines (running only) */}
                 {isRunning && (
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Latest Output</p>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Última salida</p>
                     <div className="rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-slate-800/50 p-4 font-mono text-xs leading-relaxed text-neutral-700 dark:text-slate-300 max-h-48 overflow-y-auto space-y-1">
                       {agentWorkingRows.flatMap((row) =>
                         (agentOutputLinesRef.current[row.id] ?? []).slice(-4).map((line, idx) => (
@@ -6722,7 +6722,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {/* Artifacts */}
                 {isRunning && artifacts.length > 0 && (
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Artifacts ({artifacts.length})</p>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Artefactos ({artifacts.length})</p>
                     <div className="flex flex-wrap gap-2">
                       {artifacts.slice(0, 10).map((a) => (
                         <span key={a.id} className="rounded-full border border-neutral-200 bg-white dark:bg-slate-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
@@ -6736,7 +6736,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {/* Report text (done/review missions) */}
                 {!isRunning && reportEntry?.report && (
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Mission Report</p>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Reporte de misión</p>
                     <div className="rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-slate-800/50 p-4 text-sm text-neutral-700 dark:text-slate-300 max-h-60 overflow-y-auto whitespace-pre-wrap">
                       {reportEntry.report}
                     </div>
@@ -6749,7 +6749,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               {isRunning && (
                 <div className="border-t border-neutral-200 dark:border-neutral-700 px-6 py-4 flex items-center justify-between gap-3">
                   <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                    Mission running · {agentWorkingRows.filter((r) => r.status === 'active').length} agents active
+                    Misión en curso · {agentWorkingRows.filter((r) => r.status === 'active').length} agentes activos
                   </p>
                   <div className="flex gap-2">
                     <button
@@ -6757,7 +6757,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       onClick={() => setMaximizedMissionId(null)}
                       className={HUB_SECONDARY_BUTTON_CLASS}
                     >
-                      Close
+                      Cerrar
                     </button>
                   </div>
                 </div>
@@ -6784,7 +6784,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             <div className="flex items-center justify-between gap-4">
               <div className="flex min-w-0 items-baseline gap-2">
                 <h1 className="shrink-0 text-lg font-bold text-ink dark:text-white md:text-xl">Agent Hub</h1>
-                <p className="truncate font-mono text-[10px] text-neutral-500 dark:text-slate-500">// Mission Control</p>
+                <p className="truncate font-mono text-[10px] text-neutral-500 dark:text-slate-500">// Centro de misiones</p>
               </div>
               <div className="flex items-center gap-2">
                 <ApprovalsBell
@@ -6909,7 +6909,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 type="button"
                 onClick={() => { setOutputPanelVisible(false) }}
                 className="flex size-7 items-center justify-center rounded-full text-[var(--theme-muted)] hover:bg-[var(--theme-card2)] hover:text-[var(--theme-text)] transition-colors"
-                aria-label="Close output panel"
+                aria-label="Cerrar panel de salida"
               >
                 ✕
               </button>
@@ -6971,9 +6971,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               className="mx-auto mb-3 size-8 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-700 dark:border-neutral-600 dark:border-t-neutral-100"
               aria-hidden
             />
-            <h3 className="text-base font-semibold text-neutral-900 dark:text-white">Compacting context...</h3>
+            <h3 className="text-base font-semibold text-neutral-900 dark:text-white">Compactando contexto…</h3>
             <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">
-              Agent memory is being compressed. This may take a few seconds.
+              Comprimiendo la memoria del agente. Tardará unos segundos.
             </p>
           </div>
         </div>
@@ -6992,7 +6992,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               {/* Wizard Step Indicator */}
               <div className="border-b border-neutral-200 px-6 pt-5 pb-4">
                 <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-base font-semibold text-neutral-900 dark:text-white">New Mission</h3>
+                  <h3 className="text-base font-semibold text-neutral-900 dark:text-white">Nueva misión</h3>
                   <button
                     type="button"
                     onClick={() => { setMissionBoardModalOpen(false); setMissionWizardStep(0) }}
@@ -7002,7 +7002,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                   </button>
                 </div>
                 <div className="mt-3 flex items-center gap-1">
-                  {['Scope', 'Team', 'Settings', 'Review'].map((stepLabel, stepIdx) => (
+                  {['Alcance', 'Equipo', 'Ajustes', 'Revisión'].map((stepLabel, stepIdx) => (
                     <div key={stepLabel} className="flex flex-1 items-center gap-1">
                       <button
                         type="button"
@@ -7036,21 +7036,21 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {missionWizardStep === 0 ? (
                   <div className="space-y-4">
                     <label className="block">
-                      <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Mission Name</span>
+                      <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Nombre de la misión</span>
                       <input
                         value={newMissionName}
                         onChange={(event) => setNewMissionName(event.target.value)}
-                        placeholder="e.g. Q1 competitor analysis"
+                        placeholder="ej. Análisis de competidores Q1"
                         className="mt-1.5 h-10 w-full rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 text-sm text-neutral-900 outline-none ring-accent-400 focus:ring-1"
                       />
                     </label>
                     <label className="block">
-                      <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Goal</span>
+                      <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Objetivo</span>
                       <textarea
                         value={newMissionGoal}
                         onChange={(event) => setNewMissionGoal(event.target.value)}
                         rows={6}
-                        placeholder="Describe the mission goal, output format, and constraints..."
+                        placeholder="Describe el objetivo de la misión, el formato de salida y las restricciones…"
                         className="mt-1.5 w-full resize-y rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 py-2 text-sm text-neutral-900 outline-none ring-accent-400 focus:ring-1"
                       />
                     </label>
@@ -7060,7 +7060,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {/* Step 1: Team */}
                 {missionWizardStep === 1 ? (
                   <div className="space-y-3">
-                    <p className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Select a team for this mission</p>
+                    <p className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Selecciona un equipo para esta misión</p>
                     <div className="max-h-[360px] space-y-2 overflow-auto pr-1">
                       {_modalMissionTeamOptions.map((option) => {
                         const teamBudget = getTeamBudgetSummary(option.team)
@@ -7080,8 +7080,8 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                               <div className="min-w-0">
                                 <p className="truncate text-sm font-semibold text-neutral-900 dark:text-white">{option.label}</p>
                                 <p className="mt-0.5 text-xs text-neutral-500 dark:text-slate-400">
-                                  {option.team.length} agents
-                                  {teamBudget.avgCost !== null ? ` · ~$${teamBudget.avgCost.toFixed(2)}/agent` : ''}
+                                  {option.team.length} agentes
+                                  {teamBudget.avgCost !== null ? ` · ~$${teamBudget.avgCost.toFixed(2)} / agente` : ''}
                                 </p>
                               </div>
                               {teamBudget.totalCost !== null ? (
@@ -7108,7 +7108,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {missionWizardStep === 2 ? (
                   <div className="space-y-4">
                     <label className="block">
-                      <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Process Type</span>
+                      <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Tipo de proceso</span>
                       <div className="mt-2 grid grid-cols-3 gap-2">
                         {(['sequential', 'hierarchical', 'parallel'] as const).map((pt) => (
                           <button
@@ -7124,14 +7124,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                           >
                             <p className="text-xs font-semibold capitalize">{pt}</p>
                             <p className="mt-0.5 text-[10px] text-neutral-500 dark:text-slate-400">
-                              {pt === 'sequential' ? 'One at a time' : pt === 'hierarchical' ? 'Manager delegates' : 'All at once'}
+                              {pt === 'sequential' ? 'Uno a uno' : pt === 'hierarchical' ? 'Manager delega' : 'Todos a la vez'}
                             </p>
                           </button>
                         ))}
                       </div>
                     </label>
                     <label className="block">
-                      <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Token Budget (max)</span>
+                      <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Presupuesto de tokens (máx)</span>
                       <input
                         value={newMissionBudgetLimit}
                         onChange={(event) => setNewMissionBudgetLimit(event.target.value.replace(/[^\d]/g, ''))}
@@ -7140,7 +7140,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         className="mt-1.5 h-10 w-full rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 text-sm text-neutral-900 outline-none ring-accent-400 focus:ring-1"
                       />
                       <p className="mt-1 text-xs text-neutral-400">
-                        {_modalSelectedBudgetTokens ? `~$${(_modalSelectedTotalBudgetCost ?? 0).toFixed(2)} estimated cost` : 'No budget limit'}
+                        {_modalSelectedBudgetTokens ? `Coste estimado ~$${(_modalSelectedTotalBudgetCost ?? 0).toFixed(2)}` : 'Sin límite de presupuesto'}
                       </p>
                     </label>
                   </div>
@@ -7150,32 +7150,32 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 {missionWizardStep === 3 ? (
                   <div className="space-y-4">
                     <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-4">
-                      <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Launch Summary</h4>
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">Resumen de lanzamiento</h4>
                       <div className="mt-3 space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-neutral-600 dark:text-slate-400">Mission</span>
-                          <span className="font-medium text-neutral-900 dark:text-white">{newMissionName || 'Untitled'}</span>
+                          <span className="text-neutral-600 dark:text-slate-400">Misión</span>
+                          <span className="font-medium text-neutral-900 dark:text-white">{newMissionName || 'Sin título'}</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-neutral-600 dark:text-slate-400">Team</span>
-                          <span className="font-medium text-neutral-900 dark:text-white">{_modalSelectedTeamMembers.length} agents</span>
+                          <span className="text-neutral-600 dark:text-slate-400">Equipo</span>
+                          <span className="font-medium text-neutral-900 dark:text-white">{_modalSelectedTeamMembers.length} agentes</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-neutral-600 dark:text-slate-400">Process</span>
+                          <span className="text-neutral-600 dark:text-slate-400">Proceso</span>
                           <span className="font-medium capitalize text-neutral-900 dark:text-white">{newMissionProcessType}</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-neutral-600 dark:text-slate-400">Budget</span>
-                          <span className="font-medium text-neutral-900 dark:text-white">{_modalSelectedBudgetTokens ? `${_modalSelectedBudgetTokens.toLocaleString()} tokens (~$${(_modalSelectedTotalBudgetCost ?? 0).toFixed(2)})` : 'Unlimited'}</span>
+                          <span className="text-neutral-600 dark:text-slate-400">Presupuesto</span>
+                          <span className="font-medium text-neutral-900 dark:text-white">{_modalSelectedBudgetTokens ? `${_modalSelectedBudgetTokens.toLocaleString()} tokens (~$${(_modalSelectedTotalBudgetCost ?? 0).toFixed(2)})` : 'Sin límite'}</span>
                         </div>
                       </div>
                     </div>
                     <div className="rounded-xl border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-3">
-                      <p className="text-[10px] font-semibold uppercase tracking-wide text-neutral-500 dark:text-slate-400">Goal</p>
-                      <p className="mt-1 text-xs text-neutral-700 dark:text-neutral-300">{newMissionGoal || 'No goal set'}</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-wide text-neutral-500 dark:text-slate-400">Objetivo</p>
+                      <p className="mt-1 text-xs text-neutral-700 dark:text-neutral-300">{newMissionGoal || 'Sin objetivo'}</p>
                     </div>
                     <div className="rounded-xl border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-3">
-                      <p className="text-[10px] font-semibold uppercase tracking-wide text-neutral-500 dark:text-slate-400">Team Lineup</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-wide text-neutral-500 dark:text-slate-400">Equipo asignado</p>
                       <div className="mt-2 space-y-1">
                         {_modalSelectedTeamMembers.map((member) => (
                           <div key={member.id} className="flex items-center justify-between rounded-md bg-neutral-50 dark:bg-slate-800/50 px-2.5 py-1.5">
@@ -7199,7 +7199,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                   }}
                   className="rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-4 py-2 text-xs font-medium text-neutral-700 transition-colors hover:bg-neutral-50"
                 >
-                  {missionWizardStep === 0 ? 'Cancel' : '← Back'}
+                  {missionWizardStep === 0 ? 'Cancelar' : '← Atrás'}
                 </button>
                 <div className="flex gap-2">
                   {missionWizardStep === 3 ? (
@@ -7210,7 +7210,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         disabled={!newMissionGoal.trim()}
                         className="rounded-lg border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-4 py-2 text-xs font-medium text-neutral-700 transition-colors hover:bg-neutral-50 disabled:opacity-50"
                       >
-                        Save Draft
+                        Guardar borrador
                       </button>
                       <button
                         type="button"
@@ -7218,7 +7218,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         disabled={!newMissionGoal.trim()}
                         className="rounded-lg bg-accent-500 px-5 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-accent-600 disabled:opacity-50"
                       >
-                        🚀 Launch Mission
+                        🚀 Lanzar misión
                       </button>
                     </>
                   ) : (
@@ -7227,7 +7227,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       onClick={() => setMissionWizardStep((s) => Math.min(3, s + 1))}
                       className="rounded-lg bg-accent-500 px-5 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-accent-600"
                     >
-                      Next →
+                      Siguiente →
                     </button>
                   )}
                 </div>
@@ -7248,10 +7248,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
             <div className="flex items-center justify-between border-b border-neutral-200 px-5 py-3">
               <div>
                 <h2 className="text-sm font-semibold text-neutral-900 dark:text-white">
-                  Launch Mission
+                  Lanzar misión
                 </h2>
                 <p className="text-xs text-neutral-500 dark:text-slate-400">
-                  Step {wizardStepIndex + 1} of {WIZARD_STEP_ORDER.length}
+                  Paso {wizardStepIndex + 1} de {WIZARD_STEP_ORDER.length}
                 </p>
               </div>
               <button
@@ -7259,7 +7259,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 onClick={closeLaunchWizard}
                 className="rounded-md border border-neutral-200 px-2 py-1 text-xs font-medium text-neutral-600 transition-colors hover:bg-neutral-50"
               >
-                Cancel
+                Cancelar
               </button>
             </div>
 
@@ -7270,10 +7270,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                     step === 'gateway'
                       ? 'Gateway'
                       : step === 'team'
-                        ? 'Team'
+                        ? 'Equipo'
                         : step === 'goal'
-                          ? 'Goal'
-                          : 'Launch'
+                          ? 'Objetivo'
+                          : 'Lanzar'
                   const active = step === wizardStep
                   const completed = index < wizardStepIndex
                   return (
@@ -7302,14 +7302,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 <div className="space-y-4">
                   <div className="rounded-xl border border-neutral-200 bg-neutral-50/50 p-4">
                     <p className="text-xs font-semibold text-neutral-900 dark:text-white">
-                      Gateway Connection
+                      Conexión del gateway
                     </p>
                     <p className="mt-1 text-xs text-neutral-500 dark:text-slate-400">
                       {wizardCheckingGateway
-                        ? 'Checking gateway status...'
+                        ? 'Comprobando el estado del gateway…'
                         : gatewayStatus === 'disconnected'
-                          ? 'Gateway is offline. Start/connect your gateway before launch.'
-                          : 'Gateway connected and ready.'}
+                          ? 'El gateway está desconectado. Conéctalo antes de lanzar.'
+                          : 'Gateway conectado y listo.'}
                     </p>
                     <div className="mt-2 flex items-center gap-2">
                       <span
@@ -7321,8 +7321,8 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         )}
                       >
                         {gatewayStatus === 'disconnected'
-                          ? 'Disconnected'
-                          : 'Connected'}
+                          ? 'Desconectado'
+                          : 'Conectado'}
                       </span>
                       <button
                         type="button"
@@ -7340,18 +7340,18 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                         }}
                         className="rounded-md border border-neutral-200 px-2 py-1 text-xs font-medium text-neutral-600 transition-colors hover:bg-neutral-50"
                       >
-                        Refresh
+                        Actualizar
                       </button>
                     </div>
                   </div>
 
                   <div className="rounded-xl border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-4">
                     <p className="text-xs font-semibold text-neutral-900 dark:text-white">
-                      Provider Profiles
+                      Perfiles de proveedor
                     </p>
                     {configuredProviders.length === 0 ? (
                       <p className="mt-1 text-xs text-neutral-500 dark:text-slate-400">
-                        No configured providers detected yet.
+                        Aún no se han detectado proveedores configurados.
                       </p>
                     ) : (
                       <div className="mt-2 flex flex-wrap gap-1.5">
@@ -7369,7 +7369,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       href="/settings/providers"
                       className="mt-3 inline-block text-xs font-medium text-accent-600 hover:text-accent-700"
                     >
-                      Manage API keys →
+                      Gestionar API keys →
                     </a>
                   </div>
                 </div>
@@ -7379,7 +7379,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 <div className="space-y-4">
                   <div>
                     <p className="text-xs font-semibold text-neutral-900 dark:text-white">
-                      Choose Team Template
+                      Elegir plantilla de equipo
                     </p>
                     <div className="mt-2 grid gap-2 sm:grid-cols-3">
                       {TEAM_TEMPLATES.map((template) => (
@@ -7398,7 +7398,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                             {template.icon} {template.name}
                           </p>
                           <p className="mt-1 text-xs opacity-80">
-                            {template.agents.length} agents
+                            {template.agents.length} agentes
                           </p>
                         </button>
                       ))}
@@ -7407,18 +7407,18 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
 
                   <div>
                     <p className="text-xs font-semibold text-neutral-900 dark:text-white">
-                      Current Team
+                      Equipo actual
                     </p>
                     <ul className="mt-2 space-y-1.5 rounded-xl border border-neutral-200 bg-neutral-50/40 p-3">
                       {team.length === 0 ? (
-                        <li className="text-xs text-neutral-500 dark:text-slate-400">No agents configured.</li>
+                        <li className="text-xs text-neutral-500 dark:text-slate-400">No hay agentes configurados.</li>
                       ) : (
                         team.map((member) => (
                           <li
                             key={member.id}
                             className="truncate text-xs text-neutral-700 dark:text-neutral-300"
                           >
-                            {member.name} · {member.roleDescription || 'No role set'}
+                            {member.name} · {member.roleDescription || 'Sin rol asignado'}
                           </li>
                         ))
                       )}
@@ -7431,13 +7431,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 <div className="space-y-4">
                   <div>
                     <p className="text-xs font-semibold text-neutral-900 dark:text-white">
-                      Mission Goal
+                      Objetivo de la misión
                     </p>
                     <textarea
                       value={missionGoal}
                       onChange={(event) => setMissionGoal(event.target.value)}
                       rows={5}
-                      placeholder="Describe the mission outcome and constraints"
+                      placeholder="Describe el resultado y las restricciones de la misión"
                       className="mt-2 w-full resize-none rounded-xl border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-3 py-2 text-sm text-neutral-900 outline-none ring-orange-400 focus:ring-1"
                     />
                     <div className="mt-2 flex flex-wrap gap-2">
@@ -7456,14 +7456,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
 
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-wide text-neutral-500 dark:text-slate-400">
-                      Process Type
+                      Tipo de proceso
                     </p>
                     <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
                       {(
                         [
-                          { id: 'sequential', label: 'Sequential' },
-                          { id: 'hierarchical', label: 'Hierarchical' },
-                          { id: 'parallel', label: 'Parallel' },
+                          { id: 'sequential', label: 'Secuencial' },
+                          { id: 'hierarchical', label: 'Jerárquico' },
+                          { id: 'parallel', label: 'Paralelo' },
                         ] as const
                       ).map((option) => (
                         <button
@@ -7483,7 +7483,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                     </div>
                     {suggestedTemplateName ? (
                       <p className="mt-2 text-xs text-neutral-500 dark:text-slate-400">
-                        Suggested template: <span className="font-semibold">{suggestedTemplateName}</span>
+                        Plantilla sugerida: <span className="font-semibold">{suggestedTemplateName}</span>
                       </p>
                     ) : null}
                     <button
@@ -7492,7 +7492,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                       disabled={missionGoal.trim().length === 0}
                       className="mt-2 rounded-md border border-accent-400 px-2.5 py-1 text-xs font-medium text-accent-600 transition-colors hover:bg-accent-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      Auto-configure team from goal
+                      Configurar equipo automáticamente desde el objetivo
                     </button>
                   </div>
                 </div>
@@ -7502,27 +7502,27 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 <div className="space-y-4">
                   <div className="rounded-xl border border-neutral-200 bg-neutral-50/40 p-4">
                     <h3 className="text-xs font-semibold text-neutral-900 dark:text-white">
-                      Review
+                      Revisión
                     </h3>
                     <dl className="mt-2 space-y-1.5 text-xs">
                       <div className="flex gap-2">
                         <dt className="w-24 text-neutral-500 dark:text-slate-400">Gateway</dt>
                         <dd className="text-neutral-800 dark:text-neutral-200">
-                          {gatewayStatus === 'disconnected' ? 'Disconnected' : 'Connected'}
+                          {gatewayStatus === 'disconnected' ? 'Desconectado' : 'Conectado'}
                         </dd>
                       </div>
                       <div className="flex gap-2">
-                        <dt className="w-24 text-neutral-500 dark:text-slate-400">Team size</dt>
+                        <dt className="w-24 text-neutral-500 dark:text-slate-400">Tamaño del equipo</dt>
                         <dd className="text-neutral-800 dark:text-neutral-200">{team.length}</dd>
                       </div>
                       <div className="flex gap-2">
-                        <dt className="w-24 text-neutral-500 dark:text-slate-400">Process</dt>
+                        <dt className="w-24 text-neutral-500 dark:text-slate-400">Proceso</dt>
                         <dd className="capitalize text-neutral-800 dark:text-neutral-200">{processType}</dd>
                       </div>
                       <div className="flex gap-2">
-                        <dt className="w-24 text-neutral-500 dark:text-slate-400">Goal</dt>
+                        <dt className="w-24 text-neutral-500 dark:text-slate-400">Objetivo</dt>
                         <dd className="line-clamp-3 text-neutral-800 dark:text-neutral-200">
-                          {missionGoal.trim() || 'No mission goal provided'}
+                          {missionGoal.trim() || 'No se ha definido el objetivo de la misión'}
                         </dd>
                       </div>
                     </dl>
@@ -7540,7 +7540,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 disabled={wizardStepIndex === 0}
                 className="rounded-md border border-neutral-200 px-3 py-1.5 text-xs font-medium text-neutral-600 transition-colors hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Back
+                Atrás
               </button>
               {wizardStep !== 'launch' ? (
                 <button
@@ -7557,7 +7557,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                   }
                   className="rounded-md bg-accent-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Next
+                  Siguiente
                 </button>
               ) : (
                 <button
@@ -7566,7 +7566,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                   disabled={missionGoal.trim().length === 0 || dispatchingRef.current || missionActive}
                   className="rounded-md bg-accent-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Launch Mission
+                  Lanzar misión
                 </button>
               )}
             </div>
@@ -7594,7 +7594,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
                 onClick={() => setArtifactPreview(null)}
                 className="rounded-md border border-neutral-200 bg-white dark:border-slate-700 dark:bg-slate-800 px-2 py-1 text-xs font-medium text-neutral-700"
               >
-                Close
+                Cerrar
               </button>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto p-4">
@@ -7625,13 +7625,13 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           <div className="relative flex max-h-[90vh] flex-col overflow-hidden rounded-t-2xl bg-white shadow-xl dark:bg-slate-900">
             <div className="flex shrink-0 items-center justify-between border-b border-neutral-200 p-3 dark:border-neutral-700">
               <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
-                {selectedOutputAgentName} Output
+                Salida de {selectedOutputAgentName}
               </h3>
               <button
                 type="button"
                 onClick={() => setOutputPanelVisible(false)}
                 className="flex size-11 items-center justify-center rounded-full text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-700 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
-                aria-label="Close agent output"
+                aria-label="Cerrar salida del agente"
               >
                 ✕
               </button>
@@ -7671,7 +7671,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               <span className="text-2xl">✅</span>
               <div className="min-w-0">
                 <h2 className="text-base font-bold text-neutral-900 dark:text-white truncate">
-                  Mission Complete
+                  Misión completada
                 </h2>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">
                   {completionReport.name || completionReport.goal}
@@ -7689,10 +7689,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           {/* Stats row */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-6 py-4 border-b border-neutral-200 dark:border-neutral-700 shrink-0">
             {[
-              { label: 'Duration', value: formatDuration(completionReport.duration) },
-              { label: 'Tasks', value: `${completionReport.taskStats.completed}/${completionReport.taskStats.total}` },
+              { label: 'Duración', value: formatDuration(completionReport.duration) },
+              { label: 'Tareas', value: `${completionReport.taskStats.completed}/${completionReport.taskStats.total}` },
               { label: 'Tokens', value: completionReport.tokenCount.toLocaleString() },
-              { label: 'Est. Cost', value: `$${completionReport.costEstimate.toFixed(2)}` },
+              { label: 'Coste est.', value: `$${completionReport.costEstimate.toFixed(2)}` },
             ].map(({ label, value }) => (
               <div key={label} className="rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-slate-800/50 p-3 text-center">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">{label}</p>
@@ -7703,7 +7703,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           {/* Agents used */}
           {completionReport.agents.length > 0 && (
             <div className="px-6 pt-4 shrink-0">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400 mb-2">Agents Used</p>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400 mb-2">Agentes utilizados</p>
               <div className="flex flex-wrap gap-1.5">
                 {completionReport.agents.map((agent) => (
                   <span key={agent.id} className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-slate-800/50 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
@@ -7730,14 +7730,14 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               }}
               className="rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-3 py-1.5 text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
             >
-              View in History
+              Ver en el historial
             </button>
             <button
               type="button"
               onClick={() => setCompletionReportVisible(false)}
               className="rounded-lg bg-emerald-600 px-4 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors"
             >
-              Done
+              Hecho
             </button>
           </div>
         </div>
@@ -7774,10 +7774,10 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-6 py-4 border-b border-neutral-200 dark:border-neutral-700 shrink-0">
             {[
-              { label: 'Duration', value: formatDuration(selectedReport.duration) },
-              { label: 'Tasks', value: `${selectedReport.taskStats.completed}/${selectedReport.taskStats.total}` },
+              { label: 'Duración', value: formatDuration(selectedReport.duration) },
+              { label: 'Tareas', value: `${selectedReport.taskStats.completed}/${selectedReport.taskStats.total}` },
               { label: 'Tokens', value: selectedReport.tokenCount.toLocaleString() },
-              { label: 'Est. Cost', value: `$${selectedReport.costEstimate.toFixed(2)}` },
+              { label: 'Coste est.', value: `$${selectedReport.costEstimate.toFixed(2)}` },
             ].map(({ label, value }) => (
               <div key={label} className="rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-slate-800/50 p-3 text-center">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400">{label}</p>
@@ -7787,7 +7787,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           </div>
           {selectedReport.agents.length > 0 && (
             <div className="px-6 pt-4 shrink-0">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400 mb-2">Agents</p>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400 mb-2">Agentes</p>
               <div className="flex flex-wrap gap-1.5">
                 {selectedReport.agents.map((agent) => (
                   <span key={agent.id} className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-slate-800/50 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
@@ -7800,7 +7800,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
           )}
           {selectedReport.artifacts.length > 0 && (
             <div className="px-6 pt-3 shrink-0">
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400 mb-2">Artifacts</p>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-slate-400 mb-2">Artefactos</p>
               <div className="flex flex-wrap gap-1.5">
                 {selectedReport.artifacts.map((a) => (
                   <button
@@ -7826,7 +7826,7 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
               onClick={() => setSelectedReport(null)}
               className="rounded-lg bg-accent-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-accent-600 transition-colors"
             >
-              Close
+              Cerrar
             </button>
           </div>
         </div>

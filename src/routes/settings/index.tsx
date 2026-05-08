@@ -164,7 +164,7 @@ function EnterpriseThemePickerPage() {
               </span>
               {isActive && (
                 <span className="ml-auto text-[9px] font-bold uppercase tracking-wide text-accent-600">
-                  Active
+                  Activo
                 </span>
               )}
             </div>
@@ -242,16 +242,16 @@ type SettingsNavItem = {
 }
 
 const SETTINGS_NAV_ITEMS: SettingsNavItem[] = [
-  { id: 'profile', label: 'Profile' },
-  { id: 'appearance', label: 'Appearance' },
+  { id: 'profile', label: 'Perfil' },
+  { id: 'appearance', label: 'Apariencia' },
   { id: 'chat', label: 'Chat' },
   { id: 'editor', label: 'Editor' },
-  { id: 'notifications', label: 'Notifications' },
-  { id: 'advanced', label: 'Advanced' },
+  { id: 'notifications', label: 'Notificaciones' },
+  { id: 'advanced', label: 'Avanzado' },
 ]
 
 function SettingsRoute() {
-  usePageTitle('Settings')
+  usePageTitle('Ajustes')
   const { settings, updateSettings } = useSettings()
   const gatewaySetup = useGatewaySetupStore()
   const [gatewayUrlInput, setGatewayUrlInput] = useState(settings.gatewayUrl)
@@ -318,7 +318,7 @@ function SettingsRoute() {
       new URL(trimmed)
       return null
     } catch {
-      return 'Invalid URL format'
+      return 'Formato de URL no válido'
     }
   }
 
@@ -373,7 +373,7 @@ function SettingsRoute() {
         <nav className="hidden w-48 shrink-0 md:block">
           <div className="sticky top-8">
             <h1 className="mb-4 text-lg font-semibold text-primary-900 px-3">
-              Settings
+              Ajustes
             </h1>
             <div className="flex flex-col gap-0.5">
               {SETTINGS_NAV_ITEMS.map((item) => (
@@ -397,7 +397,7 @@ function SettingsRoute() {
 
         {/* Mobile header */}
         <div className="flex items-center gap-2 md:hidden">
-          <h1 className="text-lg font-semibold text-primary-900">Settings</h1>
+          <h1 className="text-lg font-semibold text-primary-900">Ajustes</h1>
         </div>
 
         {/* Mobile section pills */}
@@ -428,13 +428,13 @@ function SettingsRoute() {
           {activeSection === 'appearance' && (
             <>
               <SettingsSection
-                title="Appearance"
-                description="Choose app theme and accent color."
+                title="Apariencia"
+                description="Elige el tema de la app y el color de acento."
                 icon={PaintBoardIcon}
               >
                 <SettingsRow
-                  label="Theme"
-                  description="Apply light, dark, or follow system preference."
+                  label="Tema"
+                  description="Aplica modo claro, oscuro o sigue las preferencias del sistema."
                 >
                   <Tabs
                     value={settings.theme}
@@ -447,7 +447,7 @@ function SettingsRoute() {
                           size={20}
                           strokeWidth={1.5}
                         />
-                        <span>System</span>
+                        <span>Sistema</span>
                       </TabsTab>
                       <TabsTab value="light">
                         <HugeiconsIcon
@@ -455,7 +455,7 @@ function SettingsRoute() {
                           size={20}
                           strokeWidth={1.5}
                         />
-                        <span>Light</span>
+                        <span>Claro</span>
                       </TabsTab>
                       <TabsTab value="dark">
                         <HugeiconsIcon
@@ -463,15 +463,15 @@ function SettingsRoute() {
                           size={20}
                           strokeWidth={1.5}
                         />
-                        <span>Dark</span>
+                        <span>Oscuro</span>
                       </TabsTab>
                     </TabsList>
                   </Tabs>
                 </SettingsRow>
 
                 <SettingsRow
-                  label="Accent color"
-                  description="Select the primary accent for controls and highlights."
+                  label="Color de acento"
+                  description="Elige el acento principal para controles y resaltados."
                 >
                   <div className="flex flex-wrap gap-2">
                     {(['orange', 'purple', 'blue', 'green'] as const).map(
@@ -506,8 +506,8 @@ function SettingsRoute() {
 
                 {/* P1-2: Enterprise theme picker — mobile-only settings UI needs this */}
                 <SettingsRow
-                  label="Enterprise theme"
-                  description="Full brand theme presets with custom color palettes."
+                  label="Tema enterprise"
+                  description="Plantillas de marca completas con paletas de color personalizadas."
                 >
                   <div className="w-full">
                     <EnterpriseThemePickerPage />
@@ -525,12 +525,12 @@ function SettingsRoute() {
           {activeSection === 'editor' && (
             <SettingsSection
               title="Editor"
-              description="Configure Monaco defaults for the files workspace."
+              description="Configura los valores por defecto de Monaco para el workspace de archivos."
               icon={SourceCodeSquareIcon}
             >
               <SettingsRow
-                label="Font size"
-                description="Adjust editor font size between 12 and 20."
+                label="Tamaño de fuente"
+                description="Ajusta el tamaño de fuente del editor entre 12 y 20."
               >
                 <div className="flex w-full items-center gap-2 md:max-w-xs">
                   <input
@@ -542,7 +542,7 @@ function SettingsRoute() {
                       updateSettings({ editorFontSize: Number(e.target.value) })
                     }
                     className="w-full accent-primary-900 dark:accent-primary-400"
-                    aria-label={`Editor font size: ${settings.editorFontSize} pixels`}
+                    aria-label={`Tamaño de fuente del editor: ${settings.editorFontSize} píxeles`}
                     aria-valuemin={12}
                     aria-valuemax={20}
                     aria-valuenow={settings.editorFontSize}
@@ -553,27 +553,27 @@ function SettingsRoute() {
                 </div>
               </SettingsRow>
               <SettingsRow
-                label="Word wrap"
-                description="Wrap long lines in the editor by default."
+                label="Ajuste de línea"
+                description="Ajustar líneas largas en el editor por defecto."
               >
                 <Switch
                   checked={settings.editorWordWrap}
                   onCheckedChange={(checked) =>
                     updateSettings({ editorWordWrap: checked })
                   }
-                  aria-label="Word wrap"
+                  aria-label="Ajuste de línea"
                 />
               </SettingsRow>
               <SettingsRow
-                label="Minimap"
-                description="Show minimap preview in Monaco editor."
+                label="Minimapa"
+                description="Mostrar la vista previa del minimapa en el editor Monaco."
               >
                 <Switch
                   checked={settings.editorMinimap}
                   onCheckedChange={(checked) =>
                     updateSettings({ editorMinimap: checked })
                   }
-                  aria-label="Show minimap"
+                  aria-label="Mostrar minimapa"
                 />
               </SettingsRow>
             </SettingsSection>
@@ -582,25 +582,25 @@ function SettingsRoute() {
           {/* ── Notifications ───────────────────────────────────── */}
           {activeSection === 'notifications' && (
             <SettingsSection
-              title="Notifications"
-              description="Control alert delivery and usage warning threshold."
+              title="Notificaciones"
+              description="Controla el envío de alertas y el umbral de aviso de uso."
               icon={Notification03Icon}
             >
               <SettingsRow
-                label="Enable alerts"
-                description="Show usage and system alert notifications."
+                label="Activar alertas"
+                description="Mostrar notificaciones de uso y alertas del sistema."
               >
                 <Switch
                   checked={settings.notificationsEnabled}
                   onCheckedChange={(checked) =>
                     updateSettings({ notificationsEnabled: checked })
                   }
-                  aria-label="Enable alerts"
+                  aria-label="Activar alertas"
                 />
               </SettingsRow>
               <SettingsRow
-                label="Usage threshold"
-                description="Set usage warning trigger between 50% and 100%."
+                label="Umbral de uso"
+                description="Configura el aviso de uso entre el 50% y el 100%."
               >
                 <div className="flex w-full items-center gap-2 md:max-w-xs">
                   <input
@@ -613,7 +613,7 @@ function SettingsRoute() {
                     }
                     className="w-full accent-primary-900 dark:accent-primary-400 disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={!settings.notificationsEnabled}
-                    aria-label={`Usage threshold: ${settings.usageThreshold} percent`}
+                    aria-label={`Umbral de uso: ${settings.usageThreshold} por ciento`}
                     aria-valuemin={50}
                     aria-valuemax={100}
                     aria-valuenow={settings.usageThreshold}
@@ -630,13 +630,13 @@ function SettingsRoute() {
           {activeSection === 'advanced' && (
             <>
               <SettingsSection
-                title="Gateway Connection"
-                description="Set your gateway endpoint and verify connectivity."
+                title="Conexión del gateway"
+                description="Configura el endpoint del gateway y verifica la conectividad."
                 icon={CloudIcon}
               >
                 <SettingsRow
-                  label="Gateway URL"
-                  description="Used by CKS Suite for provider connectivity checks."
+                  label="URL del gateway"
+                  description="La usa CKS Suite para comprobar la conectividad de los proveedores."
                 >
                   <div className="w-full md:max-w-md">
                     <input
@@ -658,7 +658,7 @@ function SettingsRoute() {
                         ;(e.target as HTMLInputElement).blur()
                       }}
                       className="h-9 w-full rounded-lg border border-primary-200 dark:border-gray-600 bg-primary-50 dark:bg-gray-800 px-3 text-sm text-primary-900 dark:text-gray-100 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-400 dark:focus-visible:ring-primary-500"
-                      aria-label="Gateway URL"
+                      aria-label="URL del gateway"
                       aria-invalid={!!urlError}
                       aria-describedby={
                         urlError ? 'gateway-url-error' : undefined
@@ -676,25 +676,25 @@ function SettingsRoute() {
                   </div>
                 </SettingsRow>
                 <SettingsRow
-                  label="Gateway Token"
-                  description="Authentication token for your gateway (optional)."
+                  label="Token del gateway"
+                  description="Token de autenticación de tu gateway (opcional)."
                 >
                   <div className="w-full md:max-w-md">
                     <input
                       type="password"
-                      placeholder="Enter your gateway token..."
+                      placeholder="Introduce el token de tu gateway…"
                       value={settings.gatewayToken}
                       onChange={(e) =>
                         updateSettings({ gatewayToken: e.target.value })
                       }
                       className="h-9 w-full rounded-lg border border-primary-200 dark:border-gray-600 bg-primary-50 dark:bg-gray-800 px-3 text-sm text-primary-900 dark:text-gray-100 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-400 dark:focus-visible:ring-primary-500"
-                      aria-label="Gateway Token"
+                      aria-label="Token del gateway"
                     />
                   </div>
                 </SettingsRow>
                 <SettingsRow
-                  label="Connection status"
-                  description="Current gateway reachability check state."
+                  label="Estado de la conexión"
+                  description="Estado actual de la comprobación de conectividad del gateway."
                 >
                   <span
                     className={cn(
@@ -715,10 +715,10 @@ function SettingsRoute() {
                         getConnectionDotClass(),
                       )}
                     />
-                    {connectionStatus === 'idle' ? 'Not tested' : null}
-                    {connectionStatus === 'testing' ? 'Testing...' : null}
-                    {connectionStatus === 'connected' ? 'Connected' : null}
-                    {connectionStatus === 'failed' ? 'Failed' : null}
+                    {connectionStatus === 'idle' ? 'Sin probar' : null}
+                    {connectionStatus === 'testing' ? 'Probando…' : null}
+                    {connectionStatus === 'connected' ? 'Conectado' : null}
+                    {connectionStatus === 'failed' ? 'Falló' : null}
                   </span>
                   <Button
                     variant="secondary"
@@ -731,43 +731,43 @@ function SettingsRoute() {
                       size={20}
                       strokeWidth={1.5}
                     />
-                    Test
+                    Probar
                   </Button>
                 </SettingsRow>
                 <SettingsRow
-                  label="Setup wizard"
-                  description="Re-run the gateway configuration wizard."
+                  label="Asistente de configuración"
+                  description="Vuelve a lanzar el asistente de configuración del gateway."
                 >
                   <Button
                     variant="secondary"
                     size="sm"
                     onClick={() => gatewaySetup.open()}
                   >
-                    Reconfigure Gateway
+                    Reconfigurar gateway
                   </Button>
                 </SettingsRow>
               </SettingsSection>
 
               <SettingsSection
-                title="Smart Suggestions"
-                description="Get proactive model suggestions to optimize cost and quality."
+                title="Sugerencias inteligentes"
+                description="Recibe sugerencias proactivas de modelos para optimizar coste y calidad."
                 icon={Settings02Icon}
               >
                 <SettingsRow
-                  label="Enable smart suggestions"
-                  description="Suggest cheaper models for simple tasks or better models for complex work."
+                  label="Activar sugerencias inteligentes"
+                  description="Sugerir modelos más baratos para tareas simples o mejores para trabajos complejos."
                 >
                   <Switch
                     checked={settings.smartSuggestionsEnabled}
                     onCheckedChange={(checked) =>
                       updateSettings({ smartSuggestionsEnabled: checked })
                     }
-                    aria-label="Enable smart suggestions"
+                    aria-label="Activar sugerencias inteligentes"
                   />
                 </SettingsRow>
                 <SettingsRow
-                  label="Preferred budget model"
-                  description="Default model for cheaper suggestions (leave empty for auto-detect)."
+                  label="Modelo económico preferido"
+                  description="Modelo por defecto para sugerencias más baratas (déjalo vacío para autodetectar)."
                 >
                   <select
                     value={settings.preferredBudgetModel}
@@ -775,11 +775,11 @@ function SettingsRoute() {
                       updateSettings({ preferredBudgetModel: e.target.value })
                     }
                     className="h-9 w-full rounded-lg border border-primary-200 dark:border-gray-600 bg-primary-50 dark:bg-gray-800 px-3 text-sm text-primary-900 dark:text-gray-100 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-400 dark:focus-visible:ring-primary-500 md:max-w-xs"
-                    aria-label="Preferred budget model"
+                    aria-label="Modelo económico preferido"
                   >
-                    <option value="">Auto-detect</option>
+                    <option value="">Autodetectar</option>
                     {modelsError && (
-                      <option disabled>Failed to load models</option>
+                      <option disabled>No se han podido cargar los modelos</option>
                     )}
                     {availableModels.map((model) => (
                       <option key={model.id} value={model.id}>
@@ -789,8 +789,8 @@ function SettingsRoute() {
                   </select>
                 </SettingsRow>
                 <SettingsRow
-                  label="Preferred premium model"
-                  description="Default model for upgrade suggestions (leave empty for auto-detect)."
+                  label="Modelo premium preferido"
+                  description="Modelo por defecto para sugerencias de upgrade (déjalo vacío para autodetectar)."
                 >
                   <select
                     value={settings.preferredPremiumModel}
@@ -798,11 +798,11 @@ function SettingsRoute() {
                       updateSettings({ preferredPremiumModel: e.target.value })
                     }
                     className="h-9 w-full rounded-lg border border-primary-200 dark:border-gray-600 bg-primary-50 dark:bg-gray-800 px-3 text-sm text-primary-900 dark:text-gray-100 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-400 dark:focus-visible:ring-primary-500 md:max-w-xs"
-                    aria-label="Preferred premium model"
+                    aria-label="Modelo premium preferido"
                   >
-                    <option value="">Auto-detect</option>
+                    <option value="">Autodetectar</option>
                     {modelsError && (
-                      <option disabled>Failed to load models</option>
+                      <option disabled>No se han podido cargar los modelos</option>
                     )}
                     {availableModels.map((model) => (
                       <option key={model.id} value={model.id}>
@@ -812,15 +812,15 @@ function SettingsRoute() {
                   </select>
                 </SettingsRow>
                 <SettingsRow
-                  label="Only suggest cheaper models"
-                  description="Never suggest upgrades, only suggest cheaper alternatives."
+                  label="Sugerir solo modelos más baratos"
+                  description="Nunca sugerir upgrades, solo alternativas más baratas."
                 >
                   <Switch
                     checked={settings.onlySuggestCheaper}
                     onCheckedChange={(checked) =>
                       updateSettings({ onlySuggestCheaper: checked })
                     }
-                    aria-label="Only suggest cheaper models"
+                    aria-label="Sugerir solo modelos más baratos"
                   />
                 </SettingsRow>
               </SettingsSection>
@@ -835,7 +835,7 @@ function SettingsRoute() {
                 strokeWidth={1.5}
               />
               <span className="text-pretty">
-                Changes are saved automatically to local storage.
+                Los cambios se guardan automáticamente en el almacenamiento local.
               </span>
             </div>
           </footer>
@@ -860,7 +860,7 @@ function ProfileSection() {
 
   function handleNameChange(value: string) {
     if (value.length > 50) {
-      setNameError('Display name too long (max 50 characters)')
+      setNameError('Nombre demasiado largo (máx 50 caracteres)')
       return
     }
     setNameError(null)
@@ -874,11 +874,11 @@ function ProfileSection() {
     event.target.value = ''
     if (!file) return
     if (!file.type.startsWith('image/')) {
-      setProfileError('Unsupported file type.')
+      setProfileError('Tipo de archivo no soportado.')
       return
     }
     if (file.size > PROFILE_IMAGE_MAX_FILE_SIZE) {
-      setProfileError('Image too large (max 10MB).')
+      setProfileError('Imagen demasiado grande (máx 10 MB).')
       return
     }
     setProfileError(null)
@@ -888,7 +888,7 @@ function ProfileSection() {
       const img = await new Promise<HTMLImageElement>((resolve, reject) => {
         const i = new Image()
         i.onload = () => resolve(i)
-        i.onerror = () => reject(new Error('Failed to load image'))
+        i.onerror = () => reject(new Error('No se ha podido cargar la imagen'))
         i.src = url
       })
       const max = PROFILE_IMAGE_MAX_DIMENSION
@@ -905,7 +905,7 @@ function ProfileSection() {
       const outputType = file.type === 'image/png' ? 'image/png' : 'image/jpeg'
       updateChatSettings({ avatarDataUrl: canvas.toDataURL(outputType, 0.82) })
     } catch {
-      setProfileError('Failed to process image.')
+      setProfileError('No se ha podido procesar la imagen.')
     } finally {
       setProfileProcessing(false)
     }
@@ -913,8 +913,8 @@ function ProfileSection() {
 
   return (
     <SettingsSection
-      title="Profile"
-      description="Your display name and avatar for chat."
+      title="Perfil"
+      description="Tu nombre y avatar para el chat."
       icon={UserIcon}
     >
       <div className="flex items-center gap-4">
@@ -926,19 +926,19 @@ function ProfileSection() {
         <div className="min-w-0 flex-1">
           <p className="text-sm font-medium text-primary-900">{displayName}</p>
           <p className="text-xs text-primary-500">
-            Shown in the sidebar and chat messages.
+            Aparece en la barra lateral y en los mensajes del chat.
           </p>
         </div>
       </div>
-      <SettingsRow label="Display name" description="Leave blank for default.">
+      <SettingsRow label="Nombre visible" description="Déjalo en blanco para usar el predeterminado.">
         <div className="w-full md:max-w-xs">
           <Input
             value={chatSettings.displayName}
             onChange={(e) => handleNameChange(e.target.value)}
-            placeholder="User"
+            placeholder="Usuario"
             className="h-9 w-full"
             maxLength={50}
-            aria-label="Display name"
+            aria-label="Nombre visible"
             aria-invalid={!!nameError}
             aria-describedby={nameError ? 'profile-name-error' : undefined}
           />
@@ -954,8 +954,8 @@ function ProfileSection() {
         </div>
       </SettingsRow>
       <SettingsRow
-        label="Profile picture"
-        description="Resized to 128×128, stored locally."
+        label="Foto de perfil"
+        description="Se redimensiona a 128×128 y se guarda localmente."
       >
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
@@ -965,7 +965,7 @@ function ProfileSection() {
                 accept="image/*"
                 onChange={handleAvatarUpload}
                 disabled={profileProcessing}
-                aria-label="Upload profile picture"
+                aria-label="Subir foto de perfil"
                 className="block w-full cursor-pointer text-xs text-primary-700 dark:text-gray-300 md:max-w-xs file:mr-2 file:cursor-pointer file:rounded-md file:border file:border-primary-200 dark:file:border-gray-600 file:bg-primary-100 dark:file:bg-gray-700 file:px-2.5 file:py-1.5 file:text-xs file:font-medium file:text-primary-900 dark:file:text-gray-100 file:transition-colors hover:file:bg-primary-200 dark:hover:file:bg-gray-600 disabled:cursor-not-allowed disabled:opacity-50"
               />
             </label>
@@ -975,7 +975,7 @@ function ProfileSection() {
               onClick={() => updateChatSettings({ avatarDataUrl: null })}
               disabled={!chatSettings.avatarDataUrl || profileProcessing}
             >
-              Remove
+              Quitar
             </Button>
           </div>
           {profileError && (
@@ -999,43 +999,43 @@ function ChatDisplaySection() {
   return (
     <>
     <SettingsSection
-      title="Chat Display"
-      description="Control what's visible in chat messages."
+      title="Visualización del chat"
+      description="Controla qué se muestra en los mensajes del chat."
       icon={MessageMultiple01Icon}
     >
       <SettingsRow
-        label="Show tool messages"
-        description="Display tool call details when the agent uses tools."
+        label="Mostrar mensajes de herramientas"
+        description="Muestra los detalles de llamada cuando el agente usa herramientas."
       >
         <Switch
           checked={chatSettings.showToolMessages}
           onCheckedChange={(checked) =>
             updateChatSettings({ showToolMessages: checked })
           }
-          aria-label="Show tool messages"
+          aria-label="Mostrar mensajes de herramientas"
         />
       </SettingsRow>
       <SettingsRow
-        label="Show reasoning blocks"
-        description="Display model thinking and reasoning process."
+        label="Mostrar bloques de razonamiento"
+        description="Muestra el proceso de pensamiento y razonamiento del modelo."
       >
         <Switch
           checked={chatSettings.showReasoningBlocks}
           onCheckedChange={(checked) =>
             updateChatSettings({ showReasoningBlocks: checked })
           }
-          aria-label="Show reasoning blocks"
+          aria-label="Mostrar bloques de razonamiento"
         />
       </SettingsRow>
     </SettingsSection>
     <SettingsSection
-      title="Mobile Navigation"
-      description="How the bottom nav bar behaves on chat screens."
+      title="Navegación en móvil"
+      description="Cómo se comporta la barra inferior en las pantallas del chat."
       icon={MessageMultiple01Icon}
     >
       <SettingsRow
-        label="Chat nav mode"
-        description="Dock: hides nav in chat (iMessage). Scroll-hide: nav stays, composer floats above."
+        label="Modo de la nav del chat"
+        description="Dock: oculta la nav en el chat (estilo iMessage). Scroll-hide: la nav se queda y el composer flota encima."
       >
         <select
           value={settings.mobileChatNavMode ?? 'dock'}
@@ -1043,7 +1043,7 @@ function ChatDisplaySection() {
           className="rounded-lg border border-primary-200 bg-white px-3 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200"
         >
           <option value="dock">Dock (iMessage)</option>
-          <option value="scroll-hide">Nav visible (pill above)</option>
+          <option value="scroll-hide">Nav visible (pill encima)</option>
         </select>
       </SettingsRow>
     </SettingsSection>
@@ -1101,8 +1101,8 @@ function LoaderStyleSection() {
 
   return (
     <SettingsSection
-      title="Loading Animation"
-      description="Choose the animation while the assistant is streaming."
+      title="Animación de carga"
+      description="Elige la animación que se muestra mientras el asistente está respondiendo."
       icon={Settings02Icon}
     >
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">

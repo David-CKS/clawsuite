@@ -262,13 +262,13 @@ export function DashboardScreen() {
           size: 'small',
           node: (
             <MetricsWidget
-              title="Sessions"
+              title="Sesiones"
               value={dashboardData.sessions.total}
-              subtitle="Active in 24h"
+              subtitle="Activas en 24h"
               icon={Activity01Icon}
               accent="cyan"
-              description="Sessions active in the last 24 hours."
-              rawValue={`${dashboardData.sessions.total} sessions`}
+              description="Sesiones activas en las últimas 24 horas."
+              rawValue={`${dashboardData.sessions.total} sesiones`}
               chartData={sessionsChartData}
               chartAccentClass="bg-cyan-500"
             />
@@ -279,13 +279,13 @@ export function DashboardScreen() {
           size: 'small',
           node: (
             <MetricsWidget
-              title="Active Agents"
+              title="Agentes activos"
               value={dashboardData.agents.active || dashboardData.agents.total}
-              subtitle="Currently active"
+              subtitle="Activos ahora"
               icon={UserGroupIcon}
               accent="orange"
-              description="Agents currently running or processing work."
-              rawValue={`${dashboardData.agents.active} active agents`}
+              description="Agentes en curso o procesando trabajo."
+              rawValue={`${dashboardData.agents.active} agentes activos`}
             />
           ),
         },
@@ -294,15 +294,15 @@ export function DashboardScreen() {
           size: 'small',
           node: (
             <MetricsWidget
-              title="Cost Today"
+              title="Coste de hoy"
               value={costTodayDisplay}
-              subtitle="Today's spend"
+              subtitle="Gasto de hoy"
               icon={ChartLineData02Icon}
               accent="emerald"
               trendPct={dashboardData.cost.trend ?? undefined}
-              trendLabel={dashboardData.cost.trend !== null ? 'vs prev day' : undefined}
+              trendLabel={dashboardData.cost.trend !== null ? 'vs día anterior' : undefined}
               trendInverted
-              description="Today's estimated spend from gateway cost telemetry."
+              description="Gasto estimado de hoy según la telemetría de coste del gateway."
               rawValue={costTodayDisplay}
               chartData={costChartData}
               chartAccentClass="bg-emerald-500"
@@ -314,13 +314,13 @@ export function DashboardScreen() {
           size: 'small',
           node: (
             <MetricsWidget
-              title="Messages"
+              title="Mensajes"
               value={dashboardData.usage.messages.total}
-              subtitle={`${dashboardData.usage.messages.user} user · ${dashboardData.usage.messages.assistant} assistant`}
+              subtitle={`${dashboardData.usage.messages.user} usuario · ${dashboardData.usage.messages.assistant} asistente`}
               icon={BubbleChatIcon}
               accent="purple"
-              description="Total messages exchanged today across all sessions."
-              rawValue={`${dashboardData.usage.messages.total} messages`}
+              description="Total de mensajes intercambiados hoy en todas las sesiones."
+              rawValue={`${dashboardData.usage.messages.total} mensajes`}
             />
           ),
         },
@@ -385,7 +385,7 @@ export function DashboardScreen() {
                   summary={dashboardData.connection.connected ? 'Gateway connected' : 'Gateway disconnected'}
                   defaultOpen={false}
                 >
-                  <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                  <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                     <ServicesHealthWidget
                       gatewayConnected={dashboardData.connection.connected}
                       onRemove={() => removeWidget('services-health')}
@@ -405,7 +405,7 @@ export function DashboardScreen() {
             label: 'Scheduled',
             content: (
               <div className="w-full">
-                <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                   <ScheduledJobsWidget onRemove={() => removeWidget('scheduled-jobs')} />
                 </ErrorBoundary>
               </div>
@@ -418,10 +418,10 @@ export function DashboardScreen() {
           if (!visibleWidgetSet.has('activity-log')) continue
           sections.push({
             id: widgetId,
-            label: 'Activity',
+            label: 'Actividad',
             content: (
               <div className="w-full">
-                <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                   <ActivityLogWidget onRemove={() => removeWidget('activity-log')} />
                 </ErrorBoundary>
               </div>
@@ -434,10 +434,10 @@ export function DashboardScreen() {
           if (!visibleWidgetSet.has('agent-status')) continue
           sections.push({
             id: widgetId,
-            label: 'Agents',
+            label: 'Agentes',
             content: (
               <div className="w-full">
-                <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                   <SquadStatusWidget />
                 </ErrorBoundary>
               </div>
@@ -450,10 +450,10 @@ export function DashboardScreen() {
           if (!visibleWidgetSet.has('recent-sessions')) continue
           sections.push({
             id: widgetId,
-            label: 'Sessions',
+            label: 'Sesiones',
             content: (
               <div className="w-full">
-                <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                   <RecentSessionsWidget
                     onOpenSession={(sessionKey) =>
                       navigate({
@@ -474,15 +474,15 @@ export function DashboardScreen() {
           if (!visibleWidgetSet.has('tasks')) continue
           sections.push({
             id: widgetId,
-            label: 'Tasks',
+            label: 'Tareas',
             content: (
               <div className="w-full">
                 <CollapsibleWidget
-                  title="Tasks"
-                  summary={`Tasks: ${dashboardData.cron.inProgress} in progress • ${dashboardData.cron.done} done`}
+                  title="Tareas"
+                  summary={`Tareas: ${dashboardData.cron.inProgress} en curso • ${dashboardData.cron.done} hechas`}
                   defaultOpen
                 >
-                  <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                  <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                     <TasksWidget onRemove={() => removeWidget('tasks')} />
                   </ErrorBoundary>
                 </CollapsibleWidget>
@@ -501,10 +501,10 @@ export function DashboardScreen() {
               <div className="w-full">
                 <CollapsibleWidget
                   title="Skills"
-                  summary={`Skills: ${dashboardData.skills.enabled} enabled`}
+                  summary={`Skills: ${dashboardData.skills.enabled} activadas`}
                   defaultOpen={false}
                 >
-                  <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                  <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                     <SkillsWidget onRemove={() => removeWidget('skills')} />
                   </ErrorBoundary>
                 </CollapsibleWidget>
@@ -518,11 +518,11 @@ export function DashboardScreen() {
           if (!visibleWidgetSet.has('usage-meter')) continue
           sections.push({
             id: widgetId,
-            label: 'Usage',
+            label: 'Uso',
             content: (
               <div className="w-full">
                 <CollapsibleWidget
-                  title="Usage Meter"
+                  title="Medidor de uso"
                   summary={usageSummaryText}
                   defaultOpen={false}
                   action={
@@ -532,24 +532,24 @@ export function DashboardScreen() {
                         onClick={refetch}
                         className="rounded-md border border-red-200 bg-red-50/80 px-1.5 py-0.5 text-[10px] font-medium text-red-700 transition-colors hover:bg-red-100"
                       >
-                        Retry
+                        Reintentar
                       </button>
                     ) : null
                   }
                 >
                   {usageSummaryIsError ? (
                     <div className="rounded-lg border border-red-200 bg-red-50/80 px-3 py-2 text-sm text-red-700">
-                      <p className="font-medium">Usage unavailable</p>
+                      <p className="font-medium">Uso no disponible</p>
                       <button
                         type="button"
                         onClick={refetch}
                         className="mt-2 rounded-md border border-red-200 bg-red-100/80 px-2 py-1 text-xs font-medium transition-colors hover:bg-red-100"
                       >
-                        Retry
+                        Reintentar
                       </button>
                     </div>
                   ) : (
-                    <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                    <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                       <UsageMeterWidget onRemove={() => removeWidget('usage-meter')} overrideCost={dashboardData.cost.today} overrideTokens={dashboardData.usage.tokens} />
                     </ErrorBoundary>
                   )}
@@ -637,7 +637,7 @@ export function DashboardScreen() {
                     type="button"
                     onClick={handleLogoTap}
                     className="shrink-0 cursor-pointer rounded-xl transition-transform active:scale-95"
-                    aria-label="Open quick menu"
+                    aria-label="Abrir menú rápido"
                   >
                     <OpenClawStudioIcon className="size-8 rounded-xl overflow-hidden shadow-sm" />
                     {shouldShowLogoTip ? (
@@ -649,9 +649,9 @@ export function DashboardScreen() {
                             className="whitespace-nowrap cursor-pointer"
                             onClick={(e) => { e.stopPropagation(); markLogoTipSeen(); }}
                             onKeyDown={(e) => { if (e.key === 'Enter') markLogoTipSeen(); }}
-                            aria-label="Dismiss quick menu tip"
+                            aria-label="Descartar consejo del menú rápido"
                           >
-                            Tap for quick menu
+                            Toca para el menú rápido
                           </span>
                           <div className="absolute left-1/2 top-0 size-2 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-primary-900 shadow-md" />
                         </div>
@@ -673,7 +673,7 @@ export function DashboardScreen() {
                           ? 'bg-emerald-500'
                           : 'bg-red-500',
                       )}
-                      title={dashboardData.connection.connected ? 'Connected' : 'Disconnected'}
+                      title={dashboardData.connection.connected ? 'Conectado' : 'Desconectado'}
                     />
                   ) : (
                     <span
@@ -692,7 +692,7 @@ export function DashboardScreen() {
                             : 'bg-red-500',
                         )}
                       />
-                      {dashboardData.connection.connected ? 'Connected' : 'Disconnected'}
+                      {dashboardData.connection.connected ? 'Conectado' : 'Desconectado'}
                     </span>
                   )}
                 </div>
@@ -709,8 +709,8 @@ export function DashboardScreen() {
                       type="button"
                       onClick={() => setDashSettingsOpen(true)}
                       className="inline-flex size-7 items-center justify-center rounded-full text-primary-600 dark:text-primary-400 transition-colors hover:bg-primary-50 dark:hover:bg-primary-800 hover:text-accent-600 dark:hover:text-accent-400"
-                      aria-label="Settings"
-                      title="Settings"
+                      aria-label="Ajustes"
+                      title="Ajustes"
                     >
                       <HugeiconsIcon
                         icon={Settings01Icon}
@@ -727,8 +727,8 @@ export function DashboardScreen() {
                       type="button"
                       onClick={() => updateSettings({ theme: nextTheme })}
                       className="inline-flex size-8 items-center justify-center rounded-full border border-primary-200 bg-primary-100/80 text-primary-600 shadow-sm transition-colors hover:bg-primary-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-primary-800 active:scale-95"
-                      aria-label={`Switch theme to ${nextTheme}`}
-                      title={`Theme: ${theme} (tap for ${nextTheme})`}
+                      aria-label={`Cambiar tema a ${nextTheme}`}
+                      title={`Tema: ${theme} (toca para ${nextTheme})`}
                     >
                       <HugeiconsIcon
                         icon={mobileThemeIcon}
@@ -746,9 +746,9 @@ export function DashboardScreen() {
             <div className="mb-3 rounded-xl border border-red-200 bg-red-50/85 px-3 py-2 text-sm text-red-800 shadow-sm dark:border-red-900 dark:bg-red-950/50 dark:text-red-300 md:mb-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="font-medium">Dashboard data failed to load</p>
+                  <p className="font-medium">No se han podido cargar los datos del panel</p>
                   <p className="text-xs text-red-700/90">
-                    One or more dashboard queries failed. Retry to refresh data.
+                    Una o varias consultas del panel han fallado. Reintenta para actualizar los datos.
                   </p>
                 </div>
                 <button
@@ -756,7 +756,7 @@ export function DashboardScreen() {
                   onClick={refetch}
                   className="shrink-0 rounded-md border border-red-200 bg-white/80 px-2.5 py-1 text-xs font-medium text-red-700 transition-colors hover:bg-white dark:hover:bg-white/10"
                 >
-                  Retry
+                  Reintentar
                 </button>
               </div>
             </div>
@@ -796,7 +796,7 @@ export function DashboardScreen() {
                             'ml-0.5 rounded-full p-0.5 transition-colors',
                             chip.severity === 'red' ? 'text-red-400 hover:text-red-700 active:bg-red-200' : 'text-amber-400 hover:text-amber-700 active:bg-amber-200',
                           )}
-                          aria-label={`Dismiss ${chip.text}`}
+                          aria-label={`Descartar ${chip.text}`}
                         >
                           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 3l6 6M9 3l-6 6"/></svg>
                         </button>
@@ -818,7 +818,7 @@ export function DashboardScreen() {
                   </span>
                   <div>
                     <p className="text-xs font-semibold text-ink truncate">Chat</p>
-                    <p className="text-[10px] text-primary-500 dark:text-neutral-400">Start a session</p>
+                    <p className="text-[10px] text-primary-500 dark:text-neutral-400">Iniciar una sesión</p>
                   </div>
                 </button>
 
@@ -834,8 +834,8 @@ export function DashboardScreen() {
                     <p className="text-xs font-semibold text-ink truncate">Agent Hub</p>
                     <p className="text-[10px] text-primary-500 dark:text-neutral-400">
                       {dashboardData.agents.active > 0
-                        ? `${dashboardData.agents.active} active`
-                        : 'Manage agents'}
+                        ? `${dashboardData.agents.active} activos`
+                        : 'Gestionar agentes'}
                     </p>
                   </div>
                 </button>
@@ -852,8 +852,8 @@ export function DashboardScreen() {
                     <p className="text-xs font-semibold text-ink truncate">Skills</p>
                     <p className="text-[10px] text-primary-500 dark:text-neutral-400">
                       {dashboardData.skills.enabled > 0
-                        ? `${dashboardData.skills.enabled} enabled`
-                        : 'Browse skills'}
+                        ? `${dashboardData.skills.enabled} activadas`
+                        : 'Explorar skills'}
                     </p>
                   </div>
                 </button>
@@ -867,20 +867,20 @@ export function DashboardScreen() {
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v2m0 12v2m8-8h-2M4 10H2m12.24-5.76-1.42 1.42M5.18 14.82l-1.42 1.42M16.24 14.24l-1.42-1.42M5.18 5.18 3.76 3.76"/><circle cx="10" cy="10" r="4"/></svg>
                   </span>
                   <div>
-                    <p className="text-xs font-semibold text-ink truncate">Costs</p>
-                    <p className="text-[10px] text-primary-500 dark:text-neutral-400">{costTodayDisplay} today</p>
+                    <p className="text-xs font-semibold text-ink truncate">Costes</p>
+                    <p className="text-[10px] text-primary-500 dark:text-neutral-400">{costTodayDisplay} hoy</p>
                   </div>
                 </button>
               </div>
 
               <CollapsibleWidget
-                title="Token Usage"
-                summary={`${costTodayDisplay} today • ${dashboardData.sessions.active || dashboardData.agents.active || 0} active sessions`}
+                title="Uso de tokens"
+                summary={`${costTodayDisplay} hoy • ${dashboardData.sessions.active || dashboardData.agents.active || 0} sesiones activas`}
                 defaultOpen={false}
                 className="bg-primary-50/70"
                 contentClassName="pt-2"
               >
-                <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                   <TokenUsageHero data={dashboardData} />
                 </ErrorBoundary>
               </CollapsibleWidget>
@@ -906,8 +906,8 @@ export function DashboardScreen() {
                         ? 'border-accent-300 bg-accent-50 text-accent-600 dark:border-accent-600 dark:bg-accent-950'
                         : 'border-primary-200 bg-primary-100/80 text-primary-500 hover:text-primary-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400',
                     )}
-                    aria-label={mobileEditMode ? 'Done editing' : 'Edit layout'}
-                    title={mobileEditMode ? 'Done editing' : 'Edit layout'}
+                    aria-label={mobileEditMode ? 'Edición terminada' : 'Editar diseño'}
+                    title={mobileEditMode ? 'Edición terminada' : 'Editar diseño'}
                   >
                     <HugeiconsIcon icon={PencilEdit02Icon} size={13} strokeWidth={1.6} />
                   </button>
@@ -916,8 +916,8 @@ export function DashboardScreen() {
                       type="button"
                       onClick={handleResetLayout}
                       className="inline-flex size-7 items-center justify-center rounded-full border border-primary-200 bg-primary-100/80 text-primary-500 shadow-sm transition-colors hover:text-primary-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 active:scale-95"
-                      aria-label="Reset Layout"
-                      title="Reset Layout"
+                      aria-label="Restablecer diseño"
+                      title="Restablecer diseño"
                     >
                       <HugeiconsIcon icon={RefreshIcon} size={13} strokeWidth={1.5} />
                     </button>
@@ -940,7 +940,7 @@ export function DashboardScreen() {
                               type="button"
                               onClick={() => moveMobileSection(visibleIndex, visibleIndex - 1)}
                               className="inline-flex size-5 items-center justify-center rounded-full text-primary-400 transition-colors hover:text-primary-600"
-                              aria-label={`Move ${section.label} up`}
+                              aria-label={`Mover ${section.label} arriba`}
                             >
                               <HugeiconsIcon icon={ArrowUp02Icon} size={12} strokeWidth={1.8} />
                             </button>
@@ -950,7 +950,7 @@ export function DashboardScreen() {
                               type="button"
                               onClick={() => moveMobileSection(visibleIndex, visibleIndex + 1)}
                               className="inline-flex size-5 items-center justify-center rounded-full text-primary-400 transition-colors hover:text-primary-600"
-                              aria-label={`Move ${section.label} down`}
+                              aria-label={`Mover ${section.label} abajo`}
                             >
                               <HugeiconsIcon icon={ArrowDown01Icon} size={12} strokeWidth={1.8} />
                             </button>
@@ -967,7 +967,7 @@ export function DashboardScreen() {
             /* ── Desktop enterprise layout (C2) ─────────────────────────────── */
             <div className="flex flex-col gap-4">
               {/* 1. SystemGlance */}
-              <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+              <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                 <SystemGlance
                   sessions={dashboardData.sessions.total}
                   activeAgents={dashboardData.agents.active || dashboardData.agents.total}
@@ -986,11 +986,11 @@ export function DashboardScreen() {
                         type="button"
                         onClick={handleResetLayout}
                         className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-primary-400 transition-colors hover:text-primary-700 dark:hover:text-primary-300"
-                        aria-label="Reset Layout"
-                        title="Reset Layout"
+                        aria-label="Restablecer diseño"
+                        title="Restablecer diseño"
                       >
                         <HugeiconsIcon icon={RefreshIcon} size={13} strokeWidth={1.5} />
-                        <span>Reset</span>
+                        <span>Restablecer</span>
                       </button>
                     </>
                   }
@@ -1026,7 +1026,7 @@ export function DashboardScreen() {
                             'ml-0.5 rounded-full p-0.5 transition-colors hover:bg-black/10',
                             chip.severity === 'red' ? 'text-red-500 hover:text-red-800' : 'text-amber-500 hover:text-amber-800',
                           )}
-                          aria-label={`Dismiss ${chip.text}`}
+                          aria-label={`Descartar ${chip.text}`}
                         >
                           ✕
                         </button>
@@ -1036,12 +1036,12 @@ export function DashboardScreen() {
                 </div>
               ) : null}
 
-              <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+              <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                 <TokenUsageHero data={dashboardData} />
               </ErrorBoundary>
 
               {desktopLayout.showServices ? (
-                <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                   <ServicesHealthWidget
                     gatewayConnected={dashboardData.connection.connected}
                     onRemove={() => removeWidget('services-health')}
@@ -1050,7 +1050,7 @@ export function DashboardScreen() {
               ) : null}
 
               {desktopLayout.showScheduledJobs ? (
-                <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                   <ScheduledJobsWidget onRemove={() => removeWidget('scheduled-jobs')} />
                 </ErrorBoundary>
               ) : null}
@@ -1059,12 +1059,12 @@ export function DashboardScreen() {
               {(desktopLayout.showUsage || desktopLayout.showSquad) && (
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {desktopLayout.showUsage && (
-                    <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                    <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                       <UsageMeterWidget onRemove={() => removeWidget('usage-meter')} overrideCost={dashboardData.cost.today} overrideTokens={dashboardData.usage.tokens} />
                     </ErrorBoundary>
                   )}
                   {desktopLayout.showSquad && (
-                    <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                    <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                       <SquadStatusWidget />
                     </ErrorBoundary>
                   )}
@@ -1075,7 +1075,7 @@ export function DashboardScreen() {
               {(desktopLayout.showSessions || desktopLayout.showTasks) && (
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {desktopLayout.showSessions && (
-                    <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                    <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                       <RecentSessionsWidget
                         onOpenSession={(sessionKey) =>
                           navigate({
@@ -1088,7 +1088,7 @@ export function DashboardScreen() {
                     </ErrorBoundary>
                   )}
                   {desktopLayout.showTasks && (
-                    <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                    <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                       <TasksWidget onRemove={() => removeWidget('tasks')} />
                     </ErrorBoundary>
                   )}
@@ -1097,7 +1097,7 @@ export function DashboardScreen() {
 
               {/* 5. Full-width: Activity Log */}
               {desktopLayout.showActivity && (
-                <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                   <ActivityLogWidget onRemove={() => removeWidget('activity-log')} />
                 </ErrorBoundary>
               )}
@@ -1106,12 +1106,12 @@ export function DashboardScreen() {
               {(desktopLayout.showSkills || desktopLayout.showNotifications) && (
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {desktopLayout.showSkills && (
-                    <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                    <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                       <SkillsWidget onRemove={() => removeWidget('skills')} />
                     </ErrorBoundary>
                   )}
                   {desktopLayout.showNotifications && (
-                    <ErrorBoundary title="Widget Error" description="This widget failed to load.">
+                    <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
                       <NotificationsWidget onRemove={() => removeWidget('notifications')} />
                     </ErrorBoundary>
                   )}

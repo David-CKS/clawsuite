@@ -6,12 +6,12 @@ export const tourSteps: Step[] = [
   {
     target: 'body',
     placement: 'center',
-    title: 'Welcome to CKS Suite! 👋',
+    title: 'Te damos la bienvenida a CKS Suite 👋',
     content: (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
         <OpenClawStudioIcon className="size-12 rounded-xl shadow-sm" />
         <p style={{ textAlign: 'center', margin: 0 }}>
-          Your AI-powered command center for managing agents, chats, files, and more. Let&apos;s take a quick tour!
+          Tu centro de mando con IA para gestionar agentes, chats, archivos y más. Vamos a echar un vistazo rápido.
         </p>
       </div>
     ),
@@ -21,25 +21,25 @@ export const tourSteps: Step[] = [
   {
     target: '[data-tour="sidebar-container"]',
     placement: 'right',
-    title: 'Sidebar Navigation',
+    title: 'Navegación lateral',
     content:
-      'Navigate between all your tools here. Collapse/expand sections to customize your workspace.',
+      'Navega entre todas tus herramientas aquí. Colapsa o expande secciones para personalizar tu workspace.',
   },
   // Step 3: New Session
   {
     target: '[data-tour="new-session"]',
     placement: 'right',
-    title: 'Start a New Chat',
+    title: 'Iniciar un nuevo chat',
     content:
-      'Click here to start a new AI chat session. Each conversation is saved automatically.',
+      'Pulsa aquí para iniciar una nueva sesión de chat con IA. Cada conversación se guarda automáticamente.',
   },
   // Step 4: Dashboard
   {
     target: '[data-tour="dashboard"]',
     placement: 'right',
-    title: 'Your Dashboard',
+    title: 'Tu panel',
     content:
-      'Your overview of sessions, usage, and activity. See everything at a glance.',
+      'Resumen de sesiones, uso y actividad. Lo ves todo de un vistazo.',
   },
   // Step 5: Agent Hub
   {
@@ -47,46 +47,46 @@ export const tourSteps: Step[] = [
     placement: 'right',
     title: 'Agent Hub',
     content:
-      'Manage your AI agents and configurations. Create custom agents with specialized behaviors.',
+      'Gestiona tus agentes IA y sus configuraciones. Crea agentes personalizados con comportamientos especializados.',
   },
   // Step 7: Skills
   {
     target: '[data-tour="skills"]',
     placement: 'right',
-    title: 'Skills Library',
+    title: 'Biblioteca de skills',
     content:
-      'Browse and install agent skills to extend capabilities. Add new tools and abilities to your agents.',
+      'Explora e instala skills de agente para ampliar capacidades. Añade nuevas herramientas y habilidades a tus agentes.',
   },
   // Step 8: Terminal
   {
     target: '[data-tour="terminal"]',
     placement: 'right',
-    title: 'Built-in Terminal',
+    title: 'Terminal integrado',
     content:
-      'Built-in terminal for quick commands. Execute shell commands without leaving CKS Suite.',
+      'Terminal integrado para comandos rápidos. Ejecuta comandos shell sin salir de CKS Suite.',
   },
   // Step 9: Usage Meter (in header)
   {
     target: '[data-tour="usage-meter"]',
     placement: 'bottom',
-    title: 'Usage Monitor',
+    title: 'Monitor de uso',
     content:
-      'Monitor your AI provider usage in real-time. Track costs and API consumption.',
+      'Monitoriza el uso de tu proveedor de IA en tiempo real. Lleva el control de costes y consumo de API.',
   },
   // Step 10: Settings
   {
     target: '[data-tour="settings"]',
     placement: 'right',
-    title: 'Settings & Customization',
+    title: 'Ajustes y personalización',
     content:
-      'Configure providers, themes, accent colors, and more. Make CKS Suite yours.',
+      'Configura proveedores, temas, colores de acento y más. Haz tuyo CKS Suite.',
   },
   // Step 11: Finish
   {
     target: 'body',
     placement: 'center',
-    title: "You're all set! 🎉",
+    title: '¡Todo listo! 🎉',
     content:
-      'Start chatting with your AI, explore the tools, and customize CKS Suite to fit your workflow. Need help? Press ? to see all keyboard shortcuts.',
+      'Empieza a chatear con tu IA, explora las herramientas y adapta CKS Suite a tu flujo de trabajo. ¿Necesitas ayuda? Pulsa ? para ver todos los atajos de teclado.',
   },
 ]

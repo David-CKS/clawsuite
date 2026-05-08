@@ -57,7 +57,7 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           sessionKey: mainSession.key,
-          message: 'Expose yourself on the network so I can access you from my phone',
+          message: 'Exponte en la red para que pueda acceder desde mi móvil',
         }),
       });
       setExposeSent(true);
@@ -78,8 +78,8 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
 
   const steps = [
     {
-      title: 'Install Tailscale on your desktop',
-      body: 'Install Tailscale on the machine running CKS Suite, then sign in.',
+      title: 'Instala Tailscale en tu ordenador',
+      body: 'Instala Tailscale en la máquina donde corre CKS Suite y luego inicia sesión.',
       showTailscaleIcon: true,
       action: (
         <a
@@ -88,18 +88,18 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-lg bg-accent-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-400"
         >
-          Open Tailscale Downloads
+          Abrir descargas de Tailscale
         </a>
       ),
     },
     {
-      title: 'Make OpenClaw discoverable',
-      body: 'Send this to your OpenClaw agent so it exposes itself on the network for your phone to find it.',
+      title: 'Haz que OpenClaw sea visible',
+      body: 'Envía esto a tu agente OpenClaw para que se exponga en la red y tu móvil pueda encontrarlo.',
       showTailscaleIcon: false,
       action: (
         <div className="space-y-3">
           <p className="rounded-lg border border-primary-700 bg-primary-950 px-4 py-3 font-mono text-xs text-accent-300">
-            Expose yourself on the network so I can access you from my phone
+            Exponte en la red para que pueda acceder desde mi móvil
           </p>
           <button
             type="button"
@@ -110,12 +110,12 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
             {exposeSent ? (
               <>
                 <HugeiconsIcon icon={Tick01Icon} size={16} strokeWidth={2} />
-                Sent — check your chat
+                Enviado — revisa tu chat
               </>
             ) : (
               <>
                 <HugeiconsIcon icon={Sent02Icon} size={16} strokeWidth={2} />
-                {exposeSending ? 'Sending…' : 'Send to OpenClaw'}
+                {exposeSending ? 'Enviando…' : 'Enviar a OpenClaw'}
               </>
             )}
           </button>
@@ -123,8 +123,8 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
       ),
     },
     {
-      title: 'Install Tailscale on your phone',
-      body: 'Install Tailscale on iOS or Android and sign in with the same account.',
+      title: 'Instala Tailscale en tu móvil',
+      body: 'Instala Tailscale en iOS o Android e inicia sesión con la misma cuenta.',
       showTailscaleIcon: true,
       action: (
         <div className="flex gap-2">
@@ -134,7 +134,7 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-lg border border-primary-700 bg-primary-950 px-3 py-2 text-xs font-medium text-primary-100 transition-colors hover:bg-primary-800"
           >
-            iOS App
+            App iOS
           </a>
           <a
             href="https://play.google.com/store/apps/details?id=com.tailscale.ipn"
@@ -142,18 +142,18 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-lg border border-primary-700 bg-primary-950 px-3 py-2 text-xs font-medium text-primary-100 transition-colors hover:bg-primary-800"
           >
-            Android App
+            App Android
           </a>
         </div>
       ),
     },
     {
-      title: 'Open CKS Suite on your phone',
+      title: 'Abre CKS Suite en tu móvil',
       body: networkUrl?.source === 'tailscale'
-        ? 'Your Tailscale address — open this on your phone browser.'
+        ? 'Tu dirección de Tailscale — ábrela en el navegador del móvil.'
         : networkUrl?.source === 'lan'
-        ? 'Your local network address — phone must be on the same WiFi.'
-        : 'Make sure Tailscale is running on this machine for a shareable link.',
+        ? 'Tu dirección de red local — el móvil debe estar en la misma WiFi.'
+        : 'Asegúrate de que Tailscale corre en esta máquina para tener un enlace compartible.',
       showTailscaleIcon: networkUrl?.source === 'tailscale',
       action: (
         <button
@@ -212,7 +212,7 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
           type="button"
           onClick={onClose}
           className="absolute top-4 right-4 rounded-lg p-1.5 text-primary-400 transition-colors hover:bg-primary-900 hover:text-primary-200"
-          aria-label="Close mobile setup"
+          aria-label="Cerrar configuración móvil"
         >
           <HugeiconsIcon icon={Cancel01Icon} size={18} strokeWidth={2} />
         </button>
@@ -220,7 +220,7 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
         <div className="mb-4 flex items-center gap-3 pr-10">
           <OpenClawStudioIcon className="size-9 overflow-hidden rounded-xl" />
           <div className="flex-1">
-            <h2 className="text-lg font-semibold text-white">Mobile Setup</h2>
+            <h2 className="text-lg font-semibold text-white">Configuración móvil</h2>
             <div className="mt-1 flex items-center gap-1.5">
               {steps.map((_, index) => (
                 <span
@@ -260,7 +260,7 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
             disabled={step === 0}
             className="rounded-lg px-3 py-2 text-sm text-primary-400 transition-colors hover:text-primary-200 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Back
+            Atrás
           </button>
           <div className="flex items-center gap-2">
             <button
@@ -268,14 +268,14 @@ export function MobileSetupModal({ isOpen, onClose }: MobileSetupModalProps) {
               onClick={onClose}
               className="rounded-lg px-3 py-2 text-sm text-primary-400 transition-colors hover:text-primary-200"
             >
-              Close
+              Cerrar
             </button>
             <button
               type="button"
               onClick={handleNext}
               className="rounded-lg bg-accent-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-400"
             >
-              {isLastStep ? 'Finish' : 'Next'}
+              {isLastStep ? 'Finalizar' : 'Siguiente'}
             </button>
           </div>
         </div>

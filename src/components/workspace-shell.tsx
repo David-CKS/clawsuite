@@ -101,11 +101,11 @@ export function WorkspaceShell() {
         res = await fetch('/api/auth-check', { signal: controller.signal })
       } catch (error) {
         if (error instanceof DOMException && error.name === 'AbortError') {
-          throw new Error('Request timed out after 5 seconds')
+          throw new Error('Se agotó el tiempo de espera tras 5 segundos')
         }
         throw error instanceof Error
           ? error
-          : new Error('Failed to connect to CKS Suite server')
+          : new Error('No se ha podido conectar con el servidor de CKS Suite')
       } finally {
         globalThis.clearTimeout(timeout)
       }
@@ -147,7 +147,7 @@ export function WorkspaceShell() {
   const sessionsError = sessionsQuery.isError
     ? sessionsQuery.error instanceof Error
       ? sessionsQuery.error.message
-      : 'Failed to load sessions'
+      : 'No se han podido cargar las sesiones'
     : null
 
   const refetchSessions = useCallback(() => {
@@ -228,7 +228,7 @@ export function WorkspaceShell() {
       <div className="flex items-center justify-center h-screen bg-surface">
         <div className="text-center">
           <div className="inline-block h-10 w-10 animate-spin rounded-full border-4 border-accent-500 border-r-transparent mb-4" />
-          <p className="text-sm text-primary-500">Initializing CKS Suite...</p>
+          <p className="text-sm text-primary-500">Inicializando CKS Suite…</p>
         </div>
       </div>
     )
@@ -238,26 +238,26 @@ export function WorkspaceShell() {
     const errorMessage =
       authQuery.error instanceof Error
         ? authQuery.error.message
-        : 'Failed to connect to CKS Suite server'
+        : 'No se ha podido conectar con el servidor de CKS Suite'
     const showGatewayTip = /gateway|websocket/i.test(errorMessage)
 
     return (
       <div className="flex h-screen items-center justify-center bg-surface px-6">
         <div className="w-full max-w-lg text-center">
           <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl border border-primary-800 bg-primary-900/80 text-2xl">
-            <span role="img" aria-label="Warning">
+            <span role="img" aria-label="Aviso">
               ⚠️
             </span>
           </div>
           <h1 className="text-2xl font-semibold text-primary-100">
-            Could not connect to CKS Suite server
+            No se pudo conectar con el servidor de CKS Suite
           </h1>
           <p className="mt-3 text-sm text-primary-300">
-            The server may still be starting up. Wait a moment and try again.
+            Puede que el servidor todavía se esté iniciando. Espera un momento y reintenta.
           </p>
           {showGatewayTip ? (
             <p className="mt-3 text-sm text-accent-400">
-              Make sure OpenClaw gateway is running:{' '}
+              Asegúrate de que el gateway de OpenClaw está en marcha:{' '}
               <code className="rounded bg-primary-900 px-1.5 py-0.5 text-xs text-primary-200">
                 openclaw gateway start
               </code>
@@ -270,15 +270,15 @@ export function WorkspaceShell() {
               onClick={() => void authQuery.refetch()}
             >
               <HugeiconsIcon icon={RefreshIcon} size={18} strokeWidth={1.8} />
-              Retry
+              Reintentar
             </Button>
             <Button size="lg" onClick={() => window.location.reload()}>
-              Reload Page
+              Recargar página
             </Button>
           </div>
           <details className="mt-5 text-left">
             <summary className="cursor-pointer text-xs text-primary-400">
-              Details
+              Detalles
             </summary>
             <p className="mt-2 rounded-lg border border-primary-800 bg-primary-900/80 px-3 py-2 text-xs text-primary-300">
               {errorMessage}
@@ -341,8 +341,8 @@ export function WorkspaceShell() {
             <div className={['page-transition h-full', slideClass].filter(Boolean).join(' ')}>
               <ErrorBoundary
                 className="h-full"
-                title="Something went wrong"
-                description="This page failed to render. Reload to try again."
+                title="Algo ha fallado"
+                description="Esta página no se ha podido renderizar. Recarga para reintentar."
               >
                 <Outlet />
               </ErrorBoundary>
@@ -359,7 +359,7 @@ export function WorkspaceShell() {
         {showDesktopSidebarBackdrop ? (
           <button
             type="button"
-            aria-label="Collapse navigation sidebar"
+            aria-label="Colapsar barra lateral de navegación"
             onClick={() => setSidebarCollapsed(true)}
             className={DESKTOP_SIDEBAR_BACKDROP_CLASS}
           />

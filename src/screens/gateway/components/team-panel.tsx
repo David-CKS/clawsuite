@@ -5,23 +5,23 @@ import type { HubTask } from './task-board'
 function formatRelativeTime(ts: number): string {
   const diffMs = Math.max(0, Date.now() - ts)
   const seconds = Math.floor(diffMs / 1000)
-  if (seconds < 60) return `${seconds}s ago`
+  if (seconds < 60) return `Hace ${seconds}s`
   const minutes = Math.floor(seconds / 60)
-  if (minutes < 60) return `${minutes}m ago`
+  if (minutes < 60) return `Hace ${minutes}m`
   const hours = Math.floor(minutes / 60)
-  if (hours < 24) return `${hours}h ago`
-  return `${Math.floor(hours / 24)}d ago`
+  if (hours < 24) return `Hace ${hours}h`
+  return `Hace ${Math.floor(hours / 24)}d`
 }
 
 // Presets shown in Agent Hub. 'auto' uses gateway default.
 // Additional models from gateway providers show in the chat model switcher.
 export const MODEL_PRESETS = [
-  { id: 'auto', label: 'Auto (Gateway Default)', desc: 'Uses your configured default model' },
-  { id: 'opus', label: 'Claude Opus 4.6', desc: 'Deep reasoning — Anthropic' },
-  { id: 'sonnet', label: 'Claude Sonnet 4.6', desc: 'Fast & capable — Anthropic' },
-  { id: 'codex', label: 'GPT-5 Codex', desc: 'Code specialist — OpenAI' },
-  { id: 'flash', label: 'Gemini 2.5 Flash', desc: 'Quick & cheap — Google' },
-  { id: 'minimax', label: 'MiniMax M2.5', desc: 'Cost efficient — MiniMax' },
+  { id: 'auto', label: 'Auto (gateway por defecto)', desc: 'Usa el modelo por defecto que tengas configurado' },
+  { id: 'opus', label: 'Claude Opus 4.6', desc: 'Razonamiento profundo — Anthropic' },
+  { id: 'sonnet', label: 'Claude Sonnet 4.6', desc: 'Rápido y capaz — Anthropic' },
+  { id: 'codex', label: 'GPT-5 Codex', desc: 'Especialista en código — OpenAI' },
+  { id: 'flash', label: 'Gemini 2.5 Flash', desc: 'Rápido y barato — Google' },
+  { id: 'minimax', label: 'MiniMax M2.5', desc: 'Eficiente en coste — MiniMax' },
   { id: 'pc1-coder', label: 'PC1 Coder (97 TPS)', desc: 'Qwen3-Coder 30B · Local · RTX 4090' },
   { id: 'pc1-planner', label: 'PC1 Planner (175 TPS)', desc: 'Qwen3-30B Sonnet Distill MoE · Local · RTX 4090' },
   { id: 'pc1-critic', label: 'PC1 Critic (83 TPS)', desc: 'Qwen3-14B Opus Distill · Local · RTX 4090' },
@@ -30,19 +30,19 @@ export const MODEL_PRESETS = [
 export const TEAM_TEMPLATES = [
   {
     id: 'research',
-    name: 'Research Team',
+    name: 'Equipo de investigación',
     agents: ['Atlas', 'Lens', 'Cipher'],
     icon: '🔍',
   },
   {
     id: 'coding',
-    name: 'Coding Sprint',
+    name: 'Sprint de código',
     agents: ['Forge', 'Sentinel', 'Spark'],
     icon: '💻',
   },
   {
     id: 'content',
-    name: 'Content Pipeline',
+    name: 'Pipeline de contenidos',
     agents: ['Scout', 'Quill', 'Polish'],
     icon: '📝',
   },
@@ -206,9 +206,9 @@ export function TeamPanel({
     <div className="flex h-full flex-col border-r border-primary-200 bg-primary-50/40 dark:bg-neutral-900/20">
       <div className="border-b border-primary-200 px-3 pb-3 pt-2">
         <h2 className="text-sm font-semibold text-primary-900 dark:text-neutral-100">
-          Team Setup
+          Configurar equipo
         </h2>
-        <p className="text-[11px] text-primary-500">Choose a template or build your own.</p>
+        <p className="text-[11px] text-primary-500">Elige una plantilla o crea el tuyo propio.</p>
         <div className="mt-2 space-y-1.5">
           {TEAM_TEMPLATES.map((template) => (
             <button
@@ -224,7 +224,7 @@ export function TeamPanel({
               <span className="text-xs font-medium text-primary-800 dark:text-neutral-100">
                 {template.icon} {template.name}
               </span>
-              <span className="text-[10px] text-primary-500">{template.agents.length} agents</span>
+              <span className="text-[10px] text-primary-500">{template.agents.length} agentes</span>
             </button>
           ))}
         </div>
@@ -233,7 +233,7 @@ export function TeamPanel({
       <div className="border-b border-primary-200 px-3 py-2.5">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-semibold uppercase tracking-wide text-primary-500">
-            Your Team
+            Tu equipo
           </h3>
           <span className="rounded-full bg-primary-100 px-2 py-0.5 text-[11px] font-medium text-primary-700 dark:bg-neutral-800 dark:text-neutral-300">
             {team.length}
@@ -244,7 +244,7 @@ export function TeamPanel({
       <div className="min-h-0 flex-1 space-y-2 overflow-y-auto px-2 py-2">
         {team.length === 0 ? (
           <div className="rounded-lg border border-dashed border-primary-300 bg-white/70 px-3 py-4 text-center text-xs text-primary-500 dark:border-neutral-700 dark:bg-neutral-900/40 dark:text-neutral-400">
-            No agents yet. Apply a template or add one manually.
+            Aún no hay agentes. Aplica una plantilla o añade uno manualmente.
           </div>
         ) : null}
 
@@ -263,7 +263,7 @@ export function TeamPanel({
           const expanded = expandedAgentId === agent.id
           const modelLabel = getModelLabel(agent.modelId)
           const taskCount = agentTaskCounts?.[agent.id] ?? 0
-          const cardTitle = agentSessionKey ? `Session: ${agentSessionKey}` : undefined
+          const cardTitle = agentSessionKey ? `Sesión: ${agentSessionKey}` : undefined
 
           // Assigned tasks for this agent (non-done)
           const assignedTasks = tasks?.filter(
@@ -318,7 +318,7 @@ export function TeamPanel({
                         {agent.status}
                       </span>
                       <span className="rounded-full bg-primary-100 px-2 py-0.5 text-[10px] font-medium text-primary-600 dark:bg-neutral-800 dark:text-neutral-300">
-                        {taskCount} {taskCount === 1 ? 'task' : 'tasks'}
+                        {taskCount} {taskCount === 1 ? 'tarea' : 'tareas'}
                       </span>
                     </div>
                     {agentSessionEntry?.lastSeen ? (
@@ -328,7 +328,7 @@ export function TeamPanel({
                     ) : null}
                     {agentModelNotApplied?.[agent.id] ? (
                       <p className="mt-0.5 text-[9px] text-neutral-400 dark:text-neutral-500">
-                        Gateway used default model
+                        El gateway usó el modelo por defecto
                       </p>
                     ) : null}
                   </div>
@@ -349,7 +349,7 @@ export function TeamPanel({
                 {showRetry ? (
                   <button
                     type="button"
-                    title="Retry spawn"
+                    title="Relanzar"
                     onClick={(event) => {
                       event.stopPropagation()
                       onRetrySpawn?.(agent)
@@ -366,20 +366,20 @@ export function TeamPanel({
                   {/* Quick-look: Model + Session */}
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md bg-primary-50/60 px-2 py-1.5 text-[10px] dark:bg-neutral-800/60">
                     <span className="flex items-center gap-1">
-                      <span className="text-primary-400 dark:text-neutral-500">Model:</span>
+                      <span className="text-primary-400 dark:text-neutral-500">Modelo:</span>
                       <span className={cn('rounded px-1.5 py-0.5 font-medium', getModelBadgeColor(agent.modelId))}>
                         {modelLabel}
                       </span>
                     </span>
                     {agentSessionKey ? (
                       <span className="flex min-w-0 items-center gap-1">
-                        <span className="shrink-0 text-primary-400 dark:text-neutral-500">Session:</span>
+                        <span className="shrink-0 text-primary-400 dark:text-neutral-500">Sesión:</span>
                         <code className="max-w-[14ch] truncate rounded bg-white px-1 font-mono text-primary-700 dark:bg-neutral-900 dark:text-neutral-400">
                           {agentSessionKey}
                         </code>
                       </span>
                     ) : (
-                      <span className="text-primary-300 dark:text-neutral-600">No session</span>
+                      <span className="text-primary-300 dark:text-neutral-600">Sin sesión</span>
                     )}
                   </div>
                   {agentSessionEntry?.lastMessage ? (
@@ -390,7 +390,7 @@ export function TeamPanel({
 
                   <label className="block">
                     <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-primary-500">
-                      Model
+                      Modelo
                     </span>
                     <select
                       value={agent.modelId}
@@ -409,7 +409,7 @@ export function TeamPanel({
                         ))}
                       </optgroup>
                       {(gatewayModels?.length ?? 0) > 0 ? (
-                        <optgroup label="Available Models">
+                        <optgroup label="Modelos disponibles">
                           {gatewayModels?.map((model) => (
                             <option key={model.value} value={model.value}>
                               {model.label} ({model.provider})
@@ -422,7 +422,7 @@ export function TeamPanel({
 
                   <label className="block">
                     <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-primary-500">
-                      Role Description
+                      Descripción del rol
                     </span>
                     <textarea
                       value={agent.roleDescription}
@@ -432,14 +432,14 @@ export function TeamPanel({
                         })
                       }}
                       rows={3}
-                      placeholder="Define responsibilities and deliverables"
+                      placeholder="Define responsabilidades y entregables"
                       className="w-full resize-none rounded-md border border-primary-200 bg-white px-2 py-1.5 text-xs text-primary-900 outline-none ring-accent-400 focus:ring-1 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-100"
                     />
                   </label>
 
                   <label className="block">
                     <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-primary-500">
-                      Goal
+                      Objetivo
                     </span>
                     <textarea
                       value={agent.goal}
@@ -449,14 +449,14 @@ export function TeamPanel({
                         })
                       }}
                       rows={3}
-                      placeholder="e.g. Find the most actionable competitive insights"
+                      placeholder="ej. Encontrar los insights competitivos más accionables"
                       className="w-full resize-none rounded-md border border-primary-200 bg-white px-2 py-1.5 text-xs text-primary-900 outline-none ring-accent-400 focus:ring-1 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-100"
                     />
                   </label>
 
                   <label className="block">
                     <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-primary-500">
-                      Backstory
+                      Trasfondo
                     </span>
                     <textarea
                       value={agent.backstory}
@@ -466,7 +466,7 @@ export function TeamPanel({
                         })
                       }}
                       rows={3}
-                      placeholder="e.g. You have 10 years of experience in competitive intelligence..."
+                      placeholder="ej. Tienes 10 años de experiencia en inteligencia competitiva…"
                       className="w-full resize-none rounded-md border border-primary-200 bg-white px-2 py-1.5 text-xs text-primary-900 outline-none ring-accent-400 focus:ring-1 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-100"
                     />
                   </label>
@@ -475,7 +475,7 @@ export function TeamPanel({
                   {agentSessionKey ? (
                     <div>
                       <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-primary-500">
-                        Session Key
+                        Session key
                       </span>
                       <p className="truncate rounded-md bg-primary-50 px-2 py-1.5 font-mono text-[10px] text-primary-700 dark:bg-neutral-800 dark:text-neutral-300">
                         {agentSessionKey}
@@ -487,7 +487,7 @@ export function TeamPanel({
                   {assignedTasks.length > 0 ? (
                     <div>
                       <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-primary-500">
-                        Active Tasks
+                        Tareas activas
                       </span>
                       <ul className="space-y-1">
                         {assignedTasks.map((task) => (
@@ -509,7 +509,7 @@ export function TeamPanel({
                       onClick={() => onKillSession?.(agent)}
                       className="w-full rounded-md bg-red-500 px-2 py-1.5 text-[11px] font-semibold text-white transition-colors hover:bg-red-600"
                     >
-                      Kill Session
+                      Parar sesión
                     </button>
                   ) : null}
                 </div>
@@ -526,7 +526,7 @@ export function TeamPanel({
           className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-primary-300 py-2.5 text-xs font-semibold text-primary-500 transition-colors hover:border-accent-400 hover:text-accent-600 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-accent-700 dark:hover:text-accent-300"
         >
           <span aria-hidden>+</span>
-          <span>Add Agent</span>
+          <span>Añadir agente</span>
         </button>
       </div>
     </div>
