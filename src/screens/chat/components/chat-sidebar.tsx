@@ -9,7 +9,6 @@ import {
   ChartLineData02Icon,
   Chat01Icon,
   Clock01Icon,
-  ComputerTerminal01Icon,
   DatabaseIcon,
   File01Icon,
   GlobeIcon,
@@ -537,7 +536,6 @@ function ChatSidebarComponent({
   const isNewSessionActive =
     pathname === '/new' || pathname.startsWith('/chat/new')
   const isBrowserActive = pathname === '/browser'
-  const isTerminalActive = pathname === '/terminal'
   const isTasksActive = pathname === '/tasks'
   // Gateway
   const isCronActive = pathname === '/cron'
@@ -563,7 +561,6 @@ function ChatSidebarComponent({
     '/agent-swarm',
     '/new',
     '/browser',
-    '/terminal',
     '/tasks',
     '/skills',
     '/cron',
@@ -806,14 +803,6 @@ function ChatSidebarComponent({
     },
     {
       kind: 'link',
-      to: '/terminal',
-      icon: ComputerTerminal01Icon,
-      label: 'Terminal',
-      active: isTerminalActive,
-      dataTour: 'terminal',
-    },
-    {
-      kind: 'link',
       to: '/tasks',
       icon: Task01Icon,
       label: 'Tasks',
@@ -932,7 +921,6 @@ function ChatSidebarComponent({
     'Files',
     'Memory',
     'Tasks',
-    'Terminal',
     'Browser',
     'Cron Jobs',
     'Logs',

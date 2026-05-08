@@ -10,7 +10,6 @@ import {
   Chat01Icon,
   Clock01Icon,
   CommandLineIcon,
-  ComputerTerminal01Icon,
   Folder01Icon,
   GlobeIcon,
   Home01Icon,
@@ -174,15 +173,6 @@ export function CommandPalette({
         shortcut: 'Go',
         icon: UserGroupIcon,
         onSelect: () => void navigate({ to: '/agent-swarm' }),
-      },
-      {
-        id: 'screen-terminal',
-        group: 'Screens',
-        label: 'Terminal',
-        keywords: 'shell console command line',
-        shortcut: 'Go',
-        icon: ComputerTerminal01Icon,
-        onSelect: () => void navigate({ to: '/terminal' }),
       },
       {
         id: 'screen-browser',

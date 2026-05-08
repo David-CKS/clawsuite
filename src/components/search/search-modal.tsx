@@ -117,16 +117,6 @@ export function SearchModal() {
         },
       },
       {
-        id: 'qa-terminal',
-        emoji: '🖥️',
-        label: 'Terminal',
-        description: 'Jump into terminal view',
-        onSelect: () => {
-          closeModal()
-          navigate({ to: '/terminal' })
-        },
-      },
-      {
         id: 'qa-logs',
         emoji: '📄',
         label: 'Logs',
