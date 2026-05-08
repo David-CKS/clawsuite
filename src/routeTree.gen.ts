@@ -15,6 +15,7 @@ import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SessionsRouteImport } from './routes/sessions'
+import { Route as SergioBridgeRouteImport } from './routes/sergio-bridge'
 import { Route as OrchestratorRouteImport } from './routes/orchestrator'
 import { Route as NodesRouteImport } from './routes/nodes'
 import { Route as NewRouteImport } from './routes/new'
@@ -89,6 +90,7 @@ import { Route as ApiAgentActivityRouteImport } from './routes/api/agent-activit
 import { Route as ApiTasksIndexRouteImport } from './routes/api/tasks/index'
 import { Route as ApiTelegramWebhookRouteImport } from './routes/api/telegram/webhook'
 import { Route as ApiTasksTaskIdRouteImport } from './routes/api/tasks/$taskId'
+import { Route as ApiSourcesProbeRouteImport } from './routes/api/sources/probe'
 import { Route as ApiSessionsSendRouteImport } from './routes/api/sessions/send'
 import { Route as ApiOrchestratorGoalsRouteImport } from './routes/api/orchestrator/goals'
 import { Route as ApiOrchestratorExecuteRouteImport } from './routes/api/orchestrator/execute'
@@ -111,6 +113,12 @@ import { Route as ApiCronToggleRouteImport } from './routes/api/cron/toggle'
 import { Route as ApiCronRunRouteImport } from './routes/api/cron/run'
 import { Route as ApiCronListRouteImport } from './routes/api/cron/list'
 import { Route as ApiCronDeleteRouteImport } from './routes/api/cron/delete'
+import { Route as ApiCronCksDefaultsRouteImport } from './routes/api/cron/cks-defaults'
+import { Route as ApiCksSprintStatusRouteImport } from './routes/api/cks/sprint-status'
+import { Route as ApiCksOpenrouterBalanceRouteImport } from './routes/api/cks/openrouter-balance'
+import { Route as ApiCksBridgeStatusRouteImport } from './routes/api/cks/bridge-status'
+import { Route as ApiCksBridgeStatsRouteImport } from './routes/api/cks/bridge-stats'
+import { Route as ApiCksBridgeRecentQueriesRouteImport } from './routes/api/cks/bridge-recent-queries'
 import { Route as ApiBrowserTabsRouteImport } from './routes/api/browser/tabs'
 import { Route as ApiBrowserStatusRouteImport } from './routes/api/browser/status'
 import { Route as ApiBrowserScreenshotRouteImport } from './routes/api/browser/screenshot'
@@ -150,6 +158,11 @@ const SettingsRoute = SettingsRouteImport.update({
 const SessionsRoute = SessionsRouteImport.update({
   id: '/sessions',
   path: '/sessions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SergioBridgeRoute = SergioBridgeRouteImport.update({
+  id: '/sergio-bridge',
+  path: '/sergio-bridge',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrchestratorRoute = OrchestratorRouteImport.update({
@@ -522,6 +535,11 @@ const ApiTasksTaskIdRoute = ApiTasksTaskIdRouteImport.update({
   path: '/api/tasks/$taskId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSourcesProbeRoute = ApiSourcesProbeRouteImport.update({
+  id: '/api/sources/probe',
+  path: '/api/sources/probe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiSessionsSendRoute = ApiSessionsSendRouteImport.update({
   id: '/send',
   path: '/send',
@@ -633,6 +651,37 @@ const ApiCronDeleteRoute = ApiCronDeleteRouteImport.update({
   path: '/delete',
   getParentRoute: () => ApiCronRoute,
 } as any)
+const ApiCronCksDefaultsRoute = ApiCronCksDefaultsRouteImport.update({
+  id: '/cks-defaults',
+  path: '/cks-defaults',
+  getParentRoute: () => ApiCronRoute,
+} as any)
+const ApiCksSprintStatusRoute = ApiCksSprintStatusRouteImport.update({
+  id: '/api/cks/sprint-status',
+  path: '/api/cks/sprint-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksOpenrouterBalanceRoute = ApiCksOpenrouterBalanceRouteImport.update({
+  id: '/api/cks/openrouter-balance',
+  path: '/api/cks/openrouter-balance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksBridgeStatusRoute = ApiCksBridgeStatusRouteImport.update({
+  id: '/api/cks/bridge-status',
+  path: '/api/cks/bridge-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksBridgeStatsRoute = ApiCksBridgeStatsRouteImport.update({
+  id: '/api/cks/bridge-stats',
+  path: '/api/cks/bridge-stats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksBridgeRecentQueriesRoute =
+  ApiCksBridgeRecentQueriesRouteImport.update({
+    id: '/api/cks/bridge-recent-queries',
+    path: '/api/cks/bridge-recent-queries',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiBrowserTabsRoute = ApiBrowserTabsRouteImport.update({
   id: '/tabs',
   path: '/tabs',
@@ -708,6 +757,7 @@ export interface FileRoutesByFullPath {
   '/new': typeof NewRoute
   '/nodes': typeof NodesRoute
   '/orchestrator': typeof OrchestratorRoute
+  '/sergio-bridge': typeof SergioBridgeRoute
   '/sessions': typeof SessionsRoute
   '/settings': typeof SettingsRouteWithChildren
   '/skills': typeof SkillsRoute
@@ -770,6 +820,12 @@ export interface FileRoutesByFullPath {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
+  '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -792,6 +848,7 @@ export interface FileRoutesByFullPath {
   '/api/orchestrator/execute': typeof ApiOrchestratorExecuteRoute
   '/api/orchestrator/goals': typeof ApiOrchestratorGoalsRouteWithChildren
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/telegram/webhook': typeof ApiTelegramWebhookRoute
   '/api/tasks/': typeof ApiTasksIndexRoute
@@ -822,6 +879,7 @@ export interface FileRoutesByTo {
   '/new': typeof NewRoute
   '/nodes': typeof NodesRoute
   '/orchestrator': typeof OrchestratorRoute
+  '/sergio-bridge': typeof SergioBridgeRoute
   '/sessions': typeof SessionsRoute
   '/skills': typeof SkillsRoute
   '/tasks': typeof TasksRoute
@@ -883,6 +941,12 @@ export interface FileRoutesByTo {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
+  '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -905,6 +969,7 @@ export interface FileRoutesByTo {
   '/api/orchestrator/execute': typeof ApiOrchestratorExecuteRoute
   '/api/orchestrator/goals': typeof ApiOrchestratorGoalsRouteWithChildren
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/telegram/webhook': typeof ApiTelegramWebhookRoute
   '/api/tasks': typeof ApiTasksIndexRoute
@@ -936,6 +1001,7 @@ export interface FileRoutesById {
   '/new': typeof NewRoute
   '/nodes': typeof NodesRoute
   '/orchestrator': typeof OrchestratorRoute
+  '/sergio-bridge': typeof SergioBridgeRoute
   '/sessions': typeof SessionsRoute
   '/settings': typeof SettingsRouteWithChildren
   '/skills': typeof SkillsRoute
@@ -998,6 +1064,12 @@ export interface FileRoutesById {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
+  '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -1020,6 +1092,7 @@ export interface FileRoutesById {
   '/api/orchestrator/execute': typeof ApiOrchestratorExecuteRoute
   '/api/orchestrator/goals': typeof ApiOrchestratorGoalsRouteWithChildren
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/telegram/webhook': typeof ApiTelegramWebhookRoute
   '/api/tasks/': typeof ApiTasksIndexRoute
@@ -1052,6 +1125,7 @@ export interface FileRouteTypes {
     | '/new'
     | '/nodes'
     | '/orchestrator'
+    | '/sergio-bridge'
     | '/sessions'
     | '/settings'
     | '/skills'
@@ -1114,6 +1188,12 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-recent-queries'
+    | '/api/cks/bridge-stats'
+    | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1136,6 +1216,7 @@ export interface FileRouteTypes {
     | '/api/orchestrator/execute'
     | '/api/orchestrator/goals'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/telegram/webhook'
     | '/api/tasks/'
@@ -1166,6 +1247,7 @@ export interface FileRouteTypes {
     | '/new'
     | '/nodes'
     | '/orchestrator'
+    | '/sergio-bridge'
     | '/sessions'
     | '/skills'
     | '/tasks'
@@ -1227,6 +1309,12 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-recent-queries'
+    | '/api/cks/bridge-stats'
+    | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1249,6 +1337,7 @@ export interface FileRouteTypes {
     | '/api/orchestrator/execute'
     | '/api/orchestrator/goals'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/telegram/webhook'
     | '/api/tasks'
@@ -1279,6 +1368,7 @@ export interface FileRouteTypes {
     | '/new'
     | '/nodes'
     | '/orchestrator'
+    | '/sergio-bridge'
     | '/sessions'
     | '/settings'
     | '/skills'
@@ -1341,6 +1431,12 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-recent-queries'
+    | '/api/cks/bridge-stats'
+    | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1363,6 +1459,7 @@ export interface FileRouteTypes {
     | '/api/orchestrator/execute'
     | '/api/orchestrator/goals'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/telegram/webhook'
     | '/api/tasks/'
@@ -1394,6 +1491,7 @@ export interface RootRouteChildren {
   NewRoute: typeof NewRoute
   NodesRoute: typeof NodesRoute
   OrchestratorRoute: typeof OrchestratorRoute
+  SergioBridgeRoute: typeof SergioBridgeRoute
   SessionsRoute: typeof SessionsRoute
   SettingsRoute: typeof SettingsRouteWithChildren
   SkillsRoute: typeof SkillsRoute
@@ -1450,6 +1548,11 @@ export interface RootRouteChildren {
   ApiWorkspaceRoute: typeof ApiWorkspaceRoute
   ChatSessionKeyRoute: typeof ChatSessionKeyRoute
   ChatIndexRoute: typeof ChatIndexRoute
+  ApiCksBridgeRecentQueriesRoute: typeof ApiCksBridgeRecentQueriesRoute
+  ApiCksBridgeStatsRoute: typeof ApiCksBridgeStatsRoute
+  ApiCksBridgeStatusRoute: typeof ApiCksBridgeStatusRoute
+  ApiCksOpenrouterBalanceRoute: typeof ApiCksOpenrouterBalanceRoute
+  ApiCksSprintStatusRoute: typeof ApiCksSprintStatusRoute
   ApiDebugReconnectRoute: typeof ApiDebugReconnectRoute
   ApiDebugStatusRoute: typeof ApiDebugStatusRoute
   ApiGatewayAgentsRoute: typeof ApiGatewayAgentsRoute
@@ -1465,6 +1568,7 @@ export interface RootRouteChildren {
   ApiOrchestratorDecomposeRoute: typeof ApiOrchestratorDecomposeRoute
   ApiOrchestratorExecuteRoute: typeof ApiOrchestratorExecuteRoute
   ApiOrchestratorGoalsRoute: typeof ApiOrchestratorGoalsRouteWithChildren
+  ApiSourcesProbeRoute: typeof ApiSourcesProbeRoute
   ApiTasksTaskIdRoute: typeof ApiTasksTaskIdRoute
   ApiTelegramWebhookRoute: typeof ApiTelegramWebhookRoute
   ApiTasksIndexRoute: typeof ApiTasksIndexRoute
@@ -1514,6 +1618,13 @@ declare module '@tanstack/react-router' {
       path: '/sessions'
       fullPath: '/sessions'
       preLoaderRoute: typeof SessionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sergio-bridge': {
+      id: '/sergio-bridge'
+      path: '/sergio-bridge'
+      fullPath: '/sergio-bridge'
+      preLoaderRoute: typeof SergioBridgeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/orchestrator': {
@@ -2034,6 +2145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiTasksTaskIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/sources/probe': {
+      id: '/api/sources/probe'
+      path: '/api/sources/probe'
+      fullPath: '/api/sources/probe'
+      preLoaderRoute: typeof ApiSourcesProbeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/sessions/send': {
       id: '/api/sessions/send'
       path: '/send'
@@ -2188,6 +2306,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCronDeleteRouteImport
       parentRoute: typeof ApiCronRoute
     }
+    '/api/cron/cks-defaults': {
+      id: '/api/cron/cks-defaults'
+      path: '/cks-defaults'
+      fullPath: '/api/cron/cks-defaults'
+      preLoaderRoute: typeof ApiCronCksDefaultsRouteImport
+      parentRoute: typeof ApiCronRoute
+    }
+    '/api/cks/sprint-status': {
+      id: '/api/cks/sprint-status'
+      path: '/api/cks/sprint-status'
+      fullPath: '/api/cks/sprint-status'
+      preLoaderRoute: typeof ApiCksSprintStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/openrouter-balance': {
+      id: '/api/cks/openrouter-balance'
+      path: '/api/cks/openrouter-balance'
+      fullPath: '/api/cks/openrouter-balance'
+      preLoaderRoute: typeof ApiCksOpenrouterBalanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/bridge-status': {
+      id: '/api/cks/bridge-status'
+      path: '/api/cks/bridge-status'
+      fullPath: '/api/cks/bridge-status'
+      preLoaderRoute: typeof ApiCksBridgeStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/bridge-stats': {
+      id: '/api/cks/bridge-stats'
+      path: '/api/cks/bridge-stats'
+      fullPath: '/api/cks/bridge-stats'
+      preLoaderRoute: typeof ApiCksBridgeStatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/bridge-recent-queries': {
+      id: '/api/cks/bridge-recent-queries'
+      path: '/api/cks/bridge-recent-queries'
+      fullPath: '/api/cks/bridge-recent-queries'
+      preLoaderRoute: typeof ApiCksBridgeRecentQueriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/browser/tabs': {
       id: '/api/browser/tabs'
       path: '/tabs'
@@ -2306,6 +2466,7 @@ const ApiCliAgentsRouteWithChildren = ApiCliAgentsRoute._addFileChildren(
 )
 
 interface ApiCronRouteChildren {
+  ApiCronCksDefaultsRoute: typeof ApiCronCksDefaultsRoute
   ApiCronDeleteRoute: typeof ApiCronDeleteRoute
   ApiCronListRoute: typeof ApiCronListRoute
   ApiCronRunRoute: typeof ApiCronRunRoute
@@ -2315,6 +2476,7 @@ interface ApiCronRouteChildren {
 }
 
 const ApiCronRouteChildren: ApiCronRouteChildren = {
+  ApiCronCksDefaultsRoute: ApiCronCksDefaultsRoute,
   ApiCronDeleteRoute: ApiCronDeleteRoute,
   ApiCronListRoute: ApiCronListRoute,
   ApiCronRunRoute: ApiCronRunRoute,
@@ -2383,6 +2545,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewRoute: NewRoute,
   NodesRoute: NodesRoute,
   OrchestratorRoute: OrchestratorRoute,
+  SergioBridgeRoute: SergioBridgeRoute,
   SessionsRoute: SessionsRoute,
   SettingsRoute: SettingsRouteWithChildren,
   SkillsRoute: SkillsRoute,
@@ -2439,6 +2602,11 @@ const rootRouteChildren: RootRouteChildren = {
   ApiWorkspaceRoute: ApiWorkspaceRoute,
   ChatSessionKeyRoute: ChatSessionKeyRoute,
   ChatIndexRoute: ChatIndexRoute,
+  ApiCksBridgeRecentQueriesRoute: ApiCksBridgeRecentQueriesRoute,
+  ApiCksBridgeStatsRoute: ApiCksBridgeStatsRoute,
+  ApiCksBridgeStatusRoute: ApiCksBridgeStatusRoute,
+  ApiCksOpenrouterBalanceRoute: ApiCksOpenrouterBalanceRoute,
+  ApiCksSprintStatusRoute: ApiCksSprintStatusRoute,
   ApiDebugReconnectRoute: ApiDebugReconnectRoute,
   ApiDebugStatusRoute: ApiDebugStatusRoute,
   ApiGatewayAgentsRoute: ApiGatewayAgentsRoute,
@@ -2454,6 +2622,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiOrchestratorDecomposeRoute: ApiOrchestratorDecomposeRoute,
   ApiOrchestratorExecuteRoute: ApiOrchestratorExecuteRoute,
   ApiOrchestratorGoalsRoute: ApiOrchestratorGoalsRouteWithChildren,
+  ApiSourcesProbeRoute: ApiSourcesProbeRoute,
   ApiTasksTaskIdRoute: ApiTasksTaskIdRoute,
   ApiTelegramWebhookRoute: ApiTelegramWebhookRoute,
   ApiTasksIndexRoute: ApiTasksIndexRoute,
