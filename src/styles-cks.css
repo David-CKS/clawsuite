@@ -1,0 +1,221 @@
+/**
+ * CKS overrides for ClawSuite — visual polish layer.
+ *
+ * Goals:
+ *   1. True black background instead of warm gray (primary-100/200)
+ *   2. Visible input/textarea/select borders + fields darker than cards
+ *   3. Brighter labels for readability
+ *   4. Accent (orange) for focus rings, active tabs, and key CTAs
+ *   5. Tighter spacing in modals so they don't feel airy
+ *
+ * Scoped to `.dark` only — light mode stays as upstream.
+ * Use !important sparingly: only where Tailwind utility classes win specificity.
+ *
+ * Refs ADR-049 (fork mantenido David-CKS/clawsuite).
+ */
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Root surface
+ * ─────────────────────────────────────────────────────────────────── */
+.dark,
+.dark body {
+  background-color: #0a0a0c;
+}
+
+/* Workspace shell containers */
+.dark .workspace-shell,
+.dark [class*="workspace-shell"] {
+  background-color: #0a0a0c;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Cards / sections — tone down warm gray, add subtle border
+ * ─────────────────────────────────────────────────────────────────── */
+.dark .bg-primary-50,
+.dark .dark\:bg-primary-50 {
+  background-color: rgba(255, 107, 53, 0.04) !important;
+  border-left: 2px solid rgba(255, 107, 53, 0.45);
+}
+
+.dark .bg-primary-100,
+.dark .dark\:bg-primary-100 {
+  background-color: #131316 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dark .bg-primary-200,
+.dark .dark\:bg-primary-200 {
+  background-color: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Inputs / textareas / selects — visible borders, darker than cards
+ * ─────────────────────────────────────────────────────────────────── */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #1c1c20 !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  color: #e8e6e3 !important;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: rgba(255, 107, 53, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
+  outline: none;
+}
+
+.dark input:disabled,
+.dark textarea:disabled,
+.dark select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Placeholders */
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: rgba(232, 230, 227, 0.28) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Labels and body text — more legible
+ * ─────────────────────────────────────────────────────────────────── */
+.dark label,
+.dark .text-primary-900,
+.dark .dark\:text-primary-900 {
+  color: #e8e6e3 !important;
+}
+
+.dark .text-primary-700,
+.dark .dark\:text-primary-700,
+.dark .text-primary-600,
+.dark .dark\:text-primary-600 {
+  color: #c5c2bd !important;
+}
+
+.dark .text-primary-500,
+.dark .dark\:text-primary-500 {
+  color: #908d87 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Accent buttons / CTAs
+ * ─────────────────────────────────────────────────────────────────── */
+.dark .bg-accent-500 {
+  background-color: #ff6b35 !important;
+}
+
+.dark .bg-accent-500:hover,
+.dark .hover\:bg-accent-500:hover {
+  background-color: #ff7d4a !important;
+}
+
+.dark .text-accent-500 {
+  color: #ff6b35 !important;
+}
+
+.dark .border-accent-500 {
+  border-color: #ff6b35 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Dialog / modal — tighter, defined edges
+ * ─────────────────────────────────────────────────────────────────── */
+.dark [role="dialog"],
+.dark [data-state="open"][class*="DialogContent"],
+.dark [class*="dialog-content"] {
+  background-color: #131316 !important;
+  border: 1px solid rgba(255, 107, 53, 0.18);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7), 0 0 1px rgba(255, 107, 53, 0.2);
+}
+
+/* Cron manager modal — extra tightening: padding + gap */
+.dark [class*="CronJob"] section,
+.dark [class*="cron-manager"] section {
+  padding: 1rem !important;
+}
+
+.dark [class*="CronJob"] .gap-6,
+.dark [class*="cron-manager"] .gap-6 {
+  gap: 0.875rem !important;
+}
+
+.dark [class*="CronJob"] .p-6,
+.dark [class*="cron-manager"] .p-6 {
+  padding: 1.25rem !important;
+}
+
+/* Schedule preview cron expression — monospace, accent */
+.dark [class*="schedule-preview"],
+.dark [class*="cron-expression"] {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #ff6b35 !important;
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Tab switcher (Interval / Daily / Weekly / One-time, Agent Turn / System Event)
+ * ─────────────────────────────────────────────────────────────────── */
+.dark [role="tablist"] {
+  background-color: #1c1c20 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 3px;
+  border-radius: 8px;
+}
+
+.dark [role="tab"] {
+  color: rgba(232, 230, 227, 0.65) !important;
+  transition: color 120ms ease, background-color 120ms ease;
+}
+
+.dark [role="tab"][data-state="active"],
+.dark [role="tab"][aria-selected="true"] {
+  background-color: rgba(255, 107, 53, 0.12) !important;
+  color: #ff6b35 !important;
+  box-shadow: 0 0 0 1px rgba(255, 107, 53, 0.25) inset;
+}
+
+.dark [role="tab"]:hover:not([data-state="active"]):not([aria-selected="true"]) {
+  color: #e8e6e3 !important;
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Buttons (generic Switch, Continue, etc.)
+ * ─────────────────────────────────────────────────────────────────── */
+.dark button[class*="Switch"],
+.dark button[role="switch"][data-state="checked"] {
+  background-color: #ff6b35 !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Dividers / borders
+ * ─────────────────────────────────────────────────────────────────── */
+.dark .border-t,
+.dark .border-primary-200,
+.dark .border-primary-300 {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * Scrollbars (subtle, on-brand)
+ * ─────────────────────────────────────────────────────────────────── */
+.dark ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 53, 0.35);
+}
