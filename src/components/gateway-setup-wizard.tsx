@@ -44,11 +44,10 @@ function GatewayStepContent() {
           <HugeiconsIcon icon={CloudIcon} className="size-10" strokeWidth={1.5} />
         </div>
         <h2 className="mb-2 text-2xl font-semibold text-primary-900">
-          Connect to Gateway
+          Conecta con el gateway
         </h2>
         <p className="max-w-md text-sm leading-relaxed text-primary-600">
-          Enter your OpenClaw gateway URL and token. The token can be found by
-          running:{' '}
+          Introduce la URL y el token del gateway de OpenClaw. Para obtener el token, ejecuta:{' '}
           <code className="rounded bg-primary-100 px-1.5 py-0.5 text-xs font-medium">
             openclaw config get gateway.auth.token
           </code>

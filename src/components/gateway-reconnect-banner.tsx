@@ -153,9 +153,9 @@ export function GatewayReconnectBanner() {
           strokeWidth={1.5}
         />
         <p className="text-xs font-medium text-red-900">
-          Gateway connection lost.{' '}
+          Se perdió la conexión con el gateway.{' '}
           <span className="font-normal text-red-700 text-pretty">
-            Check your connection or reconfigure in settings.
+            Comprueba tu conexión o reconfigura en ajustes.
           </span>
         </p>
       </div>
@@ -167,12 +167,12 @@ export function GatewayReconnectBanner() {
           className="h-7 shrink-0 border-red-300 bg-red-100 px-2 text-xs text-red-700 hover:bg-red-200"
         >
           <HugeiconsIcon icon={Settings02Icon} size={20} strokeWidth={1.5} />
-          Reconfigure
+          Reconfigurar
         </Button>
         <button
           onClick={handleDismiss}
           className="shrink-0 rounded p-1 text-red-600 transition-colors hover:bg-red-200/70"
-          aria-label="Dismiss banner"
+          aria-label="Cerrar aviso"
         >
           <HugeiconsIcon icon={Cancel01Icon} size={20} strokeWidth={1.5} />
         </button>

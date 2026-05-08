@@ -85,9 +85,9 @@ function riskLevel(text: string): 'low' | 'medium' | 'high' {
 }
 
 const RISK_BADGE: Record<string, { bg: string; text: string; label: string }> = {
-  low: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300', label: 'Low Risk' },
-  medium: { bg: 'bg-amber-100 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-300', label: 'Med Risk' },
-  high: { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-300', label: 'High Risk' },
+  low: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300', label: 'Riesgo bajo' },
+  medium: { bg: 'bg-amber-100 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-300', label: 'Riesgo medio' },
+  high: { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-300', label: 'Riesgo alto' },
 }
 
 export function ExecApprovalToast() {
@@ -138,7 +138,7 @@ export function ExecApprovalToast() {
       if (remaining <= 0 && !resolving[approval.id] && !dismissed.has(approval.id)) {
         // Auto-deny
         void resolveGatewayApproval(approval.id, 'deny').then(() => {
-          showToast(`Auto-denied: ${approvalText(approval).slice(0, 60)}`, { type: 'warning' })
+          showToast(`Denegado automáticamente: ${approvalText(approval).slice(0, 60)}`, { type: 'warning' })
           void refresh()
         })
         setDismissed((prev) => new Set(prev).add(approval.id))
@@ -163,11 +163,11 @@ export function ExecApprovalToast() {
       const result = await resolveGatewayApproval(id, action)
       if (result.ok) {
         showToast(
-          action === 'approve' ? 'Approved ✓' : 'Denied ✕',
+          action === 'approve' ? 'Aprobado ✓' : 'Rechazado ✕',
           { type: action === 'approve' ? 'success' : 'error' },
         )
       } else {
-        showToast('Failed to resolve approval', { type: 'error' })
+        showToast('Falló al resolver la aprobación', { type: 'error' })
       }
       setDismissed((prev) => new Set(prev).add(id))
       await refresh()
@@ -238,7 +238,7 @@ export function ExecApprovalToast() {
               <div className="mb-2 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
-                    ⚡ Exec Approval
+                    ⚡ Aprobación exec
                   </span>
                   <span className={cn('rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase', riskBadge.bg, riskBadge.text)}>
                     {riskBadge.label}
@@ -290,10 +290,10 @@ export function ExecApprovalToast() {
                   {busy === 'approve' ? (
                     <span className="flex items-center justify-center gap-1.5">
                       <span className="size-3 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                      Approving…
+                      Aprobando…
                     </span>
                   ) : (
-                    '✓ Approve'
+                    '✓ Aprobar'
                   )}
                 </button>
                 <button
@@ -308,10 +308,10 @@ export function ExecApprovalToast() {
                   {busy === 'deny' ? (
                     <span className="flex items-center justify-center gap-1.5">
                       <span className="size-3 animate-spin rounded-full border-2 border-red-300 border-t-red-600" />
-                      Denying…
+                      Rechazando…
                     </span>
                   ) : (
-                    '✕ Deny'
+                    '✕ Rechazar'
                   )}
                 </button>
               </div>

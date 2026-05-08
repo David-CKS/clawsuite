@@ -7,6 +7,7 @@ import {
   ChartLineData02Icon,
   Clock01Icon,
   ComputerTerminal01Icon,
+  DatabaseIcon,
   File01Icon,
   GlobeIcon,
   ListViewIcon,
@@ -36,6 +37,10 @@ const SYSTEM_ITEMS: Array<OverflowItem> = [
   { icon: Clock01Icon, label: 'Cron Jobs', to: '/cron' },
   { icon: ListViewIcon, label: 'Logs', to: '/logs' },
   { icon: ApiIcon, label: 'Debug', to: '/debug' },
+]
+
+const BRIDGE_ITEMS: Array<OverflowItem> = [
+  { icon: DatabaseIcon, label: 'Sergio Bridge', to: '/sergio-bridge' },
 ]
 
 const GATEWAY_ITEMS: Array<OverflowItem> = [
@@ -155,6 +160,7 @@ export function DashboardOverflowPanel({ open, onClose }: Props) {
             </button>
           </section>
           <OverflowGrid title="System" items={SYSTEM_ITEMS} onSelect={handleSelect} />
+          <OverflowGrid title="CKS Bridge" items={BRIDGE_ITEMS} onSelect={handleSelect} />
           <OverflowGrid title="Gateway" items={GATEWAY_ITEMS} onSelect={handleSelect} />
         </div>
       </div>
