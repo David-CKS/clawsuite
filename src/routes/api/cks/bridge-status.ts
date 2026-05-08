@@ -29,7 +29,10 @@ export const Route = createFileRoute('/api/cks/bridge-status')({
           })
         }
 
-        const result = await cksFetch<unknown>('/bridge/v1/health', {
+        // Sergio API v3 expone /health en raíz, NO bajo /bridge/v1/.
+        // Cambio del path corrige el HTTP 404 que veía el panel A5.
+        // Response shape: { status: "ok"|"degraded"|..., version, tables }
+        const result = await cksFetch<unknown>('/health', {
           method: 'GET',
           timeoutMs: 4_000,
         })

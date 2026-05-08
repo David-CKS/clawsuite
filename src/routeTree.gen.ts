@@ -88,6 +88,7 @@ import { Route as ApiAgentDispatchRouteImport } from './routes/api/agent-dispatc
 import { Route as ApiAgentActivityRouteImport } from './routes/api/agent-activity'
 import { Route as ApiTasksIndexRouteImport } from './routes/api/tasks/index'
 import { Route as ApiTasksTaskIdRouteImport } from './routes/api/tasks/$taskId'
+import { Route as ApiSourcesProbeRouteImport } from './routes/api/sources/probe'
 import { Route as ApiSessionsSendRouteImport } from './routes/api/sessions/send'
 import { Route as ApiMemoryWriteRouteImport } from './routes/api/memory/write'
 import { Route as ApiMemorySearchRouteImport } from './routes/api/memory/search'
@@ -107,6 +108,9 @@ import { Route as ApiCronToggleRouteImport } from './routes/api/cron/toggle'
 import { Route as ApiCronRunRouteImport } from './routes/api/cron/run'
 import { Route as ApiCronListRouteImport } from './routes/api/cron/list'
 import { Route as ApiCronDeleteRouteImport } from './routes/api/cron/delete'
+import { Route as ApiCronCksDefaultsRouteImport } from './routes/api/cron/cks-defaults'
+import { Route as ApiCksSprintStatusRouteImport } from './routes/api/cks/sprint-status'
+import { Route as ApiCksOpenrouterBalanceRouteImport } from './routes/api/cks/openrouter-balance'
 import { Route as ApiCksBridgeStatusRouteImport } from './routes/api/cks/bridge-status'
 import { Route as ApiCksBridgeStatsRouteImport } from './routes/api/cks/bridge-stats'
 import { Route as ApiCksBridgeRecentQueriesRouteImport } from './routes/api/cks/bridge-recent-queries'
@@ -515,6 +519,11 @@ const ApiTasksTaskIdRoute = ApiTasksTaskIdRouteImport.update({
   path: '/api/tasks/$taskId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSourcesProbeRoute = ApiSourcesProbeRouteImport.update({
+  id: '/api/sources/probe',
+  path: '/api/sources/probe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiSessionsSendRoute = ApiSessionsSendRouteImport.update({
   id: '/send',
   path: '/send',
@@ -609,6 +618,21 @@ const ApiCronDeleteRoute = ApiCronDeleteRouteImport.update({
   id: '/delete',
   path: '/delete',
   getParentRoute: () => ApiCronRoute,
+} as any)
+const ApiCronCksDefaultsRoute = ApiCronCksDefaultsRouteImport.update({
+  id: '/cks-defaults',
+  path: '/cks-defaults',
+  getParentRoute: () => ApiCronRoute,
+} as any)
+const ApiCksSprintStatusRoute = ApiCksSprintStatusRouteImport.update({
+  id: '/api/cks/sprint-status',
+  path: '/api/cks/sprint-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksOpenrouterBalanceRoute = ApiCksOpenrouterBalanceRouteImport.update({
+  id: '/api/cks/openrouter-balance',
+  path: '/api/cks/openrouter-balance',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ApiCksBridgeStatusRoute = ApiCksBridgeStatusRouteImport.update({
   id: '/api/cks/bridge-status',
@@ -760,6 +784,9 @@ export interface FileRoutesByFullPath {
   '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
   '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
   '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -779,6 +806,7 @@ export interface FileRoutesByFullPath {
   '/api/memory/search': typeof ApiMemorySearchRoute
   '/api/memory/write': typeof ApiMemoryWriteRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/tasks/': typeof ApiTasksIndexRoute
   '/api/cli-agents/$pid/kill': typeof ApiCliAgentsPidKillRoute
@@ -871,6 +899,9 @@ export interface FileRoutesByTo {
   '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
   '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
   '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -890,6 +921,7 @@ export interface FileRoutesByTo {
   '/api/memory/search': typeof ApiMemorySearchRoute
   '/api/memory/write': typeof ApiMemoryWriteRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/tasks': typeof ApiTasksIndexRoute
   '/api/cli-agents/$pid/kill': typeof ApiCliAgentsPidKillRoute
@@ -984,6 +1016,9 @@ export interface FileRoutesById {
   '/api/cks/bridge-recent-queries': typeof ApiCksBridgeRecentQueriesRoute
   '/api/cks/bridge-stats': typeof ApiCksBridgeStatsRoute
   '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -1003,6 +1038,7 @@ export interface FileRoutesById {
   '/api/memory/search': typeof ApiMemorySearchRoute
   '/api/memory/write': typeof ApiMemoryWriteRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
+  '/api/sources/probe': typeof ApiSourcesProbeRoute
   '/api/tasks/$taskId': typeof ApiTasksTaskIdRoute
   '/api/tasks/': typeof ApiTasksIndexRoute
   '/api/cli-agents/$pid/kill': typeof ApiCliAgentsPidKillRoute
@@ -1098,6 +1134,9 @@ export interface FileRouteTypes {
     | '/api/cks/bridge-recent-queries'
     | '/api/cks/bridge-stats'
     | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1117,6 +1156,7 @@ export interface FileRouteTypes {
     | '/api/memory/search'
     | '/api/memory/write'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/tasks/'
     | '/api/cli-agents/$pid/kill'
@@ -1209,6 +1249,9 @@ export interface FileRouteTypes {
     | '/api/cks/bridge-recent-queries'
     | '/api/cks/bridge-stats'
     | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1228,6 +1271,7 @@ export interface FileRouteTypes {
     | '/api/memory/search'
     | '/api/memory/write'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/tasks'
     | '/api/cli-agents/$pid/kill'
@@ -1321,6 +1365,9 @@ export interface FileRouteTypes {
     | '/api/cks/bridge-recent-queries'
     | '/api/cks/bridge-stats'
     | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1340,6 +1387,7 @@ export interface FileRouteTypes {
     | '/api/memory/search'
     | '/api/memory/write'
     | '/api/sessions/send'
+    | '/api/sources/probe'
     | '/api/tasks/$taskId'
     | '/api/tasks/'
     | '/api/cli-agents/$pid/kill'
@@ -1428,6 +1476,8 @@ export interface RootRouteChildren {
   ApiCksBridgeRecentQueriesRoute: typeof ApiCksBridgeRecentQueriesRoute
   ApiCksBridgeStatsRoute: typeof ApiCksBridgeStatsRoute
   ApiCksBridgeStatusRoute: typeof ApiCksBridgeStatusRoute
+  ApiCksOpenrouterBalanceRoute: typeof ApiCksOpenrouterBalanceRoute
+  ApiCksSprintStatusRoute: typeof ApiCksSprintStatusRoute
   ApiDebugReconnectRoute: typeof ApiDebugReconnectRoute
   ApiDebugStatusRoute: typeof ApiDebugStatusRoute
   ApiGatewayAgentsRoute: typeof ApiGatewayAgentsRoute
@@ -1440,6 +1490,7 @@ export interface RootRouteChildren {
   ApiMemoryReadRoute: typeof ApiMemoryReadRoute
   ApiMemorySearchRoute: typeof ApiMemorySearchRoute
   ApiMemoryWriteRoute: typeof ApiMemoryWriteRoute
+  ApiSourcesProbeRoute: typeof ApiSourcesProbeRoute
   ApiTasksTaskIdRoute: typeof ApiTasksTaskIdRoute
   ApiTasksIndexRoute: typeof ApiTasksIndexRoute
   ApiGatewayApprovalsIndexRoute: typeof ApiGatewayApprovalsIndexRoute
@@ -2001,6 +2052,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiTasksTaskIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/sources/probe': {
+      id: '/api/sources/probe'
+      path: '/api/sources/probe'
+      fullPath: '/api/sources/probe'
+      preLoaderRoute: typeof ApiSourcesProbeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/sessions/send': {
       id: '/api/sessions/send'
       path: '/send'
@@ -2134,6 +2192,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCronDeleteRouteImport
       parentRoute: typeof ApiCronRoute
     }
+    '/api/cron/cks-defaults': {
+      id: '/api/cron/cks-defaults'
+      path: '/cks-defaults'
+      fullPath: '/api/cron/cks-defaults'
+      preLoaderRoute: typeof ApiCronCksDefaultsRouteImport
+      parentRoute: typeof ApiCronRoute
+    }
+    '/api/cks/sprint-status': {
+      id: '/api/cks/sprint-status'
+      path: '/api/cks/sprint-status'
+      fullPath: '/api/cks/sprint-status'
+      preLoaderRoute: typeof ApiCksSprintStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/openrouter-balance': {
+      id: '/api/cks/openrouter-balance'
+      path: '/api/cks/openrouter-balance'
+      fullPath: '/api/cks/openrouter-balance'
+      preLoaderRoute: typeof ApiCksOpenrouterBalanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/cks/bridge-status': {
       id: '/api/cks/bridge-status'
       path: '/api/cks/bridge-status'
@@ -2266,6 +2345,7 @@ const ApiCliAgentsRouteWithChildren = ApiCliAgentsRoute._addFileChildren(
 )
 
 interface ApiCronRouteChildren {
+  ApiCronCksDefaultsRoute: typeof ApiCronCksDefaultsRoute
   ApiCronDeleteRoute: typeof ApiCronDeleteRoute
   ApiCronListRoute: typeof ApiCronListRoute
   ApiCronRunRoute: typeof ApiCronRunRoute
@@ -2275,6 +2355,7 @@ interface ApiCronRouteChildren {
 }
 
 const ApiCronRouteChildren: ApiCronRouteChildren = {
+  ApiCronCksDefaultsRoute: ApiCronCksDefaultsRoute,
   ApiCronDeleteRoute: ApiCronDeleteRoute,
   ApiCronListRoute: ApiCronListRoute,
   ApiCronRunRoute: ApiCronRunRoute,
@@ -2391,6 +2472,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiCksBridgeRecentQueriesRoute: ApiCksBridgeRecentQueriesRoute,
   ApiCksBridgeStatsRoute: ApiCksBridgeStatsRoute,
   ApiCksBridgeStatusRoute: ApiCksBridgeStatusRoute,
+  ApiCksOpenrouterBalanceRoute: ApiCksOpenrouterBalanceRoute,
+  ApiCksSprintStatusRoute: ApiCksSprintStatusRoute,
   ApiDebugReconnectRoute: ApiDebugReconnectRoute,
   ApiDebugStatusRoute: ApiDebugStatusRoute,
   ApiGatewayAgentsRoute: ApiGatewayAgentsRoute,
@@ -2403,6 +2486,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiMemoryReadRoute: ApiMemoryReadRoute,
   ApiMemorySearchRoute: ApiMemorySearchRoute,
   ApiMemoryWriteRoute: ApiMemoryWriteRoute,
+  ApiSourcesProbeRoute: ApiSourcesProbeRoute,
   ApiTasksTaskIdRoute: ApiTasksTaskIdRoute,
   ApiTasksIndexRoute: ApiTasksIndexRoute,
   ApiGatewayApprovalsIndexRoute: ApiGatewayApprovalsIndexRoute,
