@@ -41,11 +41,11 @@ const CHECK_INTERVAL_MS = 15 * 60 * 1000
 
 const PHASE_LABELS: Record<UpdatePhase, string> = {
   idle: '',
-  pulling: 'Pulling latest changes...',
-  installing: 'Installing dependencies...',
-  restarting: 'Restarting...',
-  done: 'Update complete!',
-  error: 'Update failed',
+  pulling: 'Descargando últimos cambios…',
+  installing: 'Instalando dependencias…',
+  restarting: 'Reiniciando…',
+  done: '¡Actualización completa!',
+  error: 'Falló la actualización',
 }
 
 function commitTypeIcon(subject: string): string {
