@@ -81,7 +81,7 @@ export function CronJobCard({
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 text-xs text-primary-600 tabular-nums">
                 <HugeiconsIcon icon={Clock01Icon} size={20} strokeWidth={1.5} />
-                <span>Last Run</span>
+                <span>Última ejecución</span>
               </div>
               <p className="mt-0.5 truncate text-sm text-primary-900 tabular-nums">
                 {formatDateTime(job.lastRun?.startedAt)}
@@ -99,7 +99,7 @@ export function CronJobCard({
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5 text-xs text-primary-600 tabular-nums">
                   <HugeiconsIcon icon={Clock01Icon} size={20} strokeWidth={1.5} />
-                  <span>Next Run</span>
+                  <span>Próxima ejecución</span>
                 </div>
                 <p className="mt-0.5 truncate text-sm text-primary-900 tabular-nums">
                   {formatDateTime(job.nextRunAt)}
@@ -116,7 +116,7 @@ export function CronJobCard({
             onCheckedChange={function onCheckedChange(nextValue) {
               onToggleEnabled(job, Boolean(nextValue))
             }}
-            aria-label={`Toggle ${job.name}`}
+            aria-label={`Alternar ${job.name}`}
           />
           <Button
             size="sm"
@@ -128,7 +128,7 @@ export function CronJobCard({
             className="tabular-nums"
           >
             <HugeiconsIcon icon={PlayCircleIcon} size={20} strokeWidth={1.5} />
-            Run Now
+            Ejecutar ya
           </Button>
           <Button
             size="sm"
@@ -139,7 +139,7 @@ export function CronJobCard({
             }}
             className="tabular-nums"
           >
-            Edit
+            Editar
           </Button>
           <Button
             size="sm"
@@ -150,7 +150,7 @@ export function CronJobCard({
             }}
             className="tabular-nums"
           >
-            {deletePending ? 'Deleting...' : 'Delete'}
+            {deletePending ? 'Eliminando…' : 'Eliminar'}
           </Button>
         </div>
       </div>
