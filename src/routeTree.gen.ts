@@ -106,6 +106,7 @@ import { Route as ApiCronToggleRouteImport } from './routes/api/cron/toggle'
 import { Route as ApiCronRunRouteImport } from './routes/api/cron/run'
 import { Route as ApiCronListRouteImport } from './routes/api/cron/list'
 import { Route as ApiCronDeleteRouteImport } from './routes/api/cron/delete'
+import { Route as ApiCronCksDefaultsRouteImport } from './routes/api/cron/cks-defaults'
 import { Route as ApiBrowserTabsRouteImport } from './routes/api/browser/tabs'
 import { Route as ApiBrowserStatusRouteImport } from './routes/api/browser/status'
 import { Route as ApiBrowserScreenshotRouteImport } from './routes/api/browser/screenshot'
@@ -601,6 +602,11 @@ const ApiCronDeleteRoute = ApiCronDeleteRouteImport.update({
   path: '/delete',
   getParentRoute: () => ApiCronRoute,
 } as any)
+const ApiCronCksDefaultsRoute = ApiCronCksDefaultsRouteImport.update({
+  id: '/cks-defaults',
+  path: '/cks-defaults',
+  getParentRoute: () => ApiCronRoute,
+} as any)
 const ApiBrowserTabsRoute = ApiBrowserTabsRouteImport.update({
   id: '/tabs',
   path: '/tabs',
@@ -731,6 +737,7 @@ export interface FileRoutesByFullPath {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -838,6 +845,7 @@ export interface FileRoutesByTo {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -947,6 +955,7 @@ export interface FileRoutesById {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cron/cks-defaults': typeof ApiCronCksDefaultsRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -1057,6 +1066,7 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1164,6 +1174,7 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1272,6 +1283,7 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cron/cks-defaults'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -2074,6 +2086,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCronDeleteRouteImport
       parentRoute: typeof ApiCronRoute
     }
+    '/api/cron/cks-defaults': {
+      id: '/api/cron/cks-defaults'
+      path: '/cks-defaults'
+      fullPath: '/api/cron/cks-defaults'
+      preLoaderRoute: typeof ApiCronCksDefaultsRouteImport
+      parentRoute: typeof ApiCronRoute
+    }
     '/api/browser/tabs': {
       id: '/api/browser/tabs'
       path: '/tabs'
@@ -2185,6 +2204,7 @@ const ApiCliAgentsRouteWithChildren = ApiCliAgentsRoute._addFileChildren(
 )
 
 interface ApiCronRouteChildren {
+  ApiCronCksDefaultsRoute: typeof ApiCronCksDefaultsRoute
   ApiCronDeleteRoute: typeof ApiCronDeleteRoute
   ApiCronListRoute: typeof ApiCronListRoute
   ApiCronRunRoute: typeof ApiCronRunRoute
@@ -2194,6 +2214,7 @@ interface ApiCronRouteChildren {
 }
 
 const ApiCronRouteChildren: ApiCronRouteChildren = {
+  ApiCronCksDefaultsRoute: ApiCronCksDefaultsRoute,
   ApiCronDeleteRoute: ApiCronDeleteRoute,
   ApiCronListRoute: ApiCronListRoute,
   ApiCronRunRoute: ApiCronRunRoute,
