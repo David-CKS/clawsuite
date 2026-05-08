@@ -143,14 +143,18 @@ export function DashboardScreen() {
   const updateSettings = useSettingsStore((state) => state.updateSettings)
   const [isMobile, setIsMobile] = useState(false)
   const [mobileEditMode, setMobileEditMode] = useState(false)
-  const [showLogoTip, setShowLogoTip] = useState(() => {
-    if (typeof window === 'undefined') return false
+  // SSR-safe: start hidden on server + first client paint to avoid #418
+  // hydration mismatch. Then peek at localStorage in useEffect below
+  // (GAP-F117).
+  const [showLogoTip, setShowLogoTip] = useState(false)
+  useEffect(() => {
     try {
-      return localStorage.getItem('clawsuite-logo-tip-seen') !== 'true'
+      const seen = localStorage.getItem('clawsuite-logo-tip-seen') === 'true'
+      if (!seen) setShowLogoTip(true)
     } catch {
-      return false
+      // ignore
     }
-  })
+  }, [])
   const mainScrollRef = useRef<HTMLElement>(null)
 
   // ── Dashboard data (single hook, all queries + computed values) ────────────

@@ -137,9 +137,9 @@ export function SkillsScreen() {
   const [actionError, setActionError] = useState<string | null>(null)
 
   // Mobile detection for pull-to-refresh
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
-  )
+  // SSR-safe init (GAP-F117): same value on server + first client paint;
+  // the useEffect below syncs to the real viewport.
+  const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
     const media = window.matchMedia('(max-width: 767px)')
     const update = () => setIsMobile(media.matches)

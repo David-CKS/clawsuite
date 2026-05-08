@@ -551,10 +551,9 @@ function ChatComposerComponent({
   const [focusAfterSubmitTick, setFocusAfterSubmitTick] = useState(0)
   const { settings: composerSettings } = useSettings()
   const chatNavMode = composerSettings.mobileChatNavMode ?? 'dock'
-  const [isMobileViewport, setIsMobileViewport] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return window.matchMedia('(max-width: 767px)').matches
-  })
+  // SSR-safe init: same value on server and client first paint to avoid
+  // React #418 hydration mismatch (GAP-F117). Synced inside useEffect.
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
   const [isModelMenuOpen, setIsModelMenuOpen] = useState(false)
   const [isMobileActionsMenuOpen, setIsMobileActionsMenuOpen] = useState(false)
   const [isWebSearchMode, _setIsWebSearchMode] = useState(false)

@@ -68,9 +68,17 @@ import { applyTheme, useSettingsStore } from '@/hooks/use-settings'
 function ThemeToggleMini() {
   const theme = useSettingsStore((state) => state.settings.theme)
   const updateSettings = useSettingsStore((state) => state.updateSettings)
+  // SSR-safe: until mounted on the client, render the icon based on `theme`
+  // alone (which is identical on server and client). After mount we can also
+  // peek at `document.documentElement.classList` without causing #418.
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   const isDark =
     theme === 'dark' ||
     (theme === 'system' &&
+      mounted &&
       typeof document !== 'undefined' &&
       document.documentElement.classList.contains('dark'))
 
@@ -461,16 +469,25 @@ function CollapsibleSection({
 // ── Persist helper ──────────────────────────────────────────────────────
 
 function usePersistedBool(key: string, defaultValue: boolean) {
-  const [value, setValue] = useState(() => {
+  // SSR-safe: always start with `defaultValue` on the server AND on the
+  // client's first render so React hydration matches. Then sync to
+  // localStorage value inside useEffect (client-only). This avoids
+  // React error #418 (hydration mismatch) when persisted state differs
+  // from the default — see GAP-F117.
+  const [value, setValue] = useState<boolean>(defaultValue)
+
+  useEffect(() => {
     try {
       const stored = localStorage.getItem(key)
-      if (stored === 'true') return true
-      if (stored === 'false') return false
-      return defaultValue
+      if (stored === 'true') {
+        setValue(true)
+      } else if (stored === 'false') {
+        setValue(false)
+      }
     } catch {
-      return defaultValue
+      // ignore — keep defaultValue
     }
-  })
+  }, [key])
 
   function toggle() {
     setValue((prev) => {

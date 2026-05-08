@@ -185,10 +185,9 @@ function ChatMessageListComponent({
   const [isMessageSearchOpen, setIsMessageSearchOpen] = useState(false)
   const [messageSearchValue, setMessageSearchValue] = useState('')
   const [activeSearchMatchIndex, setActiveSearchMatchIndex] = useState(0)
-  const [isMobileViewport, setIsMobileViewport] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return window.matchMedia('(max-width: 767px)').matches
-  })
+  // SSR-safe init: same value on server and client first paint to avoid
+  // React #418 hydration mismatch (GAP-F117). Synced inside useEffect below.
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
   // Pull-to-refresh removed (was buggy on mobile)
   const [scrollMetrics] = useState({
     scrollTop: 0,

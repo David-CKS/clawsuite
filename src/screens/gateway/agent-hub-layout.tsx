@@ -2703,9 +2703,9 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
   void restoreDismissed
 
   // ── Existing state ──────────────────────────────────────────────────────────
-  const [isMobileHub, setIsMobileHub] = useState(() =>
-    typeof window !== 'undefined' && window.innerWidth < 768
-  )
+  // SSR-safe init (GAP-F117): same value on server + first client paint;
+  // a useEffect below syncs to the real viewport.
+  const [isMobileHub, setIsMobileHub] = useState(false)
   const [missionActive, setMissionActive] = useState(false)
   const [missionGoal, setMissionGoal] = useState('')
   const [activeMissionName, setActiveMissionName] = useState('')
