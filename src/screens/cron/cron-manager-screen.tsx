@@ -3,6 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { motion } from 'motion/react'
 import { useMemo, useState } from 'react'
+import { CKS_DEFAULT_JOBS } from '@/components/cron-manager/cks-default-jobs'
 import type {
   CronJob,
   CronJobUpsertInput,
@@ -13,6 +14,7 @@ import type {
 import { CronJobForm } from '@/components/cron-manager/CronJobForm'
 import { CronJobList } from '@/components/cron-manager/CronJobList'
 import { Button } from '@/components/ui/button'
+import { seedCksCronJobs } from '@/lib/cks-cron-seeder'
 import {
   deleteCronJob,
   fetchCronJobs,
@@ -101,6 +103,44 @@ export function CronManagerScreen() {
       setDeletePendingJobId(null)
     },
   })
+
+  const [seedPending, setSeedPending] = useState(false)
+  const [seedNotice, setSeedNotice] = useState<string | null>(null)
+
+  async function handleImportCksDefaults() {
+    setActionError(null)
+    setSeedNotice(null)
+    const total = CKS_DEFAULT_JOBS.length
+    const confirmed = window.confirm(
+      `Import ${total} CKS default cron jobs?\n\n` +
+        `Each entry maps an OpenClaw VPS cron to an agentTurn message ` +
+        `directed at the maestro. All entries are imported as DISABLED — ` +
+        `enable manually after review.\n\nThis cannot be undone in bulk; ` +
+        `delete entries individually if needed.`,
+    )
+    if (!confirmed) return
+
+    setSeedPending(true)
+    try {
+      const result = await seedCksCronJobs()
+      await queryClient.invalidateQueries({ queryKey: cronQueryKeys.jobs })
+      if (result.failed === 0) {
+        setSeedNotice(`Imported ${result.created} CKS default cron jobs.`)
+      } else {
+        setActionError(
+          `Imported ${result.created}/${result.attempted}. ` +
+            `${result.failed} failed: ${result.errors.slice(0, 3).join('; ')}` +
+            (result.errors.length > 3 ? '…' : ''),
+        )
+      }
+    } catch (error) {
+      setActionError(
+        error instanceof Error ? error.message : String(error),
+      )
+    } finally {
+      setSeedPending(false)
+    }
+  }
 
   const jobs = useMemo(
     function deriveJobs() {
@@ -259,7 +299,26 @@ export function CronManagerScreen() {
             >
               Create Job
             </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={seedPending}
+              onClick={function onClickImportCks() {
+                void handleImportCksDefaults()
+              }}
+              className="tabular-nums"
+              title="Import 12 CKS default cron jobs (all disabled by default)"
+            >
+              {seedPending
+                ? 'Importing CKS defaults…'
+                : `Import CKS Defaults (${CKS_DEFAULT_JOBS.length})`}
+            </Button>
           </div>
+          {seedNotice ? (
+            <p className="mt-2 text-xs text-primary-600 tabular-nums">
+              {seedNotice}
+            </p>
+          ) : null}
         </header>
 
         {actionError ? (

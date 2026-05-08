@@ -45,37 +45,37 @@ type ModelCatalogEntry = {
 }
 
 const INTERVAL_OPTIONS = [
-  { value: 'every 5m', label: 'Every 5 minutes' },
-  { value: 'every 15m', label: 'Every 15 minutes' },
-  { value: 'every 30m', label: 'Every 30 minutes' },
-  { value: 'every 1h', label: 'Every hour' },
-  { value: 'every 2h', label: 'Every 2 hours' },
-  { value: 'every 4h', label: 'Every 4 hours' },
-  { value: 'every 6h', label: 'Every 6 hours' },
-  { value: 'every 12h', label: 'Every 12 hours' },
-  { value: 'every 24h', label: 'Every 24 hours' },
+  { value: 'every 5m', label: 'Cada 5 minutos' },
+  { value: 'every 15m', label: 'Cada 15 minutos' },
+  { value: 'every 30m', label: 'Cada 30 minutos' },
+  { value: 'every 1h', label: 'Cada hora' },
+  { value: 'every 2h', label: 'Cada 2 horas' },
+  { value: 'every 4h', label: 'Cada 4 horas' },
+  { value: 'every 6h', label: 'Cada 6 horas' },
+  { value: 'every 12h', label: 'Cada 12 horas' },
+  { value: 'every 24h', label: 'Cada 24 horas' },
 ] as const
 
 const SCHEDULE_TYPE_OPTIONS: Array<{ value: ScheduleType; label: string }> = [
-  { value: 'interval', label: 'Interval' },
-  { value: 'daily', label: 'Daily' },
-  { value: 'weekly', label: 'Weekly' },
-  { value: 'one-time', label: 'One-time' },
+  { value: 'interval', label: 'Intervalo' },
+  { value: 'daily', label: 'Diario' },
+  { value: 'weekly', label: 'Semanal' },
+  { value: 'one-time', label: 'Una vez' },
 ]
 
 const TASK_TYPE_OPTIONS: Array<{ value: TaskType; label: string }> = [
-  { value: 'agentTurn', label: 'Agent Turn' },
-  { value: 'systemEvent', label: 'System Event' },
+  { value: 'agentTurn', label: 'Turno de agente' },
+  { value: 'systemEvent', label: 'Evento de sistema' },
 ]
 
 const DAY_OPTIONS: Array<{ value: DayOfWeek; label: string }> = [
-  { value: '0', label: 'Sun' },
-  { value: '1', label: 'Mon' },
-  { value: '2', label: 'Tue' },
-  { value: '3', label: 'Wed' },
-  { value: '4', label: 'Thu' },
-  { value: '5', label: 'Fri' },
-  { value: '6', label: 'Sat' },
+  { value: '0', label: 'Dom' },
+  { value: '1', label: 'Lun' },
+  { value: '2', label: 'Mar' },
+  { value: '3', label: 'Mié' },
+  { value: '4', label: 'Jue' },
+  { value: '5', label: 'Vie' },
+  { value: '6', label: 'Sáb' },
 ]
 
 const HOUR_OPTIONS = Array.from({ length: 12 }, (_, index) =>
@@ -333,7 +333,7 @@ function FieldLabel({
     <span className="text-xs font-medium text-primary-600">
       {children}
       {optional ? (
-        <span className="ml-1 text-primary-500">(optional)</span>
+        <span className="ml-1 text-primary-500">(opcional)</span>
       ) : null}
     </span>
   )
@@ -597,14 +597,14 @@ export function CronJobForm({
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary-500">
-              Cron Manager
+              Gestor de cron
             </p>
             <h2 className="mt-2 text-2xl font-semibold text-primary-900">
-              {mode === 'edit' ? 'Edit Cron Job' : 'Create Cron Job'}
+              {mode === 'edit' ? 'Editar tarea programada' : 'Crear tarea programada'}
             </h2>
             <p className="mt-2 text-sm text-primary-600">
-              Build a schedule, define the task payload, and keep raw controls
-              available for edge cases.
+              Crea un horario, define el payload de la tarea y deja los controles
+              raw disponibles para casos especiales.
             </p>
           </div>
           <button
@@ -612,7 +612,7 @@ export function CronJobForm({
             onClick={onClose}
             disabled={pending}
             className="inline-flex size-10 items-center justify-center rounded-xl border border-primary-200 bg-white/80 text-lg text-primary-600 transition-colors hover:border-primary-300 hover:text-primary-900 disabled:cursor-not-allowed disabled:opacity-60"
-            aria-label="Close cron job form"
+            aria-label="Cerrar formulario de tarea programada"
           >
             ×
           </button>
@@ -628,26 +628,26 @@ export function CronJobForm({
           <section className="rounded-xl border border-primary-200 bg-white/70 p-4">
             <div className="grid gap-4 md:grid-cols-[1.3fr_1fr]">
               <label className="space-y-2">
-                <FieldLabel>Name</FieldLabel>
+                <FieldLabel>Nombre</FieldLabel>
                 <input
                   value={name}
                   onChange={(event) => {
                     setName(event.target.value)
                     setLocalError(null)
                   }}
-                  placeholder="Daily Digest"
+                  placeholder="Resumen diario"
                   className="h-11 w-full rounded-xl border border-primary-200 bg-primary-100/60 px-4 text-sm text-primary-900 outline-none transition-colors placeholder:text-primary-500 focus:border-primary-300"
                 />
               </label>
 
               <label className="space-y-2">
-                <FieldLabel optional>Description</FieldLabel>
+                <FieldLabel optional>Descripción</FieldLabel>
                 <input
                   value={description}
                   onChange={(event) => {
                     setDescription(event.target.value)
                   }}
-                  placeholder="Optional context for this job"
+                  placeholder="Contexto opcional para esta tarea"
                   className="h-11 w-full rounded-xl border border-primary-200 bg-primary-100/60 px-4 text-sm text-primary-900 outline-none transition-colors placeholder:text-primary-500 focus:border-primary-300"
                 />
               </label>
@@ -658,11 +658,11 @@ export function CronJobForm({
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 className="text-sm font-semibold text-primary-900">
-                  Schedule
+                  Horario
                 </h3>
                 <p className="mt-1 text-xs text-primary-600">
-                  Choose a schedule type and the form will generate the runtime
-                  expression for you.
+                  Elige el tipo de horario y el formulario generará la expresión
+                  de tiempo de ejecución por ti.
                 </p>
               </div>
               <div className="inline-flex rounded-xl border border-primary-200 bg-primary-100/60 p-1">
@@ -690,7 +690,7 @@ export function CronJobForm({
             <div className="mt-4 space-y-4">
               {scheduleType === 'interval' ? (
                 <label className="space-y-2">
-                  <FieldLabel>Interval</FieldLabel>
+                  <FieldLabel>Intervalo</FieldLabel>
                   <select
                     value={intervalValue}
                     onChange={(event) => {
@@ -780,7 +780,7 @@ export function CronJobForm({
 
               {scheduleType === 'weekly' ? (
                 <div className="space-y-2">
-                  <FieldLabel>Days of week</FieldLabel>
+                  <FieldLabel>Días de la semana</FieldLabel>
                   <div className="flex flex-wrap gap-2">
                     {DAY_OPTIONS.map((day) => {
                       const checked = weeklyDays.includes(day.value)
@@ -812,10 +812,10 @@ export function CronJobForm({
 
               <div className="rounded-xl border border-primary-200 bg-primary-100/40 px-4 py-3">
                 <p className="text-xs font-medium text-primary-600">
-                  Generated schedule preview
+                  Vista previa del horario generado
                 </p>
                 <code className="mt-1 block text-sm text-primary-900">
-                  {generatedSchedule || 'Waiting for schedule details'}
+                  {generatedSchedule || 'Esperando los detalles del horario'}
                 </code>
                 {scheduleError ? (
                   <p className="mt-2 text-xs text-accent-500">{scheduleError}</p>
@@ -827,10 +827,10 @@ export function CronJobForm({
           <section className="rounded-xl border border-primary-200 bg-white/70 p-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h3 className="text-sm font-semibold text-primary-900">Task</h3>
+                <h3 className="text-sm font-semibold text-primary-900">Tarea</h3>
                 <p className="mt-1 text-xs text-primary-600">
-                  Configure the task payload without editing raw JSON by
-                  default.
+                  Configura el payload de la tarea sin editar JSON raw por
+                  defecto.
                 </p>
               </div>
               <div className="inline-flex rounded-xl border border-primary-200 bg-primary-100/60 p-1">
@@ -858,7 +858,7 @@ export function CronJobForm({
             <div className="mt-4 grid gap-4">
               {taskType === 'agentTurn' ? (
                 <label className="space-y-2">
-                  <FieldLabel>Message</FieldLabel>
+                  <FieldLabel>Mensaje</FieldLabel>
                   <textarea
                     value={message}
                     onChange={(event) => {
@@ -866,20 +866,20 @@ export function CronJobForm({
                       markFriendlyPayloadDirty()
                     }}
                     rows={5}
-                    placeholder="Describe the agent turn this cron job should run."
+                    placeholder="Describe el turno de agente que debe ejecutar esta tarea."
                     className="w-full rounded-xl border border-primary-200 bg-primary-100/60 px-4 py-3 text-sm text-primary-900 outline-none transition-colors placeholder:text-primary-500 focus:border-primary-300"
                   />
                 </label>
               ) : (
                 <label className="space-y-2">
-                  <FieldLabel>Message</FieldLabel>
+                  <FieldLabel>Mensaje</FieldLabel>
                   <input
                     value={message}
                     onChange={(event) => {
                       setMessage(event.target.value)
                       markFriendlyPayloadDirty()
                     }}
-                    placeholder="System event message"
+                    placeholder="Mensaje del evento de sistema"
                     className="h-11 w-full rounded-xl border border-primary-200 bg-primary-100/60 px-4 text-sm text-primary-900 outline-none transition-colors placeholder:text-primary-500 focus:border-primary-300"
                   />
                 </label>
@@ -888,7 +888,7 @@ export function CronJobForm({
               {taskType === 'agentTurn' ? (
                 <div className="grid gap-4 md:grid-cols-[1fr_180px]">
                   <label className="space-y-2">
-                    <FieldLabel optional>Model</FieldLabel>
+                    <FieldLabel optional>Modelo</FieldLabel>
                     <select
                       value={model}
                       onChange={(event) => {
@@ -899,8 +899,8 @@ export function CronJobForm({
                     >
                       <option value="">
                         {modelsQuery.isLoading
-                          ? 'Loading models...'
-                          : 'Default gateway model'}
+                          ? 'Cargando modelos…'
+                          : 'Modelo por defecto del gateway'}
                       </option>
                       {modelOptions.map((option) => (
                         <option key={option.value} value={option.value}>
@@ -912,13 +912,13 @@ export function CronJobForm({
                       <p className="text-xs text-accent-500">
                         {modelsQuery.error instanceof Error
                           ? modelsQuery.error.message
-                          : 'Failed to load models.'}
+                          : 'Falló la carga de modelos.'}
                       </p>
                     ) : null}
                   </label>
 
                   <label className="space-y-2">
-                    <FieldLabel>Timeout (seconds)</FieldLabel>
+                    <FieldLabel>Tiempo límite (segundos)</FieldLabel>
                     <input
                       type="number"
                       min={1}
@@ -936,7 +936,7 @@ export function CronJobForm({
 
               <div className="rounded-xl border border-primary-200 bg-primary-100/40 px-4 py-3">
                 <p className="text-xs font-medium text-primary-600">
-                  Generated payload preview
+                  Vista previa del payload generado
                 </p>
                 <pre className="mt-1 overflow-x-auto whitespace-pre-wrap text-xs text-primary-900">
                   {generatedPayloadPreview}
@@ -949,10 +949,10 @@ export function CronJobForm({
             <div className="flex items-center justify-between gap-3">
               <div>
                 <h3 className="text-sm font-semibold text-primary-900">
-                  Enabled
+                  Activado
                 </h3>
                 <p className="mt-1 text-xs text-primary-600">
-                  Disabled jobs stay saved but will not run automatically.
+                  Las tareas desactivadas se guardan pero no se ejecutan automáticamente.
                 </p>
               </div>
               <div className="flex items-center gap-3 rounded-xl border border-primary-200 bg-primary-100/50 px-3 py-2">
@@ -963,7 +963,7 @@ export function CronJobForm({
                   }}
                 />
                 <span className="text-sm text-primary-900">
-                  {enabled ? 'Enabled' : 'Disabled'}
+                  {enabled ? 'Activado' : 'Desactivado'}
                 </span>
               </div>
             </div>
@@ -979,15 +979,15 @@ export function CronJobForm({
             >
               <div>
                 <h3 className="text-sm font-semibold text-primary-900">
-                  Advanced
+                  Avanzado
                 </h3>
                 <p className="mt-1 text-xs text-primary-600">
-                  Override the generated schedule or payload JSON and edit
-                  delivery config directly.
+                  Sobrescribe el horario generado o el JSON del payload y edita
+                  la config de entrega directamente.
                 </p>
               </div>
               <span className="rounded-lg border border-primary-200 bg-primary-100/60 px-3 py-1.5 text-xs font-medium text-primary-700">
-                {advancedOpen ? 'Hide' : 'Show'}
+                {advancedOpen ? 'Ocultar' : 'Mostrar'}
               </span>
             </button>
 
@@ -1005,17 +1005,17 @@ export function CronJobForm({
                   />
                   <span className="space-y-1">
                     <span className="block text-sm font-medium text-primary-900">
-                      Use raw schedule instead of the picker
+                      Usa horario raw en vez del selector
                     </span>
                     <span className="block text-xs text-primary-600">
-                      Accepts cron expressions plus the existing `every ...` and
-                      `at ...` formats.
+                      Acepta expresiones cron y los formatos existentes `every ...` y
+                      `at ...`.
                     </span>
                   </span>
                 </label>
 
                 <label className="space-y-2">
-                  <FieldLabel>Raw schedule / cron expression</FieldLabel>
+                  <FieldLabel>Horario raw / expresión cron</FieldLabel>
                   <input
                     value={rawScheduleInput}
                     onChange={(event) => {
@@ -1038,17 +1038,17 @@ export function CronJobForm({
                   />
                   <span className="space-y-1">
                     <span className="block text-sm font-medium text-primary-900">
-                      Use raw payload JSON instead of the task builder
+                      Usa JSON raw del payload en vez del constructor de tareas
                     </span>
                     <span className="block text-xs text-primary-600">
-                      Keep this on for existing custom payloads or advanced
-                      gateway options.
+                      Déjalo activado para payloads personalizados o opciones
+                      avanzadas del gateway.
                     </span>
                   </span>
                 </label>
 
                 <label className="space-y-2">
-                  <FieldLabel>Raw payload JSON</FieldLabel>
+                  <FieldLabel>JSON raw del payload</FieldLabel>
                   <textarea
                     value={rawPayloadInput}
                     onChange={(event) => {
@@ -1060,7 +1060,7 @@ export function CronJobForm({
                 </label>
 
                 <label className="space-y-2">
-                  <FieldLabel optional>Delivery config JSON</FieldLabel>
+                  <FieldLabel optional>JSON de config de entrega</FieldLabel>
                   <textarea
                     value={deliveryConfigInput}
                     onChange={(event) => {
@@ -1083,14 +1083,14 @@ export function CronJobForm({
               disabled={pending}
               onClick={onClose}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" size="sm" disabled={pending}>
               {pending
-                ? 'Saving...'
+                ? 'Guardando…'
                 : mode === 'edit'
-                  ? 'Save Changes'
-                  : 'Create Job'}
+                  ? 'Guardar cambios'
+                  : 'Crear tarea'}
             </Button>
           </div>
         </form>
