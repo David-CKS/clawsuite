@@ -231,7 +231,7 @@ export function CronManagerScreen() {
   async function handleDeleteJob(job: CronJob) {
     setActionError(null)
     const shouldDelete = window.confirm(
-      `Delete cron job "${job.name}"? This cannot be undone.`,
+      `¿Eliminar el trabajo programado "${job.name}"? Esta acción no se puede deshacer.`,
     )
     if (!shouldDelete) return
 
@@ -265,7 +265,7 @@ export function CronManagerScreen() {
         <header className="mb-4 rounded-2xl border border-primary-200 bg-primary-50/85 p-4 backdrop-blur-xl md:p-5">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-100/60 px-3 py-1 text-xs text-primary-600 tabular-nums">
             <HugeiconsIcon icon={Clock01Icon} size={20} strokeWidth={1.5} />
-            <span>Cron Manager</span>
+            <span>Gestor de tareas programadas</span>
           </div>
           <h1 className="mt-3 text-2xl font-medium text-ink text-balance md:text-3xl">
             Scheduled Task Control

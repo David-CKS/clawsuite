@@ -119,7 +119,7 @@ export function RecentSessionsWidget({
 
   return (
     <DashboardGlassCard
-      title="Recent Sessions"
+      title="Sesiones recientes"
       description=""
       icon={Clock01Icon}
       titleAccessory={
@@ -136,13 +136,13 @@ export function RecentSessionsWidget({
           <span
             className="size-4 animate-spin rounded-full border-2 border-primary-300 dark:border-neutral-700 border-t-neutral-300"
             role="status"
-            aria-label="Loading"
+            aria-label="Cargando"
           />
-          <span className="text-sm text-primary-500 dark:text-neutral-400">Loading sessions…</span>
+          <span className="text-sm text-primary-500 dark:text-neutral-400">Cargando sesiones…</span>
         </div>
       ) : sessions.length === 0 ? (
         <div className="flex h-32 flex-col items-center justify-center gap-1 rounded-lg border border-primary-200 dark:border-neutral-800 bg-primary-50 dark:bg-neutral-950">
-          <p className="text-sm font-semibold text-primary-900 dark:text-neutral-100">No sessions yet</p>
+          <p className="text-sm font-semibold text-primary-900 dark:text-neutral-100">Aún no hay sesiones</p>
           <p className="text-xs text-primary-500 dark:text-neutral-400">
             Start a conversation to see recent sessions here
           </p>

@@ -66,7 +66,7 @@ export function SteerModal({
           <textarea
             value={message}
             rows={5}
-            placeholder="Send a directive to this agent..."
+            placeholder="Envía una directiva a este agente..."
             disabled={pending}
             onChange={function onChangeMessage(event) {
               setMessage(event.target.value)

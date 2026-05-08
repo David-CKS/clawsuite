@@ -84,7 +84,7 @@ function MemoryFileList({
               size="icon-sm"
               variant="ghost"
               onClick={onRefresh}
-              aria-label="Refresh memory files"
+              aria-label="Actualizar archivos de memoria"
             >
               <HugeiconsIcon icon={RefreshIcon} size={20} strokeWidth={1.5} />
             </Button>

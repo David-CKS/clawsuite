@@ -419,10 +419,10 @@ export function CostsScreen() {
               </div>
               <div className="space-y-2">
                 <div className="grid grid-cols-[minmax(0,1.4fr)_110px_100px_minmax(120px,1fr)] gap-3 px-2 text-[11px] uppercase tracking-wider text-primary-400 dark:text-neutral-500">
-                  <div>Model</div>
+                  <div>Modelo</div>
                   <div className="text-right">Tokens</div>
-                  <div className="text-right">Cost</div>
-                  <div>Usage Mix</div>
+                  <div className="text-right">Coste</div>
+                  <div>Mezcla de uso</div>
                 </div>
                 <div className="space-y-1">
                   {analytics.models.map((row) => {

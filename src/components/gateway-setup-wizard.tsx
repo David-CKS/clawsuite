@@ -113,7 +113,7 @@ function GatewayStepContent() {
               className="mt-0.5 size-4 shrink-0"
               strokeWidth={2}
             />
-            <span>Connected to gateway!</span>
+            <span>¡Conectado al gateway!</span>
           </div>
         )}
 

@@ -81,7 +81,7 @@ export function ManageModesModal({
           >
             Manage Modes
           </h2>
-          <p className="mb-6 text-sm text-primary-500">No modes saved.</p>
+          <p className="mb-6 text-sm text-primary-500">No hay modos guardados.</p>
           <div className="flex justify-end">
             <button
               type="button"
@@ -156,7 +156,7 @@ export function ManageModesModal({
                       type="button"
                       onClick={() => setModeToDelete(mode)}
                       className="rounded-lg border border-red-200 bg-surface px-3 py-1 text-xs font-medium text-red-700 transition-colors hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-400"
-                      aria-label={`Delete ${mode.name}`}
+                      aria-label={`Eliminar ${mode.name}`}
                     >
                       Delete
                     </button>

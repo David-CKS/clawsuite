@@ -217,8 +217,8 @@ export function ApprovalsPage({ approvals, onApprove, onDeny }: ApprovalsPagePro
         <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 shadow-sm dark:border-neutral-800 dark:bg-[var(--theme-panel,#111520)]">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <h2 className="text-sm font-semibold text-neutral-900 dark:text-white">Approvals</h2>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">Live gateway queue with local approval history</p>
+              <h2 className="text-sm font-semibold text-neutral-900 dark:text-white">Aprobaciones</h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Cola en vivo del gateway con historial local de aprobaciones</p>
             </div>
             <div className="flex items-center gap-2">
               <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
@@ -239,18 +239,18 @@ export function ApprovalsPage({ approvals, onApprove, onDeny }: ApprovalsPagePro
         <div className="grid min-h-0 flex-1 gap-3 lg:grid-cols-[minmax(0,1.5fr)_minmax(300px,1fr)]">
           <section className="min-h-0 overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-[var(--theme-panel,#111520)]">
             <div className="border-b border-neutral-200 px-4 py-3 dark:border-neutral-800">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Pending Queue</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Cola pendiente</h3>
             </div>
 
             <div className="h-full max-h-full overflow-y-auto p-3 sm:p-4">
               {loading && pendingRows.length === 0 ? (
-                <p className="py-10 text-center text-sm text-neutral-500">Loading approvals...</p>
+                <p className="py-10 text-center text-sm text-neutral-500">Cargando aprobaciones...</p>
               ) : null}
 
               {!loading && pendingRows.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-14 text-center">
                   <span className="text-3xl">✅</span>
-                  <p className="mt-2 text-sm font-medium text-neutral-700 dark:text-neutral-200">No pending approvals</p>
+                  <p className="mt-2 text-sm font-medium text-neutral-700 dark:text-neutral-200">Sin aprobaciones pendientes</p>
                   <p className="text-xs text-neutral-500 dark:text-neutral-400">Agents can continue without intervention</p>
                 </div>
               ) : null}
@@ -330,7 +330,7 @@ export function ApprovalsPage({ approvals, onApprove, onDeny }: ApprovalsPagePro
 
             <div className="h-full max-h-full overflow-y-auto p-3 sm:p-4">
               {historyRows.length === 0 ? (
-                <p className="py-10 text-center text-xs text-neutral-500">No approvals resolved yet</p>
+                <p className="py-10 text-center text-xs text-neutral-500">Aún no hay aprobaciones resueltas</p>
               ) : (
                 <div className="space-y-2">
                   {historyRows.map((entry) => {

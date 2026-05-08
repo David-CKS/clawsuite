@@ -229,7 +229,7 @@ export function AgentStatusWidget({
 
   return (
     <DashboardGlassCard
-      title="Active Agents"
+      title="Agentes activos"
       tier="primary"
       description=""
       icon={UserGroupIcon}
@@ -247,13 +247,13 @@ export function AgentStatusWidget({
           <span
             className="size-4 animate-spin rounded-full border-2 border-primary-300 border-t-accent-600"
             role="status"
-            aria-label="Loading"
+            aria-label="Cargando"
           />
-          <span className="text-sm text-primary-600">Loading sessions…</span>
+          <span className="text-sm text-primary-600">Cargando sesiones…</span>
         </div>
       ) : agents.length === 0 ? (
         <div className="flex h-32 flex-col items-center justify-center gap-1 rounded-lg border border-primary-200 bg-primary-100/45">
-          <p className="text-sm font-semibold text-ink">No active sessions</p>
+          <p className="text-sm font-semibold text-ink">No hay sesiones activas</p>
           <p className="text-xs text-primary-500">
             Active chat sessions and agents will appear here
           </p>

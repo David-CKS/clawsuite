@@ -165,7 +165,7 @@ export function WidgetShell({
             e.stopPropagation()
             onRemove()
           }}
-          aria-label={`Remove ${title} widget`}
+          aria-label={`Quitar widget ${title}`}
           className={cn(
             'absolute -right-1.5 -top-1.5 z-10',
             'flex h-5 w-5 items-center justify-center rounded-full',

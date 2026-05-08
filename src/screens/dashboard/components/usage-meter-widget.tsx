@@ -415,7 +415,7 @@ export function UsageMeterWidget({
     >
       {showTimeoutOrError ? (
         <div className="flex flex-col items-start gap-2 rounded-lg border border-red-900 bg-red-950/30 px-3 py-3">
-          <p className="text-sm font-medium text-red-300">Usage unavailable</p>
+          <p className="text-sm font-medium text-red-300">Uso no disponible</p>
           <p className="text-[11px] text-red-400">
             {queryResult?.kind === 'unavailable'
               ? queryResult.message
@@ -433,7 +433,7 @@ export function UsageMeterWidget({
         </div>
       ) : showEmptyState ? (
         <div className="flex h-full flex-col items-center justify-center gap-1.5 py-4 text-center">
-          <p className="text-sm font-medium text-primary-700 dark:text-neutral-300">No usage yet today</p>
+          <p className="text-sm font-medium text-primary-700 dark:text-neutral-300">Aún sin uso hoy</p>
           <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
             Usage will appear once your first session is active.
           </p>

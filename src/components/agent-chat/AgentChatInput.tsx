@@ -66,7 +66,7 @@ export function AgentChatInput({
           type="submit"
           disabled={disabled || isSending || value.trim().length === 0}
           className="rounded-xl"
-          aria-label="Send message"
+          aria-label="Enviar mensaje"
         >
           <HugeiconsIcon icon={ArrowUp01Icon} size={20} strokeWidth={1.5} />
         </Button>

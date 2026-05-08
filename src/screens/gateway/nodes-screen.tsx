@@ -56,7 +56,7 @@ export function NodesScreen() {
         <header className="mb-4 flex items-center justify-between gap-3 rounded-xl border border-primary-200 bg-primary-50/80 px-4 py-3 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/60">
           <div className="flex items-center gap-3">
             <div>
-              <h1 className="text-base font-semibold text-primary-900 dark:text-neutral-100">Nodes</h1>
+              <h1 className="text-base font-semibold text-primary-900 dark:text-neutral-100">Nodos</h1>
               <p className="text-xs text-primary-500 dark:text-neutral-400">
                 {nodes.length} paired nodes
               </p>
@@ -116,7 +116,7 @@ export function NodesScreen() {
           ) : nodes.length === 0 ? (
             <EmptyState
               icon={ServerStack01Icon}
-              title="No nodes paired"
+              title="No hay nodos emparejados"
               description="Pair a device to extend your AI capabilities."
             />
           ) : (

@@ -125,13 +125,13 @@ export default function FilePreviewDialog({
                 Save
               </Button>
             ) : null}
-            <DialogClose render={<Button variant="outline">Close</Button>} />
+            <DialogClose render={<Button variant="outline">Cerrar</Button>} />
           </div>
         </div>
 
         <div className="p-4">
           {loading ? (
-            <div className="text-sm text-primary-500">Loading…</div>
+            <div className="text-sm text-primary-500">Cargando…</div>
           ) : error ? (
             <div className="text-sm text-red-600">{error}</div>
           ) : path && isImageFile(path) ? (

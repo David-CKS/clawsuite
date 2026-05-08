@@ -56,8 +56,8 @@ export function SessionRenameDialog({
             autoFocus
           />
           <div className="mt-4 flex justify-end gap-2">
-            <DialogClose onClick={onCancel}>Cancel</DialogClose>
-            <Button onClick={() => onSave(renameValue)}>Save</Button>
+            <DialogClose onClick={onCancel}>Cancelar</DialogClose>
+            <Button onClick={() => onSave(renameValue)}>Guardar</Button>
           </div>
         </div>
       </DialogContent>

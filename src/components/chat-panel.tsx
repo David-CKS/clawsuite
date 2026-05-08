@@ -166,7 +166,7 @@ export function ChatPanel() {
                           size="icon-sm"
                           variant="ghost"
                           className="text-primary-600 hover:text-primary-900"
-                          aria-label="New chat"
+                          aria-label="Nuevo chat"
                         >
                           <HugeiconsIcon
                             icon={PencilEdit02Icon}
@@ -176,7 +176,7 @@ export function ChatPanel() {
                         </Button>
                       }
                     />
-                    <TooltipContent side="bottom">New chat</TooltipContent>
+                    <TooltipContent side="bottom">Nuevo chat</TooltipContent>
                   </TooltipRoot>
                   <TooltipRoot>
                     <TooltipTrigger
@@ -204,7 +204,7 @@ export function ChatPanel() {
                   variant="ghost"
                   onClick={handleClose}
                   className="text-primary-600 hover:text-primary-900"
-                  aria-label="Close chat panel"
+                  aria-label="Cerrar panel de chat"
                 >
                   <HugeiconsIcon
                     icon={Cancel01Icon}

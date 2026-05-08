@@ -50,7 +50,7 @@ export function DebugPanel({
           variant="ghost"
           className="text-primary-300 hover:bg-primary-900 hover:text-primary-100"
           onClick={onClose}
-          aria-label="Close debug analyzer panel"
+          aria-label="Cerrar panel del analizador de depuración"
         >
           <HugeiconsIcon icon={Cancel01Icon} size={20} strokeWidth={1.5} />
         </Button>

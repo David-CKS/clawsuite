@@ -83,7 +83,7 @@ export function MobileSessionsPanel({
       <button
         type="button"
         className="absolute inset-0 bg-black/40 animate-in fade-in duration-200"
-        aria-label="Close sessions panel"
+        aria-label="Cerrar panel de sesiones"
         onClick={onClose}
       />
 

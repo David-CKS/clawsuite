@@ -194,7 +194,7 @@ function getActionableMessage(
   }
 
   if (status === 'missing_credentials') {
-    return "Add your API key in Settings → Providers, or run the provider's CLI to authenticate."
+    return "Añade tu clave API en Ajustes → Proveedores, o ejecuta el CLI del proveedor para autenticarte."
   }
 
   if (status === 'error') {
@@ -323,7 +323,7 @@ export function UsageDetailsModal({
             Live usage from your gateway session and connected providers.
           </DialogDescription>
         </div>
-        <DialogClose className="text-primary-700">Close</DialogClose>
+        <DialogClose className="text-primary-700">Cerrar</DialogClose>
       </div>
 
       <div className="flex w-fit items-center gap-1 rounded-full border border-primary-100 bg-primary-50 p-1 text-xs">

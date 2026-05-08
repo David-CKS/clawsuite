@@ -88,7 +88,7 @@ function getToolIcon(name: string): string {
 }
 
 function getToolLabel(name: string, phase: string): string {
-  const label = TOOL_LABELS[name] || `Running ${name}`
+  const label = TOOL_LABELS[name] || `Ejecutando ${name}`
   if (phase === 'result') return `${label} ✓`
   return `${label}...`
 }
@@ -915,7 +915,7 @@ function ChatMessageListComponent({
               type="text"
               value={messageSearchValue}
               onChange={(e) => setMessageSearchValue(e.target.value)}
-              placeholder="Search messages..."
+              placeholder="Buscar mensajes..."
               className="min-w-0 flex-1 rounded-md border border-primary-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2.5 py-1.5 text-sm text-primary-900 dark:text-neutral-100 outline-none placeholder:text-primary-400 dark:placeholder:text-neutral-500 focus:border-primary-400 dark:focus:border-primary-500 focus:ring-1 focus:ring-primary-400 dark:focus:ring-primary-500"
             />
             {isMessageSearchActive && (
@@ -931,7 +931,7 @@ function ChatMessageListComponent({
                 onClick={jumpToPreviousMatch}
                 disabled={messageSearchMatches.length === 0}
                 className="rounded p-1 text-primary-500 dark:text-neutral-400 hover:bg-primary-200 dark:hover:bg-primary-800 hover:text-primary-700 dark:hover:text-neutral-200 disabled:opacity-30"
-                aria-label="Previous match"
+                aria-label="Coincidencia anterior"
               >
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path
@@ -948,7 +948,7 @@ function ChatMessageListComponent({
                 onClick={jumpToNextMatch}
                 disabled={messageSearchMatches.length === 0}
                 className="rounded p-1 text-primary-500 dark:text-neutral-400 hover:bg-primary-200 dark:hover:bg-primary-800 hover:text-primary-700 dark:hover:text-neutral-200 disabled:opacity-30"
-                aria-label="Next match"
+                aria-label="Coincidencia siguiente"
               >
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path
@@ -964,7 +964,7 @@ function ChatMessageListComponent({
                 type="button"
                 onClick={closeMessageSearch}
                 className="rounded p-1 text-primary-500 dark:text-neutral-400 hover:bg-primary-200 dark:hover:bg-primary-800 hover:text-primary-700 dark:hover:text-neutral-200"
-                aria-label="Close search"
+                aria-label="Cerrar búsqueda"
               >
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path

@@ -115,13 +115,13 @@ function ContextAlertModalComponent({
               {isCritical && (
                 <Recommendation
                   icon="🆕"
-                  text="Start a new chat to reset context"
+                  text="Inicia un chat nuevo para reiniciar el contexto"
                   emphasis
                 />
               )}
               <Recommendation
                 icon="🗜️"
-                text="Enable auto-compaction in Settings → Config to automatically manage context"
+                text="Activa la auto-compactación en Ajustes → Configuración para gestionar el contexto automáticamente"
               />
               <Recommendation
                 icon="📋"

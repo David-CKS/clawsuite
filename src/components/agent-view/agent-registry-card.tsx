@@ -174,7 +174,7 @@ export function AgentRegistryCard({
               <>
                 <button
                   type="button"
-                  aria-label="Close controls"
+                  aria-label="Cerrar controles"
                   className="fixed inset-0 z-40"
                   onClick={() => setMenuOpen(false)}
                 />

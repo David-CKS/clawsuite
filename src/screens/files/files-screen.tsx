@@ -461,7 +461,7 @@ function FilePanel({ selectedEntry }: FilePanelProps) {
       <div className="flex h-full items-center justify-center text-center text-primary-400 dark:text-neutral-600">
         <div>
           <div className="text-5xl mb-3 opacity-40">📂</div>
-          <p className="text-sm">Select a file to preview or edit</p>
+          <p className="text-sm">Selecciona un archivo para previsualizar o editar</p>
         </div>
       </div>
     )
@@ -473,7 +473,7 @@ function FilePanel({ selectedEntry }: FilePanelProps) {
         <div>
           <div className="text-5xl mb-3 opacity-40">📁</div>
           <p className="text-sm font-medium">{selectedEntry.name}</p>
-          <p className="text-xs mt-1 opacity-70">Select a file inside to preview</p>
+          <p className="text-xs mt-1 opacity-70">Selecciona un archivo dentro para previsualizar</p>
         </div>
       </div>
     )
@@ -522,7 +522,7 @@ function FilePanel({ selectedEntry }: FilePanelProps) {
         <span>Modified {formatDate(selectedEntry.modifiedAt)}</span>
       )}
       {dirty && (
-        <span className="text-accent-500 font-medium">Unsaved changes</span>
+        <span className="text-accent-500 font-medium">Cambios sin guardar</span>
       )}
     </div>
   )
@@ -567,7 +567,7 @@ function FilePanel({ selectedEntry }: FilePanelProps) {
               className="max-h-full max-w-full rounded-lg border border-primary-200 dark:border-neutral-800 shadow-sm object-contain"
             />
           ) : (
-            <div className="text-sm text-primary-400">No preview</div>
+            <div className="text-sm text-primary-400">Sin vista previa</div>
           )}
         </div>
         {footer}
@@ -717,7 +717,7 @@ export function FilesScreen() {
           <button
             type="button"
             onClick={() => void loadTree()}
-            title="Refresh"
+            title="Actualizar"
             className="ml-2 shrink-0 rounded p-1 text-lg text-primary-400 hover:bg-primary-200 dark:hover:bg-neutral-800 hover:text-primary-600 dark:hover:text-neutral-300 transition-colors leading-none"
           >
             ↺

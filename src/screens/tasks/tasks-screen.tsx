@@ -102,11 +102,11 @@ function AddTaskDialog({
         onSubmit={handleSubmit}
         className="w-full max-w-md rounded-xl border border-primary-200 bg-primary-50 p-5 shadow-2xl dark:bg-primary-100"
       >
-        <h2 className="mb-4 text-sm font-semibold text-ink">New Task</h2>
+        <h2 className="mb-4 text-sm font-semibold text-ink">Nueva tarea</h2>
 
         <label className="mb-3 block">
           <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-primary-500">
-            Title
+            Título
           </span>
           <input
             type="text"
@@ -114,27 +114,27 @@ function AddTaskDialog({
             onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-[13px] text-ink outline-none focus:border-primary-400 dark:bg-primary-50"
             autoFocus
-            placeholder="Task title..."
+            placeholder="Título de la tarea..."
           />
         </label>
 
         <label className="mb-3 block">
           <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-primary-500">
-            Description
+            Descripción
           </span>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
             className="w-full rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-[13px] text-ink outline-none focus:border-primary-400 dark:bg-primary-50"
-            placeholder="Optional details..."
+            placeholder="Detalles opcionales..."
           />
         </label>
 
         <div className="mb-3 flex gap-3">
           <label className="flex-1">
             <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-primary-500">
-              Priority
+              Prioridad
             </span>
             <select
               value={priority}
@@ -150,7 +150,7 @@ function AddTaskDialog({
           </label>
           <label className="flex-1">
             <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-primary-500">
-              Status
+              Estado
             </span>
             <select
               value={status}
@@ -169,7 +169,7 @@ function AddTaskDialog({
         <div className="mb-4 flex gap-3">
           <label className="flex-1">
             <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-primary-500">
-              Due Date
+              Fecha de vencimiento
             </span>
             <input
               type="date"
@@ -180,7 +180,7 @@ function AddTaskDialog({
           </label>
           <label className="flex-1">
             <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-primary-500">
-              Reminder
+              Recordatorio
             </span>
             <input
               type="datetime-local"
@@ -197,14 +197,14 @@ function AddTaskDialog({
             onClick={onClose}
             className="rounded-lg px-3 py-1.5 text-[13px] text-primary-500 hover:text-ink"
           >
-            Cancel
+            Cancelar
           </button>
           <button
             type="submit"
             disabled={!title.trim()}
             className="rounded-lg bg-accent-500 px-4 py-1.5 text-[13px] font-medium text-white transition-colors hover:bg-accent-500/90 disabled:opacity-40"
           >
-            Add Task
+            Añadir tarea
           </button>
         </div>
       </form>
@@ -256,7 +256,7 @@ function ListTaskItem({
           ) : null}
           {task.dueDate ? (
             <span className="rounded bg-primary-100 px-1.5 py-0.5 text-primary-500 dark:bg-primary-200/70 dark:text-primary-300">
-              Due {formatDate(task.dueDate)}
+              Vence {formatDate(task.dueDate)}
             </span>
           ) : null}
         </div>
@@ -305,7 +305,7 @@ function ListTaskItem({
             onDelete(task.id)
           }}
           className="rounded p-0.5 text-primary-300 hover:text-red-500"
-          title="Delete"
+          title="Eliminar"
         >
           <HugeiconsIcon icon={Delete02Icon} size={12} strokeWidth={1.5} />
         </button>
@@ -361,7 +361,7 @@ function KanbanTaskCard({
       </div>
 
       {task.dueDate ? (
-        <p className="mt-1 text-[11px] text-primary-400">Due {formatDate(task.dueDate)}</p>
+        <p className="mt-1 text-[11px] text-primary-400">Vence {formatDate(task.dueDate)}</p>
       ) : null}
 
       <div className="mt-2 flex justify-end opacity-0 transition-opacity group-hover:opacity-100">
@@ -372,7 +372,7 @@ function KanbanTaskCard({
             onDelete(task.id)
           }}
           className="rounded p-0.5 text-primary-300 hover:text-red-500"
-          title="Delete"
+          title="Eliminar"
         >
           <HugeiconsIcon icon={Delete02Icon} size={12} strokeWidth={1.5} />
         </button>
@@ -466,9 +466,9 @@ function TaskDetailPanel({
         )}
 
         <div className="mb-4 flex gap-2 text-[11px] text-primary-400">
-          <span>Created {formatDate(task.createdAt)}</span>
+          <span>Creada {formatDate(task.createdAt)}</span>
           <span>·</span>
-          <span>Updated {formatDate(task.updatedAt)}</span>
+          <span>Actualizada {formatDate(task.updatedAt)}</span>
         </div>
 
         <div className="mb-4 flex flex-wrap gap-1.5">
@@ -678,7 +678,7 @@ export function TasksScreen() {
         <header className="mb-4 flex flex-wrap items-center justify-between gap-2.5 rounded-xl border border-primary-200 bg-primary-50/80 px-4 py-3 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/60 md:mb-6">
           <div className="flex items-center gap-3">
             <div>
-              <h1 className="text-base font-semibold text-primary-900 dark:text-neutral-100">Tasks</h1>
+              <h1 className="text-base font-semibold text-primary-900 dark:text-neutral-100">Tareas</h1>
               <p className="text-xs text-primary-500 dark:text-neutral-400">
                 {tasks.filter((task) => task.status !== 'done').length} active ·{' '}
                 {tasks.filter((task) => task.status === 'done').length} completed
@@ -733,7 +733,7 @@ export function TasksScreen() {
                 onChange={(event) => setStatusFilter(event.target.value as StatusFilter)}
                 className="rounded-lg border border-primary-200 bg-primary-50 px-2.5 py-1.5 text-[11px] text-ink outline-none dark:bg-primary-100"
               >
-                <option value="all">All Statuses</option>
+                <option value="all">Todos los estados</option>
                 {STATUS_ORDER.map((status) => (
                   <option key={status} value={status}>
                     {STATUS_LABELS[status]}
@@ -748,7 +748,7 @@ export function TasksScreen() {
                 }
                 className="rounded-lg border border-primary-200 bg-primary-50 px-2.5 py-1.5 text-[11px] text-ink outline-none dark:bg-primary-100"
               >
-                <option value="all">All Priorities</option>
+                <option value="all">Todas las prioridades</option>
                 {PRIORITY_ORDER.map((priority) => (
                   <option key={priority} value={priority}>
                     {priority}

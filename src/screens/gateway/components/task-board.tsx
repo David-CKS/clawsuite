@@ -521,7 +521,7 @@ export function TaskBoard({ agents, initialTasks, selectedAgentId, onRef, onTask
                                   )
                                 }
                                 rows={2}
-                                placeholder="Add a description…"
+                                placeholder="Añade una descripción…"
                                 className="w-full resize-none rounded-md border border-primary-200 bg-white px-2 py-1.5 text-xs text-primary-900 outline-none ring-accent-400 focus:ring-1 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-100"
                               />
                             </div>

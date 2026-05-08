@@ -130,7 +130,7 @@ export function NotificationsWidget({
   return (
     <WidgetShell
       size="medium"
-      title="Notifications"
+      title="Notificaciones"
       icon={Notification03Icon}
       action={
         <span className="inline-flex items-center rounded-full border border-neutral-800 bg-neutral-950 px-2 py-0.5 font-mono text-[11px] text-neutral-200 tabular-nums">
@@ -146,7 +146,7 @@ export function NotificationsWidget({
           <span
             className="size-4 animate-spin rounded-full border-2 border-neutral-700 border-t-neutral-300"
             role="status"
-            aria-label="Loading"
+            aria-label="Cargando"
           />
           <span className="text-sm text-neutral-400">
             Loading notifications…
@@ -154,7 +154,7 @@ export function NotificationsWidget({
         </div>
       ) : notifications.length === 0 ? (
         <div className="flex h-[150px] flex-col items-center justify-center gap-1 rounded-xl border border-neutral-800 bg-neutral-950">
-          <p className="text-sm font-semibold text-neutral-100">No notifications</p>
+          <p className="text-sm font-semibold text-neutral-100">Sin notificaciones</p>
           <p className="text-xs text-neutral-400 text-pretty">
             Session events will appear here
           </p>

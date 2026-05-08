@@ -715,7 +715,7 @@ export function TerminalWorkspace({
             size="icon-sm"
             variant="ghost"
             onClick={handleCreateTab}
-            aria-label="New terminal tab"
+            aria-label="Nueva pestaña de terminal"
           >
             <HugeiconsIcon icon={Add01Icon} size={20} strokeWidth={1.5} />
           </Button>
@@ -749,7 +749,7 @@ export function TerminalWorkspace({
                 size="icon-sm"
                 variant="ghost"
                 onClick={handleClosePanel}
-                aria-label="Close terminal panel"
+                aria-label="Cerrar panel de terminal"
               >
                 <HugeiconsIcon
                   icon={Cancel01Icon}

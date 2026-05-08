@@ -34,7 +34,7 @@ export function SearchInput({
         ref={inputRef}
         value={value}
         onChange={(event) => onValueChange(event.target.value)}
-        placeholder="Search chats, files, agents, skills..."
+        placeholder="Buscar chats, archivos, agentes, habilidades..."
         className={cn(
           'h-12 w-full rounded-xl border border-border bg-muted/60 pl-10 pr-24 text-sm text-foreground outline-none',
           'placeholder:text-muted-foreground focus:border-primary focus:bg-muted',

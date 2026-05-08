@@ -214,7 +214,7 @@ function AgentCard({
                         setMenuOpen(false)
                         if (!onSteer) return
                         const directive = window.prompt(
-                          `Send directive to ${agent.name}`,
+                          `Enviar directiva a ${agent.name}`,
                           '',
                         )
                         if (!directive || !directive.trim()) return
@@ -459,7 +459,7 @@ export function LiveActivityPanel({
                 type="button"
                 onClick={handleCloseOutput}
                 className="rounded p-1 text-[11px] text-neutral-400 transition-colors hover:text-neutral-700 dark:hover:text-neutral-300"
-                aria-label="Close output"
+                aria-label="Cerrar salida"
               >
                 ✕
               </button>

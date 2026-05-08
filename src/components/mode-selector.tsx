@@ -143,7 +143,7 @@ export function ModeSelector({
         >
           <span className="max-w-[8rem] truncate">{buttonLabel}</span>
           {showDrift && (
-            <span className="text-yellow-600" title="Settings changed">
+            <span className="text-yellow-600" title="Ajustes modificados">
               ⚠️
             </span>
           )}
@@ -184,13 +184,13 @@ export function ModeSelector({
                           isApplied && 'bg-primary-100 text-primary-900',
                         )}
                         role="menuitem"
-                        aria-label={`Apply mode ${mode.name}`}
+                        aria-label={`Aplicar modo ${mode.name}`}
                       >
                         <span className="flex-1 truncate">{mode.name}</span>
                         {drift && (
                           <span
                             className="text-yellow-600 text-xs"
-                            title="Settings changed"
+                            title="Ajustes modificados"
                           >
                             ⚠️
                           </span>
@@ -228,7 +228,7 @@ export function ModeSelector({
                 }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-primary-700 transition-colors hover:bg-primary-100"
                 role="menuitem"
-                aria-label="Save current settings as new mode"
+                aria-label="Guardar ajustes actuales como nuevo modo"
               >
                 Save Current as New Mode...
               </button>

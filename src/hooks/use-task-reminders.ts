@@ -87,8 +87,8 @@ export function useTaskReminders() {
         if (isDueSoon(task) && !firedAutoAlerts.has(`duesoon-${task.id}`)) {
           firedAutoAlerts.add(`duesoon-${task.id}`)
           showNotification(
-            `⚠️ Due soon: ${task.title}`,
-            `Due ${new Date(task.dueDate!).toLocaleDateString()}`,
+            `⚠️ Vence pronto: ${task.title}`,
+            `Vence ${new Date(task.dueDate!).toLocaleDateString()}`,
           )
         }
 

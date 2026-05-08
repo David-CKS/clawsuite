@@ -108,7 +108,7 @@ export function KeyboardShortcutsModal() {
               <button
                 onClick={() => setIsOpen(false)}
                 className="rounded-lg p-1.5 text-primary-500 transition hover:bg-primary-100 hover:text-primary-900"
-                aria-label="Close"
+                aria-label="Cerrar"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path

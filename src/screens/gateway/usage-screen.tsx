@@ -90,7 +90,7 @@ export function UsageScreen() {
     <div className="flex h-full flex-col">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-primary-200 px-4 py-4 sm:px-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-[15px] font-semibold text-ink">Usage</h1>
+          <h1 className="text-[15px] font-semibold text-ink">Uso</h1>
           {query.isFetching && !query.isLoading ? (
             <span className="text-[10px] text-primary-500 animate-pulse">
               syncing…
@@ -152,22 +152,22 @@ export function UsageScreen() {
             {/* Summary cards */}
             <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <StatCard
-                label="Total Cost"
+                label="Coste total"
                 value={formatCost(usage?.totalCost)}
                 sub={
                   cost ? `Session: ${formatCost(cost.totalCost)}` : undefined
                 }
               />
               <StatCard
-                label="Total Tokens"
+                label="Tokens totales"
                 value={formatTokens(usage?.totalTokens)}
               />
               <StatCard
-                label="Input Cost"
+                label="Coste de entrada"
                 value={formatCost(usage?.inputCost)}
               />
               <StatCard
-                label="Output Cost"
+                label="Coste de salida"
                 value={formatCost(usage?.outputCost)}
               />
             </div>

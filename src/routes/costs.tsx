@@ -10,13 +10,13 @@ const CostsScreen = lazy(() =>
 export const Route = createFileRoute('/costs')({
   ssr: false,
   component: function CostsRoute() {
-    usePageTitle('Costs')
+    usePageTitle('Costes')
     return (
-      <ErrorBoundary title="Cost Analytics Error" description="Failed to load cost analytics. Try reloading.">
+      <ErrorBoundary title="Error en analítica de costes" description="No se ha podido cargar la analítica de costes. Prueba a recargar.">
         <Suspense
           fallback={
             <div className="flex h-full items-center justify-center">
-              <div className="text-sm text-neutral-400">Loading cost analytics…</div>
+              <div className="text-sm text-neutral-400">Cargando analítica de costes…</div>
             </div>
           }
         >

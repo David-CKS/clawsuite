@@ -105,7 +105,7 @@ function ChatRoute() {
   if (!mounted) {
     return (
       <div className="flex h-full items-center justify-center text-primary-400">
-        Loading chat…
+        Cargando chat…
       </div>
     )
   }
@@ -115,7 +115,7 @@ function ChatRoute() {
       <Suspense
         fallback={
           <div className="flex h-full items-center justify-center text-primary-400">
-            Loading chat…
+            Cargando chat…
           </div>
         }
       >

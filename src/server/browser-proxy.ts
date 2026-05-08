@@ -237,7 +237,7 @@ try { window.parent.postMessage({ type: 'proxy-navigate', url: window.location.h
       proxyReq.on('error', (err) => {
         clientRes.writeHead(502, { 'Content-Type': 'text/html' })
         clientRes.end(
-          `<html><body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui;color:#666"><p>Failed to load page: ${err.message}</p></body></html>`,
+          `<html><body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui;color:#666"><p>No se ha podido cargar la página: ${err.message}</p></body></html>`,
         )
       })
 

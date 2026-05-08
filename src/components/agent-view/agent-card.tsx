@@ -225,7 +225,7 @@ export function AgentCard({
       const message =
         error instanceof Error
           ? error.message
-          : `Failed to ${nextPaused ? 'pause' : 'resume'} agent`
+          : `No se ha podido ${nextPaused ? 'pausar' : 'reanudar'} el agente`
       toast(message, { type: 'error' })
     } finally {
       setIsPausePending(false)
@@ -698,7 +698,7 @@ export function AgentCard({
                     onClick={function handleCancelClick() {
                       onCancel?.(node.id)
                     }}
-                    title="Cancel"
+                    title="Cancelar"
                   >
                     <HugeiconsIcon icon={Cancel01Icon} size={14} strokeWidth={1.5} />
                   </Button>

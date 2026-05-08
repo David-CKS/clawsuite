@@ -99,7 +99,7 @@ export function MissionTimeline({
                 <div className="flex items-center justify-between gap-2">
                   <p className="truncate text-base font-bold text-neutral-900">{member.name}</p>
                   {isActive ? (
-                    <span className="rounded-full bg-emerald-700 px-2.5 py-1 text-xs text-white">Active</span>
+                    <span className="rounded-full bg-emerald-700 px-2.5 py-1 text-xs text-white">Activa</span>
                   ) : (
                     <span className="text-sm text-neutral-400">Stopped</span>
                   )}

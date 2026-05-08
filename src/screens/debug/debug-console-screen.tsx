@@ -602,7 +602,7 @@ export function DebugConsoleScreen() {
         </header>
 
         <DashboardGlassCard
-          title="Connection Status"
+          title="Estado de la conexión"
           description="Current Gateway health with masked endpoint details."
           icon={Activity01Icon}
         >
@@ -672,7 +672,7 @@ export function DebugConsoleScreen() {
         </DashboardGlassCard>
 
         <DashboardGlassCard
-          title="Activity Logs"
+          title="Registros de actividad"
           description="Live stream with level styling, source filters, and search."
           icon={Notification03Icon}
         >
@@ -726,9 +726,9 @@ export function DebugConsoleScreen() {
               onChange={function onSearchChange(event) {
                 setLogSearch(event.target.value)
               }}
-              placeholder="Search logs"
+              placeholder="Buscar registros"
               className="w-full max-w-md tabular-nums"
-              aria-label="Search logs"
+              aria-label="Buscar registros"
             />
             <Button
               size="sm"
@@ -834,7 +834,7 @@ export function DebugConsoleScreen() {
         </DashboardGlassCard>
 
         <DashboardGlassCard
-          title="Export Diagnostics"
+          title="Exportar diagnóstico"
           description="Generate a safe, redacted bundle for troubleshooting and GitHub issues."
           icon={PackageIcon}
         >

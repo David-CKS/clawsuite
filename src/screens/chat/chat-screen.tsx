@@ -834,7 +834,7 @@ export function ChatScreen({
       }
     } catch (err) {
       setError(
-        `Failed to switch model. ${err instanceof Error ? err.message : String(err)}`,
+        `No se ha podido cambiar de modelo. ${err instanceof Error ? err.message : String(err)}`,
       )
     }
   }, [suggestion, resolvedSessionKey, dismiss])
@@ -954,9 +954,9 @@ export function ChatScreen({
       navigate({ to: '/connect', replace: true })
     }
     const message = sessionsError
-      ? `Failed to load sessions. ${sessionsError}`
+      ? `No se han podido cargar las sesiones. ${sessionsError}`
       : historyError
-        ? `Failed to load history. ${historyError}`
+        ? `No se ha podido cargar el historial. ${historyError}`
         : gatewayStatusError
           ? `Gateway unavailable. ${gatewayStatusError}`
           : null
@@ -1251,7 +1251,7 @@ export function ChatScreen({
             },
           )
         }
-        const errorMessage = `Failed to send message. ${messageText}`
+        const errorMessage = `No se ha podido enviar el mensaje. ${messageText}`
         setError(errorMessage)
         toast('Failed to send message', { type: 'error' })
         setPendingGeneration(false)

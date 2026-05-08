@@ -769,7 +769,7 @@ export function UsageMeter() {
           )
         }
         return (
-          <span className="text-[10px] text-primary-500">No provider data</span>
+          <span className="text-[10px] text-primary-500">Sin datos del proveedor</span>
         )
       }
 

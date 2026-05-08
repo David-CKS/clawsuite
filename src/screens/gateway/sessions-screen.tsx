@@ -76,7 +76,7 @@ export function SessionsScreen() {
         <header className="mb-4 flex items-center justify-between gap-3 rounded-xl border border-primary-200 bg-primary-50/80 px-4 py-3 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/60">
           <div className="flex items-center gap-3">
             <div>
-              <h1 className="text-base font-semibold text-primary-900 dark:text-neutral-100">Sessions</h1>
+              <h1 className="text-base font-semibold text-primary-900 dark:text-neutral-100">Sesiones</h1>
               <p className="text-xs text-primary-500 dark:text-neutral-400">
                 {sessions.length} active sessions
               </p>

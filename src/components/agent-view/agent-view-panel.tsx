@@ -849,8 +849,8 @@ export function AgentViewPanel() {
                     setOpen(false)
                     navigate({ to: '/agent-swarm' })
                   }}
-                  aria-label="Open Agent Hub"
-                  title="Open Agent Hub"
+                  aria-label="Abrir Agent Hub"
+                  title="Abrir Agent Hub"
                 >
                   <HugeiconsIcon
                     icon={ArrowExpand01Icon}
@@ -864,7 +864,7 @@ export function AgentViewPanel() {
                   onClick={function handleClosePanel() {
                     setOpen(false)
                   }}
-                  aria-label="Hide Agent View"
+                  aria-label="Ocultar vista de agente"
                 >
                   <HugeiconsIcon
                     icon={Cancel01Icon}
@@ -1276,7 +1276,7 @@ export function AgentViewPanel() {
                     type="button"
                     onClick={() => setOpen(false)}
                     className="rounded-lg p-1.5 text-primary-500 hover:bg-primary-200"
-                    aria-label="Close"
+                    aria-label="Cerrar"
                   >
                     <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
                       <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -1376,7 +1376,7 @@ export function AgentViewPanel() {
               setOpen(true)
             }}
             className="fixed right-4 bottom-4 z-30 inline-flex size-12 items-center justify-center rounded-full bg-linear-to-br from-accent-500 to-accent-600 text-primary-50 shadow-lg"
-            aria-label="Open Agent View"
+            aria-label="Abrir vista de agente"
           >
             <motion.span
               animate={

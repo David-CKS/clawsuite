@@ -191,13 +191,13 @@ export function ActivityPanel({ sessions, className }: ActivityPanelProps) {
       <div className="grid grid-cols-2 gap-2">
         <div className="rounded-lg border border-blue-500/20 bg-blue-500/10 px-3 py-2 text-center">
           <div className="text-lg font-bold text-blue-400">{active.length}</div>
-          <div className="text-[10px] text-blue-300/70">Active</div>
+          <div className="text-[10px] text-blue-300/70">Activo</div>
         </div>
         <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-center">
           <div className="text-lg font-bold text-emerald-400">
             {completed.length}
           </div>
-          <div className="text-[10px] text-emerald-300/70">Done</div>
+          <div className="text-[10px] text-emerald-300/70">Hecho</div>
         </div>
         <div className="rounded-lg border border-accent-500/20 bg-accent-500/10 px-3 py-2 text-center">
           <div className="text-lg font-bold text-accent-400">

@@ -54,7 +54,7 @@ function TerminalRoute() {
       <Suspense
         fallback={
           <div className="flex h-full min-h-0 items-center justify-center text-xs text-primary-500">
-            Loading terminal…
+            Cargando terminal…
           </div>
         }
       >
