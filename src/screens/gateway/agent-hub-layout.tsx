@@ -5058,12 +5058,12 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
     const insetCls = 'rounded-lg border border-neutral-100 bg-neutral-50/70 px-2.5 py-2 dark:border-slate-700 dark:bg-slate-800/50'
 
     return (
-      <div className="relative flex min-h-full flex-col overflow-x-hidden sm:h-full sm:min-h-0 sm:overflow-hidden dark:bg-[var(--theme-bg,#0b0e14)]">
+      <div className="relative flex min-h-full flex-col overflow-x-hidden sm:h-full sm:min-h-0 sm:overflow-y-auto dark:bg-[var(--theme-bg,#0b0e14)]">
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-br from-neutral-100/60 to-white dark:from-slate-900/60 dark:to-[var(--theme-bg,#0b0e14)]" />
-        {/* ── Virtual Office Hero — flex-1 fills all remaining space ── */}
-        <div className="relative mx-auto mt-3 sm:mt-5 w-full max-w-[1600px] shrink-0 sm:flex-1 sm:min-h-0 px-3 sm:px-4 flex flex-col">
+        {/* ── Virtual Office Hero — fixed height to keep agent overlays aligned with SVG desks ── */}
+        <div className="relative mx-auto mt-3 sm:mt-5 w-full max-w-[1600px] shrink-0 px-3 sm:px-4 flex flex-col">
           {renderCompactionBanner()}
-          <div className="h-[240px] sm:flex-1 sm:h-auto sm:min-h-[420px] overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm">
+          <div className="h-[240px] sm:h-[520px] sm:max-h-[60vh] overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm">
             <PixelOfficeView
               agentRows={agentWorkingRows}
               missionRunning={isMissionRunning}
