@@ -424,7 +424,7 @@ export function OfficeView({
       <div className={cn('flex items-center justify-center p-8', compact ? 'h-full' : 'min-h-[320px]')}>
         <div className="text-center">
           <p className="mb-3 text-4xl">🏢</p>
-          <p className="text-sm font-semibold text-neutral-600 dark:text-neutral-300">Empty office</p>
+          <p className="text-sm font-semibold text-neutral-600 dark:text-neutral-300">Oficina vacía</p>
           <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">Añade agentes en Configurar para llenar la oficina.</p>
         </div>
       </div>
@@ -487,9 +487,9 @@ export function OfficeView({
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <span className="text-base font-bold text-neutral-900 dark:text-white">CKS Suite Office</span>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 text-[10px] font-medium text-neutral-600 dark:text-neutral-400 tabular-nums">{agentRows.length} agents</span>
-            <span className="rounded-full bg-emerald-50 dark:bg-emerald-900/30 px-2 py-0.5 text-[10px] font-medium text-emerald-700 dark:text-emerald-400 tabular-nums">{activeCount} working</span>
-            <span className="rounded-full bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 text-[10px] font-medium text-blue-700 dark:text-blue-400 tabular-nums">{sessionCount} sessions</span>
+            <span className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 text-[10px] font-medium text-neutral-600 dark:text-neutral-400 tabular-nums">{agentRows.length} agentes</span>
+            <span className="rounded-full bg-emerald-50 dark:bg-emerald-900/30 px-2 py-0.5 text-[10px] font-medium text-emerald-700 dark:text-emerald-400 tabular-nums">{activeCount} trabajando</span>
+            <span className="rounded-full bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 text-[10px] font-medium text-blue-700 dark:text-blue-400 tabular-nums">{sessionCount} sesiones</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -499,7 +499,7 @@ export function OfficeView({
                 <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/60" />
                 <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
               </span>
-              Mission Live
+              Misión activa
             </span>
           ) : null}
           <button
@@ -507,7 +507,7 @@ export function OfficeView({
             onClick={() => onNewMission?.()}
             className="min-h-11 rounded-lg bg-accent-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-accent-600 sm:px-4 sm:py-2 sm:text-sm"
           >
-            + New Mission
+            + Nueva misión
           </button>
         </div>
       </div>
@@ -551,7 +551,7 @@ export function OfficeView({
             type="button"
             onClick={() => setLayoutPickerOpen((v) => !v)}
             className="inline-flex min-h-11 items-center rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-700 transition-colors hover:bg-neutral-50 dark:border-slate-700 dark:bg-slate-800 dark:text-neutral-300 dark:hover:bg-slate-700 sm:px-4 sm:py-2 sm:text-sm"
-            title="Change office layout"
+            title="Cambiar disposición de la oficina"
           >
             <span>✏️</span>
           </button>

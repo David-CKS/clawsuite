@@ -79,19 +79,19 @@ function GoalCreator({
       className="rounded-xl border border-primary-200 bg-primary-50 p-4 shadow-sm dark:bg-primary-100"
     >
       <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-primary-500">
-        New goal
+        Nuevo objetivo
       </h2>
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="High-level goal (e.g. Ship dark-mode toggle)"
+        placeholder="Objetivo de alto nivel (ej. Lanzar toggle de modo oscuro)"
         className="mb-2 w-full rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-[13px] text-ink outline-none focus:border-accent-400 dark:bg-primary-50"
       />
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        placeholder="Context, constraints, success criteria…"
+        placeholder="Contexto, restricciones, criterios de éxito…"
         rows={3}
         className="mb-3 w-full resize-y rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-[13px] text-ink outline-none focus:border-accent-400 dark:bg-primary-50"
       />
@@ -106,7 +106,7 @@ function GoalCreator({
         )}
       >
         <HugeiconsIcon icon={Add01Icon} className="h-4 w-4" />
-        {busy ? 'Decomposing…' : 'Decompose goal'}
+        {busy ? 'Descomponiendo…' : 'Descomponer objetivo'}
       </button>
     </form>
   )
@@ -147,7 +147,7 @@ function GoalListItem({
             >
               {GOAL_STATUS_LABEL[goal.status]}
             </span>
-            <span>{goal.subtasks.length} sub-tasks</span>
+            <span>{goal.subtasks.length} sub-tareas</span>
             <span>·</span>
             <span>{formatDate(goal.createdAt)}</span>
           </div>
@@ -158,8 +158,8 @@ function GoalListItem({
             onDelete()
           }}
           className="rounded p-1 text-primary-400 opacity-0 transition-opacity hover:bg-red-500/10 hover:text-red-500 group-hover:opacity-100"
-          title="Delete goal"
-          aria-label="Delete goal"
+          title="Eliminar objetivo"
+          aria-label="Eliminar objetivo"
         >
           <HugeiconsIcon icon={Delete02Icon} className="h-3.5 w-3.5" />
         </button>
@@ -200,7 +200,7 @@ function SubTaskRow({
           checked={selected}
           onChange={onToggle}
           className="mt-1 h-4 w-4 cursor-pointer accent-accent-500"
-          aria-label={`Select ${subtask.title}`}
+          aria-label={`Seleccionar ${subtask.title}`}
         />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
@@ -243,7 +243,7 @@ function SubTaskRow({
             {dependencyTitles.length > 0 ? (
               <span className="inline-flex items-center gap-1">
                 <HugeiconsIcon icon={ArrowRight01Icon} className="h-3 w-3" />
-                depends on {dependencyTitles.join(', ')}
+                depende de {dependencyTitles.join(', ')}
               </span>
             ) : null}
             {subtask.runId ? (
@@ -326,9 +326,9 @@ function GoalDetail({
               </span>
               <span>id: {goal.id}</span>
               <span>·</span>
-              <span>created {formatDate(goal.createdAt)}</span>
+              <span>creado {formatDate(goal.createdAt)}</span>
               <span>·</span>
-              <span>source: {goal.source}</span>
+              <span>origen: {goal.source}</span>
             </div>
             {goal.description ? (
               <p className="mt-3 whitespace-pre-wrap text-[13px] leading-relaxed text-primary-700 dark:text-primary-300">
@@ -350,24 +350,24 @@ function GoalDetail({
                 ? 'cursor-not-allowed opacity-60'
                 : 'hover:border-accent-400 hover:text-accent-500',
             )}
-            title="Re-run decomposition"
+            title="Volver a ejecutar la descomposición"
           >
             <HugeiconsIcon icon={RefreshIcon} className="h-3 w-3" />
-            {busyDecompose ? 'Decomposing…' : 'Re-decompose'}
+            {busyDecompose ? 'Descomponiendo…' : 'Re-descomponer'}
           </button>
         </div>
       </header>
 
       <div className="rounded-xl border border-primary-200 bg-primary-50 p-3 dark:bg-primary-100">
         <label className="mb-2 block text-[11px] font-semibold uppercase tracking-wide text-primary-500">
-          Dispatch session key
+          Clave de sesión de despacho
         </label>
         <div className="flex flex-wrap items-center gap-2">
           <input
             type="text"
             value={sessionKey}
             onChange={(e) => onSessionKeyChange(e.target.value)}
-            placeholder="e.g. coder-pool / openclaw-main"
+            placeholder="ej. coder-pool / openclaw-main"
             className="min-w-[220px] flex-1 rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-[13px] text-ink outline-none focus:border-accent-400 dark:bg-primary-50"
           />
           <button
@@ -375,7 +375,7 @@ function GoalDetail({
             disabled={goal.subtasks.length === 0}
             className="rounded-lg border border-primary-200 px-3 py-2 text-[12px] text-primary-600 hover:border-accent-400 hover:text-accent-500"
           >
-            {allSelected ? 'Clear selection' : 'Select all'}
+            {allSelected ? 'Limpiar selección' : 'Seleccionar todo'}
           </button>
           <button
             onClick={handleExecute}
@@ -389,10 +389,10 @@ function GoalDetail({
           >
             <HugeiconsIcon icon={PlayIcon} className="h-4 w-4" />
             {busyExecute
-              ? 'Dispatching…'
+              ? 'Despachando…'
               : selected.size === 0
-                ? 'Execute pending'
-                : `Execute ${selected.size} selected`}
+                ? 'Ejecutar pendientes'
+                : `Ejecutar ${selected.size} seleccionadas`}
           </button>
         </div>
       </div>
@@ -400,7 +400,7 @@ function GoalDetail({
       <section className="flex-1 overflow-y-auto rounded-xl border border-primary-200 bg-primary-50 p-3 dark:bg-primary-100">
         {goal.subtasks.length === 0 ? (
           <p className="p-6 text-center text-[12px] text-primary-500">
-            No sub-tasks yet — re-run decomposition.
+            Aún no hay sub-tareas — vuelve a ejecutar la descomposición.
           </p>
         ) : (
           <div className="flex flex-col gap-2">
@@ -485,9 +485,9 @@ export function OrchestratorScreen() {
     <div className="flex h-full flex-col gap-3 bg-primary-50 p-4">
       <header className="flex items-center justify-between gap-3">
         <div>
-          <h1 className="text-lg font-semibold text-ink">Orchestrator</h1>
+          <h1 className="text-lg font-semibold text-ink">Orquestador</h1>
           <p className="text-[12px] text-primary-500">
-            Convert high-level goals into agent-ready sub-tasks. LLM-assisted decomposition with manual review.
+            Convierte objetivos de alto nivel en sub-tareas listas para los agentes. Descomposición asistida por LLM con revisión manual.
           </p>
         </div>
         <button
@@ -495,7 +495,7 @@ export function OrchestratorScreen() {
           className="inline-flex items-center gap-1 rounded-lg border border-primary-200 px-2 py-1 text-[12px] text-primary-600 hover:border-accent-400 hover:text-accent-500"
         >
           <HugeiconsIcon icon={RefreshIcon} className="h-3 w-3" />
-          Refresh
+          Actualizar
         </button>
       </header>
 
@@ -503,7 +503,7 @@ export function OrchestratorScreen() {
         <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-[12px] text-red-600 dark:text-red-400">
           {lastError}
           {decompositionSource === 'fallback'
-            ? ' (used fallback decomposition heuristic)'
+            ? ' (se usó la heurística de descomposición de respaldo)'
             : null}
         </div>
       ) : null}
@@ -514,12 +514,12 @@ export function OrchestratorScreen() {
           <div className="rounded-xl border border-primary-200 bg-primary-50 p-3 dark:bg-primary-100">
             <div className="mb-2 flex items-center justify-between">
               <h2 className="text-xs font-semibold uppercase tracking-wide text-primary-500">
-                Goals ({goals.length})
+                Objetivos ({goals.length})
               </h2>
             </div>
             {goals.length === 0 ? (
               <p className="p-3 text-center text-[12px] text-primary-500">
-                No goals yet. Create one above.
+                Aún no hay objetivos. Crea uno arriba.
               </p>
             ) : (
               <div className="flex flex-col gap-2">
@@ -554,7 +554,7 @@ export function OrchestratorScreen() {
                 className="mb-3 h-8 w-8 text-primary-400"
               />
               <p className="text-[13px] text-primary-500">
-                Select a goal on the left or create a new one to see its decomposition.
+                Selecciona un objetivo a la izquierda o crea uno nuevo para ver su descomposición.
               </p>
             </div>
           )}
