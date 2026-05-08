@@ -76,12 +76,6 @@ function NotFoundPage() {
             >
               Files
             </Link>
-            <Link
-              to="/terminal"
-              className="text-accent-500 hover:text-accent-600 hover:underline"
-            >
-              Terminal
-            </Link>
           </div>
         </div>
       </div>
