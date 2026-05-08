@@ -257,11 +257,18 @@ export function ChatScreen({
   // BUG-4: idempotency guard — prevents duplicate sends on paste/attach double-fire
   const lastSendKeyRef = useRef('')
   const lastSendAtRef = useRef(0)
-  const [fileExplorerCollapsed, setFileExplorerCollapsed] = useState(() => {
-    if (typeof window === 'undefined') return true
-    const stored = localStorage.getItem('clawsuite-file-explorer-collapsed')
-    return stored === null ? true : stored === 'true'
-  })
+  // SSR-safe: start with `true` (collapsed) on both server and client first
+  // paint, then sync to localStorage in useEffect below to avoid React #418
+  // hydration mismatch (GAP-F117).
+  const [fileExplorerCollapsed, setFileExplorerCollapsed] = useState(true)
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('clawsuite-file-explorer-collapsed')
+      if (stored !== null) setFileExplorerCollapsed(stored === 'true')
+    } catch {
+      // ignore — keep default
+    }
+  }, [])
   const { isMobile } = useChatMobile(queryClient)
   const mobileKeyboardInset = useWorkspaceStore((s) => s.mobileKeyboardInset)
   const mobileComposerFocused = useWorkspaceStore((s) => s.mobileComposerFocused)

@@ -34,14 +34,24 @@ const TIPS = [
 
 export function ActivityTicker() {
   const navigate = useNavigate()
-  const [index, setIndex] = useState(() =>
-    Math.floor(Math.random() * TIPS.length),
-  )
+  // SSR-safe: deterministic index 0 on server + first client paint, then
+  // randomize after mount in useEffect. Math.random in init causes
+  // React #418 hydration mismatch (GAP-F117).
+  const [index, setIndex] = useState(0)
   const [fading, setFading] = useState(false)
-  const [dismissed, setDismissed] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return localStorage.getItem('clawsuite-ticker-dismissed') === 'true'
-  })
+  // SSR-safe: same default on server + first client paint; localStorage
+  // peek deferred to useEffect below to avoid #418 hydration mismatch.
+  const [dismissed, setDismissed] = useState(false)
+  useEffect(() => {
+    setIndex(Math.floor(Math.random() * TIPS.length))
+    try {
+      if (localStorage.getItem('clawsuite-ticker-dismissed') === 'true') {
+        setDismissed(true)
+      }
+    } catch {
+      // ignore
+    }
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
