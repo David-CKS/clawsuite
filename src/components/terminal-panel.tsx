@@ -1,11 +1,6 @@
-import { lazy, Suspense, useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useNavigate } from '@tanstack/react-router'
-const TerminalWorkspace = lazy(() =>
-  import('@/components/terminal/terminal-workspace').then((m) => ({
-    default: m.TerminalWorkspace,
-  })),
-)
 import {
   DEFAULT_PANEL_HEIGHT,
   MIN_PANEL_HEIGHT,
@@ -26,26 +21,20 @@ export function TerminalPanel() {
     startHeight: number
   } | null>(null)
 
-  const handleMinimize = useCallback(
-    function handleMinimize() {
-      setPanelOpen(false)
-    },
-    [setPanelOpen],
-  )
-
-  const handleMaximize = useCallback(
-    function handleMaximize() {
-      navigate({ to: '/terminal' })
-    },
-    [navigate],
-  )
-
   const handleClose = useCallback(
     function handleClose() {
       setPanelOpen(false)
     },
     [setPanelOpen],
   )
+
+  const handleOpenIssue = useCallback(function handleOpenIssue() {
+    window.open(
+      'https://github.com/outsourc-e/clawsuite/issues/50',
+      '_blank',
+      'noopener,noreferrer',
+    )
+  }, [])
 
   const handleResizeStart = useCallback(
     function handleResizeStart(event: React.MouseEvent<HTMLDivElement>) {
@@ -97,6 +86,9 @@ export function TerminalPanel() {
     [panelHeight, setPanelHeight],
   )
 
+  // navigate kept for future use when terminal is restored
+  void navigate
+
   return (
     <AnimatePresence initial={false}>
       {isPanelOpen ? (
@@ -115,22 +107,47 @@ export function TerminalPanel() {
             role="separator"
             aria-label="Resize terminal panel"
           />
-          <div className="h-full pt-1">
-            <Suspense
-              fallback={
-                <div className="flex h-full items-center justify-center text-xs text-primary-500">
-                  Loading terminal…
-                </div>
-              }
-            >
-              <TerminalWorkspace
-                mode="panel"
-                panelVisible={isPanelOpen}
-                onMinimizePanel={handleMinimize}
-                onMaximizePanel={handleMaximize}
-                onClosePanel={handleClose}
-              />
-            </Suspense>
+          <div className="flex h-full flex-col items-center justify-center px-6 pt-2 text-center text-primary-900">
+            <div className="flex items-center gap-2 text-amber-600">
+              <svg
+                aria-hidden="true"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v3.75m0 3.75h.007m9.504-3.75c0 5.385-4.365 9.75-9.75 9.75S2.25 18.135 2.25 12.75 6.615 3 12 3s9.504 4.365 9.504 9.75z"
+                />
+              </svg>
+              <span className="text-sm font-semibold">
+                Terminal en mantenimiento
+              </span>
+            </div>
+            <p className="mt-2 max-w-md text-xs text-primary-600">
+              Bug conocido (React #418) en ClawSuite v3.2.0. Reportado upstream;
+              vista deshabilitada hasta que se priorice un parche propio o
+              upstream merge la corrección.
+            </p>
+            <div className="mt-3 flex flex-col items-center gap-2 sm:flex-row">
+              <button
+                type="button"
+                onClick={handleOpenIssue}
+                className="inline-flex items-center gap-2 rounded-md border border-primary-300 bg-primary-100 px-3 py-1.5 text-xs font-medium text-primary-900 transition-colors hover:bg-primary-200"
+              >
+                Ver issue upstream #50
+              </button>
+              <button
+                type="button"
+                onClick={handleClose}
+                className="inline-flex items-center gap-2 rounded-md bg-accent-500 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-accent-600"
+              >
+                Cerrar panel
+              </button>
+            </div>
           </div>
         </motion.section>
       ) : null}
