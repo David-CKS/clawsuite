@@ -39,6 +39,10 @@ COPY --from=builder /app/server-entry.js ./
 # Copy built-in OpenClaw skills
 COPY --from=skills /openclaw-skills ./openclaw-skills
 
+# Copy CKS custom skills (Cat 4 — A1) merged with upstream openclaw-skills
+COPY --from=builder /app/cks-skills ./openclaw-skills-cks
+RUN cp -r ./openclaw-skills-cks/cks-* ./openclaw-skills/ && rm -rf ./openclaw-skills-cks
+
 # Expose default port
 EXPOSE 3000
 
