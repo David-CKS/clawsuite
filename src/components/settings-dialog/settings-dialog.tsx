@@ -839,7 +839,7 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
                 Settings
               </DialogTitle>
               <DialogDescription className="sr-only">
-                Configure ClawSuite
+                Configure CKS Suite
               </DialogDescription>
             </div>
             <DialogClose

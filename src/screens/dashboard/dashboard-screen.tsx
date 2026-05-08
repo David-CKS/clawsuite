@@ -663,7 +663,7 @@ export function DashboardScreen() {
                 )}
                 <div className="flex min-w-0 items-center gap-2">
                   <h1 className="text-sm font-semibold text-ink text-balance md:text-base truncate">
-                    ClawSuite
+                    CKS Suite
                   </h1>
                   {isMobile ? (
                     <span

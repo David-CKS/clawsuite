@@ -95,7 +95,7 @@ function getDemoTabs(): Array<BrowserTab> {
   return [
     {
       id: 'demo-tab-1',
-      title: 'ClawSuite',
+      title: 'CKS Suite',
       url: 'https://openclaw.local/studio',
       isActive: true,
     },

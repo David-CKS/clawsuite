@@ -636,7 +636,7 @@ function SettingsRoute() {
               >
                 <SettingsRow
                   label="Gateway URL"
-                  description="Used by ClawSuite for provider connectivity checks."
+                  description="Used by CKS Suite for provider connectivity checks."
                 >
                   <div className="w-full md:max-w-md">
                     <input

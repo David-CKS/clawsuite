@@ -71,9 +71,10 @@
   --color-accent-100: oklch(0.28 0.04 58);
   --color-accent-200: oklch(0.38 0.08 55);
   --color-accent-300: oklch(0.5 0.12 52);
-  --color-accent-400: oklch(0.62 0.16 48);
-  --color-accent-500: oklch(0.72 0.18 45);
-  --color-accent-600: oklch(0.8 0.16 42);
+  /* CKS rojo #c5020e — branding canónico. Sustituye orange upstream en tema dark default. */
+  --color-accent-400: oklch(0.42 0.19 25);
+  --color-accent-500: oklch(0.45 0.20 25);
+  --color-accent-600: oklch(0.55 0.18 25);
   --color-accent-700: oklch(0.86 0.12 40);
   --color-accent-800: oklch(0.9 0.08 38);
   --color-accent-900: oklch(0.94 0.04 36);

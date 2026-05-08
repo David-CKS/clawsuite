@@ -967,7 +967,7 @@ function ChatSidebarComponent({
                 )}
               >
                 <OpenClawStudioIcon className="size-5 rounded-lg overflow-hidden" />
-                ClawSuite
+                CKS Suite
               </Link>
             </motion.div>
           ) : null}

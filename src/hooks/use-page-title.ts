@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const BASE_TITLE = 'ClawSuite'
+const BASE_TITLE = 'CKS Suite'
 
 /**
  * Sets document.title for the current page.

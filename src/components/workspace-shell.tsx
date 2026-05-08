@@ -105,7 +105,7 @@ export function WorkspaceShell() {
         }
         throw error instanceof Error
           ? error
-          : new Error('Failed to connect to ClawSuite server')
+          : new Error('Failed to connect to CKS Suite server')
       } finally {
         globalThis.clearTimeout(timeout)
       }
@@ -228,7 +228,7 @@ export function WorkspaceShell() {
       <div className="flex items-center justify-center h-screen bg-surface">
         <div className="text-center">
           <div className="inline-block h-10 w-10 animate-spin rounded-full border-4 border-accent-500 border-r-transparent mb-4" />
-          <p className="text-sm text-primary-500">Initializing ClawSuite...</p>
+          <p className="text-sm text-primary-500">Initializing CKS Suite...</p>
         </div>
       </div>
     )
@@ -238,7 +238,7 @@ export function WorkspaceShell() {
     const errorMessage =
       authQuery.error instanceof Error
         ? authQuery.error.message
-        : 'Failed to connect to ClawSuite server'
+        : 'Failed to connect to CKS Suite server'
     const showGatewayTip = /gateway|websocket/i.test(errorMessage)
 
     return (
@@ -250,7 +250,7 @@ export function WorkspaceShell() {
             </span>
           </div>
           <h1 className="text-2xl font-semibold text-primary-100">
-            Could not connect to ClawSuite server
+            Could not connect to CKS Suite server
           </h1>
           <p className="mt-3 text-sm text-primary-300">
             The server may still be starting up. Wait a moment and try again.

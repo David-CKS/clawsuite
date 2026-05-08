@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" role="img" aria-label="Car Key System">
+  <title>Car Key System</title>
+  <g fill="currentColor" font-family="'Arial', 'Helvetica Neue', sans-serif">
+    <text x="100" y="14" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="3.5">C A R K E Y</text>
+    <text x="100" y="55" text-anchor="middle" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-weight="900" font-size="38" font-style="italic" letter-spacing="-1">CKS</text>
+    <text x="100" y="71" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="3.5">S Y S T E M</text>
+  </g>
+</svg>

@@ -364,7 +364,7 @@ export function SkillsScreen() {
           <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
             <div className="min-w-0">
               <p className="text-[10px] font-medium uppercase text-primary-500 tabular-nums">
-                ClawSuite Marketplace
+                CKS Suite Marketplace
               </p>
               <h1 className="truncate text-base font-semibold text-primary-900 dark:text-neutral-100">
                 Skills Browser
@@ -753,7 +753,7 @@ function SecurityScanCard({ security }: { security: SecurityRisk }) {
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
             <span className="text-primary-500 font-medium w-16 shrink-0">
-              ClawSuite
+              CKS Suite
             </span>
             <span
               className={cn(
