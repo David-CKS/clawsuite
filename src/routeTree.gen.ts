@@ -106,6 +106,9 @@ import { Route as ApiCronToggleRouteImport } from './routes/api/cron/toggle'
 import { Route as ApiCronRunRouteImport } from './routes/api/cron/run'
 import { Route as ApiCronListRouteImport } from './routes/api/cron/list'
 import { Route as ApiCronDeleteRouteImport } from './routes/api/cron/delete'
+import { Route as ApiCksSprintStatusRouteImport } from './routes/api/cks/sprint-status'
+import { Route as ApiCksOpenrouterBalanceRouteImport } from './routes/api/cks/openrouter-balance'
+import { Route as ApiCksBridgeStatusRouteImport } from './routes/api/cks/bridge-status'
 import { Route as ApiBrowserTabsRouteImport } from './routes/api/browser/tabs'
 import { Route as ApiBrowserStatusRouteImport } from './routes/api/browser/status'
 import { Route as ApiBrowserScreenshotRouteImport } from './routes/api/browser/screenshot'
@@ -601,6 +604,21 @@ const ApiCronDeleteRoute = ApiCronDeleteRouteImport.update({
   path: '/delete',
   getParentRoute: () => ApiCronRoute,
 } as any)
+const ApiCksSprintStatusRoute = ApiCksSprintStatusRouteImport.update({
+  id: '/api/cks/sprint-status',
+  path: '/api/cks/sprint-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksOpenrouterBalanceRoute = ApiCksOpenrouterBalanceRouteImport.update({
+  id: '/api/cks/openrouter-balance',
+  path: '/api/cks/openrouter-balance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCksBridgeStatusRoute = ApiCksBridgeStatusRouteImport.update({
+  id: '/api/cks/bridge-status',
+  path: '/api/cks/bridge-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiBrowserTabsRoute = ApiBrowserTabsRouteImport.update({
   id: '/tabs',
   path: '/tabs',
@@ -731,6 +749,9 @@ export interface FileRoutesByFullPath {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -838,6 +859,9 @@ export interface FileRoutesByTo {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -947,6 +971,9 @@ export interface FileRoutesById {
   '/api/browser/screenshot': typeof ApiBrowserScreenshotRoute
   '/api/browser/status': typeof ApiBrowserStatusRoute
   '/api/browser/tabs': typeof ApiBrowserTabsRoute
+  '/api/cks/bridge-status': typeof ApiCksBridgeStatusRoute
+  '/api/cks/openrouter-balance': typeof ApiCksOpenrouterBalanceRoute
+  '/api/cks/sprint-status': typeof ApiCksSprintStatusRoute
   '/api/cron/delete': typeof ApiCronDeleteRoute
   '/api/cron/list': typeof ApiCronListRoute
   '/api/cron/run': typeof ApiCronRunRoute
@@ -1057,6 +1084,9 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1164,6 +1194,9 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1272,6 +1305,9 @@ export interface FileRouteTypes {
     | '/api/browser/screenshot'
     | '/api/browser/status'
     | '/api/browser/tabs'
+    | '/api/cks/bridge-status'
+    | '/api/cks/openrouter-balance'
+    | '/api/cks/sprint-status'
     | '/api/cron/delete'
     | '/api/cron/list'
     | '/api/cron/run'
@@ -1375,6 +1411,9 @@ export interface RootRouteChildren {
   ApiWorkspaceRoute: typeof ApiWorkspaceRoute
   ChatSessionKeyRoute: typeof ChatSessionKeyRoute
   ChatIndexRoute: typeof ChatIndexRoute
+  ApiCksBridgeStatusRoute: typeof ApiCksBridgeStatusRoute
+  ApiCksOpenrouterBalanceRoute: typeof ApiCksOpenrouterBalanceRoute
+  ApiCksSprintStatusRoute: typeof ApiCksSprintStatusRoute
   ApiDebugReconnectRoute: typeof ApiDebugReconnectRoute
   ApiDebugStatusRoute: typeof ApiDebugStatusRoute
   ApiGatewayAgentsRoute: typeof ApiGatewayAgentsRoute
@@ -2074,6 +2113,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCronDeleteRouteImport
       parentRoute: typeof ApiCronRoute
     }
+    '/api/cks/sprint-status': {
+      id: '/api/cks/sprint-status'
+      path: '/api/cks/sprint-status'
+      fullPath: '/api/cks/sprint-status'
+      preLoaderRoute: typeof ApiCksSprintStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/openrouter-balance': {
+      id: '/api/cks/openrouter-balance'
+      path: '/api/cks/openrouter-balance'
+      fullPath: '/api/cks/openrouter-balance'
+      preLoaderRoute: typeof ApiCksOpenrouterBalanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cks/bridge-status': {
+      id: '/api/cks/bridge-status'
+      path: '/api/cks/bridge-status'
+      fullPath: '/api/cks/bridge-status'
+      preLoaderRoute: typeof ApiCksBridgeStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/browser/tabs': {
       id: '/api/browser/tabs'
       path: '/tabs'
@@ -2306,6 +2366,9 @@ const rootRouteChildren: RootRouteChildren = {
   ApiWorkspaceRoute: ApiWorkspaceRoute,
   ChatSessionKeyRoute: ChatSessionKeyRoute,
   ChatIndexRoute: ChatIndexRoute,
+  ApiCksBridgeStatusRoute: ApiCksBridgeStatusRoute,
+  ApiCksOpenrouterBalanceRoute: ApiCksOpenrouterBalanceRoute,
+  ApiCksSprintStatusRoute: ApiCksSprintStatusRoute,
   ApiDebugReconnectRoute: ApiDebugReconnectRoute,
   ApiDebugStatusRoute: ApiDebugStatusRoute,
   ApiGatewayAgentsRoute: ApiGatewayAgentsRoute,

@@ -29,6 +29,7 @@ import { MetricsWidget } from './components/metrics-widget'
 import { NotificationsWidget } from './components/notifications-widget'
 import { RecentSessionsWidget } from './components/recent-sessions-widget'
 import { ServicesHealthWidget } from './components/services-health-widget'
+import { CksStatusWidget } from './components/cks-status-widget'
 import { ScheduledJobsWidget } from './components/scheduled-jobs-widget'
 import { SkillsWidget } from './components/skills-widget'
 import { TasksWidget } from './components/tasks-widget'
@@ -1048,6 +1049,11 @@ export function DashboardScreen() {
                   />
                 </ErrorBoundary>
               ) : null}
+
+              {/* CKS Status — bridge Sergio + sprint MVP + OpenRouter balance (custom CKS) */}
+              <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">
+                <CksStatusWidget />
+              </ErrorBoundary>
 
               {desktopLayout.showScheduledJobs ? (
                 <ErrorBoundary title="Error en el widget" description="Este widget no se ha podido cargar.">

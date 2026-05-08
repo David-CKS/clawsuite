@@ -258,7 +258,7 @@ const TEAM_QUICK_TEMPLATES: Array<{
   { id: 'full-max', label: 'Full Stack', icon: '🚀', description: 'Máximo rendimiento — todos los roles cubiertos', templateId: 'coding', tier: 'max', agents: ['Forge', 'Sentinel', 'Spark', 'Atlas', 'Lens'] },
 ]
 
-// ── System Prompt Templates (inspired by real model system prompts) ──
+// ── System Prompt Templates — 12 roles canónicos CKS (Car Key System) ──
 const SYSTEM_PROMPT_TEMPLATES: Array<{
   id: string
   label: string
