@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 172" role="img" aria-label="CKS racing-cut logo v2 dark mode">
+  <title>CKS — Car Key System (racing-cut v2 dark)</title>
+  <desc>Variante dark mode con currentColor para inheritance. Mismo trazado que v2-font pero adaptable a contexto dark/light.</desc>
+
+  <defs>
+    <style type="text/css"><![CDATA[
+      .cks-racing-dark {
+        font-family: 'Anton', 'Bowlby One', 'Paytone One', 'Arial Black', 'Helvetica Neue', sans-serif;
+        font-weight: 900;
+        font-style: italic;
+        font-stretch: condensed;
+        letter-spacing: -6px;
+        fill: currentColor;
+      }
+    ]]></style>
+  </defs>
+
+  <g transform="skewX(-12)">
+    <text x="120" y="125" class="cks-racing-dark" font-size="135" text-anchor="start">CKS</text>
+  </g>
+
+  <rect x="38" y="148" width="320" height="6" fill="currentColor"/>
+  <rect x="38" y="14" width="80" height="3" fill="currentColor"/>
+</svg>
