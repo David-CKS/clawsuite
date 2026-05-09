@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 172" role="img" aria-label="CKS racing-cut logo v2">
+  <title>CKS — Car Key System (racing-cut v2)</title>
+  <desc>Refinamiento manual del logo CKS con tipografia italic racing-cut, terminaciones diagonales sharp, letterforms compactas estilo automotive.</desc>
+
+  <!-- Background card (optional, transparent by default for inline use) -->
+  <rect x="0" y="0" width="400" height="172" fill="none"/>
+
+  <!-- Letter C: italic racing-cut, open right -->
+  <!-- Forma: 3/4 ring, terminations cortadas en angulo 70deg (italic + racing) -->
+  <path
+    d="M 105 38
+       L 138 38
+       L 132 56
+       L 92 56
+       L 78 86
+       L 92 116
+       L 132 116
+       L 138 134
+       L 105 134
+       L 65 134
+       L 42 105
+       L 38 86
+       L 42 67
+       L 65 38
+       Z"
+    fill="#c5020e"/>
+
+  <!-- Letter K: italic racing-cut, vertical bar + diagonal -->
+  <path
+    d="M 158 38
+       L 192 38
+       L 184 86
+       L 218 38
+       L 252 38
+       L 212 86
+       L 246 134
+       L 212 134
+       L 184 96
+       L 178 134
+       L 144 134
+       Z"
+    fill="#c5020e"/>
+
+  <!-- Letter S: italic racing-cut, segmented S with sharp angles -->
+  <path
+    d="M 358 38
+       L 326 38
+       L 282 38
+       L 264 60
+       L 264 80
+       L 282 95
+       L 322 95
+       L 328 102
+       L 322 116
+       L 286 116
+       L 268 116
+       L 262 134
+       L 296 134
+       L 332 134
+       L 350 112
+       L 350 92
+       L 332 77
+       L 292 77
+       L 286 70
+       L 292 56
+       L 328 56
+       L 348 56
+       Z"
+    fill="#c5020e"/>
+
+  <!-- Optional racing accent: bottom red bar (CKS signature stripe) -->
+  <rect x="38" y="148" width="320" height="6" fill="#c5020e"/>
+
+</svg>
