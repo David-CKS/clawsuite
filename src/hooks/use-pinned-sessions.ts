@@ -33,9 +33,28 @@ export const usePinnedSessionsStore = create<PinnedSessionsState>()(
       },
       isSessionPinned: (key) => get().pinnedSessionKeys.includes(key),
     }),
-    { name: 'pinned-sessions' },
+    {
+      name: 'pinned-sessions',
+      // SSR-safe (GAP-F117 final): defer localStorage read until manual
+      // rehydrate from RootLayout useEffect. Prevents server/client mismatch
+      // for `pinnedSessionKeys` array on initial render in the sidebar.
+      skipHydration: true,
+    },
   ),
 )
+
+let didRehydratePinnedSessionsStore = false
+
+/**
+ * Called from `RootLayout` useEffect on the client. Triggers the manual
+ * rehydration that `skipHydration: true` requires. Idempotent.
+ */
+export function rehydratePinnedSessionsStore(): void {
+  if (didRehydratePinnedSessionsStore) return
+  if (typeof window === 'undefined') return
+  didRehydratePinnedSessionsStore = true
+  void usePinnedSessionsStore.persist.rehydrate()
+}
 
 export function usePinnedSessions() {
   const pinnedSessionKeys = usePinnedSessionsStore((s) => s.pinnedSessionKeys)

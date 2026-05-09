@@ -78,12 +78,30 @@ export const useChatSettingsStore = create<ChatSettingsState>()(
     },
     {
       name: 'chat-settings',
+      // SSR-safe (GAP-F117 final): defer localStorage read until manual
+      // rehydrate from RootLayout useEffect. Prevents server/client mismatch
+      // for theme/loaderStyle/displayName/avatarDataUrl on initial render
+      // (these are read by useResolvedTheme + chat header avatar etc.).
+      skipHydration: true,
       merge: function merge(persistedState, currentState) {
         return mergePersistedSettings(persistedState, currentState)
       },
     },
   ),
 )
+
+let didRehydrateChatSettingsStore = false
+
+/**
+ * Called from `RootLayout` useEffect on the client. Triggers the manual
+ * rehydration that `skipHydration: true` requires. Idempotent.
+ */
+export function rehydrateChatSettingsStore(): void {
+  if (didRehydrateChatSettingsStore) return
+  if (typeof window === 'undefined') return
+  didRehydrateChatSettingsStore = true
+  void useChatSettingsStore.persist.rehydrate()
+}
 
 export function getChatProfileDisplayName(displayName: string): string {
   const trimmed = displayName.trim()

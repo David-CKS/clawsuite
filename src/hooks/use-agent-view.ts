@@ -464,9 +464,26 @@ export const useAgentViewStore = create<AgentViewState>()(
     }),
     {
       name: 'agent-view-state',
+      // SSR-safe (GAP-F117 final): defer localStorage read until manual
+      // rehydrate from RootLayout useEffect. Prevents server/client mismatch
+      // for isOpen/queueOpen/historyOpen on initial render.
+      skipHydration: true,
     },
   ),
 )
+
+let didRehydrateAgentViewStore = false
+
+/**
+ * Called from `RootLayout` useEffect on the client. Triggers the manual
+ * rehydration that `skipHydration: true` requires. Idempotent.
+ */
+export function rehydrateAgentViewStore(): void {
+  if (didRehydrateAgentViewStore) return
+  if (typeof window === 'undefined') return
+  didRehydrateAgentViewStore = true
+  void useAgentViewStore.persist.rehydrate()
+}
 
 export type AgentViewResult = {
   isOpen: boolean

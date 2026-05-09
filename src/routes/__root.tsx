@@ -21,6 +21,12 @@ import { GatewayRestartProvider } from '@/components/gateway-restart-overlay'
 import { ExecApprovalToast } from '@/components/exec-approval-toast'
 import { initializeSettingsAppearance } from '@/hooks/use-settings'
 import { rehydrateWorkspaceStore } from '@/stores/workspace-store'
+import { rehydrateTerminalPanelStore } from '@/stores/terminal-panel-store'
+import { rehydrateTaskStore } from '@/stores/task-store'
+import { rehydrateSourcesStore } from '@/stores/sources-store'
+import { rehydrateAgentViewStore } from '@/hooks/use-agent-view'
+import { rehydrateChatSettingsStore } from '@/hooks/use-chat-settings'
+import { rehydratePinnedSessionsStore } from '@/hooks/use-pinned-sessions'
 
 const themeScript = `
 (() => {
@@ -258,6 +264,16 @@ function RootLayout() {
     // persisted UI state (sidebar collapsed, chat panel open, etc.) does NOT
     // diverge from the server-rendered defaults during the initial hydration.
     rehydrateWorkspaceStore()
+    // GAP-F117 final: rehydrate ALL remaining persist stores after mount to
+    // close every server/client divergence vector. Each helper is idempotent
+    // and bails out on SSR (typeof window === 'undefined'). Order is not
+    // significant — they touch independent localStorage keys.
+    rehydrateTerminalPanelStore()
+    rehydrateTaskStore()
+    rehydrateSourcesStore()
+    rehydrateAgentViewStore()
+    rehydrateChatSettingsStore()
+    rehydratePinnedSessionsStore()
 
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then((registrations) => {
