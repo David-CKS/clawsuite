@@ -2,7 +2,7 @@
  * Tracks which widgets are currently visible on the dashboard.
  * Persisted to localStorage, reversible via Reset Layout.
  */
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import type { WidgetId } from '../constants/grid-config'
 import { WIDGET_REGISTRY } from '../constants/grid-config'
 
@@ -23,7 +23,7 @@ function getDefaultVisibleIds(): WidgetId[] {
   )
 }
 
-function loadVisible(): WidgetId[] {
+function loadVisibleFromStorage(): WidgetId[] | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) {
@@ -33,15 +33,27 @@ function loadVisible(): WidgetId[] {
   } catch {
     /* ignore */
   }
-  return getDefaultVisibleIds()
+  return null
 }
 
 function saveVisible(ids: WidgetId[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(ids))
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(ids))
+  } catch {
+    /* ignore */
+  }
 }
 
 export function useVisibleWidgets() {
-  const [visibleIds, setVisibleIds] = useState<WidgetId[]>(loadVisible)
+  // SSR-safe: start with defaults on both server and client first paint, then
+  // sync to localStorage in useEffect post-mount. Avoids React #418 hydration
+  // mismatch when the user has persisted widget preferences. GAP-F117 zone B.
+  const [visibleIds, setVisibleIds] = useState<WidgetId[]>(getDefaultVisibleIds)
+
+  useEffect(() => {
+    const persisted = loadVisibleFromStorage()
+    if (persisted) setVisibleIds(persisted)
+  }, [])
 
   const addWidget = useCallback((id: WidgetId) => {
     setVisibleIds((prev) => {
@@ -61,7 +73,11 @@ export function useVisibleWidgets() {
   }, [])
 
   const resetVisible = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY)
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      /* ignore */
+    }
     const defaults = getDefaultVisibleIds()
     setVisibleIds(defaults)
   }, [])
