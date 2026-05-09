@@ -197,11 +197,27 @@ export function DashboardScreen() {
     () => (theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light'),
     [theme],
   )
-  const mobileThemeIsDark =
-    theme === 'dark' ||
-    (theme === 'system' &&
-      typeof document !== 'undefined' &&
-      document.documentElement.classList.contains('dark'))
+  // SSR-safe theme derivation. Server cannot read `document.documentElement`,
+  // so the `system` branch produces different output server vs client → React
+  // #418 hydration mismatch (GAP-F117 zone B). Start with `theme === 'dark'`
+  // (deterministic on both sides) and refine in useEffect once hydrated.
+  const [systemPrefersDark, setSystemPrefersDark] = useState(false)
+  useEffect(() => {
+    if (theme !== 'system') return
+    function read() {
+      setSystemPrefersDark(
+        document.documentElement.classList.contains('dark'),
+      )
+    }
+    read()
+    const observer = new MutationObserver(read)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
+    return () => observer.disconnect()
+  }, [theme])
+  const mobileThemeIsDark = theme === 'dark' || (theme === 'system' && systemPrefersDark)
   const mobileThemeIcon = mobileThemeIsDark ? Moon02Icon : Sun02Icon
 
   const markLogoTipSeen = useCallback(function markLogoTipSeen() {

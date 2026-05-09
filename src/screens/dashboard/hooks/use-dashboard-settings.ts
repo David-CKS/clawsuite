@@ -18,6 +18,11 @@ let cached: DashboardSettings | null = null
 
 function read(): DashboardSettings {
   if (cached) return cached
+  if (typeof window === 'undefined') {
+    // SSR: never touch localStorage. Return defaults; the client will
+    // re-read from storage on first useEffect tick (post-mount).
+    return DEFAULT_SETTINGS
+  }
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) {
@@ -32,7 +37,13 @@ function read(): DashboardSettings {
 
 function write(settings: DashboardSettings) {
   cached = settings
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
+    } catch {
+      /* ignore */
+    }
+  }
   // Notify subscribers
   for (const cb of listeners) cb()
 }
@@ -50,8 +61,20 @@ function getSnapshot() {
   return read()
 }
 
+// Distinct snapshot for SSR — must return a stable reference identical to
+// the client's first paint to avoid React #418 hydration mismatch
+// (GAP-F117 zone B). React calls this on the server and on the very first
+// client render before any effect has run.
+function getServerSnapshot() {
+  return DEFAULT_SETTINGS
+}
+
 export function useDashboardSettings() {
-  const settings = useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
+  const settings = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  )
 
   const update = useCallback(function updateSettings(
     patch: Partial<DashboardSettings>,
