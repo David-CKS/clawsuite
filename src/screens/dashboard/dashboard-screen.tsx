@@ -128,13 +128,22 @@ export function DashboardScreen() {
   const navigate = useNavigate()
   const [dashSettingsOpen, setDashSettingsOpen] = useState(false)
   const [overflowOpen, setOverflowOpen] = useState(false)
-  const [dismissedChips, setDismissedChips] = useState<Set<string>>(() => {
-    if (typeof window === 'undefined') return new Set()
+  // SSR-safe (GAP-F117 follow-up): start with empty Set on server + first client
+  // paint so React hydration matches the alert chip list. Then peek at
+  // localStorage in useEffect below.
+  const [dismissedChips, setDismissedChips] = useState<Set<string>>(
+    () => new Set(),
+  )
+  useEffect(() => {
     try {
       const stored = window.localStorage.getItem('clawsuite-dismissed-chips')
-      return stored ? new Set(JSON.parse(stored) as string[]) : new Set()
-    } catch { return new Set() }
-  })
+      if (stored) {
+        setDismissedChips(new Set(JSON.parse(stored) as string[]))
+      }
+    } catch {
+      // ignore — keep empty Set
+    }
+  }, [])
   const { visibleIds, addWidget, removeWidget, resetVisible } =
     useVisibleWidgets()
   const { order: widgetOrder, moveWidget, resetOrder } = useWidgetReorder()
