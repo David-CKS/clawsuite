@@ -128,7 +128,7 @@ export function TerminalPanel() {
               </span>
             </div>
             <p className="mt-2 max-w-md text-xs text-primary-600">
-              Bug conocido (React #418) en ClawSuite v3.2.0. Reportado upstream;
+              Bug conocido (React #418) en CKS Suite (fork de ClawSuite v3.2.0). Reportado upstream;
               vista deshabilitada hasta que se priorice un parche propio o
               upstream merge la corrección.
             </p>

@@ -648,7 +648,7 @@ code {
   animation-delay: 0.28s;
 }
 
-.chat-streaming-lobster {
+.chat-streaming-cks {
   transform-origin: 50% 65%;
   animation: chatLobsterSpinPulse 1.2s ease-in-out infinite;
 }
@@ -794,7 +794,7 @@ code {
 
 @media (prefers-reduced-motion: reduce) {
   .three-dots-spinner-dot,
-  .chat-streaming-lobster,
+  .chat-streaming-cks,
   .logo-loader-icon,
   .chat-streaming-message .chat-streaming-content > :last-child,
   .chat-streaming-glow::before {

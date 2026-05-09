@@ -196,7 +196,7 @@ export const Route = createFileRoute('/api/telegram/webhook')({
             await sendTelegramMessage(
               chatId,
               [
-                '<b>ClawSuite Orchestrator</b>',
+                '<b>CKS Suite Orchestrator</b>',
                 '/goal &lt;title&gt; — create a goal and auto-decompose it',
                 '/status &lt;ID&gt; — show sub-tasks',
                 '/approve &lt;ID&gt; — mark approved',

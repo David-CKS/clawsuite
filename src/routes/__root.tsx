@@ -28,6 +28,34 @@ import { rehydrateAgentViewStore } from '@/hooks/use-agent-view'
 import { rehydrateChatSettingsStore } from '@/hooks/use-chat-settings'
 import { rehydratePinnedSessionsStore } from '@/hooks/use-pinned-sessions'
 
+// Idempotent one-shot migrator: legacy clawsuite-* localStorage keys → cks-*
+// Runs synchronously before React hydration to ensure all module-scope reads
+// see the migrated values. Safe to execute multiple times — no-op on second run.
+const migratorScript = `
+(() => {
+  if (typeof window === 'undefined' || !window.localStorage) return;
+  try {
+    var migrations = [
+      ['clawsuite-onboarding-completed', 'cks-onboarding-completed'],
+      ['clawsuite-gateway-configured', 'cks-gateway-configured'],
+      ['clawsuite-orchestrator-avatar', 'cks-orchestrator-avatar']
+    ];
+    for (var i = 0; i < migrations.length; i++) {
+      var oldKey = migrations[i][0];
+      var newKey = migrations[i][1];
+      var oldVal = localStorage.getItem(oldKey);
+      if (oldVal !== null && localStorage.getItem(newKey) === null) {
+        localStorage.setItem(newKey, oldVal);
+        localStorage.removeItem(oldKey);
+      } else if (oldVal !== null) {
+        // newKey already set — just clean legacy key
+        localStorage.removeItem(oldKey);
+      }
+    }
+  } catch (e) { /* ignore — fail open */ }
+})();
+`
+
 const themeScript = `
 (() => {
   window.process = window.process || { env: {}, platform: 'browser' };
@@ -319,6 +347,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: migratorScript }} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: themeColorScript }} />

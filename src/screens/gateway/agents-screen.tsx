@@ -84,38 +84,48 @@ const PAUSED_STATUSES = new Set(['paused', 'pause', 'suspended'])
 const ACTIVE_HEARTBEAT_MS = 30_000
 
 // TODO: Replace with gateway-backed config once a dedicated agent registry schema is available.
+// CKS roster — leafs reales del gateway OpenClaw (cks-dev, cks-lab, cks-bridge, cks-scout, cks-architect).
+// Avatares CKS pendientes en Phase 2 (designer humano).
 const FALLBACK_AGENT_REGISTRY: Array<AgentDefinition> = [
   {
-    id: 'aurora-main',
-    name: 'Aurora/Main',
+    id: 'cks-architect',
+    name: 'CKS Architect',
     category: 'Core',
-    role: 'Orchestrator',
+    role: 'Arquitecto Jefe / Planificador estratégico',
     color: 'orange',
-    aliases: ['aurora-main', 'aurora'],
+    aliases: ['cks-architect', 'architect'],
   },
   {
-    id: 'codex',
-    name: 'Codex',
+    id: 'cks-dev',
+    name: 'CKS Dev',
     category: 'Coding',
-    role: 'Coding specialist',
+    role: 'Director de Ingeniería · GitHub / Vercel / deploys',
     color: 'blue',
-    aliases: ['codex', 'coding'],
+    aliases: ['cks-dev', 'dev'],
   },
   {
-    id: 'memory-consolidator',
-    name: 'Memory consolidator',
+    id: 'cks-lab',
+    name: 'CKS Lab',
     category: 'System',
-    role: 'Memory service',
+    role: 'Director de Datos y Laboratorio · Supabase',
     color: 'violet',
-    aliases: ['memory-consolidator', 'memory'],
+    aliases: ['cks-lab', 'lab'],
   },
   {
-    id: 'telegram-gateway',
-    name: 'Telegram gateway',
+    id: 'cks-scout',
+    name: 'CKS Scout',
+    category: 'System',
+    role: 'Director de Investigación · OSINT / ingesta',
+    color: 'purple',
+    aliases: ['cks-scout', 'scout'],
+  },
+  {
+    id: 'cks-bridge',
+    name: 'CKS Bridge',
     category: 'Integrations',
-    role: 'Channel bridge',
+    role: 'Director de Integraciones · API Sergio',
     color: 'cyan',
-    aliases: ['telegram-gateway', 'telegram'],
+    aliases: ['cks-bridge', 'bridge'],
   },
 ]
 

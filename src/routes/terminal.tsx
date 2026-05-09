@@ -60,7 +60,7 @@ function TerminalRoute() {
       </svg>
       <h1 className="mb-2 text-2xl font-semibold">Terminal en mantenimiento</h1>
       <p className="mb-6 max-w-md text-sm text-primary-600">
-        El terminal integrado tiene un bug conocido en ClawSuite v3.2.0 que
+        El terminal integrado tiene un bug conocido en CKS Suite (fork de ClawSuite v3.2.0) que
         afecta el wire-up del teclado tras la hidratación SSR (React error #418).
         Hasta que se priorice un parche propio o upstream merge la corrección,
         esta vista está deshabilitada.
