@@ -2416,7 +2416,17 @@ function HistoryView() {
   const [sessions, setSessions] = useState<SessionRecord[]>([])
   const [loading, setLoading] = useState(true)
   const [expandedId, setExpandedId] = useState<string | null>(null)
-  const [localHistory] = useState<MissionCheckpoint[]>(() => loadMissionHistory())
+  // SSR-safe (GAP-F117 follow-up): start with [] on server + first client paint;
+  // load persisted mission history in useEffect below to avoid #418.
+  const [localHistory, setLocalHistory] = useState<MissionCheckpoint[]>([])
+  useEffect(() => {
+    try {
+      const history = loadMissionHistory()
+      if (history.length > 0) setLocalHistory(history)
+    } catch {
+      // ignore — keep []
+    }
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -2736,52 +2746,43 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
   const [boardTasks, _setBoardTasks] = useState<Array<HubTask>>([])
   const [missionTasks, setMissionTasks] = useState<Array<HubTask>>([])
   const [dispatchedTaskIdsByAgent, setDispatchedTaskIdsByAgent] = useState<Record<string, Array<string>>>({})
-  const [agentSessionMap, setAgentSessionMap] = useState<Record<string, string>>(() => {
-    if (typeof window === 'undefined') return {}
+  // SSR-safe (GAP-F117 follow-up): start with {} on server + first client paint
+  // so React hydration matches. Then sync to localStorage in useEffect.
+  const [agentSessionMap, setAgentSessionMap] = useState<Record<string, string>>({})
+  const [agentSessionModelMap, setAgentSessionModelMap] = useState<Record<string, string>>({})
+  useEffect(() => {
     try {
       const stored = window.localStorage.getItem('clawsuite:hub-agent-sessions')
-      if (!stored) return {}
+      if (!stored) return
       const parsed = JSON.parse(stored) as Record<string, unknown>
-      const result: Record<string, string> = {}
+      const sessionResult: Record<string, string> = {}
+      const modelResult: Record<string, string> = {}
       for (const [id, value] of Object.entries(parsed)) {
         if (typeof value === 'string') {
           // Old format: plain string sessionKey
-          result[id] = value
-        } else if (value && typeof value === 'object' && typeof (value as AgentSessionInfo).sessionKey === 'string') {
-          // New format: { sessionKey, model? }
-          result[id] = (value as AgentSessionInfo).sessionKey
+          sessionResult[id] = value
+        } else if (value && typeof value === 'object') {
+          const info = value as AgentSessionInfo
+          if (typeof info.sessionKey === 'string') sessionResult[id] = info.sessionKey
+          if (typeof info.model === 'string') modelResult[id] = info.model
         }
       }
-      return result
+      if (Object.keys(sessionResult).length > 0) setAgentSessionMap(sessionResult)
+      if (Object.keys(modelResult).length > 0) setAgentSessionModelMap(modelResult)
     } catch {
-      return {}
+      // ignore — keep empty defaults
     }
-  })
-  const [agentSessionModelMap, setAgentSessionModelMap] = useState<Record<string, string>>(() => {
-    if (typeof window === 'undefined') return {}
-    try {
-      const stored = window.localStorage.getItem('clawsuite:hub-agent-sessions')
-      if (!stored) return {}
-      const parsed = JSON.parse(stored) as Record<string, unknown>
-      const result: Record<string, string> = {}
-      for (const [id, value] of Object.entries(parsed)) {
-        if (value && typeof value === 'object' && typeof (value as AgentSessionInfo).model === 'string') {
-          result[id] = (value as AgentSessionInfo).model as string
-        }
-      }
-      return result
-    } catch {
-      return {}
-    }
-  })
+  }, [])
   const [spawnState, setSpawnState] = useState<Record<string, 'idle' | 'spawning' | 'ready' | 'error'>>({})
   const [agentSessionStatus, setAgentSessionStatus] = useState<Record<string, AgentSessionStatusEntry>>({})
   const [gatewayStatus, setGatewayStatus] = useState<GatewayStatus>('connected')
   const [, setAgentModelNotApplied] = useState<Record<string, boolean>>({})
   const [agentActivity, setAgentActivity] = useState<Record<string, AgentActivityEntry>>({})
   const [artifacts, setArtifacts] = useState<MissionArtifact[]>([])
-  const [missionReports, setMissionReports] = useState<StoredMissionReport[]>(() => loadStoredMissionReports())
-  const [missionHistory, setMissionHistory] = useState<MissionCheckpoint[]>(() => loadMissionHistory())
+  // SSR-safe (GAP-F117 follow-up): start with [] on server + first client paint
+  // so React hydration matches. Then load persisted data in useEffect below.
+  const [missionReports, setMissionReports] = useState<StoredMissionReport[]>([])
+  const [missionHistory, setMissionHistory] = useState<MissionCheckpoint[]>([])
   const [artifactPreview, setArtifactPreview] = useState<MissionArtifact | null>(null)
   const [selectedReport, setSelectedReport] = useState<StoredMissionReport | null>(null)
   const [completionReportVisible, setCompletionReportVisible] = useState(false)
@@ -2790,17 +2791,38 @@ export function AgentHubLayout({ agents }: AgentHubLayoutProps) {
   const [pausedByAgentId, setPausedByAgentId] = useState<Record<string, boolean>>({})
   const [steerAgentId, setSteerAgentId] = useState<string | null>(null)
   const [steerInput, setSteerInput] = useState('')
+  // SSR-safe (GAP-F117 follow-up): on server + first client paint we use
+  // ONLY runtime/template (no localStorage) so the hydrated DOM matches.
+  // The localStorage-backed team is restored in a useEffect below.
   const [team, setTeam] = useState<TeamMember[]>(() => {
-    const stored = readStoredTeam()
-    if (stored.length > 0) return stored
     const runtimeTeam = buildTeamFromRuntime(agents)
     if (runtimeTeam.length > 0) return runtimeTeam
     return buildTeamFromTemplate('research')
   })
-  const [teamConfigs, setTeamConfigs] = useState<SavedTeamConfig[]>(() =>
-    readStoredTeamConfigs(),
-  )
+  const [teamConfigs, setTeamConfigs] = useState<SavedTeamConfig[]>([])
   const [selectedTeamConfigId, setSelectedTeamConfigId] = useState('')
+
+  // SSR-safe (GAP-F117 follow-up): rehydrate localStorage-backed state AFTER
+  // mount so the initial DOM matches the server-rendered DOM. Without this
+  // the values diverge between SSR (defaults) and CSR (persisted) and React
+  // throws #418 hydration mismatch.
+  useEffect(() => {
+    try {
+      const reports = loadStoredMissionReports()
+      if (reports.length > 0) setMissionReports(reports)
+      const history = loadMissionHistory()
+      if (history.length > 0) setMissionHistory(history)
+      const storedTeam = readStoredTeam()
+      if (storedTeam.length > 0) setTeam(storedTeam)
+      const configs = readStoredTeamConfigs()
+      if (configs.length > 0) setTeamConfigs(configs)
+    } catch {
+      // ignore — keep defaults
+    }
+    // run once on mount; subsequent updates are managed by interactive code paths
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const taskBoardRef = useRef<TaskBoardRef | null>(null)
   const teamPanelFlashTimerRef = useRef<number | undefined>(undefined)
   const pendingTaskMovesRef = useRef<Array<{ taskIds: Array<string>; status: TaskStatus }>>([])

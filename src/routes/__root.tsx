@@ -20,6 +20,7 @@ import { CompactionNotifier } from '@/components/compaction-notifier'
 import { GatewayRestartProvider } from '@/components/gateway-restart-overlay'
 import { ExecApprovalToast } from '@/components/exec-approval-toast'
 import { initializeSettingsAppearance } from '@/hooks/use-settings'
+import { rehydrateWorkspaceStore } from '@/stores/workspace-store'
 
 const themeScript = `
 (() => {
@@ -253,6 +254,10 @@ function RootLayout() {
   // after Docker image updates and behind reverse proxies (Pangolin, Cloudflare, etc.)
   useEffect(() => {
     initializeSettingsAppearance()
+    // GAP-F117 follow-up: rehydrate workspace zustand store after mount so
+    // persisted UI state (sidebar collapsed, chat panel open, etc.) does NOT
+    // diverge from the server-rendered defaults during the initial hydration.
+    rehydrateWorkspaceStore()
 
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then((registrations) => {

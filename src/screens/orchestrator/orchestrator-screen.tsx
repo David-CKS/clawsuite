@@ -437,10 +437,18 @@ export function OrchestratorScreen() {
   const deleteGoal = useGoalDecompStore((s) => s.deleteGoal)
   const selectGoal = useGoalDecompStore((s) => s.selectGoal)
 
-  const [sessionKey, setSessionKey] = useState<string>(() => {
-    if (typeof window === 'undefined') return ''
-    return window.localStorage.getItem(SESSION_KEY_STORAGE) ?? ''
-  })
+  // SSR-safe (GAP-F117 follow-up): start with '' on server AND first client paint
+  // so React hydration matches. Then peek at localStorage in useEffect.
+  const [sessionKey, setSessionKey] = useState<string>('')
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(SESSION_KEY_STORAGE)
+      if (stored) setSessionKey(stored)
+    } catch {
+      // ignore — keep empty default
+    }
+  }, [])
 
   useEffect(() => {
     void syncFromApi()

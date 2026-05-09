@@ -56,6 +56,13 @@ export const useWorkspaceStore = create<WorkspaceState>()(
     }),
     {
       name: 'openclaw-workspace-v1',
+      // SSR-safe (GAP-F117 follow-up): same pattern as useSettingsStore. Defer
+      // the localStorage read until manual `useWorkspaceStore.persist.rehydrate()`
+      // call from a useEffect on the client. This prevents the persisted state
+      // from diverging from the server-rendered defaults during hydration,
+      // which causes React #418 in components that read from this store on
+      // every route (ChatPanelToggle, WorkspaceShell, etc.).
+      skipHydration: true,
       partialize: (state) => ({
         sidebarCollapsed: state.sidebarCollapsed,
         fileExplorerCollapsed: state.fileExplorerCollapsed,
@@ -65,3 +72,16 @@ export const useWorkspaceStore = create<WorkspaceState>()(
     },
   ),
 )
+
+let didRehydrateWorkspaceStore = false
+
+/**
+ * Called from `RootLayout` useEffect on the client. Triggers the manual
+ * rehydration that `skipHydration: true` requires. Idempotent.
+ */
+export function rehydrateWorkspaceStore(): void {
+  if (didRehydrateWorkspaceStore) return
+  if (typeof window === 'undefined') return
+  didRehydrateWorkspaceStore = true
+  void useWorkspaceStore.persist.rehydrate()
+}
