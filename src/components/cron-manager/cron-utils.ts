@@ -12,13 +12,13 @@ function formatTwoDigits(value: number): string {
 
 function formatDayValue(value: string): string {
   const mapping: Record<string, string> = {
-    '0': 'Sunday',
-    '1': 'Monday',
-    '2': 'Tuesday',
-    '3': 'Wednesday',
-    '4': 'Thursday',
-    '5': 'Friday',
-    '6': 'Saturday',
+    '0': 'domingo',
+    '1': 'lunes',
+    '2': 'martes',
+    '3': 'miércoles',
+    '4': 'jueves',
+    '5': 'viernes',
+    '6': 'sábado',
   }
   return mapping[value] ?? value
 }
@@ -36,7 +36,7 @@ export function formatCronHuman(expression: string): string {
     month === '*' &&
     dayOfWeek === '*'
   ) {
-    return 'Every minute'
+    return 'Cada minuto'
   }
 
   if (
@@ -48,7 +48,7 @@ export function formatCronHuman(expression: string): string {
   ) {
     const interval = Number(minute.slice(2))
     if (Number.isFinite(interval) && interval > 0) {
-      return `Every ${interval} minutes`
+      return `Cada ${interval} minutos`
     }
   }
 
@@ -59,7 +59,7 @@ export function formatCronHuman(expression: string): string {
     month === '*' &&
     dayOfWeek === '*'
   ) {
-    return `At minute ${minute} past every hour`
+    return `En el minuto ${minute} de cada hora`
   }
 
   if (
@@ -69,7 +69,7 @@ export function formatCronHuman(expression: string): string {
     month === '*' &&
     dayOfWeek === '*'
   ) {
-    return `Every day at ${formatTwoDigits(Number(hour))}:${formatTwoDigits(Number(minute))}`
+    return `Cada día a las ${formatTwoDigits(Number(hour))}:${formatTwoDigits(Number(minute))}`
   }
 
   if (
@@ -79,14 +79,14 @@ export function formatCronHuman(expression: string): string {
     month === '*' &&
     /^\d$/.test(dayOfWeek)
   ) {
-    return `Every ${formatDayValue(dayOfWeek)} at ${formatTwoDigits(Number(hour))}:${formatTwoDigits(Number(minute))}`
+    return `Cada ${formatDayValue(dayOfWeek)} a las ${formatTwoDigits(Number(hour))}:${formatTwoDigits(Number(minute))}`
   }
 
   return expression
 }
 
 export function formatDateTime(value: string | null | undefined): string {
-  if (!value) return 'Never'
+  if (!value) return 'Nunca'
   const parsed = Date.parse(value)
   if (Number.isNaN(parsed)) return value
 
@@ -100,18 +100,18 @@ export function formatDateTime(value: string | null | undefined): string {
 }
 
 export function formatDuration(valueMs?: number): string {
-  if (!valueMs || valueMs <= 0) return 'n/a'
+  if (!valueMs || valueMs <= 0) return 'n/d'
   if (valueMs < 1000) return `${Math.round(valueMs)}ms`
   if (valueMs < 60_000) return `${(valueMs / 1000).toFixed(1)}s`
   return `${(valueMs / 60_000).toFixed(1)}m`
 }
 
 export function statusLabel(status: CronRunStatus): string {
-  if (status === 'success') return 'Success'
+  if (status === 'success') return 'Éxito'
   if (status === 'error') return 'Error'
-  if (status === 'running') return 'Running'
-  if (status === 'queued') return 'Queued'
-  return 'Unknown'
+  if (status === 'running') return 'En curso'
+  if (status === 'queued') return 'En cola'
+  return 'Desconocido'
 }
 
 export function sortCronJobs(

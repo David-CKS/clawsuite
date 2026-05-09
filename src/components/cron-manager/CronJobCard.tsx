@@ -71,7 +71,7 @@ export function CronJobCard({
               : 'border-primary-300 bg-primary-200/60 text-primary-700',
           )}
         >
-          {job.enabled ? 'Enabled' : 'Disabled'}
+          {job.enabled ? 'Activado' : 'Desactivado'}
         </span>
       </header>
 
@@ -165,7 +165,7 @@ export function CronJobCard({
           className="w-full justify-between border border-primary-200 bg-primary-100/50 text-primary-800"
         >
           <span className="tabular-nums">
-            {expanded ? 'Hide Details' : 'View Details & History'}
+            {expanded ? 'Ocultar detalles' : 'Ver detalles e historial'}
           </span>
           <HugeiconsIcon
             icon={expanded ? ArrowUp01Icon : ArrowDown01Icon}
