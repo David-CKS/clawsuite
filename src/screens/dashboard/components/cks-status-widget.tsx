@@ -3,9 +3,17 @@ import { Activity01Icon } from '@hugeicons/core-free-icons'
 import { WidgetShell } from './widget-shell'
 import { cn } from '@/lib/utils'
 
+// La API /api/cks/bridge-status devuelve `status` como HTTP status code
+// numérico (200, 404, ...), NO como string 'up'|'down'|'degraded'.
+// Verdad-en-fuente: src/routes/api/cks/bridge-status.ts y la consumer
+// hermana src/screens/cks/sergio-bridge-screen.tsx (que también lo
+// tipa como `number`). Esta type estaba erróneamente declarada como
+// string-literal y provocaba el TypeError `status?.toUpperCase is not
+// a function` cuando A5 (PR #1 042082a) destapó el bug latente al
+// pasar `result.ok` de false a true en /health.
 type BridgeStatusResponse = {
   ok: boolean
-  status?: 'up' | 'down' | 'degraded'
+  status?: number
   latencyMs?: number
   url?: string
   error?: string
@@ -91,11 +99,14 @@ export function CksStatusWidget({ onRemove }: { onRemove?: () => void }) {
     retry: false,
   })
 
+  // Derivar tono desde HTTP status code (number) en vez de string-literal.
+  // 200 → ok · 5xx degraded → warn · resto → err.
+  const bridgeHttp = typeof bridge.data?.status === 'number' ? bridge.data.status : 0
   const bridgeTone = !bridge.data?.ok
     ? 'unknown'
-    : bridge.data.status === 'up'
+    : bridgeHttp === 200
       ? 'ok'
-      : bridge.data.status === 'degraded'
+      : bridgeHttp >= 500 && bridgeHttp < 600
         ? 'warn'
         : 'err'
 
@@ -132,7 +143,13 @@ export function CksStatusWidget({ onRemove }: { onRemove?: () => void }) {
             bridge.isLoading
               ? '…'
               : bridge.data?.ok
-                ? bridge.data.status?.toUpperCase() ?? '—'
+                ? bridgeHttp === 200
+                  ? 'UP'
+                  : bridgeHttp >= 500 && bridgeHttp < 600
+                    ? 'DEGRADED'
+                    : bridgeHttp > 0
+                      ? `HTTP ${bridgeHttp}`
+                      : 'UP'
                 : 'ERR'
           }
           subtitle={
