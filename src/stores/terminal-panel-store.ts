@@ -138,6 +138,10 @@ export const useTerminalPanelStore = create<TerminalPanelState>()(
     }),
     {
       name: 'terminal-panel-state',
+      // SSR-safe (GAP-F117 final): defer localStorage read until manual
+      // rehydrate from RootLayout useEffect. Prevents server/client mismatch
+      // for tabs/activeTabId/isPanelOpen reads on initial render.
+      skipHydration: true,
       partialize: function partialize(state) {
         return {
           isPanelOpen: state.isPanelOpen,
@@ -168,5 +172,18 @@ export const useTerminalPanelStore = create<TerminalPanelState>()(
     },
   ),
 )
+
+let didRehydrateTerminalPanelStore = false
+
+/**
+ * Called from `RootLayout` useEffect on the client. Triggers the manual
+ * rehydration that `skipHydration: true` requires. Idempotent.
+ */
+export function rehydrateTerminalPanelStore(): void {
+  if (didRehydrateTerminalPanelStore) return
+  if (typeof window === 'undefined') return
+  didRehydrateTerminalPanelStore = true
+  void useTerminalPanelStore.persist.rehydrate()
+}
 
 export { DEFAULT_PANEL_HEIGHT, MIN_PANEL_HEIGHT }

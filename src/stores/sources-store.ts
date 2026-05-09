@@ -102,12 +102,29 @@ export const useSourcesStore = create<SourcesState>()(
     },
     {
       name: 'openclaw-sources',
+      // SSR-safe (GAP-F117 final): defer localStorage read until manual
+      // rehydrate from RootLayout useEffect. Prevents server/client mismatch
+      // for `sources` list on initial render in components reading the store.
+      skipHydration: true,
       partialize: function partialize(state) {
         return { sources: state.sources }
       },
     },
   ),
 )
+
+let didRehydrateSourcesStore = false
+
+/**
+ * Called from `RootLayout` useEffect on the client. Triggers the manual
+ * rehydration that `skipHydration: true` requires. Idempotent.
+ */
+export function rehydrateSourcesStore(): void {
+  if (didRehydrateSourcesStore) return
+  if (typeof window === 'undefined') return
+  didRehydrateSourcesStore = true
+  void useSourcesStore.persist.rehydrate()
+}
 
 export function useSources() {
   return useSourcesStore(function selectSources(state) {

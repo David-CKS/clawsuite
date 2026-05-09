@@ -250,6 +250,23 @@ export const useTaskStore = create<TaskStore>()(
     }),
     {
       name: 'clawsuite-tasks-v1',
+      // SSR-safe (GAP-F117 final): defer localStorage read until manual
+      // rehydrate from RootLayout useEffect. Prevents server/client mismatch
+      // for `tasks` array on initial render in components reading the store.
+      skipHydration: true,
     },
   ),
 )
+
+let didRehydrateTaskStore = false
+
+/**
+ * Called from `RootLayout` useEffect on the client. Triggers the manual
+ * rehydration that `skipHydration: true` requires. Idempotent.
+ */
+export function rehydrateTaskStore(): void {
+  if (didRehydrateTaskStore) return
+  if (typeof window === 'undefined') return
+  didRehydrateTaskStore = true
+  void useTaskStore.persist.rehydrate()
+}
