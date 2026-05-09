@@ -107,7 +107,7 @@ function parseOptionalJson(
   try {
     return { value: JSON.parse(trimmed) as unknown }
   } catch {
-    return { error: `${label} must be valid JSON.` }
+    return { error: `${label} debe ser JSON válido.` }
   }
 }
 
@@ -294,7 +294,7 @@ function parseInitialPayload(payload: unknown): ParsedPayloadState {
 
 function validateCronExpr(expr: string): string | null {
   const trimmed = expr.trim()
-  if (!trimmed) return 'Schedule is required.'
+  if (!trimmed) return 'El horario es obligatorio.'
 
   const everyMatch = trimmed.match(
     /^every\s+(\d+)\s*(m|min|minute|minutes|h|hr|hour|hours|d|day|days)?$/i,
@@ -302,7 +302,7 @@ function validateCronExpr(expr: string): string | null {
   if (everyMatch?.[1]) {
     return Number(everyMatch[1]) > 0
       ? null
-      : 'Interval schedule must be greater than zero.'
+      : 'El intervalo del horario debe ser mayor que cero.'
   }
 
   if (/^(at\s+)?\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(trimmed)) {
@@ -311,12 +311,12 @@ function validateCronExpr(expr: string): string | null {
 
   const fields = trimmed.split(/\s+/)
   if (fields.length !== 5) {
-    return 'Cron expression must have 5 fields.'
+    return 'La expresión cron debe tener 5 campos.'
   }
   const valid = /^[0-9*,/\-?LW#]+$/
   for (const field of fields) {
     if (!valid.test(field)) {
-      return `Invalid cron field: "${field}".`
+      return `Campo cron inválido: "${field}".`
     }
   }
   return null
@@ -395,7 +395,7 @@ export function CronJobForm({
         models?: Array<ModelCatalogEntry>
       }
       if (!response.ok || data.ok === false) {
-        throw new Error(data.error ?? 'Failed to load models')
+        throw new Error(data.error ?? 'No se pudieron cargar los modelos')
       }
       return Array.isArray(data.models) ? data.models : []
     },
@@ -410,7 +410,7 @@ export function CronJobForm({
         label:
           entry.name && entry.provider
             ? `${entry.name} (${entry.provider})`
-            : entry.name ?? entry.id ?? 'Unnamed model',
+            : entry.name ?? entry.id ?? 'Modelo sin nombre',
       })),
     [modelsQuery.data],
   )
@@ -516,7 +516,7 @@ export function CronJobForm({
 
     const trimmedName = name.trim()
     if (!trimmedName) {
-      setLocalError('Name is required.')
+      setLocalError('El nombre es obligatorio.')
       return
     }
 
@@ -524,7 +524,7 @@ export function CronJobForm({
       ? rawScheduleInput.trim()
       : generatedSchedule.trim()
     if (!scheduleResult) {
-      setLocalError('Schedule is required.')
+      setLocalError('El horario es obligatorio.')
       return
     }
 
@@ -535,7 +535,7 @@ export function CronJobForm({
     }
 
     if (!useRawSchedule && scheduleType === 'weekly' && weeklyDays.length === 0) {
-      setLocalError('Select at least one day for a weekly schedule.')
+      setLocalError('Selecciona al menos un día para un horario semanal.')
       return
     }
 
@@ -549,21 +549,21 @@ export function CronJobForm({
 
     const payloadValue = payloadResult.value
     if (!useRawPayload && !message.trim()) {
-      setLocalError('Message is required.')
+      setLocalError('El mensaje es obligatorio.')
       return
     }
 
     if (!useRawPayload && taskType === 'agentTurn' && timeoutSeconds.trim()) {
       const timeout = Number(timeoutSeconds)
       if (!Number.isFinite(timeout) || timeout <= 0) {
-        setLocalError('Timeout must be a positive number of seconds.')
+        setLocalError('El tiempo límite debe ser un número positivo de segundos.')
         return
       }
     }
 
     const deliveryConfigResult = parseOptionalJson(
       deliveryConfigInput,
-      'Delivery config',
+      'Config de entrega',
     )
     if (deliveryConfigResult.error) {
       setLocalError(deliveryConfigResult.error)
@@ -712,7 +712,7 @@ export function CronJobForm({
                 <div className="grid gap-4 md:grid-cols-[1fr_1fr_auto]">
                   {scheduleType === 'one-time' ? (
                     <label className="space-y-2 md:col-span-3">
-                      <FieldLabel>Date</FieldLabel>
+                      <FieldLabel>Fecha</FieldLabel>
                       <input
                         type="date"
                         value={oneTimeDate}
@@ -726,7 +726,7 @@ export function CronJobForm({
                   ) : null}
 
                   <label className="space-y-2">
-                    <FieldLabel>Hour</FieldLabel>
+                    <FieldLabel>Hora</FieldLabel>
                     <select
                       value={hour12}
                       onChange={(event) => {
@@ -744,7 +744,7 @@ export function CronJobForm({
                   </label>
 
                   <label className="space-y-2">
-                    <FieldLabel>Minute</FieldLabel>
+                    <FieldLabel>Minuto</FieldLabel>
                     <select
                       value={minute}
                       onChange={(event) => {

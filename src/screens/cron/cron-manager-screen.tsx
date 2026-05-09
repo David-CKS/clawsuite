@@ -112,11 +112,12 @@ export function CronManagerScreen() {
     setSeedNotice(null)
     const total = CKS_DEFAULT_JOBS.length
     const confirmed = window.confirm(
-      `Import ${total} CKS default cron jobs?\n\n` +
-        `Each entry maps an OpenClaw VPS cron to an agentTurn message ` +
-        `directed at the maestro. All entries are imported as DISABLED — ` +
-        `enable manually after review.\n\nThis cannot be undone in bulk; ` +
-        `delete entries individually if needed.`,
+      `¿Importar ${total} tareas cron predeterminadas de CKS?\n\n` +
+        `Cada entrada mapea un cron del VPS OpenClaw a un mensaje de turno ` +
+        `de agente dirigido al maestro. Todas las entradas se importan ` +
+        `como DESACTIVADAS — actívalas manualmente tras revisarlas.\n\n` +
+        `Esto no se puede deshacer en bloque; elimina las entradas ` +
+        `individualmente si es necesario.`,
     )
     if (!confirmed) return
 
@@ -125,11 +126,11 @@ export function CronManagerScreen() {
       const result = await seedCksCronJobs()
       await queryClient.invalidateQueries({ queryKey: cronQueryKeys.jobs })
       if (result.failed === 0) {
-        setSeedNotice(`Imported ${result.created} CKS default cron jobs.`)
+        setSeedNotice(`Importadas ${result.created} tareas cron predeterminadas de CKS.`)
       } else {
         setActionError(
-          `Imported ${result.created}/${result.attempted}. ` +
-            `${result.failed} failed: ${result.errors.slice(0, 3).join('; ')}` +
+          `Importadas ${result.created}/${result.attempted}. ` +
+            `${result.failed} fallaron: ${result.errors.slice(0, 3).join('; ')}` +
             (result.errors.length > 3 ? '…' : ''),
         )
       }
@@ -268,11 +269,12 @@ export function CronManagerScreen() {
             <span>Gestor de tareas programadas</span>
           </div>
           <h1 className="mt-3 text-2xl font-medium text-ink text-balance md:text-3xl">
-            Scheduled Task Control
+            Control de tareas programadas
           </h1>
           <p className="mt-1 max-w-3xl text-sm text-primary-600 text-pretty md:text-base">
-            Monitor cron jobs, toggle schedules, trigger manual runs, and
-            inspect execution history from one screen.
+            Supervisa tareas cron, activa o desactiva horarios, lanza
+            ejecuciones manuales e inspecciona el historial de ejecuciones
+            desde una sola pantalla.
           </p>
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <Button
@@ -287,7 +289,7 @@ export function CronManagerScreen() {
               className="tabular-nums"
             >
               <HugeiconsIcon icon={RefreshIcon} size={20} strokeWidth={1.5} />
-              Refresh
+              Actualizar
             </Button>
             <Button
               variant={formMode === 'create' ? 'secondary' : 'outline'}
@@ -297,7 +299,7 @@ export function CronManagerScreen() {
               }}
               className="tabular-nums"
             >
-              Create Job
+              Crear tarea
             </Button>
             <Button
               variant="outline"
@@ -307,11 +309,11 @@ export function CronManagerScreen() {
                 void handleImportCksDefaults()
               }}
               className="tabular-nums"
-              title="Import 12 CKS default cron jobs (all disabled by default)"
+              title="Importa 12 tareas cron predeterminadas de CKS (todas desactivadas por defecto)"
             >
               {seedPending
-                ? 'Importing CKS defaults…'
-                : `Import CKS Defaults (${CKS_DEFAULT_JOBS.length})`}
+                ? 'Importando predeterminados CKS…'
+                : `Importar predeterminados CKS (${CKS_DEFAULT_JOBS.length})`}
             </Button>
           </div>
           {seedNotice ? (
@@ -329,11 +331,11 @@ export function CronManagerScreen() {
 
         {jobsQuery.isLoading ? (
           <section className="rounded-2xl border border-primary-200 bg-primary-50/80 p-8 text-center text-sm text-primary-600 text-pretty">
-            Loading cron jobs...
+            Cargando tareas cron…
           </section>
         ) : jobsQuery.isError ? (
           <section className="rounded-2xl border border-accent-500/40 bg-accent-500/10 p-4 text-sm text-accent-500 text-pretty">
-            {jobsErrorMessage ?? 'Failed to load cron jobs.'}
+            {jobsErrorMessage ?? 'No se pudieron cargar las tareas cron.'}
           </section>
         ) : (
           <CronJobList
@@ -362,7 +364,7 @@ export function CronManagerScreen() {
         {formMode ? (
           formMode === 'edit' && !editingJob ? (
             <section className="fixed inset-x-4 top-6 z-50 mx-auto max-w-xl rounded-2xl border border-accent-500/40 bg-accent-500/10 p-4 text-sm text-accent-500 shadow-lg backdrop-blur-xl">
-              The selected cron job is no longer available.
+              La tarea cron seleccionada ya no está disponible.
             </section>
           ) : (
             <CronJobForm
