@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-const SETUP_STORAGE_KEY = 'clawsuite-gateway-configured'
+const SETUP_STORAGE_KEY = 'cks-gateway-configured'
 
 type GatewaySetupState = {
   isOpen: boolean
