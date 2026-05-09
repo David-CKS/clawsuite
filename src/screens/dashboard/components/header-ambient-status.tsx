@@ -60,13 +60,17 @@ export function HeaderAmbientStatus() {
   const { settings, update } = useDashboardSettings()
   const is12h = settings.clockFormat === '12h'
 
-  const [now, setNow] = useState(() => new Date())
+  // F117 zone A: clock + date no se inicializan en server render.
+  // SSR pinta `null` → primer paint cliente pinta `null` → useEffect popula now.
+  // Evita el mismatch React #418 que comparaba server-time vs client-time.
+  const [now, setNow] = useState<Date | null>(null)
   const [showWeatherPopover, setShowWeatherPopover] = useState(false)
   const [locationInput, setLocationInput] = useState(settings.weatherLocation)
   const weatherRef = useRef<HTMLSpanElement>(null)
   const popoverRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    setNow(new Date())
     const id = setInterval(() => setNow(new Date()), 30_000)
     return () => clearInterval(id)
   }, [])
@@ -94,6 +98,7 @@ export function HeaderAmbientStatus() {
 
   const timeStr = useMemo(
     function buildTimeString() {
+      if (!now) return ''
       return new Intl.DateTimeFormat(undefined, {
         hour: '2-digit',
         minute: '2-digit',
@@ -105,6 +110,7 @@ export function HeaderAmbientStatus() {
 
   const dateStr = useMemo(
     function buildDateString() {
+      if (!now) return ''
       return new Intl.DateTimeFormat(undefined, {
         weekday: 'short',
         month: 'short',
@@ -144,6 +150,19 @@ export function HeaderAmbientStatus() {
       setShowWeatherPopover(false)
       setLocationInput(settings.weatherLocation)
     }
+  }
+
+  // F117 zone A: hasta que `now` se inicialice en el cliente, renderizamos un
+  // placeholder estable (server + primer paint cliente coinciden). Una vez
+  // hidratado, useEffect setea now y la pill aparece sin React #418.
+  if (!now) {
+    return (
+      <div className="hidden text-right sm:block" aria-hidden="true">
+        <div className="inline-flex h-[22px] items-center justify-end gap-2 rounded-full border border-primary-200 bg-primary-100/65 px-3 py-1 text-[11px] text-primary-600 tabular-nums shadow-sm dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-300">
+          <span className="invisible">--:--</span>
+        </div>
+      </div>
+    )
   }
 
   return (
